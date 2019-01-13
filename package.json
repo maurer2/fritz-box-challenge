@@ -1,0 +1,24 @@
+{
+  "name": "fritz-box-challenge",
+  "version": "1.0.0",
+  "main": "get-box-data.js",
+  "repository": "git@github.com:maurer2/fritz-box-challenge.git",
+  "author": "Martin",
+  "license": "MIT",
+  "scripts": {
+    "get-box-data": "node -r esm ./scripts/get-box-data.js"
+  },
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "eslint": "5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-react-app": "^3.0.5",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "esm": "^3.0.84",
+    "ndb": "1.0.26",
+    "node-fetch": "^2.3.0"
+  }
+}
