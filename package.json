@@ -1,14 +1,15 @@
 {
   "name": "fritz-box-challenge",
   "version": "1.0.0",
-  "main": "get-box-data.js",
+  "main": "main.js",
   "repository": "git@github.com:maurer2/fritz-box-challenge.git",
   "author": "Martin",
   "license": "MIT",
   "scripts": {
     "get-box-data": "node -r esm ./scripts/get-box-data.js",
     "get-box-data-via-ajax": "node -r esm ./scripts/get-box-data-via-ajax.js",
-    "dump-box-data": "node -r esm ./scripts/dump-box-data.js"
+    "dump-box-data": "node -r esm ./scripts/dump-box-data.js",
+    "main": "node -r esm ./scripts/main.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
