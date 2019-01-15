@@ -17,4 +17,3 @@ fetch(url, { compress: false })
 
     return response;
   });
-  
