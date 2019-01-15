@@ -1,6 +1,8 @@
-import QueryComponent from '../components/query-box';
+import QueryComponent from '../components/modem';
+import SplitterComponent from '../components/splitter';
 
 const query = new QueryComponent('http://fritz.box/cgi-bin/system_status');
+const splitter = new SplitterComponent();
 
 query.getData()
   .then((data) => {
@@ -13,5 +15,10 @@ query.getData()
   })
   .then((data) => {
     console.log(data);
-    return data;
+    const splitComponents = splitter.generateParts(data);
+
+    return splitComponents;
+  })
+  .then((data) => {
+    console.log(data);
   });
