@@ -1,0 +1,6 @@
+{
+  "transform": {
+    "\\.m?js$": "esm"
+  },
+  "transformIgnorePatterns": []
+}

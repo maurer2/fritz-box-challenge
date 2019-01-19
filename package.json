@@ -11,7 +11,8 @@
     "dump-box-data": "node -r esm ./scripts/dump-box-data.js",
     "main": "node -r esm ./scripts/main.js",
     "map": "node -r esm ./scripts/map.js",
-    "map-debug": "ndb node -r esm ./scripts/map.js"
+    "map-debug": "ndb node -r esm ./scripts/map.js",
+    "test:mapper": "node -r esm ./node_modules/.bin/jest"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -25,6 +26,7 @@
     "eslint-plugin-react": "^7.11.1",
     "esm": "^3.0.84",
     "fs-extra": "^7.0.1",
+    "jest": "^23.6.0",
     "ndb": "1.0.26",
     "node-fetch": "^2.3.0",
     "uid": "^0.0.2"
