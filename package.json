@@ -9,7 +9,9 @@
     "get-box-data": "node -r esm ./scripts/get-box-data.js",
     "get-box-data-via-ajax": "node -r esm ./scripts/get-box-data-via-ajax.js",
     "dump-box-data": "node -r esm ./scripts/dump-box-data.js",
-    "main": "node -r esm ./scripts/main.js"
+    "main": "node -r esm ./scripts/main.js",
+    "map": "node -r esm ./scripts/map.js",
+    "map-debug": "ndb node -r esm ./scripts/map.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

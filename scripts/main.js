@@ -1,5 +1,6 @@
 import QueryComponent from '../components/modem';
 import SplitterComponent from '../components/splitter';
+import { mapper } from '../components/mapper';
 
 const query = new QueryComponent('http://fritz.box/cgi-bin/system_status');
 const splitter = new SplitterComponent();
