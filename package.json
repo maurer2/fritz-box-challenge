@@ -12,7 +12,7 @@
     "main": "node -r esm ./scripts/main.js",
     "map": "node -r esm ./scripts/map.js",
     "map-debug": "ndb node -r esm ./scripts/map.js",
-    "test:mapper": "jest"
+    "test:mapper": "jest --colors"
   },
   "dependencies": {
     "axios": "^0.18.0",
