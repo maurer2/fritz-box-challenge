@@ -1,12 +1,13 @@
+import { format } from 'date-fns';
+
 import {
   getHours,
   getDays,
   getMonths,
   getYears,
   getDateAsIsoDate,
+  getTimeBetween,
 } from './time';
-
-import { format } from 'date-fns';
 
 const testDate = '112008–002';
 
@@ -41,4 +42,11 @@ test('getDateAsIsoDate returns correct iso string', () => {
   const oldDate = format('2016-05-11T11:00:00.000Z');
 
   expect(getDateAsIsoDate(testDate, nowDate)).toBe(oldDate);
+});
+
+test('distanceInWords returns time span', () => {
+  const nowDate = format(new Date(2019, 1, 1));
+  const oldDate = format(new Date(2018, 1, 1));
+
+  expect(getTimeBetween(nowDate, oldDate)).toBe('about 1 year');
 });

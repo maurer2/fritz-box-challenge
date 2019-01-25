@@ -1,4 +1,11 @@
-import { format, subHours, subDays, subMonths, subYears } from 'date-fns';
+import {
+  format,
+  subHours,
+  subDays,
+  subMonths,
+  subYears,
+  distanceInWords,
+} from 'date-fns';
 
 const getHours = (dateString) => {
   const hoursString = dateString.substring(0, 2);
@@ -40,10 +47,17 @@ const getDateAsIsoDate = (dateString, nowDate) => {
   return format(oldDate);
 };
 
+const getTimeBetween = (dateIsoString, nowDate) => {
+  const time = distanceInWords(dateIsoString, nowDate);
+
+  return time;
+};
+
 export {
   getHours,
   getDays,
   getMonths,
   getYears,
   getDateAsIsoDate,
+  getTimeBetween,
 };
