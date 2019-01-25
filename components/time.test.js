@@ -3,7 +3,10 @@ import {
   getDays,
   getMonths,
   getYears,
+  getDateAsIsoDate,
 } from './time';
+
+import { format } from 'date-fns';
 
 const testDate = '112008–002';
 
@@ -31,4 +34,11 @@ test('getYears returns correct years', () => {
   expect(getYears(testDate)).toBe(2);
 
   expect(getYears(testDate)).toBeGreaterThanOrEqual(0);
+});
+
+test('getDateAsIsoDate returns correct iso string', () => {
+  const nowDate = format(new Date(2019, 1, 1));
+  const oldDate = format('2016-05-11T11:00:00.000Z');
+
+  expect(getDateAsIsoDate(testDate, nowDate)).toBe(oldDate);
 });

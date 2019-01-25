@@ -1,3 +1,5 @@
+import { format, subHours, subDays, subMonths, subYears } from 'date-fns';
+
 const getHours = (dateString) => {
   const hoursString = dateString.substring(0, 2);
 
@@ -22,9 +24,26 @@ const getYears = (dateString) => {
   return parseInt(yearString, 10);
 };
 
+const getDateAsIsoDate = (dateString, nowDate) => {
+  const hours = getHours(dateString);
+  const days = getDays(dateString);
+  const months = getMonths(dateString);
+  const years = getYears(dateString);
+
+  let oldDate = nowDate;
+
+  oldDate = subHours(oldDate, hours);
+  oldDate = subDays(oldDate, days);
+  oldDate = subMonths(oldDate, months);
+  oldDate = subYears(oldDate, years);
+
+  return format(oldDate);
+};
+
 export {
   getHours,
   getDays,
   getMonths,
   getYears,
+  getDateAsIsoDate,
 };
