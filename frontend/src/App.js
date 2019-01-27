@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
-
 import TextComponent from './TextComponent/TextComponent';
-
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
