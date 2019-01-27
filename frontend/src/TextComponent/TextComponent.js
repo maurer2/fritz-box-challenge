@@ -4,14 +4,14 @@ import styled, { css } from 'styled-components';
 const TextWrapper = styled.h1`
   margin: auto;
   color: white;
+  user-select: none;
   /* color: ${props => props.characterCount === 5 ? "green" : "white"}; */
   /*
   ${props => props.numberOfCharacters === 5 && css`
     background: red; 
   `};
   */
-
-  font-size: ${props => 100 / props.characterCount * 1.5 }vw;
+  font-size: ${props => 100 / props.characterCount * 2 }vw;
 `;
 
 class TextComponent extends PureComponent {
