@@ -15,7 +15,7 @@ const AppWrapper = styled.div`
 
 class App extends Component {
   render() {
-    const time = '11.11.2011 11:11';
+    const time = '11.11.1111 - 11:11';
 
     return (
       <AppWrapper className="App">
