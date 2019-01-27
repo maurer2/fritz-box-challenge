@@ -1,0 +1,306 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextComponent dummy should match snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TextComponent
+    text="123456"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "characterCount": 6,
+      "children": Array [
+        <span>
+          1
+        </span>,
+        <span>
+          2
+        </span>,
+        <span>
+          3
+        </span>,
+        <span>
+          4
+        </span>,
+        <span>
+          5
+        </span>,
+        <span>
+          6
+        </span>,
+      ],
+      "className": "text-wrapper",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "0",
+        "nodeType": "host",
+        "props": Object {
+          "children": "1",
+        },
+        "ref": null,
+        "rendered": "1",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "host",
+        "props": Object {
+          "children": "2",
+        },
+        "ref": null,
+        "rendered": "2",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "2",
+        "nodeType": "host",
+        "props": Object {
+          "children": "3",
+        },
+        "ref": null,
+        "rendered": "3",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "3",
+        "nodeType": "host",
+        "props": Object {
+          "children": "4",
+        },
+        "ref": null,
+        "rendered": "4",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "4",
+        "nodeType": "host",
+        "props": Object {
+          "children": "5",
+        },
+        "ref": null,
+        "rendered": "5",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": "5",
+        "nodeType": "host",
+        "props": Object {
+          "children": "6",
+        },
+        "ref": null,
+        "rendered": "6",
+        "type": "span",
+      },
+    ],
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": false,
+        "rules": Array [
+          "
+  margin: auto;
+  color: white;
+  user-select: none;
+  /* color: ",
+          [Function],
+          "; */
+  /*
+  ",
+          [Function],
+          ";
+  */
+  font-size: ",
+          [Function],
+          "vw;
+",
+        ],
+      },
+      "displayName": "styled.h1",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "h1",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "characterCount": 6,
+        "children": Array [
+          <span>
+            1
+          </span>,
+          <span>
+            2
+          </span>,
+          <span>
+            3
+          </span>,
+          <span>
+            4
+          </span>,
+          <span>
+            5
+          </span>,
+          <span>
+            6
+          </span>,
+        ],
+        "className": "text-wrapper",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "host",
+          "props": Object {
+            "children": "1",
+          },
+          "ref": null,
+          "rendered": "1",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "host",
+          "props": Object {
+            "children": "2",
+          },
+          "ref": null,
+          "rendered": "2",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "2",
+          "nodeType": "host",
+          "props": Object {
+            "children": "3",
+          },
+          "ref": null,
+          "rendered": "3",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "3",
+          "nodeType": "host",
+          "props": Object {
+            "children": "4",
+          },
+          "ref": null,
+          "rendered": "4",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "4",
+          "nodeType": "host",
+          "props": Object {
+            "children": "5",
+          },
+          "ref": null,
+          "rendered": "5",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": "5",
+          "nodeType": "host",
+          "props": Object {
+            "children": "6",
+          },
+          "ref": null,
+          "rendered": "6",
+          "type": "span",
+        },
+      ],
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": false,
+          "rules": Array [
+            "
+  margin: auto;
+  color: white;
+  user-select: none;
+  /* color: ",
+            [Function],
+            "; */
+  /*
+  ",
+            [Function],
+            ";
+  */
+  font-size: ",
+            [Function],
+            "vw;
+",
+          ],
+        },
+        "displayName": "styled.h1",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": "h1",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

@@ -25,7 +25,7 @@ class TextComponent extends PureComponent {
 
   render() {
     return (
-      <TextWrapper characterCount={ this.numberOfCharacters }>
+      <TextWrapper characterCount={ this.numberOfCharacters } className="text-wrapper">
         { this.textSeparate.map(
           (character, index) => 
           <span key={ index }>
