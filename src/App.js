@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TextComponent from './TextComponent/TextComponent';
 import styled from 'styled-components';
+import TextComponent from './TextComponent/TextComponent';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      showFullNumber: true
+      showFullNumber: true,
     };
 
     this.handleClick = this.handleClick.bind(this);
