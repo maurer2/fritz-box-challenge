@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import TextComponent from './TextComponent/TextComponent';
+import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './components/time';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -28,12 +29,17 @@ class App extends Component {
   }
 
   render() {
-    const timeLong = '11.11.1111 - 11:11';
-    const timeShort = '11.11.1111';
+    const nowDate = getNowDate();
+    const productionDate = getDateAsIsoDate('112008–002', nowDate);
+    const timeProse = getTimeBetween(productionDate, nowDate);
+
+    console.log(productionDate);
+
+    const timeLong = getDate(productionDate);
 
     return (
       <AppWrapper className="App" onClick={ this.handleClick }>
-        <TextComponent text={ this.state.showFullNumber ? timeLong : timeShort } />
+        <TextComponent text={ this.state.showFullNumber ? timeLong : timeProse } />
       </AppWrapper>
     );
   }

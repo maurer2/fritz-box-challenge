@@ -12,7 +12,7 @@ const TextWrapper = styled.h1`
     background: red; 
   `};
   */
-  font-size: ${props => 100 / props.characterCount * 2}vw;
+  font-size: ${props => 100 / props.characterCount * 1.75}vw;
 `;
 
 class TextComponent extends PureComponent {

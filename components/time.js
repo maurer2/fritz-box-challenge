@@ -31,6 +31,12 @@ const getYears = (dateString) => {
   return parseInt(yearString, 10);
 };
 
+const getDate = (dateAsIsoDate) => {
+  const newDate = format(dateAsIsoDate, 'MM.DD.YYYY-HH:MM');
+
+  return newDate;
+};
+
 const getDateAsIsoDate = (dateString, nowDate) => {
   const hours = getHours(dateString);
   const days = getDays(dateString);
@@ -53,11 +59,15 @@ const getTimeBetween = (dateIsoString, nowDate) => {
   return time;
 };
 
+const getNowDate = () => format(new Date());
+
 export {
   getHours,
   getDays,
   getMonths,
   getYears,
+  getDate,
   getDateAsIsoDate,
   getTimeBetween,
+  getNowDate,
 };
