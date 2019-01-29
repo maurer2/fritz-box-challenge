@@ -39,8 +39,6 @@ class TextComponent extends PureComponent {
   }
 }
 
-TextComponent.propTypes = {
-  text: PropTypes.string,
-};
+TextComponent.propTypes = { text: PropTypes.string };
 
 export default TextComponent;

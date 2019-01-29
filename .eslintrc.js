@@ -8,7 +8,9 @@ module.exports = {
     "react",
   ],
   "env": {
-    "jest": true
+    "jest": true,
+    "browser": true,
+    "node": true,
   }, 
   "rules": {
     "react/jsx-uses-react": "error",

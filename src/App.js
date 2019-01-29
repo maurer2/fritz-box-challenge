@@ -15,26 +15,19 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      showFullNumber: true,
-    };
+    this.state = { showFullNumber: true };
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.setState(previousState => ({
-      showFullNumber: !previousState.showFullNumber,
-    }));
+    this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
   }
 
   render() {
     const nowDate = getNowDate();
     const productionDate = getDateAsIsoDate('112008–002', nowDate);
     const timeProse = getTimeBetween(productionDate, nowDate);
-
-    console.log(productionDate);
-
     const timeLong = getDate(productionDate);
 
     return (
