@@ -12,7 +12,7 @@
     "main": "node -r esm ./scripts/main.js",
     "map": "node -r esm ./scripts/map.js",
     "map-debug": "ndb node -r esm ./scripts/map.js",
-    "test:node": "jest './components/*' --colors",
+    "test:node": "jest './components/*' --colors --coverage",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -61,5 +61,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "http://fritz.box/"
 }
