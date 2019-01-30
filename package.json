@@ -5,14 +5,9 @@
   "repository": "git@github.com:maurer2/fritz-box-challenge.git",
   "author": "Martin",
   "license": "MIT",
-  "scripts": {
-    "get-box-data": "node -r esm ./scripts/get-box-data.js",
-    "get-box-data-via-ajax": "node -r esm ./scripts/get-box-data-via-ajax.js",
+  "scripts": {    
     "dump-box-data": "node -r esm ./scripts/dump-box-data.js",
-    "main": "node -r esm ./scripts/main.js",
-    "map": "node -r esm ./scripts/map.js",
-    "map-debug": "ndb node -r esm ./scripts/map.js",
-    "test:node": "jest './components/*' --colors --coverage",
+    "test:lib": "jest './libs/*' --colors --coverage",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
