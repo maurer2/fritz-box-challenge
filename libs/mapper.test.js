@@ -10,20 +10,29 @@ import {
 const testData = [
   'FRITZ!Box 7590 (UI)',
   'B',
-  '041711–000',
+  '041711-000',
   '121',
-  '533176–734744',
+  '533176',
+  '734744',
   '147902',
   '840604',
   '28179',
   '1und1',
 ];
 
-test('addDashToString WIP ', () => {
+test('addDashToString function adds dash betwee power on hours and restarts ', () => {
   const stringWithMissingDash = 'FRITZ!Box Fon WLAN 7390–B–041711–000121–533176–734744–147902–840604–28179–avm';
-  const dashArray = addDashToString(stringWithMissingDash);
+  const stringWithoutMissingDash = 'FRITZ!Box Fon WLAN 7390–B–041711–000-121–533176–734744–147902–840604–28179–avm';
+  const fixedString = addDashToString(stringWithMissingDash);
 
-  expect(dashArray.length).toBe(10);
+  expect(fixedString).toEqual(stringWithoutMissingDash);
+});
+
+test('splitString creates correct number of parts ', () => {
+  const stringValue = 'FRITZ!Box Fon WLAN 7390–B–041711–000–121–533176–734744–147902–840604–28179–avm';
+  const splitUpStringArray = splitString(stringValue);
+
+  expect(splitUpStringArray).toBe(testData.length);
 });
 
 test('fieldsMapping is not empty ', () => {

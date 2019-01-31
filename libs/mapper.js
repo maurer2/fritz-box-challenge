@@ -3,14 +3,15 @@ const fieldsMappings = [
   'technology',
   'powerOnHours',
   'restarts',
-  'hash',
+  'hash 1',
+  'hash 2',
   'status',
   'firmware',
   'subfirmware',
   'branding',
 ];
 
-const splitString = stringValue => stringValue.split('-');
+const splitString = stringValue => stringValue.split('–');
 
 // have: FRITZ!Box Fon WLAN 7390–B–041711–000121–533176–734744–147902–840604–28179–avm
 // want: FRITZ!Box Fon WLAN 7390–B–041711–000-121–533176–734744–147902–840604–28179–avm
@@ -24,9 +25,15 @@ const addDashToString = (stringValue) => {
     return total;
   }, []);
 
-  console.log(dashPositions);
+  // date starts after second dash
+  const dateStartPosition = dashPositions[1] + 1;
+  const dateLength = 10;
+  const splitPoint = dateStartPosition + dateLength;
 
-  return dashPositions;
+  const stringBeforeSplitPoint = stringValue.substring(0, splitPoint);
+  const stringAfterSplitPoint = stringValue.substring(splitPoint);
+
+  return `${stringBeforeSplitPoint}-${stringAfterSplitPoint}`;
 };
 
 const mapValueToField = (fieldValue, index) => ({ [fieldsMappings[index]]: fieldValue });
