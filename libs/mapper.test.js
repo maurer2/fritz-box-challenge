@@ -1,10 +1,8 @@
 import {
   fieldsMappings,
-  mapValueToField,
   flatenArray,
   flattenMapValues,
-  splitString,
-  addDashToString,
+  mapValueToField,
 } from './mapper';
 
 const testData = [
@@ -19,21 +17,6 @@ const testData = [
   '28179',
   '1und1',
 ];
-
-test('addDashToString function adds dash betwee power on hours and restarts ', () => {
-  const stringWithMissingDash = 'FRITZ!Box Fon WLAN 7390–B–041711–000121–533176–734744–147902–840604–28179–avm';
-  const stringWithoutMissingDash = 'FRITZ!Box Fon WLAN 7390–B–041711–000-121–533176–734744–147902–840604–28179–avm';
-  const fixedString = addDashToString(stringWithMissingDash);
-
-  expect(fixedString).toEqual(stringWithoutMissingDash);
-});
-
-test('splitString creates correct number of parts ', () => {
-  const stringValue = 'FRITZ!Box Fon WLAN 7390–B–041711–000–121–533176–734744–147902–840604–28179–avm';
-  const splitUpStringArray = splitString(stringValue);
-
-  expect(splitUpStringArray).toBe(testData.length);
-});
 
 test('fieldsMapping is not empty ', () => {
   const mappings = fieldsMappings;
