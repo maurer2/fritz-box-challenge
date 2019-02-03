@@ -5,6 +5,7 @@ import {
   getDays,
   getMonths,
   getYears,
+  getDate,
   getDateAsIsoDate,
   getTimeBetween,
 } from './time';
@@ -35,6 +36,12 @@ test('getYears returns correct years', () => {
   expect(getYears(testDate)).toBe(2);
 
   expect(getYears(testDate)).toBeGreaterThanOrEqual(0);
+});
+
+test('getDate returns correct getDate', () => {
+  const formattedDate = format(testDate, 'MM.DD.YYYY-HH:MM');
+
+  expect(getDate(formattedDate)).toEqual(formattedDate);
 });
 
 test('getDateAsIsoDate returns correct iso string', () => {
