@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const getData = url => fetch(url, { compress: false })
+const getData = url => fetch(url)
   .then((response) => {
     if (!response.ok) {
       throw Error(response.statusText);
