@@ -1,39 +1,40 @@
+jest.mock('node-fetch');
+
 import getData from './modem';
+import fetch from 'node-fetch';
+
+const positivePromise = new Promise((resolve) => {
+  resolve({
+    ok: true,
+    text: () => { 'test'; },
+  });
+});
+
+const negativePromise = new Promise((resolve) => {
+  resolve({
+    ok: false,
+  });
+});
+
 
 describe('modem', () => {
-  global.fetch = jest.fn().mockImplementation(() => {
-    const mockedReturn = new Promise((resolve) => {
-      resolve({
-        ok: true,
-        text: () => { 'test'; },
-      });
+  test('getData response is okay', () => {
+    fetch.mockReturnValue(Promise.resolve(positivePromise));
+
+    getData('url').then((data) => {
+      expect(fetch).toHaveBeenCalledTimes(1);
+      expect(data.ok).toBe(true);
+      expect(data.text).toBe('test');
+    });
+  });
+
+  test('getData response throws error', () => {
+    fetch.mockImplementation(() => {
+      throw new Error();
     });
 
-    return mockedReturn;
-  });
-
-  it('getData response is okay', (done) => {
-    getData('url')
-      .then((response) => {
-        expect(response.ok).toBe(true);
-        expect(response.text()).toBe('test');
-
-        done();
-      })
-      .catch(error => error);
-  });
-
-  it('getData response is not okay', () => {
-    global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      ok: false,
-    }));
-
-    getData('url')
-      .then(() => {
-        expect(() => {
-          throw new Error();
-        }).toThrow();
-      })
-      .catch(error => error);
+    getData('url').then(() => {
+      expect(fetch).toHaveBeenCalledTimes(1);
+    });
   });
 });

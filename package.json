@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dump-box-data": "node -r esm ./scripts/dump-box-data.js",
-    "test:lib": "jest './libs/*' --colors --coverage",
+    "test:lib": "jest './libs/*' --colors --coverage --watchAll",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -37,6 +37,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.4",
     "esm": "^3.0.84",
+    "fetch-mock": "^7.3.0",
     "fs-extra": "^7.0.1",
     "jest": "^23.6.0",
     "libnpx": "^10.2.0",
