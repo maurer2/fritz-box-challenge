@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import TextComponent from './TextComponent/TextComponent';
+import TimerComponent from './TimerComponent/TimerComponent';
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
 import getData from './libs/modem';
 
@@ -16,7 +17,10 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { showFullNumber: true };
+    this.state = {
+      showFullNumber: true,
+      isUpdating: true,
+    };
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -24,6 +28,7 @@ class App extends Component {
     this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
   }
 
+  /*
   componentDidMount() {
     const url = '/cgi-bin/system_status';
     const data = getData(url);
@@ -31,6 +36,7 @@ class App extends Component {
       console.log(data);
     });
   }
+  */
 
   render() {
     const nowDate = getNowDate();
@@ -41,6 +47,7 @@ class App extends Component {
     return (
       <AppWrapper className="App" onClick={ this.handleClick }>
         <TextComponent text={ this.state.showFullNumber ? timeLong : timeProse } />
+        { this.state.isUpdating === true && <TimerComponent /> }
       </AppWrapper>
     );
   }

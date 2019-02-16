@@ -14,12 +14,6 @@ describe('TextComponent dummy', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render text-wrapper', () => {
-    const wrapper = shallow(<TextComponent text={ '123456' } />);
-
-    expect(wrapper.hasClass('text-wrapper')).toBe(true);
-  });
-
   it('should should contain spans with numbers', () => {
     const wrapper = shallow(<TextComponent text={ '123456' } />);
 

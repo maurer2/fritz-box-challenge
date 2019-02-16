@@ -32,7 +32,7 @@ const getYears = (dateString) => {
 };
 
 const getDate = (dateAsIsoDate) => {
-  const newDate = format(dateAsIsoDate, 'MM.DD.YYYY-HH:MM');
+  const newDate = format(dateAsIsoDate, 'DD.MM.YYYY-HH:MM');
 
   return newDate;
 };

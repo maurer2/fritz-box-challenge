@@ -41,7 +41,6 @@ ShallowWrapper {
           6
         </span>,
       ],
-      "className": "text-wrapper",
     },
     "ref": null,
     "rendered": Array [
@@ -174,7 +173,6 @@ ShallowWrapper {
             6
           </span>,
         ],
-        "className": "text-wrapper",
       },
       "ref": null,
       "rendered": Array [
