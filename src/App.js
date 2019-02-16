@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { CSSTransitionGroup } from 'react-transition-group';
 import TextComponent from './TextComponent/TextComponent';
 import TimerComponent from './TimerComponent/TimerComponent';
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
 import getData from './libs/modem';
+import './App.css';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -60,7 +62,15 @@ class App extends Component {
     return (
       <AppWrapper className="App" onClick={ this.handleClick }>
         <TextComponent text={ this.state.showFullNumber ? timeLong : timeProse } />
-        { this.state.isUpdating === true && <TimerComponent /> }
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionAppear={ true }
+          transitionAppearTimeout={ 250 }
+          transitionEnterTimeout={ 250 }
+          transitionLeaveTimeout={ 250 }
+        >
+          { this.state.isUpdating === true && <TimerComponent /> }
+        </CSSTransitionGroup>
       </AppWrapper>
     );
   }
