@@ -20,6 +20,7 @@ class App extends Component {
     this.state = {
       showFullNumber: true,
       isUpdating: true,
+      text: '',
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -28,15 +29,27 @@ class App extends Component {
     this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
   }
 
-  /*
-  componentDidMount() {
+  fetchNewDate() {
     const url = '/cgi-bin/system_status';
-    const data = getData(url);
-    data.then((data) => {
-      console.log(data);
-    });
+
+    this.setState({ isUpdating: true });
+
+    return getData(url)
+      .then((data) => {
+        this.setState({ isUpdating: false });
+
+        return data;
+      });
   }
-  */
+
+  componentDidMount() {
+    this.fetchNewDate()
+      .then((data) => {
+        this.setState({ text: data });
+
+        console.log(this.state.text);
+      });
+  }
 
   render() {
     const nowDate = getNowDate();
