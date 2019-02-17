@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { CSSTransitionGroup } from 'react-transition-group';
 import TextComponent from './TextComponent/TextComponent';
 import TimerComponent from './TimerComponent/TimerComponent';
@@ -63,13 +63,15 @@ class App extends Component {
       <AppWrapper className="App" onClick={ this.handleClick }>
         <TextComponent text={ this.state.showFullNumber ? timeLong : timeProse } />
         <CSSTransitionGroup
-          transitionName="fade"
+          component={ React.Fragment }
           transitionAppear={ true }
-          transitionAppearTimeout={ 250 }
-          transitionEnterTimeout={ 250 }
-          transitionLeaveTimeout={ 250 }
+          transitionName="fade"
+          transitionAppearTimeout={ 500 }
+          transitionLeaveTimeout={ 500 }
         >
-          { this.state.isUpdating === true && <TimerComponent /> }
+          {
+            this.state.isUpdating === true && <TimerComponent />
+          }
         </CSSTransitionGroup>
       </AppWrapper>
     );

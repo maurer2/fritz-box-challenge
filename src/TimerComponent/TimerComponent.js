@@ -8,16 +8,7 @@ const TimerWrapper = styled.div`
   right: 0;
   height: 5rem;
   padding: 1rem;
-`;
-
-const TimerBackdrop = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.85);
-  // filter: blur(5px);
+  background: red;
 `;
 
 const TimerText = styled.span`
@@ -33,7 +24,6 @@ class TimerComponent extends PureComponent {
   render() {
     return (
       <TimerWrapper>
-        <TimerBackdrop />
         <TimerText>
           Updating!
         </TimerText>
