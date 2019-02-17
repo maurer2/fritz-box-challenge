@@ -5,7 +5,6 @@ import TextComponent from './TextComponent/TextComponent';
 import TimerComponent from './TimerComponent/TimerComponent';
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
 import getData from './libs/modem';
-import './App.css';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -13,6 +12,26 @@ const AppWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   background: black;
+`;
+
+const FadeTransition = styled.div`
+  .fade-appear {
+    opacity: 0.01;
+  }
+
+  .fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+    }
+
+  .fade-leave {
+    opacity: 1;
+  }
+
+  .fade-leave.fade-leave-active {
+    opacity: 0.01;
+    transition: opacity 500ms ease-in;
+  }
 `;
 
 class App extends Component {
@@ -62,17 +81,18 @@ class App extends Component {
     return (
       <AppWrapper className="App" onClick={ this.handleClick }>
         <TextComponent text={ this.state.showFullNumber ? timeLong : timeProse } />
-        <CSSTransitionGroup
-          component={ React.Fragment }
-          transitionAppear={ true }
-          transitionName="fade"
-          transitionAppearTimeout={ 500 }
-          transitionLeaveTimeout={ 500 }
-        >
-          {
-            this.state.isUpdating === true && <TimerComponent />
-          }
-        </CSSTransitionGroup>
+        <FadeTransition>
+          <CSSTransitionGroup
+            component={ React.Fragment }
+            transitionAppear={ true }
+            transitionName="fade"
+            transitionAppearTimeout={ 500 }
+            transitionLeaveTimeout={ 500 }
+            transitionEnterTimeout={ 0 }
+          >
+            { this.state.isUpdating === true && <TimerComponent /> }
+          </CSSTransitionGroup>
+        </FadeTransition>
       </AppWrapper>
     );
   }
