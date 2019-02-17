@@ -15,11 +15,13 @@ const AppWrapper = styled.div`
 `;
 
 const FadeTransition = styled.div`
-  .fade-appear {
+  .fade-appear,
+  .fade-enter {
     opacity: 0.01;
   }
 
-  .fade-appear.fade-appear-active {
+  .fade-appear.fade-appear-active,
+  .fade-enter.fade-enter-active {
     opacity: 1;
     transition: opacity 500ms ease-in;
     }
@@ -70,8 +72,8 @@ class App extends Component {
   startUpdateLoop() {
     const loopID = setInterval(() => {
       this.fetchNewDate();
-      console.log('update');
-    }, 60000);
+      console.log('update', loopID);
+    }, 10000);
 
     this.setState({ loopID });
   }
