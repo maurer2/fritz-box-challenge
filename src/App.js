@@ -42,6 +42,7 @@ class App extends Component {
       showFullNumber: true,
       isUpdating: true,
       text: '',
+      loopID: -1,
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -57,18 +58,32 @@ class App extends Component {
 
     return getData(url)
       .then((data) => {
-        this.setState({ isUpdating: false });
+        this.setState({
+          isUpdating: false,
+          text: data,
+        });
 
         return data;
       });
   }
 
+  startUpdateLoop() {
+    const loopID = setInterval(() => {
+      this.fetchNewDate();
+      console.log('update');
+    }, 60000);
+
+    this.setState({ loopID });
+  }
+
+  cancellUpdateLoop() {
+    clearInterval(this.state.loopID);
+  }
+
   componentDidMount() {
     this.fetchNewDate()
-      .then((data) => {
-        this.setState({ text: data });
-
-        console.log(this.state.text);
+      .then(() => {
+        this.startUpdateLoop();
       });
   }
 
@@ -79,7 +94,7 @@ class App extends Component {
     const timeLong = getDate(productionDate);
 
     return (
-      <AppWrapper className="App" onClick={ this.handleClick }>
+      <AppWrapper onClick={ this.handleClick }>
         <TextComponent text={ this.state.showFullNumber ? timeLong : timeProse } />
         <FadeTransition>
           <CSSTransitionGroup
