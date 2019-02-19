@@ -115,31 +115,18 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "sc-bdVaJa",
+        "componentId": "TextWrapper-r0imrm-0",
         "isStatic": false,
         "rules": Array [
-          "
-  margin: auto;
-  color: white;
-  user-select: none;
-  /* color: ",
+          "margin:auto;color:white;user-select:none;font-size:",
           [Function],
-          "; */
-  /*
-  ",
-          [Function],
-          ";
-  */
-  font-size: ",
-          [Function],
-          "vw;
-",
+          "vw;",
         ],
       },
-      "displayName": "styled.h1",
+      "displayName": "TextWrapper",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "sc-bdVaJa",
+      "styledComponentId": "TextWrapper-r0imrm-0",
       "target": "h1",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -247,31 +234,18 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-bdVaJa",
+          "componentId": "TextWrapper-r0imrm-0",
           "isStatic": false,
           "rules": Array [
-            "
-  margin: auto;
-  color: white;
-  user-select: none;
-  /* color: ",
+            "margin:auto;color:white;user-select:none;font-size:",
             [Function],
-            "; */
-  /*
-  ",
-            [Function],
-            ";
-  */
-  font-size: ",
-            [Function],
-            "vw;
-",
+            "vw;",
           ],
         },
-        "displayName": "styled.h1",
+        "displayName": "TextWrapper",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-bdVaJa",
+        "styledComponentId": "TextWrapper-r0imrm-0",
         "target": "h1",
         "toString": [Function],
         "warnTooManyClasses": [Function],

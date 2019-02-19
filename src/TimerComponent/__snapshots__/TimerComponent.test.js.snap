@@ -18,65 +18,51 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "children": <ForwardRef>
-        Updating!
-      </ForwardRef>,
+      "children": <CSSTransitionGroup
+        component={Symbol(react.fragment)}
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnter={true}
+        transitionEnterTimeout={0}
+        transitionLeave={true}
+        transitionLeaveTimeout={500}
+        transitionName="fade"
+      />,
     },
     "ref": null,
     "rendered": Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "function",
+      "nodeType": "class",
       "props": Object {
-        "children": "Updating!",
+        "children": undefined,
+        "component": Symbol(react.fragment),
+        "transitionAppear": true,
+        "transitionAppearTimeout": 500,
+        "transitionEnter": true,
+        "transitionEnterTimeout": 0,
+        "transitionLeave": true,
+        "transitionLeaveTimeout": 500,
+        "transitionName": "fade",
       },
       "ref": null,
-      "rendered": "Updating!",
-      "type": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "attrs": Array [],
-        "componentStyle": ComponentStyle {
-          "componentId": "sc-bwzfXH",
-          "isStatic": true,
-          "rules": Array [
-            "
-  display: block;
-  text-align: center;
-  font-size: 2.5rem;
-",
-          ],
-        },
-        "displayName": "styled.span",
-        "foldedComponentIds": Array [],
-        "render": [Function],
-        "styledComponentId": "sc-bwzfXH",
-        "target": "span",
-        "toString": [Function],
-        "warnTooManyClasses": [Function],
-        "withComponent": [Function],
-      },
+      "rendered": null,
+      "type": [Function],
     },
     "type": Object {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "sc-bdVaJa",
+        "componentId": "FadeTransition-gl3nac-2",
         "isStatic": true,
         "rules": Array [
-          "
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 2.5rem;
-  background: red;
-",
+          ".fade-appear,.fade-enter{opacity:0.01;}.fade-appear.fade-appear-active,.fade-enter.fade-enter-active{opacity:1;transition:opacity 500ms ease-in;}.fade-leave{opacity:1;}.fade-leave.fade-leave-active{opacity:0.01;transition:opacity 500ms ease-in;}",
         ],
       },
-      "displayName": "styled.div",
+      "displayName": "FadeTransition",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "sc-bdVaJa",
+      "styledComponentId": "FadeTransition-gl3nac-2",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -89,65 +75,51 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "children": <ForwardRef>
-          Updating!
-        </ForwardRef>,
+        "children": <CSSTransitionGroup
+          component={Symbol(react.fragment)}
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnter={true}
+          transitionEnterTimeout={0}
+          transitionLeave={true}
+          transitionLeaveTimeout={500}
+          transitionName="fade"
+        />,
       },
       "ref": null,
       "rendered": Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "children": "Updating!",
+          "children": undefined,
+          "component": Symbol(react.fragment),
+          "transitionAppear": true,
+          "transitionAppearTimeout": 500,
+          "transitionEnter": true,
+          "transitionEnterTimeout": 0,
+          "transitionLeave": true,
+          "transitionLeaveTimeout": 500,
+          "transitionName": "fade",
         },
         "ref": null,
-        "rendered": "Updating!",
-        "type": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-bwzfXH",
-            "isStatic": true,
-            "rules": Array [
-              "
-  display: block;
-  text-align: center;
-  font-size: 2.5rem;
-",
-            ],
-          },
-          "displayName": "styled.span",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-bwzfXH",
-          "target": "span",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        },
+        "rendered": null,
+        "type": [Function],
       },
       "type": Object {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "sc-bdVaJa",
+          "componentId": "FadeTransition-gl3nac-2",
           "isStatic": true,
           "rules": Array [
-            "
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 2.5rem;
-  background: red;
-",
+            ".fade-appear,.fade-enter{opacity:0.01;}.fade-appear.fade-appear-active,.fade-enter.fade-enter-active{opacity:1;transition:opacity 500ms ease-in;}.fade-leave{opacity:1;}.fade-leave.fade-leave-active{opacity:0.01;transition:opacity 500ms ease-in;}",
           ],
         },
-        "displayName": "styled.div",
+        "displayName": "FadeTransition",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "sc-bdVaJa",
+        "styledComponentId": "FadeTransition-gl3nac-2",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

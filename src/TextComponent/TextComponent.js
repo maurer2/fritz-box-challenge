@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
 const TextWrapper = styled.h1`
