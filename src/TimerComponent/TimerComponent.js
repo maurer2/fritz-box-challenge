@@ -9,13 +9,9 @@ const TimerWrapper = styled.div`
   left: 0;
   right: 0;
   padding: 2.5rem;
-  background: red;
-`;
-
-const TimerText = styled.span`
-  display: block;
   text-align: center;
   font-size: 2.5rem;
+  background: red;
 `;
 
 const FadeTransition = styled.div`
@@ -54,9 +50,7 @@ class TimerComponent extends PureComponent {
         >
         { this.props.isUpdating && (
           <TimerWrapper>
-            <TimerText>
-              Updating!
-            </TimerText>
+            Updating!
           </TimerWrapper>
         )}
         </CSSTransitionGroup>

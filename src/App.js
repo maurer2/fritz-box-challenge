@@ -30,25 +30,31 @@ class App extends Component {
     this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
   }
 
-  fetchNewDate() {
+  fetchData() {
     const url = '/cgi-bin/system_status';
 
     this.setState({ isUpdating: true });
 
     return getData(url)
       .then((data) => {
+        if (data instanceof Error) {
+          throw new Error('fail');
+        }
+
         this.setState({
           isUpdating: false,
           text: data,
         });
-
-        return data;
+      })
+      .catch((error) => {
+        this.setState({ isUpdating: false });
+        console.log(error);
       });
   }
 
   startUpdateLoop() {
     const loopID = setInterval(() => {
-      this.fetchNewDate();
+      this.fetchData();
       console.log('update', loopID);
     }, 10000);
 
@@ -60,17 +66,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchNewDate()
-      .then(() => {
-        // this.startUpdateLoop();
-      });
+    this.fetchData();
+  }
+
+  getProductionDate() {
+    const nowDate = getNowDate();
+    const productionDate = getDateAsIsoDate('112008–002', nowDate);
+
+    return productionDate;
   }
 
   render() {
-    const nowDate = getNowDate();
-    const productionDate = getDateAsIsoDate('112008–002', nowDate);
-    const timeProse = getTimeBetween(productionDate, nowDate);
-    const timeLong = getDate(productionDate);
+    const timeProse = getTimeBetween(this.getProductionDate(), getNowDate());
+    const timeLong = getDate(this.getProductionDate());
 
     return (
       <AppWrapper onClick={ this.handleClick }>
