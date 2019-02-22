@@ -22,9 +22,10 @@ class App extends Component {
     this.state = {
       showFullNumber: true,
       isUpdating: true,
-      text: '',
       loopID: -1,
       url: '/cgi-bin/system_status',
+      dateLong: '',
+      dateProsa: '',
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -75,15 +76,23 @@ class App extends Component {
         const nowDateString = getNowDate();
 
         const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);
-        const dateReadable = getDate(dateIsoString);
+        const dateLong = getDate(dateIsoString);
         const dateProsa = getTimeBetween(dateIsoString, nowDateString);
 
-        console.log('extractedDateString', dateReadable, dateProsa);
+        this.setState(() => ({
+          dateLong,
+          dateProsa,
+        }));
 
         Promise.resolve();
       })
       .catch((error) => {
-        console.log('error2', error);
+        console.log('error', error);
+
+        this.setState(() => ({
+          dateLong: 'Error',
+          dateProsa: 'Error',
+        }));
 
         Promise.resolve();
       });
@@ -93,21 +102,13 @@ class App extends Component {
     });
   }
 
-  getProductionDate() {
-    const nowDate = getNowDate();
-    const productionDate = getDateAsIsoDate('112008–002', nowDate);
-
-    return productionDate;
-  }
-
   render() {
-    const timeProse = getTimeBetween(this.getProductionDate(), getNowDate());
-    const timeLong = getDate(this.getProductionDate());
+    const { dateLong, dateProsa } = this.state;
 
     return (
       <AppWrapper onClick={ this.handleClick }>
-        <TextComponent text={ this.state.showFullNumber ? timeLong : timeProse } />
         <TimerComponent isUpdating={ this.state.isUpdating } />
+        <TextComponent text={ this.state.showFullNumber ? dateLong : dateProsa } />
       </AppWrapper>
     );
   }
