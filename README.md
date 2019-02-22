@@ -1,1 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fritz-box-challenge
+
+Make http://fritz.box/cgi-bin/system_status human readable with react.
+
+![Screenshot](screenshot.png?raw=true "Screenshot")
