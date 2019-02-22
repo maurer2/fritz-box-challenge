@@ -4,6 +4,8 @@ import TextComponent from './TextComponent/TextComponent';
 import TimerComponent from './TimerComponent/TimerComponent';
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
 import getData from './libs/modem';
+import parseData from './libs/parser';
+import { transformString as splitData, getDashPositonsInString } from './libs/splitter';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -22,6 +24,7 @@ class App extends Component {
       isUpdating: true,
       text: '',
       loopID: -1,
+      url: '/cgi-bin/system_status',
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -30,32 +33,24 @@ class App extends Component {
     this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
   }
 
-  fetchData() {
-    const url = '/cgi-bin/system_status';
-
-    this.setState({ isUpdating: true });
-
-    return getData(url)
+  fetchDataFromModem() {
+    return getData(this.state.url)
       .then((data) => {
         if (data instanceof Error) {
-          throw new Error('fail');
+          throw new Error('network error');
         }
 
-        this.setState({
-          isUpdating: false,
-          text: data,
-        });
+        // return Promise.resolve(error);
+        return data;
       })
-      .catch((error) => {
-        this.setState({ isUpdating: false });
-        console.log(error);
-      });
+      .catch(error => Promise.reject(error));
   }
 
   startUpdateLoop() {
     const loopID = setInterval(() => {
-      this.fetchData();
-      console.log('update', loopID);
+      this.fetchDataFromModem().then((data) => {
+        console.log('data', data);
+      });
     }, 10000);
 
     this.setState({ loopID });
@@ -66,7 +61,36 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.setState({ isUpdating: true });
+
+    const fetchedFinally = this.fetchDataFromModem()
+      .then((data) => {
+        const rawTextString = data;
+        const parsedTextString = parseData(rawTextString);
+
+        const dashPositions = getDashPositonsInString(parsedTextString);
+        const splitString = splitData(parsedTextString, dashPositions);
+
+        const extractedDateString = splitString.substr(28, 10);
+        const nowDateString = getNowDate();
+
+        const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);
+        const dateReadable = getDate(dateIsoString);
+        const dateProsa = getTimeBetween(dateIsoString, nowDateString);
+
+        console.log('extractedDateString', dateReadable, dateProsa);
+
+        Promise.resolve();
+      })
+      .catch((error) => {
+        console.log('error2', error);
+
+        Promise.resolve();
+      });
+
+    fetchedFinally.then(() => {
+      this.setState({ isUpdating: false });
+    });
   }
 
   getProductionDate() {
