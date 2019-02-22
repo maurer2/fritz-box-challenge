@@ -8,6 +8,6 @@ const getData = url => fetch(url)
 
     return response.text();
   })
-  .catch(error => error);
+  .catch(error => Promise.reject(error));
 
 export default getData;

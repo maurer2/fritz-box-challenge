@@ -8,31 +8,31 @@ const TimerWrapper = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  padding: 2.5rem;
+  padding: 2.5vh 2.5vw;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 5vw;
   background: red;
 `;
 
 const FadeTransition = styled.div`
   .fade-appear,
   .fade-enter {
-    opacity: 0.01;
+    transform: translateY(-100%);
   }
 
   .fade-appear.fade-appear-active,
   .fade-enter.fade-enter-active {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
-    }
+    transform: translateY(0);
+    transition: transform 250ms ease-out;
+  }
 
   .fade-leave {
-    opacity: 1;
+    transform: translateY(0);
   }
 
   .fade-leave.fade-leave-active {
-    opacity: 0.01;
-    transition: opacity 500ms ease-in;
+    transform: translateY(-100%);
+    transition: transform 250ms ease-out;
   }
 `;
 
@@ -44,8 +44,8 @@ class TimerComponent extends PureComponent {
           component={ React.Fragment }
           transitionAppear={ true }
           transitionName="fade"
-          transitionAppearTimeout={ 500 }
-          transitionLeaveTimeout={ 500 }
+          transitionAppearTimeout={ 250 }
+          transitionLeaveTimeout={ 250 }
           transitionEnterTimeout={ 0 }
         >
         { this.props.isUpdating && (

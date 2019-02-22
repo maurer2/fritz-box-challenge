@@ -21,11 +21,11 @@ ShallowWrapper {
       "children": <CSSTransitionGroup
         component={Symbol(react.fragment)}
         transitionAppear={true}
-        transitionAppearTimeout={500}
+        transitionAppearTimeout={250}
         transitionEnter={true}
         transitionEnterTimeout={0}
         transitionLeave={true}
-        transitionLeaveTimeout={500}
+        transitionLeaveTimeout={250}
         transitionName="fade"
       />,
     },
@@ -38,11 +38,11 @@ ShallowWrapper {
         "children": undefined,
         "component": Symbol(react.fragment),
         "transitionAppear": true,
-        "transitionAppearTimeout": 500,
+        "transitionAppearTimeout": 250,
         "transitionEnter": true,
         "transitionEnterTimeout": 0,
         "transitionLeave": true,
-        "transitionLeaveTimeout": 500,
+        "transitionLeaveTimeout": 250,
         "transitionName": "fade",
       },
       "ref": null,
@@ -53,16 +53,16 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "FadeTransition-gl3nac-2",
+        "componentId": "FadeTransition-gl3nac-1",
         "isStatic": true,
         "rules": Array [
-          ".fade-appear,.fade-enter{opacity:0.01;}.fade-appear.fade-appear-active,.fade-enter.fade-enter-active{opacity:1;transition:opacity 500ms ease-in;}.fade-leave{opacity:1;}.fade-leave.fade-leave-active{opacity:0.01;transition:opacity 500ms ease-in;}",
+          ".fade-appear,.fade-enter{transform:translateY(-100%);}.fade-appear.fade-appear-active,.fade-enter.fade-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.fade-leave{transform:translateY(0);}.fade-leave.fade-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
         ],
       },
       "displayName": "FadeTransition",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "FadeTransition-gl3nac-2",
+      "styledComponentId": "FadeTransition-gl3nac-1",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -78,11 +78,11 @@ ShallowWrapper {
         "children": <CSSTransitionGroup
           component={Symbol(react.fragment)}
           transitionAppear={true}
-          transitionAppearTimeout={500}
+          transitionAppearTimeout={250}
           transitionEnter={true}
           transitionEnterTimeout={0}
           transitionLeave={true}
-          transitionLeaveTimeout={500}
+          transitionLeaveTimeout={250}
           transitionName="fade"
         />,
       },
@@ -95,11 +95,11 @@ ShallowWrapper {
           "children": undefined,
           "component": Symbol(react.fragment),
           "transitionAppear": true,
-          "transitionAppearTimeout": 500,
+          "transitionAppearTimeout": 250,
           "transitionEnter": true,
           "transitionEnterTimeout": 0,
           "transitionLeave": true,
-          "transitionLeaveTimeout": 500,
+          "transitionLeaveTimeout": 250,
           "transitionName": "fade",
         },
         "ref": null,
@@ -110,16 +110,16 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "FadeTransition-gl3nac-2",
+          "componentId": "FadeTransition-gl3nac-1",
           "isStatic": true,
           "rules": Array [
-            ".fade-appear,.fade-enter{opacity:0.01;}.fade-appear.fade-appear-active,.fade-enter.fade-enter-active{opacity:1;transition:opacity 500ms ease-in;}.fade-leave{opacity:1;}.fade-leave.fade-leave-active{opacity:0.01;transition:opacity 500ms ease-in;}",
+            ".fade-appear,.fade-enter{transform:translateY(-100%);}.fade-appear.fade-appear-active,.fade-enter.fade-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.fade-leave{transform:translateY(0);}.fade-leave.fade-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
           ],
         },
         "displayName": "FadeTransition",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "FadeTransition-gl3nac-2",
+        "styledComponentId": "FadeTransition-gl3nac-1",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

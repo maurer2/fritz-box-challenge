@@ -34,37 +34,10 @@ class App extends Component {
     this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
   }
 
-  fetchDataFromModem() {
-    return getData(this.state.url)
-      .then((data) => {
-        if (data instanceof Error) {
-          throw new Error('network error');
-        }
-
-        // return Promise.resolve(error);
-        return data;
-      })
-      .catch(error => Promise.reject(error));
-  }
-
-  startUpdateLoop() {
-    const loopID = setInterval(() => {
-      this.fetchDataFromModem().then((data) => {
-        console.log('data', data);
-      });
-    }, 10000);
-
-    this.setState({ loopID });
-  }
-
-  cancellUpdateLoop() {
-    clearInterval(this.state.loopID);
-  }
-
-  componentDidMount() {
+  getBoxData() {
     this.setState({ isUpdating: true });
 
-    const fetchedFinally = this.fetchDataFromModem()
+    const fetchedFinally = getData(this.state.url)
       .then((data) => {
         const rawTextString = data;
         const parsedTextString = parseData(rawTextString);
@@ -100,6 +73,24 @@ class App extends Component {
     fetchedFinally.then(() => {
       this.setState({ isUpdating: false });
     });
+  }
+
+  startUpdateLoop() {
+    const loopID = setInterval(() => {
+      this.getBoxData().then((data) => {
+        console.log('data', data);
+      });
+    }, 10000);
+
+    this.setState({ loopID });
+  }
+
+  cancellUpdateLoop() {
+    clearInterval(this.state.loopID);
+  }
+
+  componentDidMount() {
+    this.getBoxData();
   }
 
   render() {
