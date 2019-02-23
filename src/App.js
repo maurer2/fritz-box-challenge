@@ -5,7 +5,8 @@ import TimerComponent from './TimerComponent/TimerComponent';
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
 import getData from './libs/modem';
 import parseData from './libs/parser';
-import { transformString as splitData, getDashPositonsInString } from './libs/splitter';
+import { getMappedFields } from './libs/mapper';
+import { transformString as splitData, getDashPositonsInString, splitString as splitToArray } from './libs/splitter';
 import mockResponse from './mocks/box-01004.txt';
 
 const AppWrapper = styled.div`
@@ -46,8 +47,11 @@ class App extends Component {
 
         const dashPositions = getDashPositonsInString(parsedTextString);
         const splitString = splitData(parsedTextString, dashPositions);
+        const splitStringAsArray = splitToArray(splitString);
 
-        const extractedDateString = splitString.substr(28, 10);
+        const mappedValues = getMappedFields(splitStringAsArray);
+
+        const extractedDateString = `${mappedValues['powerOnHours 1']}-${mappedValues['powerOnHours 2']}`;
         const nowDateString = getNowDate();
 
         const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);

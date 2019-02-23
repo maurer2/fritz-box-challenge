@@ -1,4 +1,4 @@
-const splitString = stringValue => stringValue.split('–');
+const splitString = stringValue => stringValue.split('-');
 
 const isEmptyString = stringValue => stringValue.length === 0;
 
@@ -19,7 +19,7 @@ const transformString = (stringValue, dashPositions) => {
 
 const getDashPositonsInString = (stringValue) => {
   const dashPositions = stringValue.split('').reduce((total, current, index) => {
-    if (current === '–') {
+    if (current === '-') {
       total.push(index);
     }
     return total;

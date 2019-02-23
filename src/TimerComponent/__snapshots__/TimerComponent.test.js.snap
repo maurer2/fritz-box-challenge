@@ -20,7 +20,7 @@ ShallowWrapper {
     "props": Object {
       "children": <CSSTransitionGroup
         component={Symbol(react.fragment)}
-        transitionAppear={true}
+        transitionAppear={false}
         transitionAppearTimeout={250}
         transitionEnter={true}
         transitionEnterTimeout={0}
@@ -37,7 +37,7 @@ ShallowWrapper {
       "props": Object {
         "children": undefined,
         "component": Symbol(react.fragment),
-        "transitionAppear": true,
+        "transitionAppear": false,
         "transitionAppearTimeout": 250,
         "transitionEnter": true,
         "transitionEnterTimeout": 0,
@@ -77,7 +77,7 @@ ShallowWrapper {
       "props": Object {
         "children": <CSSTransitionGroup
           component={Symbol(react.fragment)}
-          transitionAppear={true}
+          transitionAppear={false}
           transitionAppearTimeout={250}
           transitionEnter={true}
           transitionEnterTimeout={0}
@@ -94,7 +94,7 @@ ShallowWrapper {
         "props": Object {
           "children": undefined,
           "component": Symbol(react.fragment),
-          "transitionAppear": true,
+          "transitionAppear": false,
           "transitionAppearTimeout": 250,
           "transitionEnter": true,
           "transitionEnterTimeout": 0,
