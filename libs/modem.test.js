@@ -1,7 +1,7 @@
-jest.mock('node-fetch');
-
-import getData from './modem';
 import fetch from 'node-fetch';
+import getData from './modem';
+
+jest.mock('node-fetch');
 
 const positivePromise = new Promise((resolve) => {
   resolve({

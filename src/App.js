@@ -6,6 +6,7 @@ import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/ti
 import getData from './libs/modem';
 import parseData from './libs/parser';
 import { transformString as splitData, getDashPositonsInString } from './libs/splitter';
+import mockResponse from './mocks/box-01004.txt';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -23,7 +24,8 @@ class App extends Component {
       showFullNumber: true,
       isUpdating: true,
       loopID: -1,
-      url: '/cgi-bin/system_status',
+      // url: '/cgi-bin/system_status',
+      url: mockResponse,
       dateLong: '',
       dateProsa: '',
     };
