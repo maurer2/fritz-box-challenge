@@ -8,22 +8,18 @@ import TextComponent from './TextComponent';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('TextComponent dummy', () => {
-  it('should match snapshot', () => {
-    const wrapper = shallow(<TextComponent text={ '123456' } />);
+  const wrapper = shallow(<TextComponent text={ '123456' } />);
 
+  it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should should contain spans with numbers', () => {
-    const wrapper = shallow(<TextComponent text={ '123456' } />);
-
     expect(wrapper.children('span').length).toBeGreaterThan(0);
     expect(wrapper.children('span').length).toBe(6);
   });
 
   it('getter should work', () => {
-    const wrapper = shallow(<TextComponent text={ '123456' } />);
-
     const getterNumberOfCharacters = wrapper.instance().numberOfCharacters;
     const { textSeparate } = wrapper.instance();
 

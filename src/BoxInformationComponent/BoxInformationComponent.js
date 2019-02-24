@@ -29,7 +29,7 @@ const BoxInformationEntry = styled.li`
 const SlideYTransition = styled.div`
   position: absolute;
   left: 0;
-  right: 50px;
+  right: 0;
   bottom: 0;
 
   .slide-appear,
