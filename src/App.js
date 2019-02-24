@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/macro';
+
 import TextComponent from './TextComponent/TextComponent';
 import TimerComponent from './TimerComponent/TimerComponent';
+import BoxInformationComponent from './BoxInformationComponent/BoxInformationComponent';
+
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
-import getData from './libs/modem';
-import parseData from './libs/parser';
 import { getMappedFields } from './libs/mapper';
 import { transformString as splitData, getDashPositonsInString, splitString as splitToArray } from './libs/splitter';
+
+import getData from './libs/modem';
+import parseData from './libs/parser';
+
 import mockResponse from './mocks/box-01004.txt';
 
 const AppWrapper = styled.div`
@@ -14,6 +19,7 @@ const AppWrapper = styled.div`
   margin: 0;
   width: 100vw;
   height: 100vh;
+  flex-direction: column;
   background: black;
 `;
 
@@ -29,6 +35,7 @@ class App extends Component {
       url: mockResponse,
       dateLong: '',
       dateProsa: '',
+      boxInformation: {},
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -42,8 +49,7 @@ class App extends Component {
 
     const fetchedFinally = getData(this.state.url)
       .then((data) => {
-        const rawTextString = data;
-        const parsedTextString = parseData(rawTextString);
+        const parsedTextString = parseData(data);
 
         const dashPositions = getDashPositonsInString(parsedTextString);
         const splitString = splitData(parsedTextString, dashPositions);
@@ -61,6 +67,7 @@ class App extends Component {
         this.setState(() => ({
           dateLong,
           dateProsa,
+          boxInformation: mappedValues,
         }));
 
         Promise.resolve();
@@ -100,12 +107,15 @@ class App extends Component {
   }
 
   render() {
-    const { dateLong, dateProsa } = this.state;
+    const { dateLong, dateProsa, boxInformation } = this.state;
 
     return (
       <AppWrapper onClick={ this.handleClick }>
         <TimerComponent isUpdating={ this.state.isUpdating } />
         <TextComponent text={ this.state.showFullNumber ? dateLong : dateProsa } />
+        {
+          boxInformation.length !== 0 && <BoxInformationComponent list={ boxInformation } />
+        }
       </AppWrapper>
     );
   }
