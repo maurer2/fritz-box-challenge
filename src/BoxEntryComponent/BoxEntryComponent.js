@@ -25,7 +25,7 @@ class BoxEntryComponent extends PureComponent {
           { this.props.entry.charAt(0).toUpperCase() + this.props.entry.slice(1) }
         </BoxEntryTitle>
         <BoxEntryValue>
-        { this.props.value }
+          { this.props.value }
         </BoxEntryValue>
       </BoxEntryWrapper>
     );
