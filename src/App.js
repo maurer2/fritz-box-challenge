@@ -107,14 +107,18 @@ class App extends Component {
   }
 
   render() {
-    const { dateLong, dateProsa, boxInformation } = this.state;
+    const { dateLong, dateProsa, boxInformation, isUpdating } = this.state;
 
     return (
       <AppWrapper onClick={ this.handleClick }>
         <TimerComponent isUpdating={ this.state.isUpdating } />
-        <TextComponent text={ this.state.showFullNumber ? dateLong : dateProsa } />
         {
-          boxInformation.length !== 0 && <BoxInformationComponent list={ boxInformation } />
+          !isUpdating && (
+            <>
+              <TextComponent text={ this.state.showFullNumber ? dateLong : dateProsa } />
+              <BoxInformationComponent list={ boxInformation } />
+            </>
+          )
         }
       </AppWrapper>
     );

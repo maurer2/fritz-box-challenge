@@ -6,7 +6,7 @@ import BoxEntryComponent from '../BoxEntryComponent/BoxEntryComponent';
 const BoxInformationWrapper = styled.ul`
   display: flex;
   margin: 0;
-  padding: 0 2rem;
+  padding: 0;
   justify-content: space-between;
   flex-wrap: wrap;
   background: red;
@@ -19,7 +19,7 @@ const BoxInformationEntry = styled.li`
   flex-grow: 1;
   flex-shrink: 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
     flex-basis: 0;
   }
 `;

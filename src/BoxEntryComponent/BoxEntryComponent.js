@@ -2,19 +2,19 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
-const BoxEntryWrapper = styled.div`
+const BoxEntryWrapper = styled.dl`
   display: block;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem;
 `;
 
-const BoxEntryTitle = styled.h3`
+const BoxEntryTitle = styled.dt`
   margin-top: 0;
   margin-bottom: 0;
+  font-weight: bold;
 `;
 
-const BoxEntryValue = styled.span`
-  white-space: nowrap;
+const BoxEntryValue = styled.dd`
+  margin: 0;
 `;
 
 class BoxEntryComponent extends PureComponent {
