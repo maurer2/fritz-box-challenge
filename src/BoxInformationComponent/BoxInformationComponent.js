@@ -3,25 +3,48 @@ import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
 const BoxInformationWrapper = styled.ul`
-  display: block;
+  display: flex;
   margin: 0;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
   background: red;
 `;
 
 const BoxInformationEntry = styled.li`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+
+  @media (min-width: 768px) {
+    flex-basis: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+`;
+
+const BoxInformationTitle = styled.h3`
+  margin-top: 2rem;
+`;
+
+const BoxInformationValue = styled.span`
+  white-space: nowrap;
 `;
 
 class BoxInformationComponent extends PureComponent {
   render() {
-    const listEntries = Object.keys(this.props.list);
+    const listFields = ['model', 'technology', 'restarts', 'branding'];
 
     return (
       <BoxInformationWrapper>
-        { listEntries.map((entry, index) => (
+        { listFields.map((entry, index) => (
           <BoxInformationEntry key={ index }>
-            { entry }: { this.props.list[entry] }
+            <BoxInformationTitle>
+              { entry }
+            </BoxInformationTitle>
+            <BoxInformationValue>
+              { this.props.list[entry] }
+            </BoxInformationValue>
           </BoxInformationEntry>
         ))}
       </BoxInformationWrapper>
