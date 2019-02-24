@@ -4,17 +4,19 @@ import { PropTypes } from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 
 const TimerWrapper = styled.div`
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: red;
+`;
+
+const SladeYTransition = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  padding: 2.5vh 2.5vw;
-  text-align: center;
-  font-size: 5vw;
-  background: red;
-`;
 
-const FadeTransition = styled.div`
   .slide-appear,
   .slide-enter {
     transform: translateY(-100%);
@@ -39,7 +41,7 @@ const FadeTransition = styled.div`
 class TimerComponent extends PureComponent {
   render() {
     return (
-      <FadeTransition>
+      <SladeYTransition>
         <CSSTransitionGroup
           component={ React.Fragment }
           transitionAppear={ false }
@@ -54,7 +56,7 @@ class TimerComponent extends PureComponent {
             </TimerWrapper>
           )}
         </CSSTransitionGroup>
-      </FadeTransition>
+      </SladeYTransition>
     );
   }
 }

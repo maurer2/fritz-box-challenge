@@ -6,13 +6,14 @@ const TextWrapper = styled.h1`
   margin: auto;
   color: white;
   user-select: none;
+  font-size: ${props => 100 / props.characterCount * 1.75}vw;
+
   /* color: ${props => (props.characterCount === 5 ? 'green' : 'white')}; */
   /*
   ${props => props.numberOfCharacters === 5 && css`
     background: red; 
   `};
   */
-  font-size: ${props => 100 / props.characterCount * 1.75}vw;
 `;
 
 class TextComponent extends PureComponent {
