@@ -8,15 +8,15 @@ import TextComponent from './TextComponent';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('TextComponent dummy', () => {
-  const wrapper = shallow(<TextComponent text={ '123456' } />);
+  const wrapper = shallow(<TextComponent text={ '123456' } title={ 'title' } />);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should should contain spans with numbers', () => {
-    expect(wrapper.children('span').length).toBeGreaterThan(0);
-    expect(wrapper.children('span').length).toBe(6);
+    expect(wrapper.find('.character').length).toBeGreaterThan(0);
+    expect(wrapper.find('.character').length).toBe(6);
   });
 
   it('getter should work', () => {

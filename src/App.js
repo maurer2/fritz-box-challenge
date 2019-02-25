@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components/macro';
 
 import TextComponent from './TextComponent/TextComponent';
@@ -115,9 +115,15 @@ class App extends Component {
       <AppWrapper onClick={ this.handleClick }>
         <TimerComponent isUpdating={ this.state.isUpdating } />
         { !isUpdating && (
-          <>
-            <TextComponent text={ this.state.showFullNumber ? dateLong : dateProsa } />
-          </>
+          <Fragment>
+            {
+              this.state.showFullNumber ? (
+                <TextComponent text={ dateLong } title="Production date" />
+              ) : (
+                <TextComponent text={ dateProsa } title="Age" />
+              )
+            }
+          </Fragment>
         )}
         <BoxInformationComponent isUpdating={ this.state.isUpdating } list={ boxInformation } />
       </AppWrapper>
