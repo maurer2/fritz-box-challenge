@@ -8,9 +8,21 @@ import TimerComponent from './TimerComponent';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('TimerComponent dummy', () => {
-  const wrapper = shallow(<TimerComponent/>);
+  const wrapper = shallow(<TimerComponent isUpdating={ true }/>);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
+
+    wrapper.setProps({ isUpdating: false });
+    expect(wrapper).toMatchSnapshot();
+    wrapper.setProps({ isUpdating: true });
+  });
+
+  it('should have a timer wrapper', () => {
+    expect(wrapper.find('TimerWrapper').length).toBe(1);
+  });
+
+  it('should hae text in timer wrapper', () => {
+    expect(wrapper.find('TimerWrapper').text()).toBe('Updating!');
   });
 });

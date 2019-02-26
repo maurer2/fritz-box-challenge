@@ -20,4 +20,12 @@ describe('BoxInformationComponent', () => {
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should have a BoxInformationWrapper component', () => {
+    expect(wrapper.find('BoxInformationWrapper').length).toBe(1);
+  });
+
+  it('should have children', () => {
+    expect(wrapper.find('BoxInformationWrapper').children().length).toBeGreaterThan(0);
+  });
 });

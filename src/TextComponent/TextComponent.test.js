@@ -26,4 +26,12 @@ describe('TextComponent dummy', () => {
     expect(getterNumberOfCharacters).toBe(6);
     expect(textSeparate).toEqual(['1', '2', '3', '4', '5', '6']);
   });
+
+  it('should have a title', () => {
+    expect(wrapper.find('TitleWrapper').length).toBe(1);
+  });
+
+  it('should have a text wrapper', () => {
+    expect(wrapper.find('TextWrapper').length).toBe(1);
+  });
 });
