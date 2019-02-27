@@ -76,7 +76,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "TitleWrapper-r0imrm-1",
+            "componentId": "TitleWrapper-jpd40d-1",
             "isStatic": true,
             "rules": Array [
               "margin-top:0;margin-bottom:2vh;color:white;font-size:5vw;",
@@ -85,7 +85,7 @@ ShallowWrapper {
           "displayName": "TitleWrapper",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "TitleWrapper-r0imrm-1",
+          "styledComponentId": "TitleWrapper-jpd40d-1",
           "target": "h1",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -210,7 +210,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "TextWrapper-r0imrm-2",
+            "componentId": "TextWrapper-jpd40d-2",
             "isStatic": false,
             "rules": Array [
               "margin:0;color:white;font-size:",
@@ -221,7 +221,7 @@ ShallowWrapper {
           "displayName": "TextWrapper",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "TextWrapper-r0imrm-2",
+          "styledComponentId": "TextWrapper-jpd40d-2",
           "target": "h2",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -233,7 +233,7 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "Wrapper-r0imrm-0",
+        "componentId": "Wrapper-jpd40d-0",
         "isStatic": true,
         "rules": Array [
           "user-select:none;text-align:center;",
@@ -242,7 +242,7 @@ ShallowWrapper {
       "displayName": "Wrapper",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "Wrapper-r0imrm-0",
+      "styledComponentId": "Wrapper-jpd40d-0",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -310,7 +310,7 @@ ShallowWrapper {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
             "componentStyle": ComponentStyle {
-              "componentId": "TitleWrapper-r0imrm-1",
+              "componentId": "TitleWrapper-jpd40d-1",
               "isStatic": true,
               "rules": Array [
                 "margin-top:0;margin-bottom:2vh;color:white;font-size:5vw;",
@@ -319,7 +319,7 @@ ShallowWrapper {
             "displayName": "TitleWrapper",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "TitleWrapper-r0imrm-1",
+            "styledComponentId": "TitleWrapper-jpd40d-1",
             "target": "h1",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -444,7 +444,7 @@ ShallowWrapper {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
             "componentStyle": ComponentStyle {
-              "componentId": "TextWrapper-r0imrm-2",
+              "componentId": "TextWrapper-jpd40d-2",
               "isStatic": false,
               "rules": Array [
                 "margin:0;color:white;font-size:",
@@ -455,7 +455,7 @@ ShallowWrapper {
             "displayName": "TextWrapper",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "TextWrapper-r0imrm-2",
+            "styledComponentId": "TextWrapper-jpd40d-2",
             "target": "h2",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -467,7 +467,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "Wrapper-r0imrm-0",
+          "componentId": "Wrapper-jpd40d-0",
           "isStatic": true,
           "rules": Array [
             "user-select:none;text-align:center;",
@@ -476,7 +476,7 @@ ShallowWrapper {
         "displayName": "Wrapper",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "Wrapper-r0imrm-0",
+        "styledComponentId": "Wrapper-jpd40d-0",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

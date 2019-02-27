@@ -67,7 +67,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "TimerWrapper-gl3nac-0",
+            "componentId": "TimerWrapper-qvjflf-0",
             "isStatic": true,
             "rules": Array [
               "padding:1rem;text-align:center;font-size:1.5rem;font-weight:bold;background:red;",
@@ -76,7 +76,7 @@ ShallowWrapper {
           "displayName": "TimerWrapper",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "TimerWrapper-gl3nac-0",
+          "styledComponentId": "TimerWrapper-qvjflf-0",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -89,7 +89,7 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "SladeYTransition-gl3nac-1",
+        "componentId": "SladeYTransition-qvjflf-1",
         "isStatic": true,
         "rules": Array [
           "position:absolute;top:0;left:0;right:0;.slide-appear,.slide-enter{transform:translateY(-100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
@@ -98,7 +98,7 @@ ShallowWrapper {
       "displayName": "SladeYTransition",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "SladeYTransition-gl3nac-1",
+      "styledComponentId": "SladeYTransition-qvjflf-1",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -158,7 +158,7 @@ ShallowWrapper {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
             "componentStyle": ComponentStyle {
-              "componentId": "TimerWrapper-gl3nac-0",
+              "componentId": "TimerWrapper-qvjflf-0",
               "isStatic": true,
               "rules": Array [
                 "padding:1rem;text-align:center;font-size:1.5rem;font-weight:bold;background:red;",
@@ -167,7 +167,7 @@ ShallowWrapper {
             "displayName": "TimerWrapper",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "TimerWrapper-gl3nac-0",
+            "styledComponentId": "TimerWrapper-qvjflf-0",
             "target": "div",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -180,7 +180,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "SladeYTransition-gl3nac-1",
+          "componentId": "SladeYTransition-qvjflf-1",
           "isStatic": true,
           "rules": Array [
             "position:absolute;top:0;left:0;right:0;.slide-appear,.slide-enter{transform:translateY(-100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
@@ -189,7 +189,7 @@ ShallowWrapper {
         "displayName": "SladeYTransition",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "SladeYTransition-gl3nac-1",
+        "styledComponentId": "SladeYTransition-qvjflf-1",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],
@@ -276,7 +276,7 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "SladeYTransition-gl3nac-1",
+        "componentId": "SladeYTransition-qvjflf-1",
         "isStatic": true,
         "rules": Array [
           "position:absolute;top:0;left:0;right:0;.slide-appear,.slide-enter{transform:translateY(-100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
@@ -285,7 +285,7 @@ ShallowWrapper {
       "displayName": "SladeYTransition",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "SladeYTransition-gl3nac-1",
+      "styledComponentId": "SladeYTransition-qvjflf-1",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -333,7 +333,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "SladeYTransition-gl3nac-1",
+          "componentId": "SladeYTransition-qvjflf-1",
           "isStatic": true,
           "rules": Array [
             "position:absolute;top:0;left:0;right:0;.slide-appear,.slide-enter{transform:translateY(-100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
@@ -342,7 +342,7 @@ ShallowWrapper {
         "displayName": "SladeYTransition",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "SladeYTransition-gl3nac-1",
+        "styledComponentId": "SladeYTransition-qvjflf-1",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

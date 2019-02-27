@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 
-import BoxEntryComponent from '../BoxEntryComponent/BoxEntryComponent';
+import BoxEntryComponent from './BoxEntryComponent';
 
 const BoxInformationWrapper = styled.ul`
   display: flex;

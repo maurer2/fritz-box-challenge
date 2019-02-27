@@ -45,7 +45,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "BoxEntryTitle-sc-16sq9z3-1",
+            "componentId": "BoxEntryTitle-ejoeos-1",
             "isStatic": true,
             "rules": Array [
               "margin-top:0;margin-bottom:0;font-weight:bold;",
@@ -54,7 +54,7 @@ ShallowWrapper {
           "displayName": "BoxEntryTitle",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "BoxEntryTitle-sc-16sq9z3-1",
+          "styledComponentId": "BoxEntryTitle-ejoeos-1",
           "target": "dt",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -74,7 +74,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "BoxEntryValue-sc-16sq9z3-2",
+            "componentId": "BoxEntryValue-ejoeos-2",
             "isStatic": true,
             "rules": Array [
               "margin:0;",
@@ -83,7 +83,7 @@ ShallowWrapper {
           "displayName": "BoxEntryValue",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "BoxEntryValue-sc-16sq9z3-2",
+          "styledComponentId": "BoxEntryValue-ejoeos-2",
           "target": "dd",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -95,7 +95,7 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "BoxEntryWrapper-sc-16sq9z3-0",
+        "componentId": "BoxEntryWrapper-ejoeos-0",
         "isStatic": true,
         "rules": Array [
           "display:block;margin:1rem;",
@@ -104,7 +104,7 @@ ShallowWrapper {
       "displayName": "BoxEntryWrapper",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "BoxEntryWrapper-sc-16sq9z3-0",
+      "styledComponentId": "BoxEntryWrapper-ejoeos-0",
       "target": "dl",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -141,7 +141,7 @@ ShallowWrapper {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
             "componentStyle": ComponentStyle {
-              "componentId": "BoxEntryTitle-sc-16sq9z3-1",
+              "componentId": "BoxEntryTitle-ejoeos-1",
               "isStatic": true,
               "rules": Array [
                 "margin-top:0;margin-bottom:0;font-weight:bold;",
@@ -150,7 +150,7 @@ ShallowWrapper {
             "displayName": "BoxEntryTitle",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "BoxEntryTitle-sc-16sq9z3-1",
+            "styledComponentId": "BoxEntryTitle-ejoeos-1",
             "target": "dt",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -170,7 +170,7 @@ ShallowWrapper {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
             "componentStyle": ComponentStyle {
-              "componentId": "BoxEntryValue-sc-16sq9z3-2",
+              "componentId": "BoxEntryValue-ejoeos-2",
               "isStatic": true,
               "rules": Array [
                 "margin:0;",
@@ -179,7 +179,7 @@ ShallowWrapper {
             "displayName": "BoxEntryValue",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "BoxEntryValue-sc-16sq9z3-2",
+            "styledComponentId": "BoxEntryValue-ejoeos-2",
             "target": "dd",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -191,7 +191,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "BoxEntryWrapper-sc-16sq9z3-0",
+          "componentId": "BoxEntryWrapper-ejoeos-0",
           "isStatic": true,
           "rules": Array [
             "display:block;margin:1rem;",
@@ -200,7 +200,7 @@ ShallowWrapper {
         "displayName": "BoxEntryWrapper",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "BoxEntryWrapper-sc-16sq9z3-0",
+        "styledComponentId": "BoxEntryWrapper-ejoeos-0",
         "target": "dl",
         "toString": [Function],
         "warnTooManyClasses": [Function],

@@ -169,7 +169,7 @@ ShallowWrapper {
               "$$typeof": Symbol(react.forward_ref),
               "attrs": Array [],
               "componentStyle": ComponentStyle {
-                "componentId": "BoxInformationEntry-qkh4w1-1",
+                "componentId": "BoxInformationEntry-sc-1k4n5mi-1",
                 "isStatic": true,
                 "rules": Array [
                   "display:flex;flex-direction:column;flex-basis:100%;flex-grow:1;flex-shrink:0;@media (min-width:480px){flex-basis:0;}",
@@ -178,7 +178,7 @@ ShallowWrapper {
               "displayName": "BoxInformationEntry",
               "foldedComponentIds": Array [],
               "render": [Function],
-              "styledComponentId": "BoxInformationEntry-qkh4w1-1",
+              "styledComponentId": "BoxInformationEntry-sc-1k4n5mi-1",
               "target": "li",
               "toString": [Function],
               "warnTooManyClasses": [Function],
@@ -212,7 +212,7 @@ ShallowWrapper {
               "$$typeof": Symbol(react.forward_ref),
               "attrs": Array [],
               "componentStyle": ComponentStyle {
-                "componentId": "BoxInformationEntry-qkh4w1-1",
+                "componentId": "BoxInformationEntry-sc-1k4n5mi-1",
                 "isStatic": true,
                 "rules": Array [
                   "display:flex;flex-direction:column;flex-basis:100%;flex-grow:1;flex-shrink:0;@media (min-width:480px){flex-basis:0;}",
@@ -221,7 +221,7 @@ ShallowWrapper {
               "displayName": "BoxInformationEntry",
               "foldedComponentIds": Array [],
               "render": [Function],
-              "styledComponentId": "BoxInformationEntry-qkh4w1-1",
+              "styledComponentId": "BoxInformationEntry-sc-1k4n5mi-1",
               "target": "li",
               "toString": [Function],
               "warnTooManyClasses": [Function],
@@ -255,7 +255,7 @@ ShallowWrapper {
               "$$typeof": Symbol(react.forward_ref),
               "attrs": Array [],
               "componentStyle": ComponentStyle {
-                "componentId": "BoxInformationEntry-qkh4w1-1",
+                "componentId": "BoxInformationEntry-sc-1k4n5mi-1",
                 "isStatic": true,
                 "rules": Array [
                   "display:flex;flex-direction:column;flex-basis:100%;flex-grow:1;flex-shrink:0;@media (min-width:480px){flex-basis:0;}",
@@ -264,7 +264,7 @@ ShallowWrapper {
               "displayName": "BoxInformationEntry",
               "foldedComponentIds": Array [],
               "render": [Function],
-              "styledComponentId": "BoxInformationEntry-qkh4w1-1",
+              "styledComponentId": "BoxInformationEntry-sc-1k4n5mi-1",
               "target": "li",
               "toString": [Function],
               "warnTooManyClasses": [Function],
@@ -298,7 +298,7 @@ ShallowWrapper {
               "$$typeof": Symbol(react.forward_ref),
               "attrs": Array [],
               "componentStyle": ComponentStyle {
-                "componentId": "BoxInformationEntry-qkh4w1-1",
+                "componentId": "BoxInformationEntry-sc-1k4n5mi-1",
                 "isStatic": true,
                 "rules": Array [
                   "display:flex;flex-direction:column;flex-basis:100%;flex-grow:1;flex-shrink:0;@media (min-width:480px){flex-basis:0;}",
@@ -307,7 +307,7 @@ ShallowWrapper {
               "displayName": "BoxInformationEntry",
               "foldedComponentIds": Array [],
               "render": [Function],
-              "styledComponentId": "BoxInformationEntry-qkh4w1-1",
+              "styledComponentId": "BoxInformationEntry-sc-1k4n5mi-1",
               "target": "li",
               "toString": [Function],
               "warnTooManyClasses": [Function],
@@ -319,7 +319,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "BoxInformationWrapper-qkh4w1-0",
+            "componentId": "BoxInformationWrapper-sc-1k4n5mi-0",
             "isStatic": true,
             "rules": Array [
               "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;",
@@ -328,7 +328,7 @@ ShallowWrapper {
           "displayName": "BoxInformationWrapper",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "BoxInformationWrapper-qkh4w1-0",
+          "styledComponentId": "BoxInformationWrapper-sc-1k4n5mi-0",
           "target": "ul",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -341,7 +341,7 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "SlideYTransition-qkh4w1-2",
+        "componentId": "SlideYTransition-sc-1k4n5mi-2",
         "isStatic": true,
         "rules": Array [
           "position:absolute;left:0;right:0;bottom:0;.slide-appear,.slide-enter{transform:translateY(100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(100%);transition:transform 250ms ease-out;}",
@@ -350,7 +350,7 @@ ShallowWrapper {
       "displayName": "SlideYTransition",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "SlideYTransition-qkh4w1-2",
+      "styledComponentId": "SlideYTransition-sc-1k4n5mi-2",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -504,7 +504,7 @@ ShallowWrapper {
                 "$$typeof": Symbol(react.forward_ref),
                 "attrs": Array [],
                 "componentStyle": ComponentStyle {
-                  "componentId": "BoxInformationEntry-qkh4w1-1",
+                  "componentId": "BoxInformationEntry-sc-1k4n5mi-1",
                   "isStatic": true,
                   "rules": Array [
                     "display:flex;flex-direction:column;flex-basis:100%;flex-grow:1;flex-shrink:0;@media (min-width:480px){flex-basis:0;}",
@@ -513,7 +513,7 @@ ShallowWrapper {
                 "displayName": "BoxInformationEntry",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "BoxInformationEntry-qkh4w1-1",
+                "styledComponentId": "BoxInformationEntry-sc-1k4n5mi-1",
                 "target": "li",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],
@@ -547,7 +547,7 @@ ShallowWrapper {
                 "$$typeof": Symbol(react.forward_ref),
                 "attrs": Array [],
                 "componentStyle": ComponentStyle {
-                  "componentId": "BoxInformationEntry-qkh4w1-1",
+                  "componentId": "BoxInformationEntry-sc-1k4n5mi-1",
                   "isStatic": true,
                   "rules": Array [
                     "display:flex;flex-direction:column;flex-basis:100%;flex-grow:1;flex-shrink:0;@media (min-width:480px){flex-basis:0;}",
@@ -556,7 +556,7 @@ ShallowWrapper {
                 "displayName": "BoxInformationEntry",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "BoxInformationEntry-qkh4w1-1",
+                "styledComponentId": "BoxInformationEntry-sc-1k4n5mi-1",
                 "target": "li",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],
@@ -590,7 +590,7 @@ ShallowWrapper {
                 "$$typeof": Symbol(react.forward_ref),
                 "attrs": Array [],
                 "componentStyle": ComponentStyle {
-                  "componentId": "BoxInformationEntry-qkh4w1-1",
+                  "componentId": "BoxInformationEntry-sc-1k4n5mi-1",
                   "isStatic": true,
                   "rules": Array [
                     "display:flex;flex-direction:column;flex-basis:100%;flex-grow:1;flex-shrink:0;@media (min-width:480px){flex-basis:0;}",
@@ -599,7 +599,7 @@ ShallowWrapper {
                 "displayName": "BoxInformationEntry",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "BoxInformationEntry-qkh4w1-1",
+                "styledComponentId": "BoxInformationEntry-sc-1k4n5mi-1",
                 "target": "li",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],
@@ -633,7 +633,7 @@ ShallowWrapper {
                 "$$typeof": Symbol(react.forward_ref),
                 "attrs": Array [],
                 "componentStyle": ComponentStyle {
-                  "componentId": "BoxInformationEntry-qkh4w1-1",
+                  "componentId": "BoxInformationEntry-sc-1k4n5mi-1",
                   "isStatic": true,
                   "rules": Array [
                     "display:flex;flex-direction:column;flex-basis:100%;flex-grow:1;flex-shrink:0;@media (min-width:480px){flex-basis:0;}",
@@ -642,7 +642,7 @@ ShallowWrapper {
                 "displayName": "BoxInformationEntry",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "BoxInformationEntry-qkh4w1-1",
+                "styledComponentId": "BoxInformationEntry-sc-1k4n5mi-1",
                 "target": "li",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],
@@ -654,7 +654,7 @@ ShallowWrapper {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
             "componentStyle": ComponentStyle {
-              "componentId": "BoxInformationWrapper-qkh4w1-0",
+              "componentId": "BoxInformationWrapper-sc-1k4n5mi-0",
               "isStatic": true,
               "rules": Array [
                 "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;",
@@ -663,7 +663,7 @@ ShallowWrapper {
             "displayName": "BoxInformationWrapper",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "BoxInformationWrapper-qkh4w1-0",
+            "styledComponentId": "BoxInformationWrapper-sc-1k4n5mi-0",
             "target": "ul",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -676,7 +676,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "SlideYTransition-qkh4w1-2",
+          "componentId": "SlideYTransition-sc-1k4n5mi-2",
           "isStatic": true,
           "rules": Array [
             "position:absolute;left:0;right:0;bottom:0;.slide-appear,.slide-enter{transform:translateY(100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(100%);transition:transform 250ms ease-out;}",
@@ -685,7 +685,7 @@ ShallowWrapper {
         "displayName": "SlideYTransition",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "SlideYTransition-qkh4w1-2",
+        "styledComponentId": "SlideYTransition-sc-1k4n5mi-2",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

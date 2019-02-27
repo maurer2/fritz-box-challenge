@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components/macro';
 
 import { CSSTransitionGroup } from 'react-transition-group';
 
-import TextComponent from './TextComponent/TextComponent';
-import TimerComponent from './TimerComponent/TimerComponent';
-import BoxInformationComponent from './BoxInformationComponent/BoxInformationComponent';
+import TextComponent from './components/TextComponent';
+import TimerComponent from './components/TimerComponent';
+import BoxInformationComponent from './components/BoxInformationComponent';
 
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
 import { getMappedFields } from './libs/mapper';
@@ -34,12 +34,21 @@ const MainWrapper = styled.main`
   justify-content: center;
   align-items: center;
 
-  .example-appear,
-  .example-enter {
-    opacity: 0.01;
+  .example-appear {
+    opacity: 0.1;
+    background: red;
   }
 
-  .example-appear.example-appear-active,
+  .example-enter {
+    opacity: 0.1;
+    background: green;
+  }
+
+  .example-appear.example-appear-active {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+  }
+
   .example-enter.example-enter-active {
     opacity: 1;
     transition: opacity .5s ease-in;
@@ -143,9 +152,9 @@ class App extends Component {
             <CSSTransitionGroup
               component={ React.Fragment }
               transitionName="example"
-              transitionAppear={true}
+              transitionAppear={ true }
               transitionAppearTimeout={ 500 }
-              transitionLeave={false}
+              transitionLeave={ false }
               transitionEnterTimeout={ 500 }
             >
               { this.state.showFullNumber ? dateLongComponent : dateProsaComponent }
