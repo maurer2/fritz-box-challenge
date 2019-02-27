@@ -2,13 +2,13 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import TextComponent from './TextComponent';
+import Slide from './Slide';
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('TextComponent dummy', () => {
-  const wrapper = shallow(<TextComponent text={ '123456' } title={ 'title' } />);
+describe('Slide', () => {
+  const wrapper = shallow(<Slide text={ '123456' } title={ 'title' } />);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();

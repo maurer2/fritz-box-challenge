@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 
-import BoxEntryComponent from './BoxEntryComponent';
+import StatusBarEntry from './StatusBarEntry';
 
 const BoxInformationWrapper = styled.ul`
   display: flex;
@@ -71,7 +71,7 @@ class BoxInformationComponent extends PureComponent {
             <BoxInformationWrapper>
               { listFields.map((entry, index) => (
                 <BoxInformationEntry key={ index }>
-                  <BoxEntryComponent entry={ entry } value={ this.props.list[entry] } />
+                  <StatusBarEntry entry={ entry } value={ this.props.list[entry] } />
                 </BoxInformationEntry>
               ))}
             </BoxInformationWrapper>

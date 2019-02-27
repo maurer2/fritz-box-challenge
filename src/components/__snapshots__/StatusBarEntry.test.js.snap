@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BoxEntryComponent should match snapshot 1`] = `
+exports[`StatusBarEntry should match snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <BoxEntryComponent
@@ -45,7 +45,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "BoxEntryTitle-ejoeos-1",
+            "componentId": "BoxEntryTitle-sc-1xx4ir1-1",
             "isStatic": true,
             "rules": Array [
               "margin-top:0;margin-bottom:0;font-weight:bold;",
@@ -54,7 +54,7 @@ ShallowWrapper {
           "displayName": "BoxEntryTitle",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "BoxEntryTitle-ejoeos-1",
+          "styledComponentId": "BoxEntryTitle-sc-1xx4ir1-1",
           "target": "dt",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -74,7 +74,7 @@ ShallowWrapper {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "BoxEntryValue-ejoeos-2",
+            "componentId": "BoxEntryValue-sc-1xx4ir1-2",
             "isStatic": true,
             "rules": Array [
               "margin:0;",
@@ -83,7 +83,7 @@ ShallowWrapper {
           "displayName": "BoxEntryValue",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "BoxEntryValue-ejoeos-2",
+          "styledComponentId": "BoxEntryValue-sc-1xx4ir1-2",
           "target": "dd",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -95,7 +95,7 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "BoxEntryWrapper-ejoeos-0",
+        "componentId": "BoxEntryWrapper-sc-1xx4ir1-0",
         "isStatic": true,
         "rules": Array [
           "display:block;margin:1rem;",
@@ -104,7 +104,7 @@ ShallowWrapper {
       "displayName": "BoxEntryWrapper",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "BoxEntryWrapper-ejoeos-0",
+      "styledComponentId": "BoxEntryWrapper-sc-1xx4ir1-0",
       "target": "dl",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -141,7 +141,7 @@ ShallowWrapper {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
             "componentStyle": ComponentStyle {
-              "componentId": "BoxEntryTitle-ejoeos-1",
+              "componentId": "BoxEntryTitle-sc-1xx4ir1-1",
               "isStatic": true,
               "rules": Array [
                 "margin-top:0;margin-bottom:0;font-weight:bold;",
@@ -150,7 +150,7 @@ ShallowWrapper {
             "displayName": "BoxEntryTitle",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "BoxEntryTitle-ejoeos-1",
+            "styledComponentId": "BoxEntryTitle-sc-1xx4ir1-1",
             "target": "dt",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -170,7 +170,7 @@ ShallowWrapper {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
             "componentStyle": ComponentStyle {
-              "componentId": "BoxEntryValue-ejoeos-2",
+              "componentId": "BoxEntryValue-sc-1xx4ir1-2",
               "isStatic": true,
               "rules": Array [
                 "margin:0;",
@@ -179,7 +179,7 @@ ShallowWrapper {
             "displayName": "BoxEntryValue",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "BoxEntryValue-ejoeos-2",
+            "styledComponentId": "BoxEntryValue-sc-1xx4ir1-2",
             "target": "dd",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -191,7 +191,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "BoxEntryWrapper-ejoeos-0",
+          "componentId": "BoxEntryWrapper-sc-1xx4ir1-0",
           "isStatic": true,
           "rules": Array [
             "display:block;margin:1rem;",
@@ -200,7 +200,7 @@ ShallowWrapper {
         "displayName": "BoxEntryWrapper",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "BoxEntryWrapper-ejoeos-0",
+        "styledComponentId": "BoxEntryWrapper-sc-1xx4ir1-0",
         "target": "dl",
         "toString": [Function],
         "warnTooManyClasses": [Function],

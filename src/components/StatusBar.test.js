@@ -2,12 +2,12 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import BoxInformationComponent from './BoxInformationComponent';
+import StatusBar from './StatusBar';
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('BoxInformationComponent', () => {
+describe('StatusBar', () => {
   const list = {
     branding: 'avm',
     model: 'FRITZ!Box 6590 Cable',
@@ -15,7 +15,7 @@ describe('BoxInformationComponent', () => {
     technology: 'Kabel',
   };
 
-  const wrapper = shallow(<BoxInformationComponent list={ list } isUpdating={ false } />);
+  const wrapper = shallow(<StatusBar list={ list } isUpdating={ false } />);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();

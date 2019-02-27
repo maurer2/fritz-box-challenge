@@ -2,13 +2,13 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import TimerComponent from './TimerComponent';
+import UpdateBar from './UpdateBar';
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('TimerComponent dummy', () => {
-  const wrapper = shallow(<TimerComponent isUpdating={ true }/>);
+describe('UpdateBar', () => {
+  const wrapper = shallow(<UpdateBar isUpdating={ true }/>);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
@@ -19,10 +19,10 @@ describe('TimerComponent dummy', () => {
   });
 
   it('should have a timer wrapper', () => {
-    expect(wrapper.find('TimerWrapper').length).toBe(1);
+    expect(wrapper.find('UpdateText').length).toBe(1);
   });
 
-  it('should hae text in timer wrapper', () => {
-    expect(wrapper.find('TimerWrapper').text()).toBe('Updating!');
+  it('should have text in timer wrapper', () => {
+    expect(wrapper.find('UpdateText').text()).toBe('Updating!');
   });
 });

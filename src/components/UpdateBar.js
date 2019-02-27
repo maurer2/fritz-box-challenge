@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { PropTypes } from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 
-const TimerWrapper = styled.div`
+const UpdateText = styled.div`
   padding: 1rem;
   text-align: center;
   font-size: 1.5rem;
@@ -38,7 +38,7 @@ const SladeYTransition = styled.div`
   }
 `;
 
-class TimerComponent extends PureComponent {
+class UpdateView extends PureComponent {
   render() {
     return (
       <SladeYTransition>
@@ -51,9 +51,9 @@ class TimerComponent extends PureComponent {
           transitionEnterTimeout={ 250 }
         >
           { this.props.isUpdating && (
-            <TimerWrapper>
+            <UpdateText>
               Updating!
-            </TimerWrapper>
+            </UpdateText>
           )}
         </CSSTransitionGroup>
       </SladeYTransition>
@@ -61,8 +61,8 @@ class TimerComponent extends PureComponent {
   }
 }
 
-TimerComponent.propTypes = {
+UpdateView.propTypes = {
   isUpdating: PropTypes.bool,
 };
 
-export default TimerComponent;
+export default UpdateView;

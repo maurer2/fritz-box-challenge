@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/macro';
-
 import { CSSTransitionGroup } from 'react-transition-group';
+import PropTypes from 'prop-types';
 
-import TextComponent from './components/TextComponent';
-import TimerComponent from './components/TimerComponent';
-import BoxInformationComponent from './components/BoxInformationComponent';
-
-import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
-import { getMappedFields } from './libs/mapper';
-import { transformString as splitData, getDashPositonsInString, splitString as splitToArray } from './libs/splitter';
-
-import getData from './libs/modem';
-import parseData from './libs/parser';
-
-import mockResponse from './mocks/box-01004.txt';
+import Slide from './components/Slide';
+import UpdateBar from './components/UpdateBar';
+import StatusBar from './components/StatusBar';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -36,117 +27,35 @@ const MainWrapper = styled.main`
 
   .example-appear {
     opacity: 0.1;
-    background: red;
+    // background: red;
   }
 
   .example-enter {
     opacity: 0.1;
-    background: green;
+    // background: green;
   }
 
   .example-appear.example-appear-active {
     opacity: 1;
-    transition: opacity .5s ease-in;
+    // transition: opacity .5s ease-in;
   }
 
   .example-enter.example-enter-active {
     opacity: 1;
-    transition: opacity .5s ease-in;
+    // transition: opacity .5s ease-in;
   }
 `;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showFullNumber: true,
-      isUpdating: true,
-      loopID: -1,
-      // url: '/cgi-bin/system_status',
-      url: mockResponse,
-      dateLong: '',
-      dateProsa: '',
-      boxInformation: {},
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
-  }
-
-  getBoxData() {
-    this.setState({ isUpdating: true });
-
-    const fetchedFinally = getData(this.state.url)
-      .then((data) => {
-        const parsedTextString = parseData(data);
-
-        const dashPositions = getDashPositonsInString(parsedTextString);
-        const splitString = splitData(parsedTextString, dashPositions);
-        const splitStringAsArray = splitToArray(splitString);
-
-        const mappedValues = getMappedFields(splitStringAsArray);
-
-        const extractedDateString = `${mappedValues['powerOnHours 1']}-${mappedValues['powerOnHours 2']}`;
-        const nowDateString = getNowDate();
-
-        const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);
-        const dateLong = getDate(dateIsoString);
-        const dateProsa = getTimeBetween(dateIsoString, nowDateString);
-
-        this.setState(() => ({
-          dateLong,
-          dateProsa,
-          boxInformation: mappedValues,
-        }));
-
-        Promise.resolve();
-      })
-      .catch((error) => {
-        console.log('error', error);
-
-        this.setState(() => ({
-          dateLong: 'Error',
-          dateProsa: 'Error',
-        }));
-
-        Promise.resolve();
-      });
-
-    fetchedFinally.then(() => {
-      this.setState({ isUpdating: false });
-    });
-  }
-
-  startUpdateLoop() {
-    const loopID = setInterval(() => {
-      this.getBoxData().then((data) => {
-        console.log('data', data);
-      });
-    }, 10000);
-
-    this.setState({ loopID });
-  }
-
-  cancellUpdateLoop() {
-    clearInterval(this.state.loopID);
-  }
-
-  componentDidMount() {
-    this.getBoxData();
-  }
-
   render() {
-    const { dateLong, dateProsa, boxInformation, isUpdating } = this.state;
+    const { dateLong, dateProsa, boxInformation, isUpdating, showFullNumber } = this.props;
 
-    const dateLongComponent = <TextComponent text={ dateLong } title="Production date" key={ 1 } />;
-    const dateProsaComponent = <TextComponent text={ dateProsa } title="Age" key={ 2 } />;
+    const dateLongComponent = <Slide text={ dateLong } title="Production date" key={ 1 } />;
+    const dateProsaComponent = <Slide text={ dateProsa } title="Age" key={ 2 } />;
 
     return (
-      <AppWrapper onClick={ this.handleClick }>
-        <TimerComponent isUpdating={ this.state.isUpdating } />
+      <AppWrapper onClick={ this.props.handleClickEvent }>
+        <UpdateBar isUpdating={ isUpdating } />
         <MainWrapper>
           { !isUpdating && (
             <CSSTransitionGroup
@@ -157,14 +66,23 @@ class App extends Component {
               transitionLeave={ false }
               transitionEnterTimeout={ 500 }
             >
-              { this.state.showFullNumber ? dateLongComponent : dateProsaComponent }
+              { showFullNumber ? dateLongComponent : dateProsaComponent }
             </CSSTransitionGroup>
           )}
         </MainWrapper>
-        <BoxInformationComponent isUpdating={ this.state.isUpdating } list={ boxInformation } />
+        <StatusBar isUpdating={ isUpdating } list={ boxInformation } />
       </AppWrapper>
     );
   }
 }
+
+App.propTypes = {
+  dateLong: PropTypes.string,
+  dateProsa: PropTypes.string,
+  boxInformation: PropTypes.object,
+  isUpdating: PropTypes.bool,
+  showFullNumber: PropTypes.bool,
+  handleClickEvent: () => {},
+};
 
 export default App;
