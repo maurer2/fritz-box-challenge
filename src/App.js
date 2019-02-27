@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components/macro';
 
+import { CSSTransitionGroup } from 'react-transition-group';
+
 import TextComponent from './TextComponent/TextComponent';
 import TimerComponent from './TimerComponent/TimerComponent';
 import BoxInformationComponent from './BoxInformationComponent/BoxInformationComponent';
@@ -23,6 +25,25 @@ const AppWrapper = styled.div`
   overflow-y: hidden;
   flex-direction: column;
   background: black;  
+`;
+
+const MainWrapper = styled.main`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+  .example-appear,
+  .example-enter {
+    opacity: 0.01;
+  }
+
+  .example-appear.example-appear-active,
+  .example-enter.example-enter-active {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+  }
 `;
 
 class App extends Component {
@@ -111,20 +132,26 @@ class App extends Component {
   render() {
     const { dateLong, dateProsa, boxInformation, isUpdating } = this.state;
 
+    const dateLongComponent = <TextComponent text={ dateLong } title="Production date" key={ 1 } />;
+    const dateProsaComponent = <TextComponent text={ dateProsa } title="Age" key={ 2 } />;
+
     return (
       <AppWrapper onClick={ this.handleClick }>
         <TimerComponent isUpdating={ this.state.isUpdating } />
-        { !isUpdating && (
-          <Fragment>
-            {
-              this.state.showFullNumber ? (
-                <TextComponent text={ dateLong } title="Production date" />
-              ) : (
-                <TextComponent text={ dateProsa } title="Age" />
-              )
-            }
-          </Fragment>
-        )}
+        <MainWrapper>
+          { !isUpdating && (
+            <CSSTransitionGroup
+              component={ React.Fragment }
+              transitionName="example"
+              transitionAppear={true}
+              transitionAppearTimeout={ 500 }
+              transitionLeave={false}
+              transitionEnterTimeout={ 500 }
+            >
+              { this.state.showFullNumber ? dateLongComponent : dateProsaComponent }
+            </CSSTransitionGroup>
+          )}
+        </MainWrapper>
         <BoxInformationComponent isUpdating={ this.state.isUpdating } list={ boxInformation } />
       </AppWrapper>
     );

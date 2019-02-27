@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
-  margin: auto;
   user-select: none;
   text-align: center;
 `;

@@ -236,7 +236,7 @@ ShallowWrapper {
         "componentId": "Wrapper-r0imrm-0",
         "isStatic": true,
         "rules": Array [
-          "margin:auto;user-select:none;text-align:center;",
+          "user-select:none;text-align:center;",
         ],
       },
       "displayName": "Wrapper",
@@ -470,7 +470,7 @@ ShallowWrapper {
           "componentId": "Wrapper-r0imrm-0",
           "isStatic": true,
           "rules": Array [
-            "margin:auto;user-select:none;text-align:center;",
+            "user-select:none;text-align:center;",
           ],
         },
         "displayName": "Wrapper",
