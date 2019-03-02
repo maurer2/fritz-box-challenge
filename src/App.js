@@ -11,11 +11,11 @@ const AppWrapper = styled.div`
   display: flex;
   margin: 0;
   padding: 0;
-  width: 100%; 
+  width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
-  background: black;  
+  background: black;
 `;
 
 const MainWrapper = styled.main`

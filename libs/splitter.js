@@ -8,7 +8,7 @@ const hasCorrectNumberOfParts = (parts, numberOfParts) => parts.length === numbe
 // workaround since powerOnHours and restarts is not seperated by a dash
 const transformString = (stringValue, dashPositions) => {
   const dateStartPosition = dashPositions[1] + 1;
-  const dateLength = 10;
+  const dateLength = 9;
   const splitPoint = dateStartPosition + dateLength;
 
   const stringBeforeSplitPoint = stringValue.substring(0, splitPoint);

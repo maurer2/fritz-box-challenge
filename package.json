@@ -59,10 +59,18 @@
     "uid": "^0.0.2"
   },
   "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+    "last 3 Chrome versions",
+    "last 3 Firefox versions",
+    "last 3 ie versions",
+    "last 3 Edge versions",
+    "last 3 Safari versions",
+    "last 3 iOS versions",
+    "last 3 android versions",
+    "not ie < 11",
+    "not ie_mob < 11",
+    "not iOS < 11",
+    "not Safari < 11",
+    "not android < 61"
   ],
   "proxy": "http://fritz.box/"
 }
