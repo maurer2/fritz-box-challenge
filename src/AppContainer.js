@@ -15,19 +15,24 @@ class AppContainer extends Component {
     super(props);
 
     this.state = {
-      showFullNumber: true,
       isUpdating: true,
       // url: '/cgi-bin/system_status',
       url: mockResponse,
       dateLong: '',
       dateProsa: '',
       boxInformation: {},
+      componentsToShow: ['branding', 'firmware', 'model', 'restarts', 'technology'],
+      indexOfShownComponent: 0,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
+    const lastIndex = this.state.componentsToShow.length - 1;
+    this.setState(previousState => ({
+      indexOfShownComponent: (previousState.index < lastIndex) ? previousState.index + 1 : 0,
+    }));
+    //this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
   }
 
   getBoxData() {
@@ -79,15 +84,16 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { showFullNumber, isUpdating, dateLong, dateProsa, boxInformation } = this.state;
+    const { isUpdating, dateLong, dateProsa, boxInformation, componentsToShow, indexOfShownComponent } = this.state;
+
     return (
       <App
-        onClick={ this.handleClick }
-        showFullNumber={ showFullNumber }
         isUpdating={ isUpdating }
         dateLong={ dateLong }
         dateProsa={ dateProsa }
         boxInformation={ boxInformation }
+        componentsToShow={ componentsToShow }
+        indexOfShownComponent={ indexOfShownComponent }
         handleClickEvent= { this.handleClick }
       />
     );

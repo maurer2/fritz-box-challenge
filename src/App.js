@@ -47,11 +47,13 @@ const App = (props) => {
     dateProsa,
     boxInformation,
     isUpdating,
-    showFullNumber,
+    componentsToShow,
+    indexOfShownComponent,
     handleClickEvent } = props;
 
   const dateLongComponent = <Slide text={ dateLong } title="Production date" key={ 1 } />;
   const dateProsaComponent = <Slide text={ dateProsa } title="Age" key={ 2 } />;
+  const slideComponent = (title, text, index) => <Slide title={ title } text={ text } key={ index }/>;
 
   return (
     <AppWrapper onClick={ handleClickEvent }>
@@ -66,7 +68,9 @@ const App = (props) => {
             transitionLeave={ false }
             transitionEnterTimeout={ 500 }
           >
-            { showFullNumber ? dateLongComponent : dateProsaComponent }
+            {componentsToShow.map((entry, index) => (
+              <Slide text={ entry } title="Age" key={ index } />
+            ))}
           </CSSTransitionGroup>
         )}
       </MainWrapper>
