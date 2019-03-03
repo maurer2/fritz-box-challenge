@@ -16,6 +16,7 @@ class AppContainer extends Component {
 
     this.state = {
       isUpdating: true,
+      isTransitioning: false,
       // url: '/cgi-bin/system_status',
       url: mockResponse,
       boxInformation: {},
@@ -23,17 +24,28 @@ class AppContainer extends Component {
       currentComponentIndex: 0,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
   }
 
   handleClick() {
+    if (this.state.isTransitioning) {
+      // return;
+    }
+
     this.setState((previousState) => {
       const { currentComponentIndex, componentsToShow } = previousState;
       const lastIndex = componentsToShow.length - 1;
 
       return {
         currentComponentIndex: (currentComponentIndex < lastIndex) ? currentComponentIndex + 1 : 0,
+        isTransitioning: true,
       };
     });
+  }
+
+  handleTransitionEnd = () => {
+    console.log('end');
+    this.setState({ isTransitioning: false });
   }
 
   getBoxData() {
@@ -98,7 +110,8 @@ class AppContainer extends Component {
         boxInformation={ boxInformation }
         componentsToShow={ componentsToShow }
         currentComponentIndex={ currentComponentIndex }
-        handleClickEvent= { this.handleClick }
+        handleClickEvent={ this.handleClick }
+        handleTransitionEnd={ this.handleTransitionEnd }
       />
     );
   }

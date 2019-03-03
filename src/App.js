@@ -23,13 +23,12 @@ const MainWrapper = styled.main`
   display: block;
   width: 100%;
 
-  .fade-leave {
+  .slide-leave {
     position: relative;
-    transition: transform 500ms ease-out;
     transform: translateX(0);
-    background: red;
+    transition: transform 500ms;
 
-    &.fade-leave-active {
+    &.slide-leave-active {
       position: absolute;
       top: 0;
       left: 0;
@@ -38,16 +37,15 @@ const MainWrapper = styled.main`
     }
   }
 
-  .fade-enter {
+  .slide-enter {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     transform: translateX(100%);
-    background: green;
-    transition: transform 500ms ease-in;
+    transition: transform 500ms;
 
-    &.fade-enter-active {
+    &.slide-enter-active {
       position: relative;
       transform: translateX(0);
     }
@@ -55,19 +53,20 @@ const MainWrapper = styled.main`
 `;
 
 const App = (props) => {
-  const { boxInformation, isUpdating, componentsToShow, currentComponentIndex, handleClickEvent } = props;
+  const { boxInformation, isUpdating, componentsToShow, currentComponentIndex } = props;
+  const { handleClickEvent, handleTransitionEnd } = props;
   // const slideComponent = (title, text, index) => <Slide title={ title } text={ text } key={ index }/>;
 
   return (
-    <AppWrapper onClick={ handleClickEvent }>
+    <AppWrapper onClick={ handleClickEvent } onTransitionEnd={ handleTransitionEnd }>
       <UpdateBar isUpdating={ isUpdating } />
       <MainWrapper>
         { !isUpdating && (
           <CSSTransitionGroup
             component={ React.Fragment }
-            transitionName="fade"
-            transitionEnterTimeout={ 5000 }
-            transitionLeaveTimeout={ 5000 }
+            transitionName="slide"
+            transitionEnterTimeout={ 500 }
+            transitionLeaveTimeout={ 500 }
             transitionLeave={ true }
           >
             {componentsToShow.map((entry, index) => (index === currentComponentIndex) &&
@@ -89,6 +88,7 @@ App.propTypes = {
   componentsToShow: PropTypes.array,
   currentComponentIndex: PropTypes.number,
   handleClickEvent: () => {},
+  handleTransitionEnd: () => {},
 };
 
 export default App;
