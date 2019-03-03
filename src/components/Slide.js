@@ -19,6 +19,7 @@ const TextWrapper = styled.h2`
   margin: 0;
   color: white;
   font-size: ${props => 100 / props.characterCount * 1.5}vw;
+  font-size: 5vw;
 
   /* color: ${props => (props.characterCount === 5 ? 'green' : 'white')}; */
   /*

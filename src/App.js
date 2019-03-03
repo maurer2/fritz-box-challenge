@@ -19,26 +19,38 @@ const AppWrapper = styled.div`
 `;
 
 const MainWrapper = styled.main`
+  position: relative;
   display: block;
+  width: 100%;
 
-  .fade-appear {
-    opacity: 0.1;
+  .fade-leave {
+    position: relative;
+    transition: transform 500ms ease-out;
+    transform: translateX(0);
     background: red;
+
+    &.fade-leave-active {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      transform: translateX(-100%);
+    }
   }
 
   .fade-enter {
-    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateX(100%);
     background: green;
-  }
+    transition: transform 500ms ease-in;
 
-  .fade-appear.fade-appear-active {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
-  }
-
-  .fade-enter.fade-enter-active {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
+    &.fade-enter-active {
+      position: relative;
+      transform: translateX(0);
+    }
   }
 `;
 
@@ -54,12 +66,12 @@ const App = (props) => {
           <CSSTransitionGroup
             component={ React.Fragment }
             transitionName="fade"
-            transitionAppear={ true }
-            transitionAppearTimeout={ 500 }
-            transitionLeave={ false }
-            transitionEnterTimeout={ 500 }
+            transitionEnterTimeout={ 5000 }
+            transitionLeaveTimeout={ 5000 }
+            transitionLeave={ true }
           >
             {componentsToShow.map((entry, index) => (index === currentComponentIndex) &&
+              // slideComponent(entry, boxInformation[entry], index) )
               <Slide title={ entry } text={ boxInformation[entry] } key={ index } />)
             }
           </CSSTransitionGroup>
