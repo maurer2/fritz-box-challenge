@@ -18,21 +18,22 @@ class AppContainer extends Component {
       isUpdating: true,
       // url: '/cgi-bin/system_status',
       url: mockResponse,
-      dateLong: '',
-      dateProsa: '',
       boxInformation: {},
-      componentsToShow: ['branding', 'firmware', 'model', 'restarts', 'technology'],
-      indexOfShownComponent: 0,
+      componentsToShow: ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'],
+      currentComponentIndex: 0,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    const lastIndex = this.state.componentsToShow.length - 1;
-    this.setState(previousState => ({
-      indexOfShownComponent: (previousState.index < lastIndex) ? previousState.index + 1 : 0,
-    }));
-    //this.setState(previousState => ({ showFullNumber: !previousState.showFullNumber }));
+    this.setState((previousState) => {
+      const { currentComponentIndex, componentsToShow } = previousState;
+      const lastIndex = componentsToShow.length - 1;
+
+      return {
+        currentComponentIndex: (currentComponentIndex < lastIndex) ? currentComponentIndex + 1 : 0,
+      };
+    });
   }
 
   getBoxData() {
@@ -55,11 +56,16 @@ class AppContainer extends Component {
         const dateLong = getDate(dateIsoString);
         const dateProsa = getTimeBetween(dateIsoString, nowDateString);
 
-        this.setState(() => ({
-          dateLong,
-          dateProsa,
-          boxInformation: mappedValues,
-        }));
+        this.setState(() => {
+          const boxInformation = Object.assign({}, mappedValues);
+
+          boxInformation.runtime = dateLong;
+          boxInformation.age = dateProsa;
+
+          return {
+            boxInformation,
+          };
+        });
 
         Promise.resolve();
       })
@@ -84,16 +90,14 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { isUpdating, dateLong, dateProsa, boxInformation, componentsToShow, indexOfShownComponent } = this.state;
+    const { isUpdating, boxInformation, componentsToShow, currentComponentIndex } = this.state;
 
     return (
       <App
         isUpdating={ isUpdating }
-        dateLong={ dateLong }
-        dateProsa={ dateProsa }
         boxInformation={ boxInformation }
         componentsToShow={ componentsToShow }
-        indexOfShownComponent={ indexOfShownComponent }
+        currentComponentIndex={ currentComponentIndex }
         handleClickEvent= { this.handleClick }
       />
     );

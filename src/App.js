@@ -43,17 +43,8 @@ const MainWrapper = styled.main`
 `;
 
 const App = (props) => {
-  const { dateLong,
-    dateProsa,
-    boxInformation,
-    isUpdating,
-    componentsToShow,
-    indexOfShownComponent,
-    handleClickEvent } = props;
-
-  const dateLongComponent = <Slide text={ dateLong } title="Production date" key={ 1 } />;
-  const dateProsaComponent = <Slide text={ dateProsa } title="Age" key={ 2 } />;
-  const slideComponent = (title, text, index) => <Slide title={ title } text={ text } key={ index }/>;
+  const { boxInformation, isUpdating, componentsToShow, currentComponentIndex, handleClickEvent } = props;
+  // const slideComponent = (title, text, index) => <Slide title={ title } text={ text } key={ index }/>;
 
   return (
     <AppWrapper onClick={ handleClickEvent }>
@@ -68,9 +59,9 @@ const App = (props) => {
             transitionLeave={ false }
             transitionEnterTimeout={ 500 }
           >
-            {componentsToShow.map((entry, index) => (
-              <Slide text={ entry } title="Age" key={ index } />
-            ))}
+            {componentsToShow.map((entry, index) => (index === currentComponentIndex) &&
+              <Slide title={ entry } text={ boxInformation[entry] } key={ index } />)
+            }
           </CSSTransitionGroup>
         )}
       </MainWrapper>
@@ -80,11 +71,11 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  dateLong: PropTypes.string,
-  dateProsa: PropTypes.string,
   boxInformation: PropTypes.object,
   isUpdating: PropTypes.bool,
   showFullNumber: PropTypes.bool,
+  componentsToShow: PropTypes.array,
+  currentComponentIndex: PropTypes.number,
   handleClickEvent: () => {},
 };
 
