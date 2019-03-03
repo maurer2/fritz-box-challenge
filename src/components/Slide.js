@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled, { css } from 'styled-components/macro';
 import PropTypes from 'prop-types';
+import upperFirst from 'lodash/upperFirst';
 
 const Wrapper = styled.div`
   user-select: none;
@@ -10,19 +11,19 @@ const Wrapper = styled.div`
 const TitleWrapper = styled.h1`
   margin-top: 0;
   margin-bottom: 2vh;
-  color: white;  
+  color: white;
   font-size: 5vw;
 `;
 
 const TextWrapper = styled.h2`
   margin: 0;
-  color: white;  
-  font-size: ${props => 100 / props.characterCount * 1.75}vw;
+  color: white;
+  font-size: ${props => 100 / props.characterCount * 1.5}vw;
 
   /* color: ${props => (props.characterCount === 5 ? 'green' : 'white')}; */
   /*
   ${props => props.numberOfCharacters === 5 && css`
-    background: red; 
+    background: red;
   `};
   */
 `;
@@ -40,7 +41,7 @@ class TextComponent extends PureComponent {
     return (
       <Wrapper>
         <TitleWrapper>
-          { this.props.title }
+          { upperFirst(this.props.title) }
         </TitleWrapper>
         <TextWrapper characterCount={ this.numberOfCharacters }>
           { this.textSeparate.map(

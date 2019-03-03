@@ -23,7 +23,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <ForwardRef>
-          title
+          Title
         </ForwardRef>,
         <ForwardRef
           characterCount={6}
@@ -68,10 +68,10 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "title",
+          "children": "Title",
         },
         "ref": null,
-        "rendered": "title",
+        "rendered": "Title",
         "type": Object {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
@@ -257,7 +257,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <ForwardRef>
-            title
+            Title
           </ForwardRef>,
           <ForwardRef
             characterCount={6}
@@ -302,10 +302,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "title",
+            "children": "Title",
           },
           "ref": null,
-          "rendered": "title",
+          "rendered": "Title",
           "type": Object {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
