@@ -4,35 +4,35 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 
 const MainWrapper = styled.main`
-  position: relative;
-  display: block;
   width: 100%;
 
-  .slide-leave {
-    position: relative;
-    transform: translateX(0);
-    transition: transform 500ms;
+  > div {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateX(0) translateY(-50%);
+  }
+
+  > .slide-leave {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+    transition: transform 500ms, opacity 500ms;
 
     &.slide-leave-active {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      transform: translateX(-100%);
+      opacity: 0.01;
+      transform: translateX(-100%) translateY(-50%);
     }
   }
 
-  .slide-enter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: translateX(100%);
-    transition: transform 500ms;
+  > .slide-enter {
+    opacity: 0.01;
+    transform: translateX(100%) translateY(-50%);
+    transition: transform 500ms, opacity 500ms;
 
     &.slide-enter-active {
-      position: relative;
-      transform: translateX(0);
+      opacity: 1;
+      transform: translateX(0) translateY(-50%);
     }
   }
 `;

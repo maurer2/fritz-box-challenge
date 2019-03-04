@@ -9,13 +9,14 @@ import StatusBar from './components/StatusBar';
 import MainContent from './components/MainContent';
 
 const AppWrapper = styled.div`
+  position: relative;
   display: flex;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  justify-content: center;
-  align-items: center;
+  justify-content: stretch;
+  align-self: stretch;
   background: black;
 `;
 
@@ -28,7 +29,7 @@ const App = (props) => {
       <UpdateBar isUpdating={ isUpdating } />
       <MainContent isUpdating={ isUpdating }>
         {componentsToShow.map((entry, index) => (index === currentComponentIndex) &&
-          <Slide title={ entry } text={ boxInformation[entry] } key={ index } />)
+          <Slide className="slide" title={ entry } text={ boxInformation[entry] } key={ index } />)
         }
       </MainContent>
       <StatusBar isUpdating={ isUpdating } list={ boxInformation } />
