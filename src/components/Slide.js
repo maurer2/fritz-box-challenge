@@ -6,6 +6,7 @@ import upperFirst from 'lodash/upperFirst';
 const Wrapper = styled.div`
   user-select: none;
   text-align: center;
+  will-change: transform;
 `;
 
 const TitleWrapper = styled.h1`
