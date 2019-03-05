@@ -95,11 +95,6 @@ class AppContainer extends Component {
       .catch((error) => {
         console.log('error', error);
 
-        this.setState(() => ({
-          dateLong: 'Error',
-          dateProsa: 'Error',
-        }));
-
         Promise.resolve();
       });
 

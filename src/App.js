@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Slide from './components/Slide';
 import UpdateBar from './components/UpdateBar';
-import StatusBar from './components/StatusBar';
+import NavBar from './components/NavBar';
 import MainContent from './components/MainContent';
 
 const AppWrapper = styled.div`
@@ -29,7 +29,7 @@ const App = (props) => {
       <MainContent isUpdating={ isUpdating }>
         <Slide title={ currentSlide } text={ boxData[currentSlide] } key={ currentSlide } />
       </MainContent>
-      <StatusBar isUpdating={ isUpdating } list={ boxData } />
+      <NavBar isUpdating={ isUpdating } list={ boxData } />
     </AppWrapper>
   );
 };
