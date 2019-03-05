@@ -57,7 +57,7 @@ const MainContent = (props) => {
 
 MainContent.propTypes = {
   isUpdating: PropTypes.bool,
-  children: PropTypes.array,
+  children: PropTypes.object,
 };
 
 export default MainContent;

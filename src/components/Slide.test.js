@@ -19,14 +19,6 @@ describe('Slide', () => {
     expect(wrapper.find('.character').length).toBe(6);
   });
 
-  it('getter should work', () => {
-    const getterNumberOfCharacters = wrapper.instance().numberOfCharacters;
-    const { textSeparate } = wrapper.instance();
-
-    expect(getterNumberOfCharacters).toBe(6);
-    expect(textSeparate).toEqual(['1', '2', '3', '4', '5', '6']);
-  });
-
   it('should have a title', () => {
     expect(wrapper.find('TitleWrapper').length).toBe(1);
   });

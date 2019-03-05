@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import upperFirst from 'lodash/upperFirst';
@@ -9,18 +9,19 @@ const Wrapper = styled.div`
   will-change: transform;
 `;
 
-const TitleWrapper = styled.h1`
+const TitleWrapper = styled.h2`
   margin-top: 0;
   margin-bottom: 2vh;
   color: white;
   font-size: 5vw;
 `;
 
-const TextWrapper = styled.h2`
+const TextWrapper = styled.div`
   margin: 0;
   color: white;
-  font-size: ${props => 100 / props.characterCount * 1.5}vw;
+  font-size: ${props => 100 / props.characterCount * 1.35}vw;
   line-height: 1;
+  font-weight: bold;
 
   /* color: ${props => (props.characterCount === 5 ? 'green' : 'white')}; */
   /*
@@ -30,34 +31,24 @@ const TextWrapper = styled.h2`
   */
 `;
 
-class TextComponent extends PureComponent {
-  get textSeparate() {
-    return this.props.text.split('');
-  }
+const TextComponent = (props) => {
+  const { title, text } = props;
 
-  get numberOfCharacters() {
-    return this.textSeparate.length;
-  }
-
-  render() {
-    return (
-      <Wrapper>
-        <TitleWrapper>
-          { upperFirst(this.props.title) }
-        </TitleWrapper>
-        <TextWrapper characterCount={ this.numberOfCharacters }>
-          { this.textSeparate.map(
-            (character, index) => (
-            <span className="character" key={ index }>
-              { character }
-            </span>
-            ),
-          )}
-        </TextWrapper>
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <TitleWrapper>
+        { upperFirst(title) }
+      </TitleWrapper>
+      <TextWrapper characterCount={ text.length }>
+        {text.split('').map((character, index) => (
+          <span className="character" key={ index }>
+            { (index === 0) ? upperFirst(character) : character }
+          </span>
+        ))}
+      </TextWrapper>
+    </Wrapper>
+  );
+};
 
 TextComponent.propTypes = {
   text: PropTypes.string,

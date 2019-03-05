@@ -19,9 +19,9 @@ class AppContainer extends Component {
       isTransitioning: false,
       // url: '/cgi-bin/system_status',
       url: mockResponse,
-      boxInformation: {},
+      boxData: {},
       componentsToShow: ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'],
-      currentComponentIndex: 0,
+      currentIndex: 0,
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
@@ -33,19 +33,35 @@ class AppContainer extends Component {
     }
 
     this.setState((previousState) => {
-      const { currentComponentIndex, componentsToShow } = previousState;
+      const { currentIndex, componentsToShow } = previousState;
       const lastIndex = componentsToShow.length - 1;
 
       return {
-        currentComponentIndex: (currentComponentIndex < lastIndex) ? currentComponentIndex + 1 : 0,
+        currentIndex: (currentIndex < lastIndex) ? currentIndex + 1 : 0,
         isTransitioning: true,
       };
     });
   }
 
   handleTransitionEnd = () => {
-    console.log('end');
     this.setState({ isTransitioning: false });
+  }
+
+  mapBoxData(boxData, runtime, age) {
+    const { componentsToShow } = this.state;
+
+    const mappedEntries = componentsToShow.reduce((total, current) => {
+      const entries = total;
+
+      entries[current] = boxData[current] || '';
+
+      return entries;
+    }, {});
+
+    mappedEntries.runtime = runtime;
+    mappedEntries.age = age;
+
+    return mappedEntries;
   }
 
   getBoxData() {
@@ -65,21 +81,16 @@ class AppContainer extends Component {
         const nowDateString = getNowDate();
 
         const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);
-        const dateLong = getDate(dateIsoString);
-        const dateProsa = getTimeBetween(dateIsoString, nowDateString);
+        const runtime = getDate(dateIsoString);
+        const age = getTimeBetween(dateIsoString, nowDateString);
 
         this.setState(() => {
-          const boxInformation = Object.assign({}, mappedValues);
-
-          boxInformation.runtime = dateLong;
-          boxInformation.age = dateProsa;
+          const boxData = this.mapBoxData(mappedValues, runtime, age);
 
           return {
-            boxInformation,
+            boxData,
           };
         });
-
-        Promise.resolve();
       })
       .catch((error) => {
         console.log('error', error);
@@ -102,14 +113,13 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { isUpdating, boxInformation, componentsToShow, currentComponentIndex } = this.state;
+    const { isUpdating, boxData, currentIndex } = this.state;
 
     return (
       <App
         isUpdating={ isUpdating }
-        boxInformation={ boxInformation }
-        componentsToShow={ componentsToShow }
-        currentComponentIndex={ currentComponentIndex }
+        boxData={ boxData }
+        currentIndex={ currentIndex }
         handleClickEvent={ this.handleClick }
         handleTransitionEnd={ this.handleTransitionEnd }
       />

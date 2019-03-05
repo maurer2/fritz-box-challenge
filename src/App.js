@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-// import { CSSTransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 
 import Slide from './components/Slide';
@@ -21,28 +20,25 @@ const AppWrapper = styled.div`
 `;
 
 const App = (props) => {
-  const { boxInformation, isUpdating, componentsToShow, currentComponentIndex } = props;
-  const { handleClickEvent, handleTransitionEnd } = props;
+  const { boxData, isUpdating, currentIndex, handleClickEvent, handleTransitionEnd } = props;
+  const currentSlide = Object.keys(boxData)[currentIndex];
 
   return (
     <AppWrapper onClick={ handleClickEvent } onTransitionEnd={ handleTransitionEnd }>
       <UpdateBar isUpdating={ isUpdating } />
       <MainContent isUpdating={ isUpdating }>
-        {componentsToShow.map((entry, index) => (index === currentComponentIndex) &&
-          <Slide className="slide" title={ entry } text={ boxInformation[entry] } key={ index } />)
-        }
+        <Slide title={ currentSlide } text={ boxData[currentSlide] } key={ currentSlide } />
       </MainContent>
-      <StatusBar isUpdating={ isUpdating } list={ boxInformation } />
+      <StatusBar isUpdating={ isUpdating } list={ boxData } />
     </AppWrapper>
   );
 };
 
 App.propTypes = {
-  boxInformation: PropTypes.object,
+  boxData: PropTypes.object,
   isUpdating: PropTypes.bool,
   showFullNumber: PropTypes.bool,
-  componentsToShow: PropTypes.array,
-  currentComponentIndex: PropTypes.number,
+  currentIndex: PropTypes.number,
   handleClickEvent: () => {},
   handleTransitionEnd: () => {},
 };
