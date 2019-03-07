@@ -24,12 +24,17 @@ const App = (props) => {
   const currentSlide = Object.keys(boxData)[currentIndex];
 
   return (
-    <AppWrapper onClick={ handleClickEvent } onTransitionEnd={ handleTransitionEnd }>
+    <AppWrapper onTransitionEnd={ handleTransitionEnd }>
       <UpdateBar isUpdating={ isUpdating } />
       <MainContent isUpdating={ isUpdating }>
         <Slide title={ currentSlide } text={ boxData[currentSlide] } key={ currentSlide } />
       </MainContent>
-      <NavBar isUpdating={ isUpdating } list={ boxData } />
+      <NavBar
+        isUpdating={ isUpdating }
+        boxData={ boxData }
+        handleClickEvent={ handleClickEvent }
+        currentIndex={ currentIndex }
+      />
     </AppWrapper>
   );
 };

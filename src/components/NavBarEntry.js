@@ -10,12 +10,14 @@ const NavBarEntryWrapper = styled.button`
   appearance: none;
   background: none;
   border: 0;
+  transform: ${props => (props.isActive ? 'scale(1.5)' : 'scale(1)')};
+  transition: transform 500ms;
 `;
 
 class NavBarEntry extends PureComponent {
   render() {
     return (
-      <NavBarEntryWrapper>
+      <NavBarEntryWrapper isActive={ this.props.isActive }>
         { upperFirst(this.props.entry) }
       </NavBarEntryWrapper>
     );
@@ -24,6 +26,7 @@ class NavBarEntry extends PureComponent {
 
 NavBarEntry.propTypes = {
   entry: PropTypes.string,
+  isActive: PropTypes.bool,
 };
 
 export default NavBarEntry;

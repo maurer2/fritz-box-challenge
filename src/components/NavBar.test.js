@@ -8,14 +8,14 @@ import NavBar from './NavBar';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('NavBar', () => {
-  const list = {
+  const boxData = {
     branding: 'avm',
     model: 'FRITZ!Box 6590 Cable',
     restarts: '024',
     technology: 'Kabel',
   };
 
-  const wrapper = shallow(<NavBar list={ list } isUpdating={ false } />);
+  const wrapper = shallow(<NavBar list={ boxData } isUpdating={ false } />);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();

@@ -21,6 +21,7 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": "Model",
+      "isActive": undefined,
     },
     "ref": null,
     "rendered": "Model",
@@ -29,9 +30,11 @@ ShallowWrapper {
       "attrs": Array [],
       "componentStyle": ComponentStyle {
         "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
-        "isStatic": true,
+        "isStatic": false,
         "rules": Array [
-          "display:block;margin:1rem;font-weight:bold;appearance:none;background:none;border:0;",
+          "display:block;margin:1rem;font-weight:bold;appearance:none;background:none;border:0;transform:",
+          [Function],
+          ";transition:transform 500ms;",
         ],
       },
       "displayName": "NavBarEntryWrapper",
@@ -51,6 +54,7 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": "Model",
+        "isActive": undefined,
       },
       "ref": null,
       "rendered": "Model",
@@ -59,9 +63,11 @@ ShallowWrapper {
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
-          "isStatic": true,
+          "isStatic": false,
           "rules": Array [
-            "display:block;margin:1rem;font-weight:bold;appearance:none;background:none;border:0;",
+            "display:block;margin:1rem;font-weight:bold;appearance:none;background:none;border:0;transform:",
+            [Function],
+            ";transition:transform 500ms;",
           ],
         },
         "displayName": "NavBarEntryWrapper",
