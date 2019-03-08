@@ -36,9 +36,9 @@ ShallowWrapper {
         "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
         "isStatic": false,
         "rules": Array [
-          "display:block;margin:1rem;font-weight:bold;appearance:none;background:none;border:0;transform:",
+          "padding:1rem;border:0;border-top-width:4px;border-top-style:solid;border-top-color:",
           [Function],
-          ";transition:transform 500ms;outline:none;",
+          ";appearance:none;font-size:1rem;background:none;outline:none;",
         ],
       },
       "displayName": "NavBarEntryWrapper",
@@ -70,9 +70,9 @@ ShallowWrapper {
           "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
           "isStatic": false,
           "rules": Array [
-            "display:block;margin:1rem;font-weight:bold;appearance:none;background:none;border:0;transform:",
+            "padding:1rem;border:0;border-top-width:4px;border-top-style:solid;border-top-color:",
             [Function],
-            ";transition:transform 500ms;outline:none;",
+            ";appearance:none;font-size:1rem;background:none;outline:none;",
           ],
         },
         "displayName": "NavBarEntryWrapper",

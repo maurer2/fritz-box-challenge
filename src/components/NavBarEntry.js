@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import upperFirst from 'lodash/upperFirst';
 
 const NavBarEntryWrapper = styled.button`
-  display: block;
-  margin: 1rem;
-  font-weight: bold;
-  appearance: none;
-  background: none;
+  padding: 1rem;
   border: 0;
-  transform: ${props => (props.isActive ? 'scale(1.5)' : 'scale(1)')};
-  transition: transform 500ms;
+  border-top-width: 4px;
+  border-top-style: solid;
+  border-top-color: ${props => (props.isActive ? 'black' : 'transparent')};
+  appearance: none;
+  font-size: 1rem;
+  background: none;
   outline: none;
 `;
 
