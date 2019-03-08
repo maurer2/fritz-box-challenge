@@ -42,10 +42,10 @@ const SlideYTransition = styled.div`
 `;
 
 const BoxInformationComponent = (props) => {
-  const { boxData, isUpdating, handleClickEvent, currentIndex } = props;
+  const { boxData, isUpdating, currentIndex, handleNavigation } = props;
 
   return (
-    <SlideYTransition onClick={ handleClickEvent }>
+    <SlideYTransition>
       <CSSTransitionGroup
         component={ React.Fragment }
         transitionAppear={ false }
@@ -57,7 +57,13 @@ const BoxInformationComponent = (props) => {
         { !isUpdating && (
           <BoxInformationWrapper>
             { Object.keys(boxData).map((entry, index) => (
-              <NavBarEntry entry={ entry } key={ index } isActive={ currentIndex === index }/>
+              <NavBarEntry
+                index={ index }
+                entry={ entry }
+                isActive={ currentIndex === index }
+                key={ index }
+                handleNavigation={ handleNavigation }
+              />
             ))}
           </BoxInformationWrapper>
         )}
@@ -69,7 +75,7 @@ const BoxInformationComponent = (props) => {
 BoxInformationComponent.propTypes = {
   boxData: PropTypes.object,
   isUpdating: PropTypes.bool,
-  handleClickEvent: PropTypes.func,
+  handleNavigation: PropTypes.func,
   currentIndex: PropTypes.number,
 };
 

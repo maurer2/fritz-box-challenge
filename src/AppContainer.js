@@ -16,7 +16,6 @@ class AppContainer extends Component {
 
     this.state = {
       isUpdating: true,
-      isTransitioning: false,
       // url: '/cgi-bin/system_status',
       url: mockResponse,
       boxData: {},
@@ -24,27 +23,22 @@ class AppContainer extends Component {
       currentIndex: 0,
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
+    this.handleNavigation = this.handleNavigation.bind(this);
   }
 
   handleClick() {
-    if (this.state.isTransitioning) {
-      // return;
-    }
-
     this.setState((previousState) => {
       const { currentIndex, componentsToShow } = previousState;
       const lastIndex = componentsToShow.length - 1;
 
       return {
         currentIndex: (currentIndex < lastIndex) ? currentIndex + 1 : 0,
-        isTransitioning: true,
       };
     });
   }
 
-  handleTransitionEnd = () => {
-    this.setState({ isTransitioning: false });
+  handleNavigation(index) {
+    this.setState({ currentIndex: index });
   }
 
   mapBoxData(boxData, runtime, age) {
@@ -115,8 +109,8 @@ class AppContainer extends Component {
         isUpdating={ isUpdating }
         boxData={ boxData }
         currentIndex={ currentIndex }
-        handleClickEvent={ this.handleClick }
-        handleTransitionEnd={ this.handleTransitionEnd }
+        // handleClickEvent={ this.handleClick }
+        handleNavigation={ this.handleNavigation }
       />
     );
   }
