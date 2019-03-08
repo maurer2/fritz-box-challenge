@@ -8,7 +8,14 @@ import NavBarEntry from './NavBarEntry';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('NavBarEntry', () => {
-  const wrapper = shallow(<NavBarEntry entry="model" />);
+  const mockedHandleNavigation = jest.fn();
+
+  const wrapper = shallow(<NavBarEntry
+    index={ 5 }
+    entry="model"
+    isActive={ false }
+    handleNavigation={ mockedHandleNavigation }
+  />);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();

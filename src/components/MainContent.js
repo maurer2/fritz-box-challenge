@@ -38,10 +38,10 @@ const MainWrapper = styled.main`
 `;
 
 const MainContent = (props) => {
-  const { isUpdating } = props;
+  const { isUpdating, handleClickEvent, children } = props;
 
   return (
-    <MainWrapper>
+    <MainWrapper onClick={ handleClickEvent }>
       <CSSTransitionGroup
         component={ React.Fragment }
         transitionName="slide"
@@ -49,7 +49,7 @@ const MainContent = (props) => {
         transitionLeaveTimeout={ 500 }
         transitionLeave={ true }
       >
-        {!isUpdating && props.children}
+        {!isUpdating && children}
       </CSSTransitionGroup>
     </MainWrapper>
   );
@@ -58,6 +58,7 @@ const MainContent = (props) => {
 MainContent.propTypes = {
   isUpdating: PropTypes.bool,
   children: PropTypes.object,
+  handleClickEvent: PropTypes.func,
 };
 
 export default MainContent;

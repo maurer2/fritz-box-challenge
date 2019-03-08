@@ -8,7 +8,12 @@ import MainContent from './MainContent';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('MainContent', () => {
-  const wrapper = shallow(<MainContent isUpdating={ false } />);
+  const mockedHandleClick = jest.fn();
+
+  const wrapper = shallow(<MainContent
+    isUpdating={ false }
+    onClick={ mockedHandleClick }
+  />);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();

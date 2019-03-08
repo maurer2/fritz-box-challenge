@@ -5,6 +5,9 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <NavBarEntry
     entry="model"
+    handleNavigation={[MockFunction]}
+    index={5}
+    isActive={false}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -21,7 +24,8 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": "Model",
-      "isActive": undefined,
+      "isActive": false,
+      "onClick": [Function],
     },
     "ref": null,
     "rendered": "Model",
@@ -34,7 +38,7 @@ ShallowWrapper {
         "rules": Array [
           "display:block;margin:1rem;font-weight:bold;appearance:none;background:none;border:0;transform:",
           [Function],
-          ";transition:transform 500ms;",
+          ";transition:transform 500ms;outline:none;",
         ],
       },
       "displayName": "NavBarEntryWrapper",
@@ -54,7 +58,8 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": "Model",
-        "isActive": undefined,
+        "isActive": false,
+        "onClick": [Function],
       },
       "ref": null,
       "rendered": "Model",
@@ -67,7 +72,7 @@ ShallowWrapper {
           "rules": Array [
             "display:block;margin:1rem;font-weight:bold;appearance:none;background:none;border:0;transform:",
             [Function],
-            ";transition:transform 500ms;",
+            ";transition:transform 500ms;outline:none;",
           ],
         },
         "displayName": "NavBarEntryWrapper",

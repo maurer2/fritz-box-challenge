@@ -109,7 +109,7 @@ class AppContainer extends Component {
         isUpdating={ isUpdating }
         boxData={ boxData }
         currentIndex={ currentIndex }
-        // handleClickEvent={ this.handleClick }
+        handleClickEvent={ this.handleClick }
         handleNavigation={ this.handleNavigation }
       />
     );

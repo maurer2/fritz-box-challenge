@@ -20,13 +20,13 @@ const AppWrapper = styled.div`
 `;
 
 const App = (props) => {
-  const { boxData, isUpdating, currentIndex, handleNavigation } = props;
+  const { boxData, isUpdating, currentIndex, handleNavigation, handleClickEvent } = props;
   const currentSlide = Object.keys(boxData)[currentIndex];
 
   return (
     <AppWrapper>
       <UpdateBar isUpdating={ isUpdating } />
-      <MainContent isUpdating={ isUpdating }>
+      <MainContent isUpdating={ isUpdating } handleClickEvent={ handleClickEvent }>
         <Slide title={ currentSlide } text={ boxData[currentSlide] } key={ currentSlide } />
       </MainContent>
       <NavBar

@@ -8,7 +8,10 @@ import Slide from './Slide';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Slide', () => {
-  const wrapper = shallow(<Slide text={ '123456' } title={ 'title' } />);
+  const wrapper = shallow(<Slide
+    text="123456"
+    title="title"
+  />);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();

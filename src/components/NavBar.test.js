@@ -15,7 +15,14 @@ describe('NavBar', () => {
     technology: 'Kabel',
   };
 
-  const wrapper = shallow(<NavBar list={ boxData } isUpdating={ false } />);
+  const mockedHandleNavigation = jest.fn();
+
+  const wrapper = shallow(<NavBar
+    isUpdating={ false }
+    boxData={ boxData }
+    currentIndex={ 1 }
+    handleNavigation={ mockedHandleNavigation }
+  />);
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
