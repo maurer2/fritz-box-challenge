@@ -23,29 +23,64 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "children": "Model",
-      "isActive": false,
+      "children": <ForwardRef
+        isActive={false}
+      >
+        Model
+      </ForwardRef>,
       "onClick": [Function],
     },
     "ref": null,
-    "rendered": "Model",
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": "Model",
+        "isActive": false,
+      },
+      "ref": null,
+      "rendered": "Model",
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "NavBarButton-sc-1jim1v6-2",
+          "isStatic": false,
+          "rules": Array [
+            "padding:1rem;appearance:none;background:none;outline:none;",
+            "display:block;width:100%;border:0;border-top-width:4px;border-top-style:solid;border-top-color:",
+            [Function],
+            ";font-size:1rem;",
+          ],
+        },
+        "displayName": "NavBarButton",
+        "foldedComponentIds": Array [
+          "defaultButton-sc-1jim1v6-1",
+        ],
+        "render": [Function],
+        "styledComponentId": "NavBarButton-sc-1jim1v6-2",
+        "target": "button",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
+    },
     "type": Object {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
         "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
-        "isStatic": false,
+        "isStatic": true,
         "rules": Array [
-          "padding:1rem;border:0;border-top-width:4px;border-top-style:solid;border-top-color:",
-          [Function],
-          ";appearance:none;font-size:1rem;background:none;outline:none;",
+          "flex-grow:1;flex-shrink:0;flex-basis:0;",
         ],
       },
       "displayName": "NavBarEntryWrapper",
       "foldedComponentIds": Array [],
       "render": [Function],
       "styledComponentId": "NavBarEntryWrapper-sc-1jim1v6-0",
-      "target": "button",
+      "target": "li",
       "toString": [Function],
       "warnTooManyClasses": [Function],
       "withComponent": [Function],
@@ -57,29 +92,64 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "children": "Model",
-        "isActive": false,
+        "children": <ForwardRef
+          isActive={false}
+        >
+          Model
+        </ForwardRef>,
         "onClick": [Function],
       },
       "ref": null,
-      "rendered": "Model",
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "Model",
+          "isActive": false,
+        },
+        "ref": null,
+        "rendered": "Model",
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": ComponentStyle {
+            "componentId": "NavBarButton-sc-1jim1v6-2",
+            "isStatic": false,
+            "rules": Array [
+              "padding:1rem;appearance:none;background:none;outline:none;",
+              "display:block;width:100%;border:0;border-top-width:4px;border-top-style:solid;border-top-color:",
+              [Function],
+              ";font-size:1rem;",
+            ],
+          },
+          "displayName": "NavBarButton",
+          "foldedComponentIds": Array [
+            "defaultButton-sc-1jim1v6-1",
+          ],
+          "render": [Function],
+          "styledComponentId": "NavBarButton-sc-1jim1v6-2",
+          "target": "button",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        },
+      },
       "type": Object {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
-          "isStatic": false,
+          "isStatic": true,
           "rules": Array [
-            "padding:1rem;border:0;border-top-width:4px;border-top-style:solid;border-top-color:",
-            [Function],
-            ";appearance:none;font-size:1rem;background:none;outline:none;",
+            "flex-grow:1;flex-shrink:0;flex-basis:0;",
           ],
         },
         "displayName": "NavBarEntryWrapper",
         "foldedComponentIds": Array [],
         "render": [Function],
         "styledComponentId": "NavBarEntryWrapper-sc-1jim1v6-0",
-        "target": "button",
+        "target": "li",
         "toString": [Function],
         "warnTooManyClasses": [Function],
         "withComponent": [Function],

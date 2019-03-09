@@ -22,10 +22,10 @@ describe('NavBarEntry', () => {
   });
 
   it('should have a title component', () => {
-    expect(wrapper.find('NavBarEntryWrapper').length).toBe(1);
+    expect(wrapper.find('NavBarButton').length).toBe(1);
   });
 
   it('should have text in component', () => {
-    expect(wrapper.find('NavBarEntryWrapper').text()).toBe('Model');
+    expect(wrapper.find('NavBarButton').text()).toBe('Model');
   });
 });

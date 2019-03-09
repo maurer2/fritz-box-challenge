@@ -12,6 +12,7 @@ const BoxInformationWrapper = styled.ul`
   justify-content: space-between;
   flex-wrap: wrap;
   background: red;
+  list-style: none;
 `;
 
 const SlideYTransition = styled.div`
