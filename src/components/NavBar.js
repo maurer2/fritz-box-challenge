@@ -42,7 +42,7 @@ const SlideYTransition = styled.div`
   }
 `;
 
-const BoxInformationComponent = (props) => {
+const Navbar = (props) => {
   const { boxData, isUpdating, currentIndex, handleNavigation } = props;
 
   return (
@@ -73,11 +73,11 @@ const BoxInformationComponent = (props) => {
   );
 };
 
-BoxInformationComponent.propTypes = {
+Navbar.propTypes = {
   boxData: PropTypes.object,
   isUpdating: PropTypes.bool,
   handleNavigation: PropTypes.func,
   currentIndex: PropTypes.number,
 };
 
-export default BoxInformationComponent;
+export default Navbar;
