@@ -7,9 +7,7 @@ const NavBarEntryWrapper = styled.li`
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 0;
-  border-top-width: 4px;
-  border-top-style: solid;
-  border-top-color: ${props => (props.isActive ? 'black' : 'transparent')};
+  background: ${props => (props.isActive ? '#cc0000' : 'transparent')};
 `;
 
 const defaultButton = styled.button`
@@ -34,24 +32,33 @@ class NavBarEntry extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  getHorizontalOffset() {
+  getBoundingBox() {
     if (this.elementRef.current === null) {
       return 0;
     }
 
     const element = this.elementRef.current;
-    const horizontalOffset = element.getBoundingClientRect().x;
 
-    console.log(this.props.index, element, horizontalOffset);
+    return element.getBoundingClientRect();
+  }
 
-    return horizontalOffset;
+  componentDidMount() {
+    const { isActive } = this.props;
+
+    if (isActive) {
+      const elementBoundingBox = this.getBoundingBox();
+
+      this.props.handleIndicatorUpdate(elementBoundingBox.x, elementBoundingBox.width);
+    }
   }
 
   componentDidUpdate(prevProps) {
     const isNewActive = (this.props.isActive && !(prevProps.isActive));
 
     if (isNewActive) {
-      this.getHorizontalOffset();
+      const elementBoundingBox = this.getBoundingBox();
+
+      this.props.handleIndicatorUpdate(elementBoundingBox.x, elementBoundingBox.width);
     }
   }
 
@@ -77,6 +84,7 @@ NavBarEntry.propTypes = {
   entry: PropTypes.string,
   isActive: PropTypes.bool,
   handleNavigation: PropTypes.func,
+  handleIndicatorUpdate: PropTypes.func,
 };
 
 export default NavBarEntry;

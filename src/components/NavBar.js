@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 
 import NavBarEntry from './NavBarEntry';
 
-const BoxInformationWrapper = styled.ul`
+const NavBarWrapper = styled.ul`
   display: flex;
   margin: 0;
   padding: 0;
@@ -42,36 +42,72 @@ const SlideYTransition = styled.div`
   }
 `;
 
-const Navbar = (props) => {
-  const { boxData, isUpdating, currentIndex, handleNavigation } = props;
+const Indicator = styled.div`
+  display: block;
+  width: ${props => props.width}px;
+  height: 5px;
+  background: green;
+  transform: translateX(${props => props.offset}px);
+  transition: transform 500ms;
+`;
 
-  return (
-    <SlideYTransition>
-      <CSSTransitionGroup
-        component={ React.Fragment }
-        transitionAppear={ false }
-        transitionName="slide"
-        transitionAppearTimeout={ 0 }
-        transitionLeaveTimeout={ 250 }
-        transitionEnterTimeout={ 250 }
-      >
-        { !isUpdating && (
-          <BoxInformationWrapper>
-            { Object.keys(boxData).map((entry, index) => (
-              <NavBarEntry
-                index={ index }
-                entry={ entry }
-                isActive={ currentIndex === index }
-                key={ index }
-                handleNavigation={ handleNavigation }
-              />
-            ))}
-          </BoxInformationWrapper>
-        )}
-      </CSSTransitionGroup>
-    </SlideYTransition>
-  );
-};
+class Navbar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      offset: 0,
+      width: 0,
+    };
+
+    this.handleIndicatorUpdate = this.handleIndicatorUpdate.bind(this);
+  }
+
+  handleIndicatorUpdate = (offset, width) => {
+    this.setState({
+      offset,
+      width,
+    });
+
+    console.log(offset, width);
+  };
+
+  render() {
+    const { boxData, isUpdating, currentIndex, handleNavigation } = this.props;
+    const { offset, width } = this.state;
+
+    return (
+      <SlideYTransition>
+        <CSSTransitionGroup
+          component={ React.Fragment }
+          transitionAppear={ false }
+          transitionName="slide"
+          transitionAppearTimeout={ 0 }
+          transitionLeaveTimeout={ 250 }
+          transitionEnterTimeout={ 250 }
+        >
+          { !isUpdating && (
+            <>
+              <Indicator offset={ offset } width={ width } />
+              <NavBarWrapper>
+                { Object.keys(boxData).map((entry, index) => (
+                  <NavBarEntry
+                    index={ index }
+                    entry={ entry }
+                    isActive={ currentIndex === index }
+                    key={ index }
+                    handleNavigation={ handleNavigation }
+                    handleIndicatorUpdate={ this.handleIndicatorUpdate }
+                  />
+                ))}
+              </NavBarWrapper>
+            </>
+          )}
+        </CSSTransitionGroup>
+      </SlideYTransition>
+    );
+  }
+}
 
 Navbar.propTypes = {
   boxData: PropTypes.object,

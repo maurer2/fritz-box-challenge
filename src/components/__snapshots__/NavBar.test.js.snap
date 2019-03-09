@@ -40,32 +40,42 @@ ShallowWrapper {
         transitionLeaveTimeout={250}
         transitionName="slide"
       >
-        <ForwardRef>
-          <NavBarEntry
-            entry="branding"
-            handleNavigation={[MockFunction]}
-            index={0}
-            isActive={false}
+        <React.Fragment>
+          <ForwardRef
+            offset={0}
+            width={0}
           />
-          <NavBarEntry
-            entry="model"
-            handleNavigation={[MockFunction]}
-            index={1}
-            isActive={true}
-          />
-          <NavBarEntry
-            entry="restarts"
-            handleNavigation={[MockFunction]}
-            index={2}
-            isActive={false}
-          />
-          <NavBarEntry
-            entry="technology"
-            handleNavigation={[MockFunction]}
-            index={3}
-            isActive={false}
-          />
-        </ForwardRef>
+          <ForwardRef>
+            <NavBarEntry
+              entry="branding"
+              handleIndicatorUpdate={[Function]}
+              handleNavigation={[MockFunction]}
+              index={0}
+              isActive={false}
+            />
+            <NavBarEntry
+              entry="model"
+              handleIndicatorUpdate={[Function]}
+              handleNavigation={[MockFunction]}
+              index={1}
+              isActive={true}
+            />
+            <NavBarEntry
+              entry="restarts"
+              handleIndicatorUpdate={[Function]}
+              handleNavigation={[MockFunction]}
+              index={2}
+              isActive={false}
+            />
+            <NavBarEntry
+              entry="technology"
+              handleIndicatorUpdate={[Function]}
+              handleNavigation={[MockFunction]}
+              index={3}
+              isActive={false}
+            />
+          </ForwardRef>
+        </React.Fragment>
       </CSSTransitionGroup>,
     },
     "ref": null,
@@ -74,32 +84,42 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <ForwardRef>
-          <NavBarEntry
-            entry="branding"
-            handleNavigation={[MockFunction]}
-            index={0}
-            isActive={false}
+        "children": <React.Fragment>
+          <ForwardRef
+            offset={0}
+            width={0}
           />
-          <NavBarEntry
-            entry="model"
-            handleNavigation={[MockFunction]}
-            index={1}
-            isActive={true}
-          />
-          <NavBarEntry
-            entry="restarts"
-            handleNavigation={[MockFunction]}
-            index={2}
-            isActive={false}
-          />
-          <NavBarEntry
-            entry="technology"
-            handleNavigation={[MockFunction]}
-            index={3}
-            isActive={false}
-          />
-        </ForwardRef>,
+          <ForwardRef>
+            <NavBarEntry
+              entry="branding"
+              handleIndicatorUpdate={[Function]}
+              handleNavigation={[MockFunction]}
+              index={0}
+              isActive={false}
+            />
+            <NavBarEntry
+              entry="model"
+              handleIndicatorUpdate={[Function]}
+              handleNavigation={[MockFunction]}
+              index={1}
+              isActive={true}
+            />
+            <NavBarEntry
+              entry="restarts"
+              handleIndicatorUpdate={[Function]}
+              handleNavigation={[MockFunction]}
+              index={2}
+              isActive={false}
+            />
+            <NavBarEntry
+              entry="technology"
+              handleIndicatorUpdate={[Function]}
+              handleNavigation={[MockFunction]}
+              index={3}
+              isActive={false}
+            />
+          </ForwardRef>
+        </React.Fragment>,
         "component": Symbol(react.fragment),
         "transitionAppear": false,
         "transitionAppearTimeout": 0,
@@ -116,110 +136,199 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <NavBarEntry
-              entry="branding"
-              handleNavigation={[MockFunction]}
-              index={0}
-              isActive={false}
+            <ForwardRef
+              offset={0}
+              width={0}
             />,
-            <NavBarEntry
-              entry="model"
-              handleNavigation={[MockFunction]}
-              index={1}
-              isActive={true}
-            />,
-            <NavBarEntry
-              entry="restarts"
-              handleNavigation={[MockFunction]}
-              index={2}
-              isActive={false}
-            />,
-            <NavBarEntry
-              entry="technology"
-              handleNavigation={[MockFunction]}
-              index={3}
-              isActive={false}
-            />,
+            <ForwardRef>
+              <NavBarEntry
+                entry="branding"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={0}
+                isActive={false}
+              />
+              <NavBarEntry
+                entry="model"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={1}
+                isActive={true}
+              />
+              <NavBarEntry
+                entry="restarts"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={2}
+                isActive={false}
+              />
+              <NavBarEntry
+                entry="technology"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={3}
+                isActive={false}
+              />
+            </ForwardRef>,
           ],
         },
         "ref": null,
         "rendered": Array [
           Object {
             "instance": null,
-            "key": "0",
-            "nodeType": "class",
+            "key": undefined,
+            "nodeType": "function",
             "props": Object {
-              "entry": "branding",
-              "handleNavigation": [MockFunction],
-              "index": 0,
-              "isActive": false,
+              "offset": 0,
+              "width": 0,
             },
             "ref": null,
             "rendered": null,
-            "type": [Function],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "Indicator-sc-13xfpz1-2",
+                "isStatic": false,
+                "rules": Array [
+                  "display:block;width:",
+                  [Function],
+                  "px;height:5px;background:green;transform:translateX(",
+                  [Function],
+                  "px);transition:transform 500ms;",
+                ],
+              },
+              "displayName": "Indicator",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "Indicator-sc-13xfpz1-2",
+              "target": "div",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+            },
           },
           Object {
             "instance": null,
-            "key": "1",
-            "nodeType": "class",
+            "key": undefined,
+            "nodeType": "function",
             "props": Object {
-              "entry": "model",
-              "handleNavigation": [MockFunction],
-              "index": 1,
-              "isActive": true,
+              "children": Array [
+                <NavBarEntry
+                  entry="branding"
+                  handleIndicatorUpdate={[Function]}
+                  handleNavigation={[MockFunction]}
+                  index={0}
+                  isActive={false}
+                />,
+                <NavBarEntry
+                  entry="model"
+                  handleIndicatorUpdate={[Function]}
+                  handleNavigation={[MockFunction]}
+                  index={1}
+                  isActive={true}
+                />,
+                <NavBarEntry
+                  entry="restarts"
+                  handleIndicatorUpdate={[Function]}
+                  handleNavigation={[MockFunction]}
+                  index={2}
+                  isActive={false}
+                />,
+                <NavBarEntry
+                  entry="technology"
+                  handleIndicatorUpdate={[Function]}
+                  handleNavigation={[MockFunction]}
+                  index={3}
+                  isActive={false}
+                />,
+              ],
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "class",
-            "props": Object {
-              "entry": "restarts",
-              "handleNavigation": [MockFunction],
-              "index": 2,
-              "isActive": false,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": "0",
+                "nodeType": "class",
+                "props": Object {
+                  "entry": "branding",
+                  "handleIndicatorUpdate": [Function],
+                  "handleNavigation": [MockFunction],
+                  "index": 0,
+                  "isActive": false,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "1",
+                "nodeType": "class",
+                "props": Object {
+                  "entry": "model",
+                  "handleIndicatorUpdate": [Function],
+                  "handleNavigation": [MockFunction],
+                  "index": 1,
+                  "isActive": true,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "2",
+                "nodeType": "class",
+                "props": Object {
+                  "entry": "restarts",
+                  "handleIndicatorUpdate": [Function],
+                  "handleNavigation": [MockFunction],
+                  "index": 2,
+                  "isActive": false,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "3",
+                "nodeType": "class",
+                "props": Object {
+                  "entry": "technology",
+                  "handleIndicatorUpdate": [Function],
+                  "handleNavigation": [MockFunction],
+                  "index": 3,
+                  "isActive": false,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "NavBarWrapper-sc-13xfpz1-0",
+                "isStatic": true,
+                "rules": Array [
+                  "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;list-style:none;",
+                ],
+              },
+              "displayName": "NavBarWrapper",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "NavBarWrapper-sc-13xfpz1-0",
+              "target": "ul",
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
             },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "3",
-            "nodeType": "class",
-            "props": Object {
-              "entry": "technology",
-              "handleNavigation": [MockFunction],
-              "index": 3,
-              "isActive": false,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
           },
         ],
-        "type": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [],
-          "componentStyle": ComponentStyle {
-            "componentId": "BoxInformationWrapper-sc-13xfpz1-0",
-            "isStatic": true,
-            "rules": Array [
-              "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;list-style:none;",
-            ],
-          },
-          "displayName": "BoxInformationWrapper",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "BoxInformationWrapper-sc-13xfpz1-0",
-          "target": "ul",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        },
+        "type": Symbol(react.fragment),
       },
       "type": [Function],
     },
@@ -259,32 +368,42 @@ ShallowWrapper {
           transitionLeaveTimeout={250}
           transitionName="slide"
         >
-          <ForwardRef>
-            <NavBarEntry
-              entry="branding"
-              handleNavigation={[MockFunction]}
-              index={0}
-              isActive={false}
+          <React.Fragment>
+            <ForwardRef
+              offset={0}
+              width={0}
             />
-            <NavBarEntry
-              entry="model"
-              handleNavigation={[MockFunction]}
-              index={1}
-              isActive={true}
-            />
-            <NavBarEntry
-              entry="restarts"
-              handleNavigation={[MockFunction]}
-              index={2}
-              isActive={false}
-            />
-            <NavBarEntry
-              entry="technology"
-              handleNavigation={[MockFunction]}
-              index={3}
-              isActive={false}
-            />
-          </ForwardRef>
+            <ForwardRef>
+              <NavBarEntry
+                entry="branding"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={0}
+                isActive={false}
+              />
+              <NavBarEntry
+                entry="model"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={1}
+                isActive={true}
+              />
+              <NavBarEntry
+                entry="restarts"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={2}
+                isActive={false}
+              />
+              <NavBarEntry
+                entry="technology"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={3}
+                isActive={false}
+              />
+            </ForwardRef>
+          </React.Fragment>
         </CSSTransitionGroup>,
       },
       "ref": null,
@@ -293,32 +412,42 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <ForwardRef>
-            <NavBarEntry
-              entry="branding"
-              handleNavigation={[MockFunction]}
-              index={0}
-              isActive={false}
+          "children": <React.Fragment>
+            <ForwardRef
+              offset={0}
+              width={0}
             />
-            <NavBarEntry
-              entry="model"
-              handleNavigation={[MockFunction]}
-              index={1}
-              isActive={true}
-            />
-            <NavBarEntry
-              entry="restarts"
-              handleNavigation={[MockFunction]}
-              index={2}
-              isActive={false}
-            />
-            <NavBarEntry
-              entry="technology"
-              handleNavigation={[MockFunction]}
-              index={3}
-              isActive={false}
-            />
-          </ForwardRef>,
+            <ForwardRef>
+              <NavBarEntry
+                entry="branding"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={0}
+                isActive={false}
+              />
+              <NavBarEntry
+                entry="model"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={1}
+                isActive={true}
+              />
+              <NavBarEntry
+                entry="restarts"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={2}
+                isActive={false}
+              />
+              <NavBarEntry
+                entry="technology"
+                handleIndicatorUpdate={[Function]}
+                handleNavigation={[MockFunction]}
+                index={3}
+                isActive={false}
+              />
+            </ForwardRef>
+          </React.Fragment>,
           "component": Symbol(react.fragment),
           "transitionAppear": false,
           "transitionAppearTimeout": 0,
@@ -335,110 +464,199 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": Array [
-              <NavBarEntry
-                entry="branding"
-                handleNavigation={[MockFunction]}
-                index={0}
-                isActive={false}
+              <ForwardRef
+                offset={0}
+                width={0}
               />,
-              <NavBarEntry
-                entry="model"
-                handleNavigation={[MockFunction]}
-                index={1}
-                isActive={true}
-              />,
-              <NavBarEntry
-                entry="restarts"
-                handleNavigation={[MockFunction]}
-                index={2}
-                isActive={false}
-              />,
-              <NavBarEntry
-                entry="technology"
-                handleNavigation={[MockFunction]}
-                index={3}
-                isActive={false}
-              />,
+              <ForwardRef>
+                <NavBarEntry
+                  entry="branding"
+                  handleIndicatorUpdate={[Function]}
+                  handleNavigation={[MockFunction]}
+                  index={0}
+                  isActive={false}
+                />
+                <NavBarEntry
+                  entry="model"
+                  handleIndicatorUpdate={[Function]}
+                  handleNavigation={[MockFunction]}
+                  index={1}
+                  isActive={true}
+                />
+                <NavBarEntry
+                  entry="restarts"
+                  handleIndicatorUpdate={[Function]}
+                  handleNavigation={[MockFunction]}
+                  index={2}
+                  isActive={false}
+                />
+                <NavBarEntry
+                  entry="technology"
+                  handleIndicatorUpdate={[Function]}
+                  handleNavigation={[MockFunction]}
+                  index={3}
+                  isActive={false}
+                />
+              </ForwardRef>,
             ],
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
-              "key": "0",
-              "nodeType": "class",
+              "key": undefined,
+              "nodeType": "function",
               "props": Object {
-                "entry": "branding",
-                "handleNavigation": [MockFunction],
-                "index": 0,
-                "isActive": false,
+                "offset": 0,
+                "width": 0,
               },
               "ref": null,
               "rendered": null,
-              "type": [Function],
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "Indicator-sc-13xfpz1-2",
+                  "isStatic": false,
+                  "rules": Array [
+                    "display:block;width:",
+                    [Function],
+                    "px;height:5px;background:green;transform:translateX(",
+                    [Function],
+                    "px);transition:transform 500ms;",
+                  ],
+                },
+                "displayName": "Indicator",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "Indicator-sc-13xfpz1-2",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              },
             },
             Object {
               "instance": null,
-              "key": "1",
-              "nodeType": "class",
+              "key": undefined,
+              "nodeType": "function",
               "props": Object {
-                "entry": "model",
-                "handleNavigation": [MockFunction],
-                "index": 1,
-                "isActive": true,
+                "children": Array [
+                  <NavBarEntry
+                    entry="branding"
+                    handleIndicatorUpdate={[Function]}
+                    handleNavigation={[MockFunction]}
+                    index={0}
+                    isActive={false}
+                  />,
+                  <NavBarEntry
+                    entry="model"
+                    handleIndicatorUpdate={[Function]}
+                    handleNavigation={[MockFunction]}
+                    index={1}
+                    isActive={true}
+                  />,
+                  <NavBarEntry
+                    entry="restarts"
+                    handleIndicatorUpdate={[Function]}
+                    handleNavigation={[MockFunction]}
+                    index={2}
+                    isActive={false}
+                  />,
+                  <NavBarEntry
+                    entry="technology"
+                    handleIndicatorUpdate={[Function]}
+                    handleNavigation={[MockFunction]}
+                    index={3}
+                    isActive={false}
+                  />,
+                ],
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "class",
-              "props": Object {
-                "entry": "restarts",
-                "handleNavigation": [MockFunction],
-                "index": 2,
-                "isActive": false,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "class",
+                  "props": Object {
+                    "entry": "branding",
+                    "handleIndicatorUpdate": [Function],
+                    "handleNavigation": [MockFunction],
+                    "index": 0,
+                    "isActive": false,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "class",
+                  "props": Object {
+                    "entry": "model",
+                    "handleIndicatorUpdate": [Function],
+                    "handleNavigation": [MockFunction],
+                    "index": 1,
+                    "isActive": true,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "2",
+                  "nodeType": "class",
+                  "props": Object {
+                    "entry": "restarts",
+                    "handleIndicatorUpdate": [Function],
+                    "handleNavigation": [MockFunction],
+                    "index": 2,
+                    "isActive": false,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "3",
+                  "nodeType": "class",
+                  "props": Object {
+                    "entry": "technology",
+                    "handleIndicatorUpdate": [Function],
+                    "handleNavigation": [MockFunction],
+                    "index": 3,
+                    "isActive": false,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "NavBarWrapper-sc-13xfpz1-0",
+                  "isStatic": true,
+                  "rules": Array [
+                    "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;list-style:none;",
+                  ],
+                },
+                "displayName": "NavBarWrapper",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "NavBarWrapper-sc-13xfpz1-0",
+                "target": "ul",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
               },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "3",
-              "nodeType": "class",
-              "props": Object {
-                "entry": "technology",
-                "handleNavigation": [MockFunction],
-                "index": 3,
-                "isActive": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
             },
           ],
-          "type": Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "attrs": Array [],
-            "componentStyle": ComponentStyle {
-              "componentId": "BoxInformationWrapper-sc-13xfpz1-0",
-              "isStatic": true,
-              "rules": Array [
-                "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;list-style:none;",
-              ],
-            },
-            "displayName": "BoxInformationWrapper",
-            "foldedComponentIds": Array [],
-            "render": [Function],
-            "styledComponentId": "BoxInformationWrapper-sc-13xfpz1-0",
-            "target": "ul",
-            "toString": [Function],
-            "warnTooManyClasses": [Function],
-            "withComponent": [Function],
-          },
+          "type": Symbol(react.fragment),
         },
         "type": [Function],
       },

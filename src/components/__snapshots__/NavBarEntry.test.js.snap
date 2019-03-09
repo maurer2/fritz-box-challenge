@@ -71,7 +71,7 @@ ShallowWrapper {
         "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
         "isStatic": false,
         "rules": Array [
-          "flex-grow:1;flex-shrink:0;flex-basis:0;border-top-width:4px;border-top-style:solid;border-top-color:",
+          "flex-grow:1;flex-shrink:0;flex-basis:0;background:",
           [Function],
           ";",
         ],
@@ -140,7 +140,7 @@ ShallowWrapper {
           "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
           "isStatic": false,
           "rules": Array [
-            "flex-grow:1;flex-shrink:0;flex-basis:0;border-top-width:4px;border-top-style:solid;border-top-color:",
+            "flex-grow:1;flex-shrink:0;flex-basis:0;background:",
             [Function],
             ";",
           ],
