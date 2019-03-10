@@ -60,21 +60,35 @@ class Navbar extends Component {
       width: 0,
     };
 
-    this.handleIndicatorUpdate = this.handleIndicatorUpdate.bind(this);
+    this.activeElement = React.createRef();
+    this.updateIndicator = this.updateIndicator.bind(this);
   }
 
-  handleIndicatorUpdate = (offset, width) => {
-    this.setState({
-      offset,
-      width,
-    });
+  componentDidUpdate(prevProps) {
+    const activeElementHasChanged = this.props.currentIndex !== prevProps.currentIndex;
 
-    console.log(offset, width);
-  };
+    if (this.activeElement.current == null || !(activeElementHasChanged)) {
+      return;
+    }
+
+    this.updateIndicator();
+  }
+
+  updateIndicator() {
+    const element = this.activeElement.current;
+    const elementBoundingBox = element.getBoundingClientRect();
+
+    this.setState({
+      offset: elementBoundingBox.x,
+      width: elementBoundingBox.width,
+    });
+  }
 
   render() {
     const { boxData, isUpdating, currentIndex, handleNavigation } = this.props;
     const { offset, width } = this.state;
+
+    // this.updateIndicator();
 
     return (
       <SlideYTransition>
@@ -97,7 +111,7 @@ class Navbar extends Component {
                     isActive={ currentIndex === index }
                     key={ index }
                     handleNavigation={ handleNavigation }
-                    handleIndicatorUpdate={ this.handleIndicatorUpdate }
+                    activeElementRef={ (currentIndex === index) ? this.activeElement : null }
                   />
                 ))}
               </NavBarWrapper>

@@ -32,45 +32,15 @@ class NavBarEntry extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  getBoundingBox() {
-    if (this.elementRef.current === null) {
-      return 0;
-    }
-
-    const element = this.elementRef.current;
-
-    return element.getBoundingClientRect();
-  }
-
-  componentDidMount() {
-    const { isActive } = this.props;
-
-    if (isActive) {
-      const elementBoundingBox = this.getBoundingBox();
-
-      this.props.handleIndicatorUpdate(elementBoundingBox.x, elementBoundingBox.width);
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    const isNewActive = (this.props.isActive && !(prevProps.isActive));
-
-    if (isNewActive) {
-      const elementBoundingBox = this.getBoundingBox();
-
-      this.props.handleIndicatorUpdate(elementBoundingBox.x, elementBoundingBox.width);
-    }
-  }
-
   handleClick() {
     this.props.handleNavigation(this.props.index);
   }
 
   render() {
-    const { isActive, entry } = this.props;
+    const { isActive, entry, activeElementRef } = this.props;
 
     return (
-      <NavBarEntryWrapper isActive={ isActive } onClick={ this.handleClick } ref={ this.elementRef }>
+      <NavBarEntryWrapper isActive={ isActive } onClick={ this.handleClick } ref={ activeElementRef }>
         <NavBarButton>
           { upperFirst(entry) }
         </NavBarButton>
@@ -84,7 +54,7 @@ NavBarEntry.propTypes = {
   entry: PropTypes.string,
   isActive: PropTypes.bool,
   handleNavigation: PropTypes.func,
-  handleIndicatorUpdate: PropTypes.func,
+  activeElementRef: PropTypes.any,
 };
 
 export default NavBarEntry;
