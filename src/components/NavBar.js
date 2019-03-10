@@ -40,7 +40,7 @@ const Indicator = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${props => props.width}px; // might cause layout trashing
+  width: ${props => (props.width === 'auto' ? props.width : `${props.width}px`)}; // might cause layout trashing
   height: ${props => props.height}px;
   transform: translateX(${props => props.offset}px);
   transition: transform 500ms, width 500ms;
@@ -63,7 +63,7 @@ class Navbar extends Component {
 
     this.state = {
       offset: 0,
-      width: 0,
+      width: 'auto',
       height: 5,
     };
 
