@@ -16,8 +16,7 @@ class AppContainer extends Component {
 
     this.state = {
       isUpdating: true,
-      // url: '/cgi-bin/system_status',
-      url: mockResponse,
+      url: (process.env.REACT_APP_MODE === 'dev') ? mockResponse : '/cgi-bin/system_status',
       boxData: {},
       componentsToShow: ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'],
       currentIndex: 0,
