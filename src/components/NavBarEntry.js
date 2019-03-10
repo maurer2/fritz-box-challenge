@@ -7,7 +7,8 @@ const NavBarEntryWrapper = styled.li`
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 0;
-  background: ${props => (props.isActive ? '#cc0000' : 'transparent')};
+  color: ${props => (props.isActive ? '#c3c3c3' : 'black')};
+  transition: color 500ms;
 `;
 
 const defaultButton = styled.button`
@@ -21,6 +22,7 @@ const NavBarButton = styled(defaultButton)`
   display: block;
   width: 100%;
   border: 0;
+  color: inherit;
   font-size: 1rem;
 `;
 
@@ -40,7 +42,11 @@ class NavBarEntry extends Component {
     const { isActive, entry, activeElementRef } = this.props;
 
     return (
-      <NavBarEntryWrapper isActive={ isActive } onClick={ this.handleClick } ref={ activeElementRef }>
+      <NavBarEntryWrapper
+        isActive={ isActive }
+        onClick={ this.handleClick }
+        ref={ activeElementRef }
+      >
         <NavBarButton>
           { upperFirst(entry) }
         </NavBarButton>

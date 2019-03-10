@@ -32,50 +32,57 @@ ShallowWrapper {
     "props": Object {
       "children": <CSSTransitionGroup
         component={Symbol(react.fragment)}
-        transitionAppear={false}
-        transitionAppearTimeout={0}
-        transitionEnter={true}
-        transitionEnterTimeout={250}
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnter={false}
+        transitionEnterTimeout={0}
         transitionLeave={true}
-        transitionLeaveTimeout={250}
-        transitionName="slide"
+        transitionLeaveTimeout={500}
+        transitionName="slide-vertically"
       >
-        <React.Fragment>
+        <ForwardRef
+          reservedSpaceTop={5}
+        >
           <ForwardRef
+            height={5}
             offset={0}
             width={0}
           />
           <ForwardRef>
             <NavBarEntry
+              activeElementRef={null}
               entry="branding"
-              handleIndicatorUpdate={[Function]}
               handleNavigation={[MockFunction]}
               index={0}
               isActive={false}
             />
             <NavBarEntry
+              activeElementRef={
+                Object {
+                  "current": null,
+                }
+              }
               entry="model"
-              handleIndicatorUpdate={[Function]}
               handleNavigation={[MockFunction]}
               index={1}
               isActive={true}
             />
             <NavBarEntry
+              activeElementRef={null}
               entry="restarts"
-              handleIndicatorUpdate={[Function]}
               handleNavigation={[MockFunction]}
               index={2}
               isActive={false}
             />
             <NavBarEntry
+              activeElementRef={null}
               entry="technology"
-              handleIndicatorUpdate={[Function]}
               handleNavigation={[MockFunction]}
               index={3}
               isActive={false}
             />
           </ForwardRef>
-        </React.Fragment>
+        </ForwardRef>
       </CSSTransitionGroup>,
     },
     "ref": null,
@@ -84,50 +91,57 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <React.Fragment>
+        "children": <ForwardRef
+          reservedSpaceTop={5}
+        >
           <ForwardRef
+            height={5}
             offset={0}
             width={0}
           />
           <ForwardRef>
             <NavBarEntry
+              activeElementRef={null}
               entry="branding"
-              handleIndicatorUpdate={[Function]}
               handleNavigation={[MockFunction]}
               index={0}
               isActive={false}
             />
             <NavBarEntry
+              activeElementRef={
+                Object {
+                  "current": null,
+                }
+              }
               entry="model"
-              handleIndicatorUpdate={[Function]}
               handleNavigation={[MockFunction]}
               index={1}
               isActive={true}
             />
             <NavBarEntry
+              activeElementRef={null}
               entry="restarts"
-              handleIndicatorUpdate={[Function]}
               handleNavigation={[MockFunction]}
               index={2}
               isActive={false}
             />
             <NavBarEntry
+              activeElementRef={null}
               entry="technology"
-              handleIndicatorUpdate={[Function]}
               handleNavigation={[MockFunction]}
               index={3}
               isActive={false}
             />
           </ForwardRef>
-        </React.Fragment>,
+        </ForwardRef>,
         "component": Symbol(react.fragment),
-        "transitionAppear": false,
-        "transitionAppearTimeout": 0,
-        "transitionEnter": true,
-        "transitionEnterTimeout": 250,
+        "transitionAppear": true,
+        "transitionAppearTimeout": 500,
+        "transitionEnter": false,
+        "transitionEnterTimeout": 0,
         "transitionLeave": true,
-        "transitionLeaveTimeout": 250,
-        "transitionName": "slide",
+        "transitionLeaveTimeout": 500,
+        "transitionName": "slide-vertically",
       },
       "ref": null,
       "rendered": Object {
@@ -137,40 +151,46 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <ForwardRef
+              height={5}
               offset={0}
               width={0}
             />,
             <ForwardRef>
               <NavBarEntry
+                activeElementRef={null}
                 entry="branding"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={0}
                 isActive={false}
               />
               <NavBarEntry
+                activeElementRef={
+                  Object {
+                    "current": null,
+                  }
+                }
                 entry="model"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={1}
                 isActive={true}
               />
               <NavBarEntry
+                activeElementRef={null}
                 entry="restarts"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={2}
                 isActive={false}
               />
               <NavBarEntry
+                activeElementRef={null}
                 entry="technology"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={3}
                 isActive={false}
               />
             </ForwardRef>,
           ],
+          "reservedSpaceTop": 5,
         },
         "ref": null,
         "rendered": Array [
@@ -179,6 +199,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "height": 5,
               "offset": 0,
               "width": 0,
             },
@@ -191,11 +212,13 @@ ShallowWrapper {
                 "componentId": "Indicator-sc-13xfpz1-2",
                 "isStatic": false,
                 "rules": Array [
-                  "display:block;width:",
+                  "position:absolute;top:0;left:0;width:",
                   [Function],
-                  "px;height:5px;background:green;transform:translateX(",
+                  "px;height:",
                   [Function],
-                  "px);transition:transform 500ms;",
+                  "px;transform:translateX(",
+                  [Function],
+                  "px);transition:transform 500ms,width 500ms;background:white;",
                 ],
               },
               "displayName": "Indicator",
@@ -215,29 +238,33 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <NavBarEntry
+                  activeElementRef={null}
                   entry="branding"
-                  handleIndicatorUpdate={[Function]}
                   handleNavigation={[MockFunction]}
                   index={0}
                   isActive={false}
                 />,
                 <NavBarEntry
+                  activeElementRef={
+                    Object {
+                      "current": null,
+                    }
+                  }
                   entry="model"
-                  handleIndicatorUpdate={[Function]}
                   handleNavigation={[MockFunction]}
                   index={1}
                   isActive={true}
                 />,
                 <NavBarEntry
+                  activeElementRef={null}
                   entry="restarts"
-                  handleIndicatorUpdate={[Function]}
                   handleNavigation={[MockFunction]}
                   index={2}
                   isActive={false}
                 />,
                 <NavBarEntry
+                  activeElementRef={null}
                   entry="technology"
-                  handleIndicatorUpdate={[Function]}
                   handleNavigation={[MockFunction]}
                   index={3}
                   isActive={false}
@@ -251,8 +278,8 @@ ShallowWrapper {
                 "key": "0",
                 "nodeType": "class",
                 "props": Object {
+                  "activeElementRef": null,
                   "entry": "branding",
-                  "handleIndicatorUpdate": [Function],
                   "handleNavigation": [MockFunction],
                   "index": 0,
                   "isActive": false,
@@ -266,8 +293,10 @@ ShallowWrapper {
                 "key": "1",
                 "nodeType": "class",
                 "props": Object {
+                  "activeElementRef": Object {
+                    "current": null,
+                  },
                   "entry": "model",
-                  "handleIndicatorUpdate": [Function],
                   "handleNavigation": [MockFunction],
                   "index": 1,
                   "isActive": true,
@@ -281,8 +310,8 @@ ShallowWrapper {
                 "key": "2",
                 "nodeType": "class",
                 "props": Object {
+                  "activeElementRef": null,
                   "entry": "restarts",
-                  "handleIndicatorUpdate": [Function],
                   "handleNavigation": [MockFunction],
                   "index": 2,
                   "isActive": false,
@@ -296,8 +325,8 @@ ShallowWrapper {
                 "key": "3",
                 "nodeType": "class",
                 "props": Object {
+                  "activeElementRef": null,
                   "entry": "technology",
-                  "handleIndicatorUpdate": [Function],
                   "handleNavigation": [MockFunction],
                   "index": 3,
                   "isActive": false,
@@ -311,16 +340,16 @@ ShallowWrapper {
               "$$typeof": Symbol(react.forward_ref),
               "attrs": Array [],
               "componentStyle": ComponentStyle {
-                "componentId": "NavBarWrapper-sc-13xfpz1-0",
+                "componentId": "NavBarList-sc-13xfpz1-3",
                 "isStatic": true,
                 "rules": Array [
                   "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;list-style:none;",
                 ],
               },
-              "displayName": "NavBarWrapper",
+              "displayName": "NavBarList",
               "foldedComponentIds": Array [],
               "render": [Function],
-              "styledComponentId": "NavBarWrapper-sc-13xfpz1-0",
+              "styledComponentId": "NavBarList-sc-13xfpz1-3",
               "target": "ul",
               "toString": [Function],
               "warnTooManyClasses": [Function],
@@ -328,7 +357,27 @@ ShallowWrapper {
             },
           },
         ],
-        "type": Symbol(react.fragment),
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "attrs": Array [],
+          "componentStyle": ComponentStyle {
+            "componentId": "NavBarWrapper-sc-13xfpz1-1",
+            "isStatic": false,
+            "rules": Array [
+              "position:relative;display:block;padding-top:",
+              [Function],
+              "px;",
+            ],
+          },
+          "displayName": "NavBarWrapper",
+          "foldedComponentIds": Array [],
+          "render": [Function],
+          "styledComponentId": "NavBarWrapper-sc-13xfpz1-1",
+          "target": "footer",
+          "toString": [Function],
+          "warnTooManyClasses": [Function],
+          "withComponent": [Function],
+        },
       },
       "type": [Function],
     },
@@ -336,16 +385,16 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "SlideYTransition-sc-13xfpz1-1",
+        "componentId": "SlideYTransition-sc-13xfpz1-0",
         "isStatic": true,
         "rules": Array [
-          "position:absolute;left:0;right:0;bottom:0;.slide-appear,.slide-enter{transform:translateY(100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(100%);transition:transform 250ms ease-out;}",
+          "position:absolute;left:0;right:0;bottom:0;> .slide-vertically-appear{transform:translateY(100%);&.slide-vertically-appear-active{transform:translateY(0);transition:transform 500ms ease-out;}}> .slide-vertically-leave{transform:translateY(0);&.slide-vertically-leave-active{transform:translateY(100%);transition:transform 500ms ease-in;}}",
         ],
       },
       "displayName": "SlideYTransition",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "SlideYTransition-sc-13xfpz1-1",
+      "styledComponentId": "SlideYTransition-sc-13xfpz1-0",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -360,50 +409,57 @@ ShallowWrapper {
       "props": Object {
         "children": <CSSTransitionGroup
           component={Symbol(react.fragment)}
-          transitionAppear={false}
-          transitionAppearTimeout={0}
-          transitionEnter={true}
-          transitionEnterTimeout={250}
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnter={false}
+          transitionEnterTimeout={0}
           transitionLeave={true}
-          transitionLeaveTimeout={250}
-          transitionName="slide"
+          transitionLeaveTimeout={500}
+          transitionName="slide-vertically"
         >
-          <React.Fragment>
+          <ForwardRef
+            reservedSpaceTop={5}
+          >
             <ForwardRef
+              height={5}
               offset={0}
               width={0}
             />
             <ForwardRef>
               <NavBarEntry
+                activeElementRef={null}
                 entry="branding"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={0}
                 isActive={false}
               />
               <NavBarEntry
+                activeElementRef={
+                  Object {
+                    "current": null,
+                  }
+                }
                 entry="model"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={1}
                 isActive={true}
               />
               <NavBarEntry
+                activeElementRef={null}
                 entry="restarts"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={2}
                 isActive={false}
               />
               <NavBarEntry
+                activeElementRef={null}
                 entry="technology"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={3}
                 isActive={false}
               />
             </ForwardRef>
-          </React.Fragment>
+          </ForwardRef>
         </CSSTransitionGroup>,
       },
       "ref": null,
@@ -412,50 +468,57 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <React.Fragment>
+          "children": <ForwardRef
+            reservedSpaceTop={5}
+          >
             <ForwardRef
+              height={5}
               offset={0}
               width={0}
             />
             <ForwardRef>
               <NavBarEntry
+                activeElementRef={null}
                 entry="branding"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={0}
                 isActive={false}
               />
               <NavBarEntry
+                activeElementRef={
+                  Object {
+                    "current": null,
+                  }
+                }
                 entry="model"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={1}
                 isActive={true}
               />
               <NavBarEntry
+                activeElementRef={null}
                 entry="restarts"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={2}
                 isActive={false}
               />
               <NavBarEntry
+                activeElementRef={null}
                 entry="technology"
-                handleIndicatorUpdate={[Function]}
                 handleNavigation={[MockFunction]}
                 index={3}
                 isActive={false}
               />
             </ForwardRef>
-          </React.Fragment>,
+          </ForwardRef>,
           "component": Symbol(react.fragment),
-          "transitionAppear": false,
-          "transitionAppearTimeout": 0,
-          "transitionEnter": true,
-          "transitionEnterTimeout": 250,
+          "transitionAppear": true,
+          "transitionAppearTimeout": 500,
+          "transitionEnter": false,
+          "transitionEnterTimeout": 0,
           "transitionLeave": true,
-          "transitionLeaveTimeout": 250,
-          "transitionName": "slide",
+          "transitionLeaveTimeout": 500,
+          "transitionName": "slide-vertically",
         },
         "ref": null,
         "rendered": Object {
@@ -465,40 +528,46 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <ForwardRef
+                height={5}
                 offset={0}
                 width={0}
               />,
               <ForwardRef>
                 <NavBarEntry
+                  activeElementRef={null}
                   entry="branding"
-                  handleIndicatorUpdate={[Function]}
                   handleNavigation={[MockFunction]}
                   index={0}
                   isActive={false}
                 />
                 <NavBarEntry
+                  activeElementRef={
+                    Object {
+                      "current": null,
+                    }
+                  }
                   entry="model"
-                  handleIndicatorUpdate={[Function]}
                   handleNavigation={[MockFunction]}
                   index={1}
                   isActive={true}
                 />
                 <NavBarEntry
+                  activeElementRef={null}
                   entry="restarts"
-                  handleIndicatorUpdate={[Function]}
                   handleNavigation={[MockFunction]}
                   index={2}
                   isActive={false}
                 />
                 <NavBarEntry
+                  activeElementRef={null}
                   entry="technology"
-                  handleIndicatorUpdate={[Function]}
                   handleNavigation={[MockFunction]}
                   index={3}
                   isActive={false}
                 />
               </ForwardRef>,
             ],
+            "reservedSpaceTop": 5,
           },
           "ref": null,
           "rendered": Array [
@@ -507,6 +576,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
+                "height": 5,
                 "offset": 0,
                 "width": 0,
               },
@@ -519,11 +589,13 @@ ShallowWrapper {
                   "componentId": "Indicator-sc-13xfpz1-2",
                   "isStatic": false,
                   "rules": Array [
-                    "display:block;width:",
+                    "position:absolute;top:0;left:0;width:",
                     [Function],
-                    "px;height:5px;background:green;transform:translateX(",
+                    "px;height:",
                     [Function],
-                    "px);transition:transform 500ms;",
+                    "px;transform:translateX(",
+                    [Function],
+                    "px);transition:transform 500ms,width 500ms;background:white;",
                   ],
                 },
                 "displayName": "Indicator",
@@ -543,29 +615,33 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <NavBarEntry
+                    activeElementRef={null}
                     entry="branding"
-                    handleIndicatorUpdate={[Function]}
                     handleNavigation={[MockFunction]}
                     index={0}
                     isActive={false}
                   />,
                   <NavBarEntry
+                    activeElementRef={
+                      Object {
+                        "current": null,
+                      }
+                    }
                     entry="model"
-                    handleIndicatorUpdate={[Function]}
                     handleNavigation={[MockFunction]}
                     index={1}
                     isActive={true}
                   />,
                   <NavBarEntry
+                    activeElementRef={null}
                     entry="restarts"
-                    handleIndicatorUpdate={[Function]}
                     handleNavigation={[MockFunction]}
                     index={2}
                     isActive={false}
                   />,
                   <NavBarEntry
+                    activeElementRef={null}
                     entry="technology"
-                    handleIndicatorUpdate={[Function]}
                     handleNavigation={[MockFunction]}
                     index={3}
                     isActive={false}
@@ -579,8 +655,8 @@ ShallowWrapper {
                   "key": "0",
                   "nodeType": "class",
                   "props": Object {
+                    "activeElementRef": null,
                     "entry": "branding",
-                    "handleIndicatorUpdate": [Function],
                     "handleNavigation": [MockFunction],
                     "index": 0,
                     "isActive": false,
@@ -594,8 +670,10 @@ ShallowWrapper {
                   "key": "1",
                   "nodeType": "class",
                   "props": Object {
+                    "activeElementRef": Object {
+                      "current": null,
+                    },
                     "entry": "model",
-                    "handleIndicatorUpdate": [Function],
                     "handleNavigation": [MockFunction],
                     "index": 1,
                     "isActive": true,
@@ -609,8 +687,8 @@ ShallowWrapper {
                   "key": "2",
                   "nodeType": "class",
                   "props": Object {
+                    "activeElementRef": null,
                     "entry": "restarts",
-                    "handleIndicatorUpdate": [Function],
                     "handleNavigation": [MockFunction],
                     "index": 2,
                     "isActive": false,
@@ -624,8 +702,8 @@ ShallowWrapper {
                   "key": "3",
                   "nodeType": "class",
                   "props": Object {
+                    "activeElementRef": null,
                     "entry": "technology",
-                    "handleIndicatorUpdate": [Function],
                     "handleNavigation": [MockFunction],
                     "index": 3,
                     "isActive": false,
@@ -639,16 +717,16 @@ ShallowWrapper {
                 "$$typeof": Symbol(react.forward_ref),
                 "attrs": Array [],
                 "componentStyle": ComponentStyle {
-                  "componentId": "NavBarWrapper-sc-13xfpz1-0",
+                  "componentId": "NavBarList-sc-13xfpz1-3",
                   "isStatic": true,
                   "rules": Array [
                     "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;list-style:none;",
                   ],
                 },
-                "displayName": "NavBarWrapper",
+                "displayName": "NavBarList",
                 "foldedComponentIds": Array [],
                 "render": [Function],
-                "styledComponentId": "NavBarWrapper-sc-13xfpz1-0",
+                "styledComponentId": "NavBarList-sc-13xfpz1-3",
                 "target": "ul",
                 "toString": [Function],
                 "warnTooManyClasses": [Function],
@@ -656,7 +734,27 @@ ShallowWrapper {
               },
             },
           ],
-          "type": Symbol(react.fragment),
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": Array [],
+            "componentStyle": ComponentStyle {
+              "componentId": "NavBarWrapper-sc-13xfpz1-1",
+              "isStatic": false,
+              "rules": Array [
+                "position:relative;display:block;padding-top:",
+                [Function],
+                "px;",
+              ],
+            },
+            "displayName": "NavBarWrapper",
+            "foldedComponentIds": Array [],
+            "render": [Function],
+            "styledComponentId": "NavBarWrapper-sc-13xfpz1-1",
+            "target": "footer",
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+          },
         },
         "type": [Function],
       },
@@ -664,16 +762,16 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "SlideYTransition-sc-13xfpz1-1",
+          "componentId": "SlideYTransition-sc-13xfpz1-0",
           "isStatic": true,
           "rules": Array [
-            "position:absolute;left:0;right:0;bottom:0;.slide-appear,.slide-enter{transform:translateY(100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(100%);transition:transform 250ms ease-out;}",
+            "position:absolute;left:0;right:0;bottom:0;> .slide-vertically-appear{transform:translateY(100%);&.slide-vertically-appear-active{transform:translateY(0);transition:transform 500ms ease-out;}}> .slide-vertically-leave{transform:translateY(0);&.slide-vertically-leave-active{transform:translateY(100%);transition:transform 500ms ease-in;}}",
           ],
         },
         "displayName": "SlideYTransition",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "SlideYTransition-sc-13xfpz1-1",
+        "styledComponentId": "SlideYTransition-sc-13xfpz1-0",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

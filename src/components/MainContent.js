@@ -38,7 +38,7 @@ const MainWrapper = styled.main`
 `;
 
 const MainContent = (props) => {
-  const { isUpdating, handleClickEvent, children } = props;
+  const { handleClickEvent, children } = props;
 
   return (
     <MainWrapper onClick={ handleClickEvent }>
@@ -49,14 +49,13 @@ const MainContent = (props) => {
         transitionLeaveTimeout={ 500 }
         transitionLeave={ true }
       >
-        {!isUpdating && children}
+        { children }
       </CSSTransitionGroup>
     </MainWrapper>
   );
 };
 
 MainContent.propTypes = {
-  isUpdating: PropTypes.bool,
   children: PropTypes.object,
   handleClickEvent: PropTypes.func,
 };

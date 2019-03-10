@@ -5,7 +5,49 @@ import { CSSTransitionGroup } from 'react-transition-group';
 
 import NavBarEntry from './NavBarEntry';
 
-const NavBarWrapper = styled.ul`
+const SlideYTransition = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  > .slide-vertically-appear {
+    transform: translateY(100%);
+
+    &.slide-vertically-appear-active {
+      transform: translateY(0);
+      transition: transform 500ms ease-out;
+    }
+  }
+
+  > .slide-vertically-leave {
+    transform: translateY(0);
+
+    &.slide-vertically-leave-active {
+      transform: translateY(100%);
+      transition: transform 500ms ease-in;
+    }
+  }
+`;
+
+const NavBarWrapper = styled.footer`
+  position: relative;
+  display: block;
+  padding-top: ${props => props.reservedSpaceTop}px;
+`;
+
+const Indicator = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${props => props.width}px; // might cause layout trashing
+  height: ${props => props.height}px;
+  transform: translateX(${props => props.offset}px);
+  transition: transform 500ms, width 500ms;
+  background: white;
+`;
+
+const NavBarList = styled.ul`
   display: flex;
   margin: 0;
   padding: 0;
@@ -15,42 +57,6 @@ const NavBarWrapper = styled.ul`
   list-style: none;
 `;
 
-const SlideYTransition = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  .slide-appear,
-  .slide-enter {
-    transform: translateY(100%);
-  }
-
-  .slide-appear.slide-appear-active,
-  .slide-enter.slide-enter-active {
-    transform: translateY(0);
-    transition: transform 250ms ease-out;
-  }
-
-  .slide-leave {
-    transform: translateY(0);
-  }
-
-  .slide-leave.slide-leave-active {
-    transform: translateY(100%);
-    transition: transform 250ms ease-out;
-  }
-`;
-
-const Indicator = styled.div`
-  display: block;
-  width: ${props => props.width}px;
-  height: 5px;
-  background: green;
-  transform: translateX(${props => props.offset}px);
-  transition: transform 500ms;
-`;
-
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -58,65 +64,67 @@ class Navbar extends Component {
     this.state = {
       offset: 0,
       width: 0,
+      height: 5,
     };
 
-    this.activeElement = React.createRef();
     this.updateIndicator = this.updateIndicator.bind(this);
+    this.activeElement = React.createRef();
+  }
+
+  componentDidMount() {
+    this.updateIndicator();
   }
 
   componentDidUpdate(prevProps) {
     const activeElementHasChanged = this.props.currentIndex !== prevProps.currentIndex;
 
-    if (this.activeElement.current == null || !(activeElementHasChanged)) {
-      return;
+    if (activeElementHasChanged) {
+      this.updateIndicator();
     }
-
-    this.updateIndicator();
   }
 
   updateIndicator() {
-    const element = this.activeElement.current;
-    const elementBoundingBox = element.getBoundingClientRect();
+    if (this.activeElement.current == null) {
+      return;
+    }
+    const activeElementBoundingBox = this.activeElement.current.getBoundingClientRect();
 
     this.setState({
-      offset: elementBoundingBox.x,
-      width: elementBoundingBox.width,
+      offset: activeElementBoundingBox.x,
+      width: activeElementBoundingBox.width,
     });
   }
 
   render() {
-    const { boxData, isUpdating, currentIndex, handleNavigation } = this.props;
-    const { offset, width } = this.state;
-
-    // this.updateIndicator();
+    const { boxData, currentIndex, handleNavigation } = this.props;
+    const { offset, width, height } = this.state;
 
     return (
       <SlideYTransition>
         <CSSTransitionGroup
           component={ React.Fragment }
-          transitionAppear={ false }
-          transitionName="slide"
-          transitionAppearTimeout={ 0 }
-          transitionLeaveTimeout={ 250 }
-          transitionEnterTimeout={ 250 }
+          transitionAppear={ true }
+          transitionEnter={ false }
+          transitionName="slide-vertically"
+          transitionAppearTimeout={ 500 }
+          transitionLeaveTimeout={ 500 }
+          transitionEnterTimeout={ 0 }
         >
-          { !isUpdating && (
-            <>
-              <Indicator offset={ offset } width={ width } />
-              <NavBarWrapper>
-                { Object.keys(boxData).map((entry, index) => (
-                  <NavBarEntry
-                    index={ index }
-                    entry={ entry }
-                    isActive={ currentIndex === index }
-                    key={ index }
-                    handleNavigation={ handleNavigation }
-                    activeElementRef={ (currentIndex === index) ? this.activeElement : null }
-                  />
-                ))}
-              </NavBarWrapper>
-            </>
-          )}
+          <NavBarWrapper reservedSpaceTop={ height }>
+            <Indicator offset={ offset } width={ width } height={ height } />
+            <NavBarList>
+              { Object.keys(boxData).map((entry, index) => (
+                <NavBarEntry
+                  index={ index }
+                  entry={ entry }
+                  isActive={ currentIndex === index }
+                  handleNavigation={ handleNavigation }
+                  activeElementRef={ (currentIndex === index) ? this.activeElement : null }
+                  key={ index }
+                />
+              ))}
+            </NavBarList>
+          </NavBarWrapper>
         </CSSTransitionGroup>
       </SlideYTransition>
     );
@@ -125,7 +133,6 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   boxData: PropTypes.object,
-  isUpdating: PropTypes.bool,
   handleNavigation: PropTypes.func,
   currentIndex: PropTypes.number,
 };

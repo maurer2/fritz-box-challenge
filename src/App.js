@@ -26,15 +26,18 @@ const App = (props) => {
   return (
     <AppWrapper>
       <UpdateBar isUpdating={ isUpdating } />
-      <MainContent isUpdating={ isUpdating } handleClickEvent={ handleClickEvent }>
-        <Slide title={ currentSlide } text={ boxData[currentSlide] } key={ currentSlide } />
-      </MainContent>
-      <NavBar
-        isUpdating={ isUpdating }
-        boxData={ boxData }
-        currentIndex={ currentIndex }
-        handleNavigation={ handleNavigation }
-      />
+      { !isUpdating && (
+        <>
+          <MainContent handleClickEvent={ handleClickEvent }>
+            <Slide title={ currentSlide } text={ boxData[currentSlide] } key={ currentSlide } />
+          </MainContent>
+          <NavBar
+            boxData={ boxData }
+            currentIndex={ currentIndex }
+            handleNavigation={ handleNavigation }
+          />
+        </>
+      )}
     </AppWrapper>
   );
 };

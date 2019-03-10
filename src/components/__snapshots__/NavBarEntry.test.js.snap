@@ -29,9 +29,7 @@ ShallowWrapper {
       "isActive": false,
       "onClick": [Function],
     },
-    "ref": Object {
-      "current": null,
-    },
+    "ref": null,
     "rendered": Object {
       "instance": null,
       "key": undefined,
@@ -49,7 +47,7 @@ ShallowWrapper {
           "isStatic": true,
           "rules": Array [
             "padding:1rem;appearance:none;background:none;outline:none;",
-            "display:block;width:100%;border:0;font-size:1rem;",
+            "display:block;width:100%;border:0;color:inherit;font-size:1rem;",
           ],
         },
         "displayName": "NavBarButton",
@@ -71,9 +69,9 @@ ShallowWrapper {
         "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
         "isStatic": false,
         "rules": Array [
-          "flex-grow:1;flex-shrink:0;flex-basis:0;background:",
+          "flex-grow:1;flex-shrink:0;flex-basis:0;color:",
           [Function],
-          ";",
+          ";transition:color 500ms;",
         ],
       },
       "displayName": "NavBarEntryWrapper",
@@ -98,9 +96,7 @@ ShallowWrapper {
         "isActive": false,
         "onClick": [Function],
       },
-      "ref": Object {
-        "current": null,
-      },
+      "ref": null,
       "rendered": Object {
         "instance": null,
         "key": undefined,
@@ -118,7 +114,7 @@ ShallowWrapper {
             "isStatic": true,
             "rules": Array [
               "padding:1rem;appearance:none;background:none;outline:none;",
-              "display:block;width:100%;border:0;font-size:1rem;",
+              "display:block;width:100%;border:0;color:inherit;font-size:1rem;",
             ],
           },
           "displayName": "NavBarButton",
@@ -140,9 +136,9 @@ ShallowWrapper {
           "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
           "isStatic": false,
           "rules": Array [
-            "flex-grow:1;flex-shrink:0;flex-basis:0;background:",
+            "flex-grow:1;flex-shrink:0;flex-basis:0;color:",
             [Function],
-            ";",
+            ";transition:color 500ms;",
           ],
         },
         "displayName": "NavBarEntryWrapper",
