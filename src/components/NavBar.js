@@ -40,7 +40,7 @@ const Indicator = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${props => (props.width === 'auto' ? props.width : `${props.width}px`)}; // might cause layout trashing
+  width: ${props => (props.width === 'auto' ? props.width : `${props.width}px`)}; // might cause layout thrashing
   height: ${props => props.height}px;
   transform: translateX(${props => props.offset}px);
   transition: transform 500ms, width 500ms;
@@ -53,8 +53,8 @@ const NavBarList = styled.ul`
   padding: 0;
   justify-content: space-between;
   flex-wrap: wrap;
-  background: red;
   list-style: none;
+  background: red;
 `;
 
 class Navbar extends Component {
@@ -67,7 +67,6 @@ class Navbar extends Component {
       height: 5,
     };
 
-    this.updateIndicator = this.updateIndicator.bind(this);
     this.activeElement = React.createRef();
   }
 

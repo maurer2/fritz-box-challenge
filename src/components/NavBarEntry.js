@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import upperFirst from 'lodash/upperFirst';
@@ -7,8 +7,7 @@ const NavBarEntryWrapper = styled.li`
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 0;
-  color: ${props => (props.isActive ? '#c3c3c3' : 'black')};
-  transition: color 500ms;
+  border-left: 1px solid black;
 `;
 
 const defaultButton = styled.button`
@@ -22,11 +21,12 @@ const NavBarButton = styled(defaultButton)`
   display: block;
   width: 100%;
   border: 0;
-  color: inherit;
   font-size: 1rem;
+  color: ${props => (props.isActive ? 'white' : 'black')};
+  transition: color 500ms;
 `;
 
-class NavBarEntry extends Component {
+class NavBarEntry extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -42,12 +42,8 @@ class NavBarEntry extends Component {
     const { isActive, entry, activeElementRef } = this.props;
 
     return (
-      <NavBarEntryWrapper
-        isActive={ isActive }
-        onClick={ this.handleClick }
-        ref={ activeElementRef }
-      >
-        <NavBarButton>
+      <NavBarEntryWrapper onClick={ this.handleClick } ref={ activeElementRef }>
+        <NavBarButton isActive={ isActive }>
           { upperFirst(entry) }
         </NavBarButton>
       </NavBarEntryWrapper>

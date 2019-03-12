@@ -25,8 +25,9 @@ const App = (props) => {
 
   return (
     <AppWrapper>
-      <UpdateBar isUpdating={ isUpdating } />
-      { !isUpdating && (
+      { isUpdating ? (
+        <UpdateBar isUpdating={ isUpdating } />
+      ) : (
         <>
           <MainContent handleClickEvent={ handleClickEvent }>
             <Slide title={ currentSlide } text={ boxData[currentSlide] } key={ currentSlide } />

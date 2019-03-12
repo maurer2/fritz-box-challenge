@@ -23,10 +23,11 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "children": <ForwardRef>
+      "children": <ForwardRef
+        isActive={false}
+      >
         Model
       </ForwardRef>,
-      "isActive": false,
       "onClick": [Function],
     },
     "ref": null,
@@ -36,6 +37,7 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": "Model",
+        "isActive": false,
       },
       "ref": null,
       "rendered": "Model",
@@ -44,10 +46,12 @@ ShallowWrapper {
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "NavBarButton-sc-1jim1v6-2",
-          "isStatic": true,
+          "isStatic": false,
           "rules": Array [
             "padding:1rem;appearance:none;background:none;outline:none;",
-            "display:block;width:100%;border:0;color:inherit;font-size:1rem;",
+            "display:block;width:100%;border:0;font-size:1rem;color:",
+            [Function],
+            ";transition:color 500ms;",
           ],
         },
         "displayName": "NavBarButton",
@@ -67,11 +71,9 @@ ShallowWrapper {
       "attrs": Array [],
       "componentStyle": ComponentStyle {
         "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
-        "isStatic": false,
+        "isStatic": true,
         "rules": Array [
-          "flex-grow:1;flex-shrink:0;flex-basis:0;color:",
-          [Function],
-          ";transition:color 500ms;",
+          "flex-grow:1;flex-shrink:0;flex-basis:0;border-left:1px solid black;",
         ],
       },
       "displayName": "NavBarEntryWrapper",
@@ -90,10 +92,11 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "children": <ForwardRef>
+        "children": <ForwardRef
+          isActive={false}
+        >
           Model
         </ForwardRef>,
-        "isActive": false,
         "onClick": [Function],
       },
       "ref": null,
@@ -103,6 +106,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": "Model",
+          "isActive": false,
         },
         "ref": null,
         "rendered": "Model",
@@ -111,10 +115,12 @@ ShallowWrapper {
           "attrs": Array [],
           "componentStyle": ComponentStyle {
             "componentId": "NavBarButton-sc-1jim1v6-2",
-            "isStatic": true,
+            "isStatic": false,
             "rules": Array [
               "padding:1rem;appearance:none;background:none;outline:none;",
-              "display:block;width:100%;border:0;color:inherit;font-size:1rem;",
+              "display:block;width:100%;border:0;font-size:1rem;color:",
+              [Function],
+              ";transition:color 500ms;",
             ],
           },
           "displayName": "NavBarButton",
@@ -134,11 +140,9 @@ ShallowWrapper {
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "NavBarEntryWrapper-sc-1jim1v6-0",
-          "isStatic": false,
+          "isStatic": true,
           "rules": Array [
-            "flex-grow:1;flex-shrink:0;flex-basis:0;color:",
-            [Function],
-            ";transition:color 500ms;",
+            "flex-grow:1;flex-shrink:0;flex-basis:0;border-left:1px solid black;",
           ],
         },
         "displayName": "NavBarEntryWrapper",

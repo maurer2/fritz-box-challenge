@@ -343,7 +343,7 @@ ShallowWrapper {
                 "componentId": "NavBarList-sc-13xfpz1-3",
                 "isStatic": true,
                 "rules": Array [
-                  "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;list-style:none;",
+                  "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;list-style:none;background:red;",
                 ],
               },
               "displayName": "NavBarList",
@@ -720,7 +720,7 @@ ShallowWrapper {
                   "componentId": "NavBarList-sc-13xfpz1-3",
                   "isStatic": true,
                   "rules": Array [
-                    "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;background:red;list-style:none;",
+                    "display:flex;margin:0;padding:0;justify-content:space-between;flex-wrap:wrap;list-style:none;background:red;",
                   ],
                 },
                 "displayName": "NavBarList",
