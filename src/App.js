@@ -20,14 +20,13 @@ const AppWrapper = styled.div`
 `;
 
 const App = (props) => {
-  const { boxData, isUpdating, currentIndex, handleNavigation, handleClickEvent } = props;
+  const { boxData, isUpdating, currentIndex, handleNavigation, handleClickEvent, isValid } = props;
   const currentSlide = Object.keys(boxData)[currentIndex];
 
   return (
     <AppWrapper>
-      { isUpdating ? (
-        <UpdateBar isUpdating={ isUpdating } />
-      ) : (
+      <UpdateBar isUpdating={ isUpdating } isValid={ isValid } />
+      { !isUpdating && !!isValid && (
         <>
           <MainContent handleClickEvent={ handleClickEvent }>
             <Slide title={ currentSlide } text={ boxData[currentSlide] } key={ currentSlide } />
@@ -46,6 +45,7 @@ const App = (props) => {
 App.propTypes = {
   boxData: PropTypes.object,
   isUpdating: PropTypes.bool,
+  isValid: PropTypes.bool,
   showFullNumber: PropTypes.bool,
   currentIndex: PropTypes.number,
   handleClickEvent: () => {},

@@ -13,19 +13,19 @@ const SlideYTransition = styled.div`
 
   > .slide-vertically-appear {
     transform: translateY(100%);
+    transition: transform 500ms ease-out;
 
     &.slide-vertically-appear-active {
       transform: translateY(0);
-      transition: transform 500ms ease-out;
     }
   }
 
   > .slide-vertically-leave {
     transform: translateY(0);
+    transition: transform 5000ms ease-in;
 
     &.slide-vertically-leave-active {
       transform: translateY(100%);
-      transition: transform 500ms ease-in;
     }
   }
 `;
@@ -106,7 +106,7 @@ class Navbar extends Component {
           transitionEnter={ false }
           transitionName="slide-vertically"
           transitionAppearTimeout={ 500 }
-          transitionLeaveTimeout={ 500 }
+          transitionLeaveTimeout={ 5000 }
           transitionEnterTimeout={ 0 }
         >
           <NavBarWrapper reservedSpaceTop={ height }>

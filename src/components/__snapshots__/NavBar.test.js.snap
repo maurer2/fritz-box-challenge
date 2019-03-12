@@ -37,7 +37,7 @@ ShallowWrapper {
         transitionEnter={false}
         transitionEnterTimeout={0}
         transitionLeave={true}
-        transitionLeaveTimeout={500}
+        transitionLeaveTimeout={5000}
         transitionName="slide-vertically"
       >
         <ForwardRef
@@ -140,7 +140,7 @@ ShallowWrapper {
         "transitionEnter": false,
         "transitionEnterTimeout": 0,
         "transitionLeave": true,
-        "transitionLeaveTimeout": 500,
+        "transitionLeaveTimeout": 5000,
         "transitionName": "slide-vertically",
       },
       "ref": null,
@@ -388,7 +388,7 @@ ShallowWrapper {
         "componentId": "SlideYTransition-sc-13xfpz1-0",
         "isStatic": true,
         "rules": Array [
-          "position:absolute;left:0;right:0;bottom:0;> .slide-vertically-appear{transform:translateY(100%);&.slide-vertically-appear-active{transform:translateY(0);transition:transform 500ms ease-out;}}> .slide-vertically-leave{transform:translateY(0);&.slide-vertically-leave-active{transform:translateY(100%);transition:transform 500ms ease-in;}}",
+          "position:absolute;left:0;right:0;bottom:0;> .slide-vertically-appear{transform:translateY(100%);transition:transform 500ms ease-out;&.slide-vertically-appear-active{transform:translateY(0);}}> .slide-vertically-leave{transform:translateY(0);transition:transform 5000ms ease-in;&.slide-vertically-leave-active{transform:translateY(100%);}}",
         ],
       },
       "displayName": "SlideYTransition",
@@ -414,7 +414,7 @@ ShallowWrapper {
           transitionEnter={false}
           transitionEnterTimeout={0}
           transitionLeave={true}
-          transitionLeaveTimeout={500}
+          transitionLeaveTimeout={5000}
           transitionName="slide-vertically"
         >
           <ForwardRef
@@ -517,7 +517,7 @@ ShallowWrapper {
           "transitionEnter": false,
           "transitionEnterTimeout": 0,
           "transitionLeave": true,
-          "transitionLeaveTimeout": 500,
+          "transitionLeaveTimeout": 5000,
           "transitionName": "slide-vertically",
         },
         "ref": null,
@@ -765,7 +765,7 @@ ShallowWrapper {
           "componentId": "SlideYTransition-sc-13xfpz1-0",
           "isStatic": true,
           "rules": Array [
-            "position:absolute;left:0;right:0;bottom:0;> .slide-vertically-appear{transform:translateY(100%);&.slide-vertically-appear-active{transform:translateY(0);transition:transform 500ms ease-out;}}> .slide-vertically-leave{transform:translateY(0);&.slide-vertically-leave-active{transform:translateY(100%);transition:transform 500ms ease-in;}}",
+            "position:absolute;left:0;right:0;bottom:0;> .slide-vertically-appear{transform:translateY(100%);transition:transform 500ms ease-out;&.slide-vertically-appear-active{transform:translateY(0);}}> .slide-vertically-leave{transform:translateY(0);transition:transform 5000ms ease-in;&.slide-vertically-leave-active{transform:translateY(100%);}}",
           ],
         },
         "displayName": "SlideYTransition",

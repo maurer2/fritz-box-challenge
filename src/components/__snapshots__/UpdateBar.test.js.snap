@@ -5,6 +5,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <UpdateView
     isUpdating={true}
+    isValid={true}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -22,16 +23,18 @@ ShallowWrapper {
     "props": Object {
       "children": <CSSTransitionGroup
         component={Symbol(react.fragment)}
-        transitionAppear={false}
-        transitionAppearTimeout={0}
-        transitionEnter={true}
-        transitionEnterTimeout={250}
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnter={false}
+        transitionEnterTimeout={0}
         transitionLeave={true}
-        transitionLeaveTimeout={250}
-        transitionName="slide"
+        transitionLeaveTimeout={500}
+        transitionName="slide-vertically"
       >
         <ForwardRef>
-          Updating!
+          <React.Fragment>
+            Updating!
+          </React.Fragment>
         </ForwardRef>
       </CSSTransitionGroup>,
     },
@@ -42,16 +45,18 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <ForwardRef>
-          Updating!
+          <React.Fragment>
+            Updating!
+          </React.Fragment>
         </ForwardRef>,
         "component": Symbol(react.fragment),
-        "transitionAppear": false,
-        "transitionAppearTimeout": 0,
-        "transitionEnter": true,
-        "transitionEnterTimeout": 250,
+        "transitionAppear": true,
+        "transitionAppearTimeout": 500,
+        "transitionEnter": false,
+        "transitionEnterTimeout": 0,
         "transitionLeave": true,
-        "transitionLeaveTimeout": 250,
-        "transitionName": "slide",
+        "transitionLeaveTimeout": 500,
+        "transitionName": "slide-vertically",
       },
       "ref": null,
       "rendered": Object {
@@ -59,24 +64,42 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "Updating!",
+          "children": Array [
+            <React.Fragment>
+              Updating!
+            </React.Fragment>,
+            false,
+          ],
         },
         "ref": null,
-        "rendered": "Updating!",
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Updating!",
+            },
+            "ref": null,
+            "rendered": "Updating!",
+            "type": Symbol(react.fragment),
+          },
+          false,
+        ],
         "type": Object {
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "UpdateText-lwqm3z-0",
+            "componentId": "Text-lwqm3z-0",
             "isStatic": true,
             "rules": Array [
-              "padding:1rem;text-align:center;font-size:1.5rem;font-weight:bold;background:red;",
+              "padding:1rem;text-align:center;font-size:1rem;background:gray;",
             ],
           },
-          "displayName": "UpdateText",
+          "displayName": "Text",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "UpdateText-lwqm3z-0",
+          "styledComponentId": "Text-lwqm3z-0",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -89,16 +112,16 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "SladeYTransition-lwqm3z-1",
+        "componentId": "SlideYTransition-lwqm3z-1",
         "isStatic": true,
         "rules": Array [
-          "position:absolute;top:0;left:0;right:0;.slide-appear,.slide-enter{transform:translateY(-100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
+          "position:absolute;top:0;left:0;right:0;> .slide-vertically-appear{transform:translateY(-100%);transition:transform 500ms ease-out;&.slide-vertically-appear-active{transform:translateY(0);}}> .slide-vertically-leave{transform:translateY(0);transition:transform 500ms ease-in;&.slide-vertically-leave-active{transform:translateY(-100%);}}",
         ],
       },
-      "displayName": "SladeYTransition",
+      "displayName": "SlideYTransition",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "SladeYTransition-lwqm3z-1",
+      "styledComponentId": "SlideYTransition-lwqm3z-1",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -113,16 +136,18 @@ ShallowWrapper {
       "props": Object {
         "children": <CSSTransitionGroup
           component={Symbol(react.fragment)}
-          transitionAppear={false}
-          transitionAppearTimeout={0}
-          transitionEnter={true}
-          transitionEnterTimeout={250}
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnter={false}
+          transitionEnterTimeout={0}
           transitionLeave={true}
-          transitionLeaveTimeout={250}
-          transitionName="slide"
+          transitionLeaveTimeout={500}
+          transitionName="slide-vertically"
         >
           <ForwardRef>
-            Updating!
+            <React.Fragment>
+              Updating!
+            </React.Fragment>
           </ForwardRef>
         </CSSTransitionGroup>,
       },
@@ -133,16 +158,18 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <ForwardRef>
-            Updating!
+            <React.Fragment>
+              Updating!
+            </React.Fragment>
           </ForwardRef>,
           "component": Symbol(react.fragment),
-          "transitionAppear": false,
-          "transitionAppearTimeout": 0,
-          "transitionEnter": true,
-          "transitionEnterTimeout": 250,
+          "transitionAppear": true,
+          "transitionAppearTimeout": 500,
+          "transitionEnter": false,
+          "transitionEnterTimeout": 0,
           "transitionLeave": true,
-          "transitionLeaveTimeout": 250,
-          "transitionName": "slide",
+          "transitionLeaveTimeout": 500,
+          "transitionName": "slide-vertically",
         },
         "ref": null,
         "rendered": Object {
@@ -150,24 +177,42 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Updating!",
+            "children": Array [
+              <React.Fragment>
+                Updating!
+              </React.Fragment>,
+              false,
+            ],
           },
           "ref": null,
-          "rendered": "Updating!",
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Updating!",
+              },
+              "ref": null,
+              "rendered": "Updating!",
+              "type": Symbol(react.fragment),
+            },
+            false,
+          ],
           "type": Object {
             "$$typeof": Symbol(react.forward_ref),
             "attrs": Array [],
             "componentStyle": ComponentStyle {
-              "componentId": "UpdateText-lwqm3z-0",
+              "componentId": "Text-lwqm3z-0",
               "isStatic": true,
               "rules": Array [
-                "padding:1rem;text-align:center;font-size:1.5rem;font-weight:bold;background:red;",
+                "padding:1rem;text-align:center;font-size:1rem;background:gray;",
               ],
             },
-            "displayName": "UpdateText",
+            "displayName": "Text",
             "foldedComponentIds": Array [],
             "render": [Function],
-            "styledComponentId": "UpdateText-lwqm3z-0",
+            "styledComponentId": "Text-lwqm3z-0",
             "target": "div",
             "toString": [Function],
             "warnTooManyClasses": [Function],
@@ -180,16 +225,16 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "SladeYTransition-lwqm3z-1",
+          "componentId": "SlideYTransition-lwqm3z-1",
           "isStatic": true,
           "rules": Array [
-            "position:absolute;top:0;left:0;right:0;.slide-appear,.slide-enter{transform:translateY(-100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
+            "position:absolute;top:0;left:0;right:0;> .slide-vertically-appear{transform:translateY(-100%);transition:transform 500ms ease-out;&.slide-vertically-appear-active{transform:translateY(0);}}> .slide-vertically-leave{transform:translateY(0);transition:transform 500ms ease-in;&.slide-vertically-leave-active{transform:translateY(-100%);}}",
           ],
         },
-        "displayName": "SladeYTransition",
+        "displayName": "SlideYTransition",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "SladeYTransition-lwqm3z-1",
+        "styledComponentId": "SlideYTransition-lwqm3z-1",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],
@@ -226,6 +271,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <UpdateView
     isUpdating={false}
+    isValid={true}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -243,13 +289,13 @@ ShallowWrapper {
     "props": Object {
       "children": <CSSTransitionGroup
         component={Symbol(react.fragment)}
-        transitionAppear={false}
-        transitionAppearTimeout={0}
-        transitionEnter={true}
-        transitionEnterTimeout={250}
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnter={false}
+        transitionEnterTimeout={0}
         transitionLeave={true}
-        transitionLeaveTimeout={250}
-        transitionName="slide"
+        transitionLeaveTimeout={500}
+        transitionName="slide-vertically"
       />,
     },
     "ref": null,
@@ -260,13 +306,13 @@ ShallowWrapper {
       "props": Object {
         "children": false,
         "component": Symbol(react.fragment),
-        "transitionAppear": false,
-        "transitionAppearTimeout": 0,
-        "transitionEnter": true,
-        "transitionEnterTimeout": 250,
+        "transitionAppear": true,
+        "transitionAppearTimeout": 500,
+        "transitionEnter": false,
+        "transitionEnterTimeout": 0,
         "transitionLeave": true,
-        "transitionLeaveTimeout": 250,
-        "transitionName": "slide",
+        "transitionLeaveTimeout": 500,
+        "transitionName": "slide-vertically",
       },
       "ref": null,
       "rendered": false,
@@ -276,16 +322,16 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "SladeYTransition-lwqm3z-1",
+        "componentId": "SlideYTransition-lwqm3z-1",
         "isStatic": true,
         "rules": Array [
-          "position:absolute;top:0;left:0;right:0;.slide-appear,.slide-enter{transform:translateY(-100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
+          "position:absolute;top:0;left:0;right:0;> .slide-vertically-appear{transform:translateY(-100%);transition:transform 500ms ease-out;&.slide-vertically-appear-active{transform:translateY(0);}}> .slide-vertically-leave{transform:translateY(0);transition:transform 500ms ease-in;&.slide-vertically-leave-active{transform:translateY(-100%);}}",
         ],
       },
-      "displayName": "SladeYTransition",
+      "displayName": "SlideYTransition",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "SladeYTransition-lwqm3z-1",
+      "styledComponentId": "SlideYTransition-lwqm3z-1",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -300,13 +346,13 @@ ShallowWrapper {
       "props": Object {
         "children": <CSSTransitionGroup
           component={Symbol(react.fragment)}
-          transitionAppear={false}
-          transitionAppearTimeout={0}
-          transitionEnter={true}
-          transitionEnterTimeout={250}
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnter={false}
+          transitionEnterTimeout={0}
           transitionLeave={true}
-          transitionLeaveTimeout={250}
-          transitionName="slide"
+          transitionLeaveTimeout={500}
+          transitionName="slide-vertically"
         />,
       },
       "ref": null,
@@ -317,13 +363,13 @@ ShallowWrapper {
         "props": Object {
           "children": false,
           "component": Symbol(react.fragment),
-          "transitionAppear": false,
-          "transitionAppearTimeout": 0,
-          "transitionEnter": true,
-          "transitionEnterTimeout": 250,
+          "transitionAppear": true,
+          "transitionAppearTimeout": 500,
+          "transitionEnter": false,
+          "transitionEnterTimeout": 0,
           "transitionLeave": true,
-          "transitionLeaveTimeout": 250,
-          "transitionName": "slide",
+          "transitionLeaveTimeout": 500,
+          "transitionName": "slide-vertically",
         },
         "ref": null,
         "rendered": false,
@@ -333,16 +379,16 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "SladeYTransition-lwqm3z-1",
+          "componentId": "SlideYTransition-lwqm3z-1",
           "isStatic": true,
           "rules": Array [
-            "position:absolute;top:0;left:0;right:0;.slide-appear,.slide-enter{transform:translateY(-100%);}.slide-appear.slide-appear-active,.slide-enter.slide-enter-active{transform:translateY(0);transition:transform 250ms ease-out;}.slide-leave{transform:translateY(0);}.slide-leave.slide-leave-active{transform:translateY(-100%);transition:transform 250ms ease-out;}",
+            "position:absolute;top:0;left:0;right:0;> .slide-vertically-appear{transform:translateY(-100%);transition:transform 500ms ease-out;&.slide-vertically-appear-active{transform:translateY(0);}}> .slide-vertically-leave{transform:translateY(0);transition:transform 500ms ease-in;&.slide-vertically-leave-active{transform:translateY(-100%);}}",
           ],
         },
-        "displayName": "SladeYTransition",
+        "displayName": "SlideYTransition",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "SladeYTransition-lwqm3z-1",
+        "styledComponentId": "SlideYTransition-lwqm3z-1",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

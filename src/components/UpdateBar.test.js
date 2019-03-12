@@ -10,6 +10,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('UpdateBar', () => {
   const wrapper = shallow(<UpdateBar
     isUpdating={ true }
+    isValid={ true }
   />);
 
   it('should match snapshot', () => {
@@ -21,10 +22,18 @@ describe('UpdateBar', () => {
   });
 
   it('should have a timer wrapper', () => {
-    expect(wrapper.find('UpdateText').length).toBe(1);
+    expect(wrapper.find('Text').length).toBe(1);
   });
 
   it('should have text in timer wrapper', () => {
-    expect(wrapper.find('UpdateText').text()).toBe('Updating!');
+    wrapper.setProps({ isUpdating: true });
+    expect(wrapper.find('Text').text()).toBe('Updating!');
+  });
+
+  it('should have text in timer wrapper', () => {
+    wrapper.setProps({ isUpdating: false });
+    wrapper.setProps({ isValid: false });
+
+    expect(wrapper.find('Text').text()).toBe('Error!');
   });
 });

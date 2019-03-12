@@ -16,6 +16,7 @@ class AppContainer extends Component {
 
     this.state = {
       isUpdating: true,
+      isValid: true,
       url: (process.env.REACT_APP_MODE === 'dev') ? mockResponse : '/cgi-bin/system_status',
       boxData: {},
       componentsToShow: ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'],
@@ -82,11 +83,13 @@ class AppContainer extends Component {
 
           return {
             boxData,
+            isUpdating: false,
+            isValid: true,
           };
         });
       })
-      .catch((error) => {
-        console.log('error', error);
+      .catch(() => {
+        this.setState({ isValid: false });
 
         Promise.resolve();
       });
@@ -101,11 +104,12 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { isUpdating, boxData, currentIndex } = this.state;
+    const { isUpdating, boxData, currentIndex, isValid } = this.state;
 
     return (
       <App
         isUpdating={ isUpdating }
+        isValid={ isValid }
         boxData={ boxData }
         currentIndex={ currentIndex }
         handleClickEvent={ this.handleClick }
