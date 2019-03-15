@@ -23,7 +23,8 @@ ShallowWrapper {
     "props": Object {
       "children": <CSSTransitionGroup
         component={Symbol(react.fragment)}
-        transitionAppear={false}
+        transitionAppear={true}
+        transitionAppearTimeout={1000}
         transitionEnter={true}
         transitionEnterTimeout={500}
         transitionLeave={true}
@@ -31,6 +32,7 @@ ShallowWrapper {
         transitionName="slide"
       />,
       "onClick": undefined,
+      "transitionName": "slide",
     },
     "ref": null,
     "rendered": Object {
@@ -40,7 +42,8 @@ ShallowWrapper {
       "props": Object {
         "children": undefined,
         "component": Symbol(react.fragment),
-        "transitionAppear": false,
+        "transitionAppear": true,
+        "transitionAppearTimeout": 1000,
         "transitionEnter": true,
         "transitionEnterTimeout": 500,
         "transitionLeave": true,
@@ -56,9 +59,21 @@ ShallowWrapper {
       "attrs": Array [],
       "componentStyle": ComponentStyle {
         "componentId": "MainWrapper-sc-1d2488w-0",
-        "isStatic": true,
+        "isStatic": false,
         "rules": Array [
-          "width:100%;> div{position:absolute;top:50%;left:0;right:0;transform:translateX(0) translateY(-50%);}> .slide-leave{opacity:1;transform:translateX(0) translateY(-50%);transition:transform 500ms,opacity 500ms;&.slide-leave-active{opacity:0.01;transform:translateX(-100%) translateY(-50%);}}> .slide-enter{opacity:0.01;transform:translateX(100%) translateY(-50%);transition:transform 500ms,opacity 500ms;&.slide-enter-active{opacity:1;transform:translateX(0) translateY(-50%);}}",
+          "width:100%;> div{position:absolute;top:50%;left:0;right:0;transform:translateX(0) translateY(-50%);}> .",
+          [Function],
+          "-leave{opacity:1;transform:translateX(0) translateY(-50%);transition:transform 500ms,opacity 500ms;&.",
+          [Function],
+          "-leave-active{opacity:0.01;transform:translateX(-100%) translateY(-50%);}}> .",
+          [Function],
+          "-enter{opacity:0.01;transform:translateX(100%) translateY(-50%);transition:transform 500ms,opacity 500ms;&.",
+          [Function],
+          "-enter-active{opacity:1;transform:translateX(0) translateY(-50%);}}> .",
+          [Function],
+          "-appear{opacity:0.01;transition:opacity 1000ms;&.",
+          [Function],
+          "-appear-active{opacity:1;}}",
         ],
       },
       "displayName": "MainWrapper",
@@ -79,7 +94,8 @@ ShallowWrapper {
       "props": Object {
         "children": <CSSTransitionGroup
           component={Symbol(react.fragment)}
-          transitionAppear={false}
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
           transitionEnter={true}
           transitionEnterTimeout={500}
           transitionLeave={true}
@@ -87,6 +103,7 @@ ShallowWrapper {
           transitionName="slide"
         />,
         "onClick": undefined,
+        "transitionName": "slide",
       },
       "ref": null,
       "rendered": Object {
@@ -96,7 +113,8 @@ ShallowWrapper {
         "props": Object {
           "children": undefined,
           "component": Symbol(react.fragment),
-          "transitionAppear": false,
+          "transitionAppear": true,
+          "transitionAppearTimeout": 1000,
           "transitionEnter": true,
           "transitionEnterTimeout": 500,
           "transitionLeave": true,
@@ -112,9 +130,21 @@ ShallowWrapper {
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "MainWrapper-sc-1d2488w-0",
-          "isStatic": true,
+          "isStatic": false,
           "rules": Array [
-            "width:100%;> div{position:absolute;top:50%;left:0;right:0;transform:translateX(0) translateY(-50%);}> .slide-leave{opacity:1;transform:translateX(0) translateY(-50%);transition:transform 500ms,opacity 500ms;&.slide-leave-active{opacity:0.01;transform:translateX(-100%) translateY(-50%);}}> .slide-enter{opacity:0.01;transform:translateX(100%) translateY(-50%);transition:transform 500ms,opacity 500ms;&.slide-enter-active{opacity:1;transform:translateX(0) translateY(-50%);}}",
+            "width:100%;> div{position:absolute;top:50%;left:0;right:0;transform:translateX(0) translateY(-50%);}> .",
+            [Function],
+            "-leave{opacity:1;transform:translateX(0) translateY(-50%);transition:transform 500ms,opacity 500ms;&.",
+            [Function],
+            "-leave-active{opacity:0.01;transform:translateX(-100%) translateY(-50%);}}> .",
+            [Function],
+            "-enter{opacity:0.01;transform:translateX(100%) translateY(-50%);transition:transform 500ms,opacity 500ms;&.",
+            [Function],
+            "-enter-active{opacity:1;transform:translateX(0) translateY(-50%);}}> .",
+            [Function],
+            "-appear{opacity:0.01;transition:opacity 1000ms;&.",
+            [Function],
+            "-appear-active{opacity:1;}}",
           ],
         },
         "displayName": "MainWrapper",

@@ -14,40 +14,52 @@ const MainWrapper = styled.main`
     transform: translateX(0) translateY(-50%);
   }
 
-  > .slide-leave {
+  > .${props => props.transitionName}-leave {
     opacity: 1;
     transform: translateX(0) translateY(-50%);
     transition: transform 500ms, opacity 500ms;
 
-    &.slide-leave-active {
+    &.${props => props.transitionName}-leave-active {
       opacity: 0.01;
       transform: translateX(-100%) translateY(-50%);
     }
   }
 
-  > .slide-enter {
+  > .${props => props.transitionName}-enter {
     opacity: 0.01;
     transform: translateX(100%) translateY(-50%);
     transition: transform 500ms, opacity 500ms;
 
-    &.slide-enter-active {
+    &.${props => props.transitionName}-enter-active {
       opacity: 1;
       transform: translateX(0) translateY(-50%);
+    }
+  }
+
+  > .${props => props.transitionName}-appear {
+    opacity: 0.01;
+    transition: opacity 1000ms;
+
+    &.${props => props.transitionName}-appear-active {
+      opacity: 1;
     }
   }
 `;
 
 const MainContent = (props) => {
   const { handleClickEvent, children } = props;
+  const transitionName = 'slide';
 
   return (
-    <MainWrapper onClick={ handleClickEvent }>
+    <MainWrapper onClick={ handleClickEvent } transitionName={ transitionName }>
       <CSSTransitionGroup
         component={ React.Fragment }
-        transitionName="slide"
+        transitionName={ transitionName }
         transitionEnterTimeout={ 500 }
         transitionLeaveTimeout={ 500 }
+        transitionAppearTimeout={ 1000 }
         transitionLeave={ true }
+        transitionAppear={ true }
       >
         { children }
       </CSSTransitionGroup>
