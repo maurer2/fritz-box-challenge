@@ -1,6 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import toJson from 'enzyme-to-json'
 
 import NavBar from './NavBar';
 
@@ -25,7 +26,7 @@ describe('NavBar', () => {
   />);
 
   it('should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it('should have a BoxInformationWrapper component', () => {

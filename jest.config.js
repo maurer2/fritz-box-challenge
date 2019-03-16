@@ -4,4 +4,7 @@ module.exports = {
   collectCoverageFrom: [
     '**/libs/*.{js,jsx}',
   ],
+  snapshotSerializers: [
+    'enzyme-to-json/serializer'
+  ]
 };

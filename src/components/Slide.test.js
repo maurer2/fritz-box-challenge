@@ -1,6 +1,8 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import 'jest-styled-components';
+import toJson from 'enzyme-to-json';
 
 import Slide from './Slide';
 
@@ -8,13 +10,18 @@ import Slide from './Slide';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Slide', () => {
-  const wrapper = shallow(<Slide
+  const wrapper = mount(<Slide
+    text="123456"
+    title="title"
+  />);
+
+  const wrapper2 = shallow(<Slide
     text="123456"
     title="title"
   />);
 
   it('should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper2)).toMatchSnapshot();
   });
 
   it('should should contain spans with numbers', () => {
@@ -28,5 +35,15 @@ describe('Slide', () => {
 
   it('should have a text wrapper', () => {
     expect(wrapper.find('TextWrapper').length).toBe(1);
+  });
+
+  it('TextWrapper has correct styling', () => {
+    expect(wrapper.find('TextWrapper')).toHaveStyleRule('font-weight', 'bold');
+
+    wrapper.setProps({ text: 'short' });
+    expect(wrapper.find('TextWrapper')).toHaveStyleRule('font-size', '27vw');
+
+    wrapper.setProps({ text: 'verylong' });
+    expect(wrapper.find('TextWrapper')).toHaveStyleRule('font-size', '16.875vw');
   });
 });

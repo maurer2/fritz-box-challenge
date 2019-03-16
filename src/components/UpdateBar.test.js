@@ -1,6 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import toJson from 'enzyme-to-json';
 
 import UpdateBar from './UpdateBar';
 
@@ -14,10 +15,10 @@ describe('UpdateBar', () => {
   />);
 
   it('should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
 
     wrapper.setProps({ isUpdating: false });
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
     wrapper.setProps({ isUpdating: true });
   });
 

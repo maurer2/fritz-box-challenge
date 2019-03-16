@@ -12,16 +12,16 @@ const Wrapper = styled.div`
 const TitleWrapper = styled.h2`
   margin-top: 0;
   margin-bottom: 2vh;
-  color: white;
   font-size: 5vw;
+  color: white;
 `;
 
 const TextWrapper = styled.div`
   margin: 0;
-  color: white;
   font-size: ${props => 100 / props.characterCount * 1.35}vw;
   line-height: 1;
   font-weight: bold;
+  color: white;
 
   /* color: ${props => (props.characterCount === 5 ? 'green' : 'white')}; */
   /*
