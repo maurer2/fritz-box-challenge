@@ -18,17 +18,10 @@ const TitleWrapper = styled.h2`
 
 const TextWrapper = styled.div`
   margin: 0;
-  font-size: ${props => 100 / props.characterCount * 1.35}vw;
+  font-size: ${props => Math.floor(100 / props.characterCount * 1.35)}vw;
   line-height: 1;
   font-weight: bold;
   color: white;
-
-  /* color: ${props => (props.characterCount === 5 ? 'green' : 'white')}; */
-  /*
-  ${props => props.numberOfCharacters === 5 && css`
-    background: red;
-  `};
-  */
 `;
 
 const TextComponent = (props) => {

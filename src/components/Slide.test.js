@@ -15,26 +15,36 @@ describe('Slide', () => {
     title="title"
   />);
 
-  const wrapper2 = shallow(<Slide
-    text="123456"
-    title="title"
-  />);
-
   it('should match snapshot', () => {
-    expect(toJson(wrapper2)).toMatchSnapshot();
-  });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });  
 
   it('should should contain spans with numbers', () => {
     expect(wrapper.find('.character').length).toBeGreaterThan(0);
     expect(wrapper.find('.character').length).toBe(6);
   });
 
-  it('should have a title', () => {
-    expect(wrapper.find('TitleWrapper').length).toBe(1);
+  it('should have a wrapper', () => {
+    expect(wrapper.find('Wrapper').length).toBe(1);
   });
 
-  it('should have a text wrapper', () => {
+  it('should have a title', () => {
+    expect(wrapper.find('TitleWrapper').length).toBe(1);
+    expect(wrapper.find('TitleWrapper').text()).toBe('Title');
+  });
+
+  it('should have a text wrapper with props', () => {
     expect(wrapper.find('TextWrapper').length).toBe(1);
+
+    expect(wrapper.find('TextWrapper').props().characterCount).toBe(6);
+  });
+
+  it('Wrapper has correct styling', () => {
+    expect(wrapper.find('Wrapper')).toHaveStyleRule('user-select', 'none');
+  });
+
+  it('TitleWrapper has correct styling', () => {
+    expect(wrapper.find('TitleWrapper')).toHaveStyleRule('font-size', '5vw');
   });
 
   it('TextWrapper has correct styling', () => {
@@ -44,6 +54,6 @@ describe('Slide', () => {
     expect(wrapper.find('TextWrapper')).toHaveStyleRule('font-size', '27vw');
 
     wrapper.setProps({ text: 'verylong' });
-    expect(wrapper.find('TextWrapper')).toHaveStyleRule('font-size', '16.875vw');
+    expect(wrapper.find('TextWrapper')).toHaveStyleRule('font-size', '16vw');
   });
 });
