@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UpdateBar should match snapshot 1`] = `
-<SlideYTransition>
+<SlideYTransition
+  transitionName="slide-vertically"
+>
   <CSSTransitionGroup
     component={Symbol(react.fragment)}
     transitionAppear={true}
@@ -20,7 +22,9 @@ exports[`UpdateBar should match snapshot 1`] = `
 `;
 
 exports[`UpdateBar should match snapshot 2`] = `
-<SlideYTransition>
+<SlideYTransition
+  transitionName="slide-vertically"
+>
   <CSSTransitionGroup
     component={Symbol(react.fragment)}
     transitionAppear={true}

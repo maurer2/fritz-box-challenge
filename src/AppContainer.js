@@ -22,6 +22,7 @@ class AppContainer extends Component {
       componentsToShow: ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'],
       currentIndex: 0,
     };
+
     this.handleClick = this.handleClick.bind(this);
     this.handleNavigation = this.handleNavigation.bind(this);
   }

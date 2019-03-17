@@ -16,20 +16,20 @@ const SlideYTransition = styled.div`
   left: 0;
   right: 0;
 
-  > .slide-vertically-appear {
+  > .${props => props.transitionName}-appear {
     transform: translateY(-100%);
     transition: transform 500ms ease-out;
 
-    &.slide-vertically-appear-active {
+    &.${props => props.transitionName}-appear-active {
       transform: translateY(0);
     }
   }
 
-  > .slide-vertically-leave {
+  > .${props => props.transitionName}-leave {
     transform: translateY(0);
     transition: transform 500ms ease-in;
 
-    &.slide-vertically-leave-active {
+    &.${props => props.transitionName}-leave-active {
       transform: translateY(-100%);
     }
   }
@@ -37,14 +37,15 @@ const SlideYTransition = styled.div`
 
 const UpdateView = (props) => {
   const { isUpdating, isValid } = props;
+  const transitionName = 'slide-vertically';
 
   return (
-    <SlideYTransition>
+    <SlideYTransition transitionName={ transitionName }>
       <CSSTransitionGroup
         component={ React.Fragment }
         transitionAppear={ true }
         transitionEnter={ false }
-        transitionName="slide-vertically"
+        transitionName={ transitionName }
         transitionAppearTimeout={ 500 }
         transitionLeaveTimeout={ 500 }
         transitionEnterTimeout={ 0 }

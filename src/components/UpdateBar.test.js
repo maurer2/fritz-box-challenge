@@ -1,7 +1,8 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
+import 'jest-styled-components';
 
 import UpdateBar from './UpdateBar';
 
@@ -10,6 +11,11 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('UpdateBar', () => {
   const wrapper = shallow(<UpdateBar
+    isUpdating={ true }
+    isValid={ true }
+  />);
+
+  const wrapperDeep = mount(<UpdateBar
     isUpdating={ true }
     isValid={ true }
   />);
@@ -36,5 +42,9 @@ describe('UpdateBar', () => {
     wrapper.setProps({ isValid: false });
 
     expect(wrapper.find('Text').text()).toBe('Error!');
+  });
+
+  it('SlideYTransition has space reserved for indicator', () => {
+    expect(wrapperDeep.find('SlideYTransition')).toHaveStyleRule('position', 'absolute');
   });
 });

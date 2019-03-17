@@ -1,13 +1,12 @@
 {
   "name": "fritz-box-challenge",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "index.js",
   "repository": "git@github.com:maurer2/fritz-box-challenge.git",
   "author": "Martin",
   "license": "MIT",
   "scripts": {
     "dump-box-data": "node -r esm ./scripts/dump-box-data.js",
-    "mau": "node -r esm ./libs/modem.js",
     "test:lib": "jest './libs/*' --colors --coverage --watchAll",
     "start": "BROWSER=none REACT_APP_MODE=live react-scripts start",
     "start:dev": "BROWSER=none REACT_APP_MODE=dev react-scripts start",

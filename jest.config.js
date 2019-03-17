@@ -5,6 +5,6 @@ module.exports = {
     '**/libs/*.{js,jsx}',
   ],
   snapshotSerializers: [
-    'enzyme-to-json/serializer'
-  ]
+    'enzyme-to-json/serializer',
+  ],
 };
