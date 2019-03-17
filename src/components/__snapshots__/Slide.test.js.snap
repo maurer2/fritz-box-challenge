@@ -1,171 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Slide should match snapshot 1`] = `
-.c0 {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  text-align: center;
-  will-change: transform;
-}
-
-.c1 {
-  margin-top: 0;
-  margin-bottom: 2vh;
-  font-size: 5vw;
-  color: white;
-}
-
-.c2 {
-  margin: 0;
-  font-size: 22vw;
-  line-height: 1;
-  font-weight: bold;
-  color: white;
-}
-
-<TextComponent
-  text="123456"
-  title="title"
->
-  <Wrapper>
-    <StyledComponent
-      forwardedComponent={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [],
-          "componentStyle": ComponentStyle {
-            "componentId": "Wrapper-sc-1qe5c9r-0",
-            "isStatic": true,
-            "lastClassName": "c0",
-            "rules": Array [
-              "user-select:none;text-align:center;will-change:transform;",
-            ],
-          },
-          "displayName": "Wrapper",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "Wrapper-sc-1qe5c9r-0",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        }
-      }
-      forwardedRef={null}
+<Wrapper>
+  <TitleWrapper>
+    Title
+  </TitleWrapper>
+  <TextWrapper
+    characterCount={6}
+  >
+    <span
+      className="character"
+      key="0"
     >
-      <div
-        className="c0"
-      >
-        <TitleWrapper>
-          <StyledComponent
-            forwardedComponent={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "attrs": Array [],
-                "componentStyle": ComponentStyle {
-                  "componentId": "TitleWrapper-sc-1qe5c9r-1",
-                  "isStatic": true,
-                  "lastClassName": "c1",
-                  "rules": Array [
-                    "margin-top:0;margin-bottom:2vh;font-size:5vw;color:white;",
-                  ],
-                },
-                "displayName": "TitleWrapper",
-                "foldedComponentIds": Array [],
-                "render": [Function],
-                "styledComponentId": "TitleWrapper-sc-1qe5c9r-1",
-                "target": "h2",
-                "toString": [Function],
-                "warnTooManyClasses": [Function],
-                "withComponent": [Function],
-              }
-            }
-            forwardedRef={null}
-          >
-            <h2
-              className="c1"
-            >
-              Title
-            </h2>
-          </StyledComponent>
-        </TitleWrapper>
-        <TextWrapper
-          characterCount={6}
-        >
-          <StyledComponent
-            characterCount={6}
-            forwardedComponent={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "attrs": Array [],
-                "componentStyle": ComponentStyle {
-                  "componentId": "TextWrapper-sc-1qe5c9r-2",
-                  "isStatic": false,
-                  "lastClassName": "c2",
-                  "rules": Array [
-                    "margin:0;font-size:",
-                    [Function],
-                    "vw;line-height:1;font-weight:bold;color:white;",
-                  ],
-                },
-                "displayName": "TextWrapper",
-                "foldedComponentIds": Array [],
-                "render": [Function],
-                "styledComponentId": "TextWrapper-sc-1qe5c9r-2",
-                "target": "div",
-                "toString": [Function],
-                "warnTooManyClasses": [Function],
-                "withComponent": [Function],
-              }
-            }
-            forwardedRef={null}
-          >
-            <div
-              className="c2"
-            >
-              <span
-                className="character"
-                key="0"
-              >
-                1
-              </span>
-              <span
-                className="character"
-                key="1"
-              >
-                2
-              </span>
-              <span
-                className="character"
-                key="2"
-              >
-                3
-              </span>
-              <span
-                className="character"
-                key="3"
-              >
-                4
-              </span>
-              <span
-                className="character"
-                key="4"
-              >
-                5
-              </span>
-              <span
-                className="character"
-                key="5"
-              >
-                6
-              </span>
-            </div>
-          </StyledComponent>
-        </TextWrapper>
-      </div>
-    </StyledComponent>
-  </Wrapper>
-</TextComponent>
+      1
+    </span>
+    <span
+      className="character"
+      key="1"
+    >
+      2
+    </span>
+    <span
+      className="character"
+      key="2"
+    >
+      3
+    </span>
+    <span
+      className="character"
+      key="3"
+    >
+      4
+    </span>
+    <span
+      className="character"
+      key="4"
+    >
+      5
+    </span>
+    <span
+      className="character"
+      key="5"
+    >
+      6
+    </span>
+  </TextWrapper>
+</Wrapper>
 `;

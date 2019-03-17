@@ -10,14 +10,19 @@ import Slide from './Slide';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Slide', () => {
-  const wrapper = mount(<Slide
+  const wrapper = shallow(<Slide
+    text="123456"
+    title="title"
+  />);
+
+  const wrapperDeep = mount(<Slide
     text="123456"
     title="title"
   />);
 
   it('should match snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
-  });  
+  });
 
   it('should should contain spans with numbers', () => {
     expect(wrapper.find('.character').length).toBeGreaterThan(0);
@@ -40,20 +45,20 @@ describe('Slide', () => {
   });
 
   it('Wrapper has correct styling', () => {
-    expect(wrapper.find('Wrapper')).toHaveStyleRule('user-select', 'none');
+    expect(wrapperDeep.find('Wrapper')).toHaveStyleRule('user-select', 'none');
   });
 
   it('TitleWrapper has correct styling', () => {
-    expect(wrapper.find('TitleWrapper')).toHaveStyleRule('font-size', '5vw');
+    expect(wrapperDeep.find('TitleWrapper')).toHaveStyleRule('font-size', '5vw');
   });
 
   it('TextWrapper has correct styling', () => {
-    expect(wrapper.find('TextWrapper')).toHaveStyleRule('font-weight', 'bold');
+    expect(wrapperDeep.find('TextWrapper')).toHaveStyleRule('font-weight', 'bold');
 
-    wrapper.setProps({ text: 'short' });
-    expect(wrapper.find('TextWrapper')).toHaveStyleRule('font-size', '27vw');
+    wrapperDeep.setProps({ text: 'short' });
+    expect(wrapperDeep.find('TextWrapper')).toHaveStyleRule('font-size', '27vw');
 
-    wrapper.setProps({ text: 'verylong' });
-    expect(wrapper.find('TextWrapper')).toHaveStyleRule('font-size', '16vw');
+    wrapperDeep.setProps({ text: 'verylong' });
+    expect(wrapperDeep.find('TextWrapper')).toHaveStyleRule('font-size', '16vw');
   });
 });

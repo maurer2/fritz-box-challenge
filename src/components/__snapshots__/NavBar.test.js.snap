@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NavBar should match snapshot 1`] = `
-<SlideYTransition>
+<SlideYTransition
+  transitionName="slide-vertically"
+>
   <CSSTransitionGroup
     component={Symbol(react.fragment)}
     transitionAppear={true}
@@ -9,7 +11,7 @@ exports[`NavBar should match snapshot 1`] = `
     transitionEnter={false}
     transitionEnterTimeout={0}
     transitionLeave={true}
-    transitionLeaveTimeout={5000}
+    transitionLeaveTimeout={500}
     transitionName="slide-vertically"
   >
     <NavBarWrapper

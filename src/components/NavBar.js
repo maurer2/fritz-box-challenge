@@ -11,20 +11,20 @@ const SlideYTransition = styled.div`
   right: 0;
   bottom: 0;
 
-  > .slide-vertically-appear {
+  > .${props => props.transitionName}-appear {
     transform: translateY(100%);
     transition: transform 500ms ease-out;
 
-    &.slide-vertically-appear-active {
+    &.${props => props.transitionName}-appear-active {
       transform: translateY(0);
     }
   }
 
-  > .slide-vertically-leave {
+  > .${props => props.transitionName}-leave {
     transform: translateY(0);
     transition: transform 5000ms ease-in;
 
-    &.slide-vertically-leave-active {
+    &.${props => props.transitionName}-leave-active {
       transform: translateY(100%);
     }
   }
@@ -97,16 +97,17 @@ class Navbar extends Component {
   render() {
     const { boxData, currentIndex, handleNavigation } = this.props;
     const { offset, width, height } = this.state;
+    const transitionName = 'slide-vertically';
 
     return (
-      <SlideYTransition>
+      <SlideYTransition transitionName={ transitionName }>
         <CSSTransitionGroup
           component={ React.Fragment }
           transitionAppear={ true }
           transitionEnter={ false }
-          transitionName="slide-vertically"
+          transitionName={ transitionName }
           transitionAppearTimeout={ 500 }
-          transitionLeaveTimeout={ 5000 }
+          transitionLeaveTimeout={ 500 }
           transitionEnterTimeout={ 0 }
         >
           <NavBarWrapper reservedSpaceTop={ height }>

@@ -11,6 +11,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('NavBarEntry', () => {
   const mockedHandleNavigation = jest.fn();
+  const spiedHandleClick = jest.spyOn(NavBarEntry.prototype, 'handleClick');
 
   const wrapper = shallow(<NavBarEntry
     index={ 5 }
@@ -18,8 +19,6 @@ describe('NavBarEntry', () => {
     isActive={ false }
     handleNavigation={ mockedHandleNavigation }
   />);
-
-  // const spy = jest.spyOn(NavBarEntry.prototype, 'handleClick');
 
   it('should match snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -38,21 +37,20 @@ describe('NavBarEntry', () => {
   });
 
   it('Test click event', () => {
-    //const spy = jest.spyOn(wrapper.instance(), 'handleClick');
-
-    wrapper.find('NavBarEntryWrapper').simulate('click');
+    //wrapper.find('NavBarEntryWrapper').simulate('click');
+    wrapper.find('NavBarEntryWrapper').props().onClick();
     wrapper.update();
-    
-    expect(mockedHandleNavigation.mock.calls.length).toEqual(1);
-    // expect(spy).toHaveBeenCalled();
+
+    expect(mockedHandleNavigation).toHaveBeenCalled();
+    expect(spiedHandleClick).toHaveBeenCalledTimes(1);
   });
 
-  /*
   it('NavBarButton has correct styling', () => {
-    expect(wrapper.find('NavBarButton')).toHaveStyleRule('color', 'black');
+    const wrapperDeep = mount(<NavBarEntry />);
 
-    wrapper.setProps({ isActive: true });
-    expect(wrapper.find('NavBarButton')).toHaveStyleRule('color', 'white');
+    expect(wrapperDeep.find('NavBarButton')).toHaveStyleRule('color', 'black');
+
+    wrapperDeep.setProps({ isActive: true });
+    expect(wrapperDeep.find('NavBarButton')).toHaveStyleRule('color', 'white');
   });
-  */
 });

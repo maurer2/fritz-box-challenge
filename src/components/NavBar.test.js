@@ -1,7 +1,8 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json'
+import 'jest-styled-components';
 
 import NavBar from './NavBar';
 
@@ -9,6 +10,8 @@ import NavBar from './NavBar';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('NavBar', () => {
+  const mockedHandleNavigation = jest.fn();
+  const mockedUpdateIndicator = jest.fn();
   const boxData = {
     branding: 'avm',
     model: 'FRITZ!Box 6590 Cable',
@@ -16,9 +19,16 @@ describe('NavBar', () => {
     technology: 'Kabel',
   };
 
-  const mockedHandleNavigation = jest.fn();
-
   const wrapper = shallow(<NavBar
+    isUpdating={ false }
+    boxData={ boxData }
+    currentIndex={ 1 }
+    handleNavigation={ mockedHandleNavigation }
+  />);
+
+  wrapper.instance().updateIndicator = mockedUpdateIndicator;
+
+  const wrapperDeep = mount(<NavBar
     isUpdating={ false }
     boxData={ boxData }
     currentIndex={ 1 }
@@ -33,7 +43,27 @@ describe('NavBar', () => {
     expect(wrapper.find('NavBarWrapper').length).toBe(1);
   });
 
-  it('should have children', () => {
-    expect(wrapper.find('NavBarWrapper').children().length).toBeGreaterThan(0);
+  it('should have a Indicator component', () => {
+    expect(wrapper.find('Indicator').length).toBe(1);
+  });
+
+  it('should have a NavBarList component', () => {
+    expect(wrapper.find('NavBarList').length).toBe(1);
+  });
+
+  it('should have at least one NavBarEntry component', () => {
+    expect(wrapper.find('NavBarEntry').length).toBeGreaterThan(0);
+  });
+
+  it('updateIndicator should be triggered when currentIndex prop changes', () => {
+    wrapper.setProps({ currentIndex: 2 });
+    wrapper.update();
+    expect(wrapper.instance().updateIndicator).toBeCalled();
+  });
+
+  it('NavBarWrapper has space reserved for indicator', () => {
+    wrapperDeep.setState({ height: 50 });
+    wrapperDeep.update();
+    expect(wrapperDeep.find('NavBarWrapper')).toHaveStyleRule('padding-top', '50px');
   });
 });
