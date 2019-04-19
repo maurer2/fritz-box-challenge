@@ -7,7 +7,6 @@ const NavBarEntryWrapper = styled.li`
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 0;
-  border-left: 1px solid black;
 `;
 
 const defaultButton = styled.button`
@@ -22,7 +21,7 @@ const NavBarButton = styled(defaultButton)`
   width: 100%;
   border: 0;
   font-size: 1rem;
-  color: ${props => (props.isActive ? 'white' : 'black')};
+  color: ${props => (props.isActive ? '#080808' : '#121212')};
   transition: color 500ms;
 `;
 

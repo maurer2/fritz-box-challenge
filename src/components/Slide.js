@@ -13,7 +13,7 @@ const TitleWrapper = styled.h2`
   margin-top: 0;
   margin-bottom: 2vh;
   font-size: 5vw;
-  color: white;
+  color: #F2F2F2;
 `;
 
 const TextWrapper = styled.div`
@@ -21,7 +21,7 @@ const TextWrapper = styled.div`
   font-size: ${props => Math.floor(100 / props.characterCount * 1.35)}vw;
   line-height: 1;
   font-weight: bold;
-  color: white;
+  color: #D2D2D2;
 `;
 
 const TextComponent = (props) => {

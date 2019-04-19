@@ -54,7 +54,7 @@ const NavBarList = styled.ul`
   justify-content: space-between;
   flex-wrap: wrap;
   list-style: none;
-  background: red;
+  background: #BDBDBD;
 `;
 
 class Navbar extends Component {

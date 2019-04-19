@@ -64,13 +64,12 @@
   "browserslist": [
     "last 3 Chrome versions",
     "last 3 Firefox versions",
-    "last 3 ie versions",
     "last 3 Edge versions",
     "last 3 Safari versions",
     "last 3 iOS versions",
     "last 3 android versions",
-    "not ie < 11",
-    "not ie_mob < 11",
+    "not ie",
+    "not ie_mob",
     "not iOS < 11",
     "not Safari < 11",
     "not android < 61"

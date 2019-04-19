@@ -1,6 +1,22 @@
 # Fritz-box-challenge
 
-Make http://fritz.box/cgi-bin/system_status human readable with react.
+Make system status of fritzbox(https://en.wikipedia.org/wiki/Fritz!Box) human readable with react.
 
 ![Screenshot](screenshot.png?raw=true "Screenshot")
-![Screenshot](screenrecording.gif?raw=true "Screenrecording")
+
+### Start witrh dummy data
+
+```
+yarn start:dev
+npm run start:dev
+
+```
+
+### Start with real data
+
+```
+yarn start
+npm run start
+
+```
+

@@ -37,7 +37,7 @@ describe('NavBarEntry', () => {
   });
 
   it('Test click event', () => {
-    //wrapper.find('NavBarEntryWrapper').simulate('click');
+    // wrapper.find('NavBarEntryWrapper').simulate('click');
     wrapper.find('NavBarEntryWrapper').props().onClick();
     wrapper.update();
 
@@ -48,9 +48,9 @@ describe('NavBarEntry', () => {
   it('NavBarButton has correct styling', () => {
     const wrapperDeep = mount(<NavBarEntry />);
 
-    expect(wrapperDeep.find('NavBarButton')).toHaveStyleRule('color', 'black');
+    expect(wrapperDeep.find('NavBarButton')).toHaveStyleRule('color', '#121212');
 
     wrapperDeep.setProps({ isActive: true });
-    expect(wrapperDeep.find('NavBarButton')).toHaveStyleRule('color', 'white');
+    expect(wrapperDeep.find('NavBarButton')).toHaveStyleRule('color', '#080808');
   });
 });

@@ -16,7 +16,7 @@ const AppWrapper = styled.div`
   height: 100%;
   justify-content: stretch;
   align-self: stretch;
-  background: black;
+  background: #080808;
 `;
 
 const App = (props) => {
