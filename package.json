@@ -68,8 +68,6 @@
     "last 3 Safari versions",
     "last 3 iOS versions",
     "last 3 android versions",
-    "not ie",
-    "not ie_mob",
     "not iOS < 11",
     "not Safari < 11",
     "not android < 61"
