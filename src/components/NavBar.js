@@ -52,8 +52,8 @@ const NavBarList = styled.ul`
   display: flex;
   margin: 0;
   padding: 0;
+  flex-wrap: ${props => (props.isRow ? 'no-wrap' : 'wrap')};
   justify-content: space-between;
-  flex-wrap: wrap;
   list-style: none;
   background: #BDBDBD;
 `;
@@ -100,10 +100,12 @@ class Navbar extends Component {
       return;
     }
     const activeElementBoundingBox = this.activeElement.current.getBoundingClientRect();
+    const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
 
     this.setState({
       offset: activeElementBoundingBox.x,
       width: activeElementBoundingBox.width,
+      showIndicator: isLargeScreen,
     });
   }
 
@@ -125,7 +127,7 @@ class Navbar extends Component {
         >
           <NavBarWrapper reservedSpaceTop={ height }>
             { showIndicator && <Indicator offset={ offset } width={ width } height={ height } /> }
-            <NavBarList>
+            <NavBarList isRow={ showIndicator }>
               { Object.keys(boxData).map((entry, index) => (
                 <NavBarEntry
                   index={ index }
@@ -134,6 +136,7 @@ class Navbar extends Component {
                   handleNavigation={ handleNavigation }
                   activeElementRef={ (currentIndex === index) ? this.activeElement : null }
                   key={ index }
+                  isFullWidth={ !showIndicator }
                 />
               ))}
             </NavBarList>
