@@ -22,13 +22,16 @@ exports[`NavBar should match snapshot 1`] = `
         offset={0}
         width="auto"
       />
-      <NavBarList>
+      <NavBarList
+        isRow={true}
+      >
         <NavBarEntry
           activeElementRef={null}
           entry="branding"
           handleNavigation={[MockFunction]}
           index={0}
           isActive={false}
+          isFullWidth={false}
           key="0"
         />
         <NavBarEntry
@@ -41,6 +44,7 @@ exports[`NavBar should match snapshot 1`] = `
           handleNavigation={[MockFunction]}
           index={1}
           isActive={true}
+          isFullWidth={false}
           key="1"
         />
         <NavBarEntry
@@ -49,6 +53,7 @@ exports[`NavBar should match snapshot 1`] = `
           handleNavigation={[MockFunction]}
           index={2}
           isActive={false}
+          isFullWidth={false}
           key="2"
         />
         <NavBarEntry
@@ -57,6 +62,7 @@ exports[`NavBar should match snapshot 1`] = `
           handleNavigation={[MockFunction]}
           index={3}
           isActive={false}
+          isFullWidth={false}
           key="3"
         />
       </NavBarList>

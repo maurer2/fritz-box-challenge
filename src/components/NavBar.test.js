@@ -12,6 +12,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('NavBar', () => {
   const mockedHandleNavigation = jest.fn();
   const mockedUpdateIndicator = jest.fn();
+  // const mockedMatchedMedia = jest.fn();
   const boxData = {
     branding: 'avm',
     model: 'FRITZ!Box 6590 Cable',
@@ -19,11 +20,19 @@ describe('NavBar', () => {
     technology: 'Kabel',
   };
 
+  // jsdom doesn't support matchmedia
+  Object.defineProperty(window, 'matchMedia', {
+    value: jest.fn(() => {
+      return { matches: true };
+    }),
+  });
+
   const wrapper = shallow(<NavBar
     isUpdating={ false }
     boxData={ boxData }
     currentIndex={ 1 }
     handleNavigation={ mockedHandleNavigation }
+    showIndicator= { true }
   />);
 
   wrapper.instance().updateIndicator = mockedUpdateIndicator;
@@ -33,6 +42,7 @@ describe('NavBar', () => {
     boxData={ boxData }
     currentIndex={ 1 }
     handleNavigation={ mockedHandleNavigation }
+    showIndicator= { true }
   />);
 
   it('should match snapshot', () => {
