@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
+import { throttle } from 'lodash';
 
 import NavBarEntry from './NavBarEntry';
 
@@ -65,13 +66,21 @@ class Navbar extends Component {
       offset: 0,
       width: 'auto',
       height: 5,
+      showIndicator: true,
     };
 
     this.activeElement = React.createRef();
+    this.trottledResizeHandler = throttle(this.handleResize, 300);
   }
 
   componentDidMount() {
     this.updateIndicator();
+
+    window.addEventListener('resize', this.trottledResizeHandler.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.trottledResizeHandler.bind(this));
   }
 
   componentDidUpdate(prevProps) {
@@ -80,6 +89,10 @@ class Navbar extends Component {
     if (activeElementHasChanged) {
       this.updateIndicator();
     }
+  }
+
+  handleResize() {
+    this.updateIndicator();
   }
 
   updateIndicator() {
@@ -96,7 +109,7 @@ class Navbar extends Component {
 
   render() {
     const { boxData, currentIndex, handleNavigation } = this.props;
-    const { offset, width, height } = this.state;
+    const { offset, width, height, showIndicator } = this.state;
     const transitionName = 'slide-vertically';
 
     return (
@@ -111,7 +124,7 @@ class Navbar extends Component {
           transitionEnterTimeout={ 0 }
         >
           <NavBarWrapper reservedSpaceTop={ height }>
-            <Indicator offset={ offset } width={ width } height={ height } />
+            { showIndicator && <Indicator offset={ offset } width={ width } height={ height } /> }
             <NavBarList>
               { Object.keys(boxData).map((entry, index) => (
                 <NavBarEntry
