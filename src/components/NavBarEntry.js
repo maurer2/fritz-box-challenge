@@ -6,7 +6,7 @@ import upperFirst from 'lodash/upperFirst';
 const NavBarEntryWrapper = styled.li`
   flex-grow: 1;
   flex-shrink: 0;
-  flex-basis: ${props => (props.isFullWidth ? '100%' : '0')};
+  flex-basis: ${props => (props.isFullWidth ? '33%' : '0')};
 `;
 
 const defaultButton = styled.button`
@@ -42,7 +42,11 @@ class NavBarEntry extends PureComponent {
     const { isActive, entry, activeElementRef, isFullWidth } = this.props;
 
     return (
-      <NavBarEntryWrapper onClick={ this.handleClick } isFullWidth={ isFullWidth } ref={ activeElementRef }>
+      <NavBarEntryWrapper
+        onClick={ this.handleClick }
+        isFullWidth={ isFullWidth }
+        ref={ activeElementRef }
+      >
         <NavBarButton isActive={ isActive }>
           { upperFirst(entry) }
         </NavBarButton>

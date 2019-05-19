@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import toJson from 'enzyme-to-json'
+import toJson from 'enzyme-to-json';
 import 'jest-styled-components';
 
 import NavBar from './NavBar';
@@ -22,9 +22,9 @@ describe('NavBar', () => {
 
   // jsdom doesn't support matchmedia
   Object.defineProperty(window, 'matchMedia', {
-    value: jest.fn(() => {
-      return { matches: true };
-    }),
+    value: jest.fn(() => ({
+      matches: true,
+    })),
   });
 
   const wrapper = shallow(<NavBar
