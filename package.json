@@ -13,7 +13,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fix": "eslint --fix --ext .js src"
+    "lint": "eslint src/**/*.js",
+    "fix": "eslint --fix src/**/*.js"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",

@@ -2,7 +2,7 @@ module.exports = {
   "parser": "babel-eslint",
   "extends": [
     "airbnb-base",
-    "plugin:react/recommended",    
+    "plugin:react/recommended",
   ],
   "plugins": [
     "react",
@@ -11,7 +11,7 @@ module.exports = {
     "jest": true,
     "browser": true,
     "node": true,
-  }, 
+  },
   "rules": {
     "react/jsx-uses-react": "error",
     "object-curly-newline": ["error", {
@@ -23,4 +23,9 @@ module.exports = {
       ]
     }]
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 };

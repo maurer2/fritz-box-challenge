@@ -4,7 +4,7 @@ Make system status of fritzbox(https://en.wikipedia.org/wiki/Fritz!Box) human re
 
 ![Screenshot](screenshot.png?raw=true "Screenshot")
 
-### Start witrh dummy data
+### Start with dummy data
 
 ```
 yarn start:dev
