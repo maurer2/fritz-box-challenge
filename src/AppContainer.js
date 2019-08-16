@@ -6,7 +6,7 @@ import { transformString as splitData, getDashPositonsInString, splitString as s
 import getData from './libs/modem';
 import parseData from './libs/parser';
 
-import mockResponse from './mocks/box-01004.txt';
+import mockResponse from './mocks/box-iu7nl.txt';
 
 import App from './App';
 

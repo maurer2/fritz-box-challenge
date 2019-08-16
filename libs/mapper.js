@@ -12,7 +12,33 @@ const fieldsMappings = [
   'branding',
 ];
 
-const mapValueToField = (fieldValue, index) => ({ [fieldsMappings[index]]: fieldValue });
+const technologyMapping = {
+  A: 'Annex A',
+  B: 'Annex B',
+  J: 'Annex J',
+  Q: 'Annex Q',
+  Cable: 'Cable',
+};
+
+const mapValueToField = (fieldValue, index) => {
+  const field = fieldsMappings[index];
+
+  if (field === 'technology') {
+    const augmentedFieldValue = (fieldValue in technologyMapping)
+      ? technologyMapping[fieldValue]
+      : fieldValue;
+
+    return {
+      [field]: augmentedFieldValue,
+    };
+  }
+
+  return {
+    [field]: fieldValue,
+  };
+};
+
+console.log(fieldsMappings);
 
 const flatenArray = nestedArray => Array.prototype.concat(...nestedArray);
 
