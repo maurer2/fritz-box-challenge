@@ -38,8 +38,6 @@ const mapValueToField = (fieldValue, index) => {
   };
 };
 
-console.log(fieldsMappings);
-
 const flatenArray = nestedArray => Array.prototype.concat(...nestedArray);
 
 const flattenMapValues = nestedValues => Object.assign(...nestedValues);

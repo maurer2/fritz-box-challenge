@@ -22,24 +22,6 @@ class AppContainer extends Component {
       componentsToShow: ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'],
       currentIndex: 0,
     };
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleNavigation = this.handleNavigation.bind(this);
-  }
-
-  handleClick() {
-    this.setState((previousState) => {
-      const { currentIndex, componentsToShow } = previousState;
-      const lastIndex = componentsToShow.length - 1;
-
-      return {
-        currentIndex: (currentIndex < lastIndex) ? currentIndex + 1 : 0,
-      };
-    });
-  }
-
-  handleNavigation(index) {
-    this.setState({ currentIndex: index });
   }
 
   mapBoxData(boxData, runtime, age) {
@@ -105,7 +87,7 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { isUpdating, boxData, currentIndex, isValid } = this.state;
+    const { isUpdating, boxData, currentIndex, isValid, componentsToShow } = this.state;
 
     return (
       <App
@@ -113,8 +95,7 @@ class AppContainer extends Component {
         isValid={ isValid }
         boxData={ boxData }
         currentIndex={ currentIndex }
-        handleClickEvent={ this.handleClick }
-        handleNavigation={ this.handleNavigation }
+        componentsToShow= { componentsToShow}
       />
     );
   }

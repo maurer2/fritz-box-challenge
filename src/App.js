@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
@@ -19,17 +19,31 @@ const AppWrapper = styled.div`
   background: #080808;
 `;
 
-const App = (props) => {
-  const { boxData, isUpdating, currentIndex, handleNavigation, handleClickEvent, isValid } = props;
-  const currentSlide = Object.keys(boxData)[currentIndex];
+const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const title = componentsToShow[currentIndex] || '';
+  const text = boxData[title] || '';
+
+  function handleClick() {
+    const lastIndex = componentsToShow.length - 1;
+
+    const newCurrentIndex = (currentIndex < lastIndex) ? currentIndex + 1 : 0;
+
+    setCurrentIndex(newCurrentIndex);
+  }
+
+  function handleNavigation(index) {
+    setCurrentIndex(index);
+  }
 
   return (
     <AppWrapper>
       <UpdateBar isUpdating={ isUpdating } isValid={ isValid } />
       { !isUpdating && !!isValid && (
         <>
-          <MainContent handleClickEvent={ handleClickEvent }>
-            <Slide title={ currentSlide } text={ boxData[currentSlide] } key={ currentSlide } />
+          <MainContent handleClickEvent={ handleClick }>
+            <Slide title={ title } text={ text } key={ title } />
           </MainContent>
           <NavBar
             boxData={ boxData }
@@ -48,8 +62,7 @@ App.propTypes = {
   isValid: PropTypes.bool,
   showFullNumber: PropTypes.bool,
   currentIndex: PropTypes.number,
-  handleClickEvent: () => {},
-  handleNavigation: () => {},
+  componentsToShow: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default App;
