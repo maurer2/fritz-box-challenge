@@ -35,8 +35,7 @@ const SlideYTransition = styled.div`
   }
 `;
 
-const UpdateView = (props) => {
-  const { isUpdating, isValid } = props;
+const UpdateView = ({ isUpdating, isValid }) => {
   const transitionName = 'slide-vertically';
 
   return (

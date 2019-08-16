@@ -46,8 +46,7 @@ const MainWrapper = styled.main`
   }
 `;
 
-const MainContent = (props) => {
-  const { handleClickEvent, children } = props;
+const MainContent = ({ handleClickEvent, children }) => {
   const transitionName = 'slide';
 
   return (

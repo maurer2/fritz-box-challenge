@@ -24,24 +24,20 @@ const TextWrapper = styled.div`
   color: #D2D2D2;
 `;
 
-const TextComponent = (props) => {
-  const { title, text } = props;
-
-  return (
-    <Wrapper>
-      <TitleWrapper>
-        { upperFirst(title) }
-      </TitleWrapper>
-      <TextWrapper characterCount={ (text.length === 1) ? (text.length + 1 ) : text.length }>
-        {text.split('').map((character, index) => (
-          <span className="character" key={ index }>
-            { (index === 0) ? upperFirst(character) : character }
-          </span>
-        ))}
-      </TextWrapper>
-    </Wrapper>
-  );
-};
+const TextComponent = ({ title, text }) => (
+  <Wrapper>
+    <TitleWrapper>
+      { upperFirst(title) }
+    </TitleWrapper>
+    <TextWrapper characterCount={ (text.length === 1) ? (text.length + 1) : text.length }>
+      {text.split('').map((character, index) => (
+        <span className="character" key={ index }>
+          { (index === 0) ? upperFirst(character) : character }
+        </span>
+      ))}
+    </TextWrapper>
+  </Wrapper>
+);
 
 TextComponent.propTypes = {
   text: PropTypes.string,

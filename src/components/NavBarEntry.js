@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import upperFirst from 'lodash/upperFirst';
@@ -26,34 +26,23 @@ const NavBarButton = styled(defaultButton)`
   transition: color 500ms;
 `;
 
-class NavBarEntry extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.elementRef = React.createRef();
-    this.handleClick = this.handleClick.bind(this);
+const NavBarEntry = ({ index, entry, isActive, handleNavigation, activeElementRef, isFullWidth }) => {
+  function handleClick() {
+    handleNavigation(index);
   }
 
-  handleClick() {
-    this.props.handleNavigation(this.props.index);
-  }
-
-  render() {
-    const { isActive, entry, activeElementRef, isFullWidth } = this.props;
-
-    return (
-      <NavBarEntryWrapper
-        onClick={ this.handleClick }
-        isFullWidth={ isFullWidth }
-        ref={ activeElementRef }
-      >
-        <NavBarButton isActive={ isActive }>
-          { upperFirst(entry) }
-        </NavBarButton>
-      </NavBarEntryWrapper>
-    );
-  }
-}
+  return (
+    <NavBarEntryWrapper
+      onClick={ handleClick }
+      isFullWidth={ isFullWidth }
+      ref={ activeElementRef }
+    >
+      <NavBarButton isActive={ isActive }>
+        { upperFirst(entry) }
+      </NavBarButton>
+    </NavBarEntryWrapper>
+  );
+};
 
 NavBarEntry.propTypes = {
   index: PropTypes.number,
