@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {useState, useEffect } from 'react';
 
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
 import { getMappedFields } from './libs/mapper';
@@ -10,41 +10,37 @@ import mockResponse from './mocks/box-iu7nl.txt';
 
 import App from './App';
 
-class AppContainer extends Component {
-  constructor(props) {
-    super(props);
+function mapBoxData(componentsToShow, boxData, runtime, age) {
+  const mappedEntries = componentsToShow.reduce((total, current) => {
+    const entries = total;
 
-    this.state = {
-      isUpdating: true,
-      isValid: true,
-      url: (process.env.REACT_APP_MODE === 'dev') ? mockResponse : '/cgi-bin/system_status',
-      boxData: {},
-      componentsToShow: ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'],
-      currentIndex: 0,
-    };
-  }
+    entries[current] = boxData[current] || '';
 
-  mapBoxData(boxData, runtime, age) {
-    const { componentsToShow } = this.state;
+    return entries;
+  }, {});
 
-    const mappedEntries = componentsToShow.reduce((total, current) => {
-      const entries = total;
+  mappedEntries.runtime = runtime;
+  mappedEntries.age = age;
 
-      entries[current] = boxData[current] || '';
+  return mappedEntries;
+}
 
-      return entries;
-    }, {});
+const AppContainer = () => {
+  const [isUpdating, setIsUpdating] = useState(true);
+  const [isValid, setIsValid] = useState(true);
+  const [boxData, setBoxData] = useState({});
 
-    mappedEntries.runtime = runtime;
-    mappedEntries.age = age;
+  const url = (process.env.REACT_APP_MODE === 'dev') ? mockResponse : '/cgi-bin/system_status';
+  const componentsToShow = ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'];
 
-    return mappedEntries;
-  }
+  useEffect(() => {
+    getBoxData();
+  }, []);
 
-  getBoxData() {
-    this.setState({ isUpdating: true });
+  function getBoxData() {
+    setIsUpdating(true);
 
-    const fetchedFinally = getData(this.state.url)
+    const fetchedFinally = getData(url)
       .then((data) => {
         const parsedTextString = parseData(data);
 
@@ -61,44 +57,30 @@ class AppContainer extends Component {
         const runtime = getDate(dateIsoString);
         const age = getTimeBetween(dateIsoString, nowDateString);
 
-        this.setState(() => {
-          const boxData = this.mapBoxData(mappedValues, runtime, age);
+        const newBoxData = mapBoxData(componentsToShow, mappedValues, runtime, age);
 
-          return {
-            boxData,
-            isUpdating: false,
-            isValid: true,
-          };
-        });
+        setBoxData(newBoxData);
+        setIsValid(true);
       })
       .catch(() => {
-        this.setState({ isValid: false });
+        setIsValid(false);
 
         Promise.resolve();
       });
 
     fetchedFinally.then(() => {
-      this.setState({ isUpdating: false });
+      setIsUpdating(false);
     });
   }
 
-  componentDidMount() {
-    this.getBoxData();
-  }
-
-  render() {
-    const { isUpdating, boxData, currentIndex, isValid, componentsToShow } = this.state;
-
-    return (
-      <App
-        isUpdating={ isUpdating }
-        isValid={ isValid }
-        boxData={ boxData }
-        currentIndex={ currentIndex }
-        componentsToShow= { componentsToShow}
-      />
-    );
-  }
-}
+  return (
+    <App
+      isUpdating={ isUpdating }
+      isValid={ isValid }
+      boxData={ boxData }
+      componentsToShow= { componentsToShow}
+    />
+  );
+};
 
 export default AppContainer;

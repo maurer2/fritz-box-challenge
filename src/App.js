@@ -60,7 +60,6 @@ App.propTypes = {
   isUpdating: PropTypes.bool,
   isValid: PropTypes.bool,
   showFullNumber: PropTypes.bool,
-  currentIndex: PropTypes.number,
   componentsToShow: PropTypes.arrayOf(PropTypes.string),
 };
 
