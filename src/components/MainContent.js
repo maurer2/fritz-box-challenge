@@ -46,11 +46,11 @@ const MainWrapper = styled.main`
   }
 `;
 
-const MainContent = ({ handleClickEvent, children }) => {
+const MainContent = ({ handleClick, children }) => {
   const transitionName = 'slide';
 
   return (
-    <MainWrapper onClick={ handleClickEvent } transitionName={ transitionName }>
+    <MainWrapper onClick={ handleClick } transitionName={ transitionName }>
       <CSSTransitionGroup
         component={ React.Fragment }
         transitionName={ transitionName }
@@ -68,7 +68,7 @@ const MainContent = ({ handleClickEvent, children }) => {
 
 MainContent.propTypes = {
   children: PropTypes.object,
-  handleClickEvent: PropTypes.func,
+  handleClick: PropTypes.func,
 };
 
 export default MainContent;

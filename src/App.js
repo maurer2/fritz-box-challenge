@@ -27,7 +27,6 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
 
   function handleClick() {
     const lastIndex = componentsToShow.length - 1;
-
     const newCurrentIndex = (currentIndex < lastIndex) ? currentIndex + 1 : 0;
 
     setCurrentIndex(newCurrentIndex);
@@ -42,7 +41,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
       <UpdateBar isUpdating={ isUpdating } isValid={ isValid } />
       { !isUpdating && !!isValid && (
         <>
-          <MainContent handleClickEvent={ handleClick }>
+          <MainContent handleClick={ handleClick }>
             <Slide title={ title } text={ text } key={ title } />
           </MainContent>
           <NavBar
