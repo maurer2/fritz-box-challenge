@@ -45,7 +45,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
             <Slide title={ title } text={ text } key={ title } />
           </MainContent>
           <NavBar
-            boxData={ boxData }
+            componentsToShow={ componentsToShow }
             currentIndex={ currentIndex }
             handleNavigation={ handleNavigation }
           />

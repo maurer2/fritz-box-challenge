@@ -110,7 +110,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { boxData, currentIndex, handleNavigation } = this.props;
+    const { componentsToShow, currentIndex, handleNavigation } = this.props;
     const { offset, width, height, showIndicator } = this.state;
     const transitionName = 'slide-vertically';
 
@@ -128,7 +128,7 @@ class Navbar extends Component {
           <NavBarWrapper reservedSpaceTop={ height }>
             { showIndicator && <Indicator offset={ offset } width={ width } height={ height } /> }
             <NavBarList isRow={ showIndicator }>
-              { Object.keys(boxData).map((entry, index) => (
+              { componentsToShow.map((entry, index) => (
                 <NavBarEntry
                   index={ index }
                   entry={ entry }
@@ -148,7 +148,7 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  boxData: PropTypes.object,
+  componentsToShow: PropTypes.arrayOf(PropTypes.string),
   handleNavigation: PropTypes.func,
   currentIndex: PropTypes.number,
 };
