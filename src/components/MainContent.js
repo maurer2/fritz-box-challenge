@@ -14,43 +14,76 @@ const MainWrapper = styled.main`
     transform: translateX(0) translateY(-50%);
   }
 
-  > .${props => props.transitionName}-leave {
+  // slide in right
+  > .slide-in-right-leave {
     opacity: 1;
     transform: translateX(0) translateY(-50%);
     transition: transform 500ms, opacity 500ms;
 
-    &.${props => props.transitionName}-leave-active {
+    &.slide-in-right-leave-active {
       opacity: 0.01;
       transform: translateX(-100%) translateY(-50%);
     }
   }
 
-  > .${props => props.transitionName}-enter {
+  > .slide-in-right-enter {
     opacity: 0.01;
     transform: translateX(100%) translateY(-50%);
     transition: transform 500ms, opacity 500ms;
 
-    &.${props => props.transitionName}-enter-active {
+    &.slide-in-right-enter-active {
       opacity: 1;
       transform: translateX(0) translateY(-50%);
     }
   }
 
-  > .${props => props.transitionName}-appear {
+  > .slide-in-right-appear {
     opacity: 0.01;
     transition: opacity 1000ms;
 
-    &.${props => props.transitionName}-appear-active {
+    &.slide-in-right-appear-active {
+      opacity: 1;
+    }
+  }
+
+  // slide in left
+  > .slide-in-left-leave {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+    transition: transform 500ms, opacity 500ms;
+
+    &.slide-in-left-leave-active {
+      opacity: 0.01;
+      transform: translateX(100%) translateY(-50%);
+    }
+  }
+
+  > .slide-in-left-enter {
+    opacity: 0.01;
+    transform: translateX(-100%) translateY(-50%);
+    transition: transform 500ms, opacity 500ms;
+
+    &.slide-in-left-enter-active {
+      opacity: 1;
+      transform: translateX(0) translateY(-50%);
+    }
+  }
+
+  > .slide-in-left-appear {
+    opacity: 0.01;
+    transition: opacity 1000ms;
+
+    &.slide-in-left-appear-active {
       opacity: 1;
     }
   }
 `;
 
-const MainContent = ({ handleClick, children }) => {
-  const transitionName = 'slide';
+const MainContent = ({ handleClick, children, slideInFromRight }) => {
+  const transitionName = slideInFromRight ? 'slide-in-right' : 'slide-in-left';
 
   return (
-    <MainWrapper onClick={ handleClick } transitionName={ transitionName }>
+    <MainWrapper onClick={ handleClick }>
       <CSSTransitionGroup
         component={ React.Fragment }
         transitionName={ transitionName }
@@ -67,8 +100,9 @@ const MainContent = ({ handleClick, children }) => {
 };
 
 MainContent.propTypes = {
-  children: PropTypes.object,
-  handleClick: PropTypes.func,
+  children: PropTypes.object.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  slideInFromRight: PropTypes.bool.isRequired,
 };
 
 export default MainContent;

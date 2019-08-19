@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
@@ -21,6 +21,14 @@ const AppWrapper = styled.div`
 
 const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [oldIndex, setOldIndex] = useState(0);
+  const [slideInFromRight, setSlideInFromRight] = useState(true);
+
+  useEffect(() => {
+    const newSlideInFromRight = (oldIndex <= currentIndex);
+
+    setSlideInFromRight(newSlideInFromRight);
+  }, [currentIndex, oldIndex, slideInFromRight]);
 
   const title = componentsToShow[currentIndex] || '';
   const text = boxData[title] || '';
@@ -29,10 +37,12 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
     const lastIndex = componentsToShow.length - 1;
     const newCurrentIndex = (currentIndex < lastIndex) ? currentIndex + 1 : 0;
 
+    setOldIndex(currentIndex);
     setCurrentIndex(newCurrentIndex);
   }
 
   function handleNavigation(index) {
+    setOldIndex(currentIndex);
     setCurrentIndex(index);
   }
 
@@ -41,7 +51,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
       <UpdateBar isUpdating={ isUpdating } isValid={ isValid } />
       { !isUpdating && !!isValid && (
         <>
-          <MainContent handleClick={ handleClick }>
+          <MainContent handleClick={ handleClick } slideInFromRight={ slideInFromRight }>
             <Slide title={ title } text={ text } key={ title } />
           </MainContent>
           <NavBar
@@ -59,7 +69,6 @@ App.propTypes = {
   boxData: PropTypes.object,
   isUpdating: PropTypes.bool,
   isValid: PropTypes.bool,
-  showFullNumber: PropTypes.bool,
   componentsToShow: PropTypes.arrayOf(PropTypes.string),
 };
 
