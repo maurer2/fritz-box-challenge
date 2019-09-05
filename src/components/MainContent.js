@@ -79,17 +79,17 @@ const MainWrapper = styled.main`
   }
 `;
 
-const MainContent = ({ handleClick, children, slideInFromRight }) => {
-  const transitionName = slideInFromRight ? 'slide-in-right' : 'slide-in-left';
+const MainContent = ({ handleClick, currentIndex, oldIndex, children }) => {
+  const slideInFromRight = currentIndex > oldIndex;
 
   return (
     <MainWrapper onClick={ handleClick }>
       <CSSTransitionGroup
         component={ React.Fragment }
-        transitionName={ transitionName }
+        transitionName={ slideInFromRight ? 'slide-in-right' : 'slide-in-left' }
         transitionEnterTimeout={ 500 }
         transitionLeaveTimeout={ 500 }
-        transitionAppearTimeout={ 1000 }
+        transitionAppearTimeout={ 100 }
         transitionLeave={ true }
         transitionAppear={ true }
       >
@@ -100,9 +100,10 @@ const MainContent = ({ handleClick, children, slideInFromRight }) => {
 };
 
 MainContent.propTypes = {
+  currentIndex: PropTypes.number.isRequired,
+  oldIndex: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
   handleClick: PropTypes.func.isRequired,
-  slideInFromRight: PropTypes.bool.isRequired,
 };
 
 export default MainContent;
