@@ -1,18 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainContent should match snapshot 1`] = `
-<MainWrapper
-  transitionName="slide"
->
+<MainWrapper>
   <CSSTransitionGroup
     component={Symbol(react.fragment)}
     transitionAppear={true}
-    transitionAppearTimeout={1000}
+    transitionAppearTimeout={100}
     transitionEnter={true}
     transitionEnterTimeout={500}
     transitionLeave={true}
     transitionLeaveTimeout={500}
-    transitionName="slide"
+    transitionName="slide-in-left"
   />
 </MainWrapper>
 `;

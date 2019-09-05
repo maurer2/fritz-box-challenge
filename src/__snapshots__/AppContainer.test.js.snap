@@ -3,10 +3,18 @@
 exports[`AppContainer should match snapshot 1`] = `
 <App
   boxData={Object {}}
-  currentIndex={0}
-  handleClickEvent={[Function]}
-  handleNavigation={[Function]}
-  isUpdating={false}
-  isValid={false}
+  componentsToShow={
+    Array [
+      "branding",
+      "firmware",
+      "model",
+      "restarts",
+      "technology",
+      "runtime",
+      "age",
+    ]
+  }
+  isUpdating={true}
+  isValid={true}
 />
 `;
