@@ -35,7 +35,7 @@ const SlideYTransition = styled.div`
   }
 `;
 
-const UpdateView = ({ isUpdating, isValid }) => {
+const UpdateBar = ({ isUpdating, isValid }) => {
   const transitionName = 'slide-vertically';
 
   return (
@@ -60,9 +60,9 @@ const UpdateView = ({ isUpdating, isValid }) => {
   );
 };
 
-UpdateView.propTypes = {
+UpdateBar.propTypes = {
   isUpdating: PropTypes.bool,
   isValid: PropTypes.bool,
 };
 
-export default UpdateView;
+export { UpdateBar };

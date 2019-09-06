@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from './libs/time';
-import { getMappedFields } from './libs/mapper';
-import { transformString as splitData, getDashPositonsInString, splitString as splitToArray } from './libs/splitter';
-import getData from './libs/modem';
-import parseData from './libs/parser';
+import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from '../../libs/time';
+import { getMappedFields } from '../../libs/mapper';
+import { transformString as splitData, getDashPositonsInString, splitString as splitToArray } from '../../libs/splitter';
+import getData from '../../libs/modem';
+import parseData from '../../libs/parser';
 
-import mockResponse from './mocks/box-iu7nl.txt';
+import mockResponse from '../../mocks/box-iu7nl.txt';
 
-import App from './App';
+import { App } from '../App';
 
 function mapBoxData(componentsToShow, boxData, runtime, age) {
   const mappedEntries = componentsToShow.reduce((total, current) => {
@@ -83,4 +83,4 @@ const AppContainer = () => {
   );
 };
 
-export default AppContainer;
+export { AppContainer };

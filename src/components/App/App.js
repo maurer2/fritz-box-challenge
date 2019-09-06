@@ -2,10 +2,10 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
-import Slide from './components/Slide';
-import UpdateBar from './components/UpdateBar';
-import NavBar from './components/NavBar';
-import MainContent from './components/MainContent';
+import { UpdateBar } from '../UpdateBar';
+import { MainContent } from '../MainContent';
+import { Slide } from '../Slide';
+import { NavBar } from '../NavBar';
 
 const AppWrapper = styled.div`
   position: relative;
@@ -69,4 +69,4 @@ App.propTypes = {
   componentsToShow: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default App;
+export { App };

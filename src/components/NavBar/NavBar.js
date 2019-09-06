@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { throttle } from 'lodash';
 
-import NavBarEntry from './NavBarEntry';
+import { NavBarEntry } from '../NavBarEntry';
 
 const SlideYTransition = styled.div`
   position: absolute;
@@ -58,7 +58,7 @@ const NavBarList = styled.ul`
   background: #BDBDBD;
 `;
 
-class Navbar extends Component {
+class NavBar extends Component {
   constructor(props) {
     super(props);
 
@@ -147,10 +147,10 @@ class Navbar extends Component {
   }
 }
 
-Navbar.propTypes = {
+NavBar.propTypes = {
   componentsToShow: PropTypes.arrayOf(PropTypes.string),
   handleNavigation: PropTypes.func,
   currentIndex: PropTypes.number,
 };
 
-export default Navbar;
+export { NavBar };

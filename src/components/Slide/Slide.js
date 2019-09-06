@@ -24,7 +24,7 @@ const TextWrapper = styled.div`
   color: #D2D2D2;
 `;
 
-const TextComponent = ({ title, text }) => (
+const Slide = ({ title, text }) => (
   <Wrapper>
     <TitleWrapper>
       { upperFirst(title) }
@@ -39,9 +39,9 @@ const TextComponent = ({ title, text }) => (
   </Wrapper>
 );
 
-TextComponent.propTypes = {
+Slide.propTypes = {
   text: PropTypes.string,
   title: PropTypes.string,
 };
 
-export default TextComponent;
+export { Slide };

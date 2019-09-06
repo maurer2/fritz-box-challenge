@@ -106,4 +106,4 @@ MainContent.propTypes = {
   handleClick: PropTypes.func.isRequired,
 };
 
-export default MainContent;
+export { MainContent };

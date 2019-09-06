@@ -53,4 +53,4 @@ NavBarEntry.propTypes = {
   isFullWidth: PropTypes.bool,
 };
 
-export default NavBarEntry;
+export { NavBarEntry };
