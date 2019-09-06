@@ -35,7 +35,7 @@ const SlideYTransition = styled.div`
   }
 `;
 
-const UpdateBar = ({ isUpdating, isValid }) => {
+const Wrapper = ({ children }) => {
   const transitionName = 'slide-vertically';
 
   return (
@@ -49,22 +49,36 @@ const UpdateBar = ({ isUpdating, isValid }) => {
         transitionLeaveTimeout={ 500 }
         transitionEnterTimeout={ 0 }
       >
-        { (isUpdating || !(isValid)) && (
-          <Text>
-            { !!(isUpdating) && <>Updating!</> }
-            { !(isValid) && <>Error!</> }
-          </Text>
-        )}
+        { children }
       </CSSTransitionGroup>
     </SlideYTransition>
   );
 };
 
-const { bool } = PropTypes;
+const UpdateBar = ({ isUpdating, isValid }) => {
+  const showUpdateBar = (isUpdating || !(isValid));
+
+  return (
+    <Wrapper>
+      { showUpdateBar && (
+        <Text>
+          { !!(isUpdating) && <>Updating!</> }
+          { !(isValid) && <>Error!</> }
+        </Text>
+      )}
+    </Wrapper>
+  );
+};
+
+const { bool, node } = PropTypes;
 
 UpdateBar.propTypes = {
   isUpdating: bool.isRequired,
   isValid: bool.isRequired,
+};
+
+Wrapper.propTypes = {
+  children: node,
 };
 
 export { UpdateBar };

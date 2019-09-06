@@ -58,6 +58,26 @@ const NavBarList = styled.ul`
   background: #BDBDBD;
 `;
 
+const Wrapper = ({ children }) => {
+  const transitionName = 'slide-vertically';
+
+  return (
+    <SlideYTransition transitionName={ transitionName }>
+      <CSSTransitionGroup
+        component={ React.Fragment }
+        transitionAppear={ true }
+        transitionEnter={ false }
+        transitionName={ transitionName }
+        transitionAppearTimeout={ 500 }
+        transitionLeaveTimeout={ 500 }
+        transitionEnterTimeout={ 0 }
+      >
+        { children }
+      </CSSTransitionGroup>
+    </SlideYTransition>
+  );
+};
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -112,47 +132,40 @@ class NavBar extends Component {
   render() {
     const { componentsToShow, currentIndex, handleNavigation } = this.props;
     const { offset, width, height, showIndicator } = this.state;
-    const transitionName = 'slide-vertically';
 
     return (
-      <SlideYTransition transitionName={ transitionName }>
-        <CSSTransitionGroup
-          component={ React.Fragment }
-          transitionAppear={ true }
-          transitionEnter={ false }
-          transitionName={ transitionName }
-          transitionAppearTimeout={ 500 }
-          transitionLeaveTimeout={ 500 }
-          transitionEnterTimeout={ 0 }
-        >
-          <NavBarWrapper reservedSpaceTop={ height }>
-            { showIndicator && <Indicator offset={ offset } width={ width } height={ height } /> }
-            <NavBarList isRow={ showIndicator }>
-              { componentsToShow.map((entry, index) => (
-                <NavBarEntry
-                  index={ index }
-                  entry={ entry }
-                  isActive={ currentIndex === index }
-                  handleNavigation={ handleNavigation }
-                  activeElementRef={ (currentIndex === index) ? this.activeElement : null }
-                  key={ index }
-                  isFullWidth={ !showIndicator }
-                />
-              ))}
-            </NavBarList>
-          </NavBarWrapper>
-        </CSSTransitionGroup>
-      </SlideYTransition>
+      <Wrapper>
+        <NavBarWrapper reservedSpaceTop={ height }>
+          { showIndicator && <Indicator offset={ offset } width={ width } height={ height } /> }
+          <NavBarList isRow={ showIndicator }>
+            { componentsToShow.map((entry, index) => (
+              <NavBarEntry
+                index={ index }
+                entry={ entry }
+                isActive={ currentIndex === index }
+                handleNavigation={ handleNavigation }
+                activeElementRef={ (currentIndex === index) ? this.activeElement : null }
+                key={ index }
+                isFullWidth={ !showIndicator }
+              />
+            ))}
+          </NavBarList>
+        </NavBarWrapper>
+      </Wrapper>
     );
   }
 }
 
-const { string, number, func } = PropTypes;
+const { string, number, func, node } = PropTypes;
 
 NavBar.propTypes = {
   componentsToShow: PropTypes.arrayOf(string).isRequired,
   handleNavigation: func.isRequired,
   currentIndex: number.isRequired,
+};
+
+Wrapper.prototype = {
+  children: node,
 };
 
 export { NavBar };
