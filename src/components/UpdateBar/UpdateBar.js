@@ -42,7 +42,7 @@ const UpdateBar = ({ isUpdating, isValid }) => {
     <SlideYTransition transitionName={ transitionName }>
       <CSSTransitionGroup
         component={ React.Fragment }
-        transitionAppear={ true }
+        transitionAppear={ false }
         transitionEnter={ false }
         transitionName={ transitionName }
         transitionAppearTimeout={ 500 }
@@ -60,9 +60,11 @@ const UpdateBar = ({ isUpdating, isValid }) => {
   );
 };
 
+const { bool } = PropTypes;
+
 UpdateBar.propTypes = {
-  isUpdating: PropTypes.bool,
-  isValid: PropTypes.bool,
+  isUpdating: bool.isRequired,
+  isValid: bool.isRequired,
 };
 
 export { UpdateBar };

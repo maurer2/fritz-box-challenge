@@ -39,9 +39,11 @@ const Slide = ({ title, text }) => (
   </Wrapper>
 );
 
+const { string } = PropTypes;
+
 Slide.propTypes = {
-  text: PropTypes.string,
-  title: PropTypes.string,
+  text: string.isRequired,
+  title: string.isRequired,
 };
 
 export { Slide };

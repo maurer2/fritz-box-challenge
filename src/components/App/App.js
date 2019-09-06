@@ -10,8 +10,6 @@ import { NavBar } from '../NavBar';
 const AppWrapper = styled.div`
   position: relative;
   display: flex;
-  margin: 0;
-  padding: 0;
   width: 100%;
   height: 100%;
   justify-content: stretch;
@@ -62,11 +60,13 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   );
 };
 
+const { bool, objectOf, string, arrayOf } = PropTypes;
+
 App.propTypes = {
-  boxData: PropTypes.object,
-  isUpdating: PropTypes.bool,
-  isValid: PropTypes.bool,
-  componentsToShow: PropTypes.arrayOf(PropTypes.string),
+  boxData: objectOf(string).isRequired,
+  isUpdating: bool.isRequired,
+  isValid: bool.isRequired,
+  componentsToShow: arrayOf(string).isRequired,
 };
 
 export { App };

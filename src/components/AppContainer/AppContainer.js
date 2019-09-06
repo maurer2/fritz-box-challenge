@@ -78,7 +78,7 @@ const AppContainer = () => {
       isUpdating={ isUpdating }
       isValid={ isValid }
       boxData={ boxData }
-      componentsToShow= { componentsToShow}
+      componentsToShow={ componentsToShow}
     />
   );
 };

@@ -147,10 +147,12 @@ class NavBar extends Component {
   }
 }
 
+const { string, number, func } = PropTypes;
+
 NavBar.propTypes = {
-  componentsToShow: PropTypes.arrayOf(PropTypes.string),
-  handleNavigation: PropTypes.func,
-  currentIndex: PropTypes.number,
+  componentsToShow: PropTypes.arrayOf(string).isRequired,
+  handleNavigation: func.isRequired,
+  currentIndex: number.isRequired,
 };
 
 export { NavBar };

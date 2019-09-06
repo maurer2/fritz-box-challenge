@@ -99,11 +99,13 @@ const MainContent = ({ handleClick, currentIndex, oldIndex, children }) => {
   );
 };
 
+const { number, func, node } = PropTypes;
+
 MainContent.propTypes = {
-  currentIndex: PropTypes.number.isRequired,
-  oldIndex: PropTypes.number.isRequired,
-  children: PropTypes.object.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  currentIndex: number.isRequired,
+  oldIndex: number.isRequired,
+  children: node.isRequired,
+  handleClick: func.isRequired,
 };
 
 export { MainContent };

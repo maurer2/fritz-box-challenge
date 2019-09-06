@@ -21,7 +21,8 @@ module.exports = {
       "exceptMethods": [
         "render"
       ]
-    }]
+    }],
+    "import/prefer-default-export": "off",
   },
   "settings": {
     "react": {

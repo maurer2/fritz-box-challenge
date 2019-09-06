@@ -7,5 +7,5 @@
     }],
     "@babel/preset-react"
   ],
-  "plugins": ["transform-export-extensions"],
+  "plugins": ["transform-export-extensions"]
 }

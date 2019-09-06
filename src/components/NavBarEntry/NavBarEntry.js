@@ -44,13 +44,23 @@ const NavBarEntry = ({ index, entry, isActive, handleNavigation, activeElementRe
   );
 };
 
+const { string, number, bool, func, shape, instanceOf } = PropTypes;
+
+NavBarEntry.defaultProps = {
+  activeElementRef: shape({
+    current: null,
+  }),
+};
+
 NavBarEntry.propTypes = {
-  index: PropTypes.number,
-  entry: PropTypes.string,
-  isActive: PropTypes.bool,
-  handleNavigation: PropTypes.func,
-  activeElementRef: PropTypes.any,
-  isFullWidth: PropTypes.bool,
+  index: number.isRequired,
+  entry: string.isRequired,
+  isActive: bool.isRequired,
+  handleNavigation: func.isRequired,
+  activeElementRef: shape({
+    current: instanceOf(HTMLElement),
+  }),
+  isFullWidth: bool.isRequired,
 };
 
 export { NavBarEntry };
