@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { useState, useRef, useEffect, createRef } from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
-import { throttle } from 'lodash';
+// import { throttle } from 'lodash';
 
 import { NavBarEntry } from '../NavBarEntry';
 
@@ -23,7 +23,7 @@ const SlideYTransition = styled.div`
 
   > .${props => props.transitionName}-leave {
     transform: translateY(0);
-    transition: transform 5000ms ease-in;
+    transition: transform 500ms ease-in;
 
     &.${props => props.transitionName}-leave-active {
       transform: translateY(100%);
@@ -65,7 +65,7 @@ const Wrapper = ({ children }) => {
     <SlideYTransition transitionName={ transitionName }>
       <CSSTransitionGroup
         component={ React.Fragment }
-        transitionAppear={ true }
+        transitionAppear={ false }
         transitionEnter={ false }
         transitionName={ transitionName }
         transitionAppearTimeout={ 500 }
@@ -78,83 +78,80 @@ const Wrapper = ({ children }) => {
   );
 };
 
-class NavBar extends Component {
-  constructor(props) {
-    super(props);
+const NavBar = ({ componentsToShow, currentIndex, handleNavigation }) => {
+  // const trottledResizeHandler = useRef({});
+  const [offset, setOffset] = useState(0);
+  const [width, setWidth] = useState('auto'); // prevent css transition on load
 
-    this.state = {
-      offset: 0,
-      width: 'auto',
-      height: 5,
-      showIndicator: true,
-    };
+  const oldIndex = useRef(-1);
+  const showIndicator = useRef(true);
+  const activeElement = createRef();
 
-    this.activeElement = React.createRef();
-    this.trottledResizeHandler = throttle(this.handleResize, 300);
-  }
+  const height = 5;
 
-  componentDidMount() {
-    this.updateIndicator();
-
-    window.addEventListener('resize', this.trottledResizeHandler.bind(this));
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.trottledResizeHandler.bind(this));
-  }
-
-  componentDidUpdate(prevProps) {
-    const activeElementHasChanged = this.props.currentIndex !== prevProps.currentIndex;
+  useEffect(() => {
+    // trottledResizeHandler.current = throttle(handleResize, 300);
+    const activeElementHasChanged = currentIndex !== oldIndex.current;
 
     if (activeElementHasChanged) {
-      this.updateIndicator();
+      oldIndex.current = currentIndex;
+
+      updateIndicator();
     }
-  }
 
-  handleResize() {
-    this.updateIndicator();
-  }
+    /*
+    return () => {
+    };
+    */
+  });
 
-  updateIndicator() {
-    if (this.activeElement.current == null) {
+  /*
+  function handleResize() {
+    updateIndicator();
+  }
+  */
+
+  function updateIndicator() {
+    if (activeElement.current == null) {
       return;
     }
-    const activeElementBoundingBox = this.activeElement.current.getBoundingClientRect();
+
+    const activeElementBB = activeElement.current.getBoundingClientRect();
     const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
 
-    this.setState({
-      offset: activeElementBoundingBox.x,
-      width: activeElementBoundingBox.width,
-      showIndicator: isLargeScreen,
-    });
+    setOffset(activeElementBB.x);
+    setWidth(activeElementBB.width);
+
+    showIndicator.current = isLargeScreen;
   }
 
-  render() {
-    const { componentsToShow, currentIndex, handleNavigation } = this.props;
-    const { offset, width, height, showIndicator } = this.state;
-
-    return (
-      <Wrapper>
-        <NavBarWrapper reservedSpaceTop={ height }>
-          { showIndicator && <Indicator offset={ offset } width={ width } height={ height } /> }
-          <NavBarList isRow={ showIndicator }>
-            { componentsToShow.map((entry, index) => (
-              <NavBarEntry
-                index={ index }
-                entry={ entry }
-                isActive={ currentIndex === index }
-                handleNavigation={ handleNavigation }
-                activeElementRef={ (currentIndex === index) ? this.activeElement : null }
-                key={ index }
-                isFullWidth={ !showIndicator }
-              />
-            ))}
-          </NavBarList>
-        </NavBarWrapper>
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <NavBarWrapper reservedSpaceTop={ height }>
+        { showIndicator && <Indicator
+          offset={ offset }
+          width={ width }
+          height={ height }
+        />
+        }
+        <NavBarList isRow={ showIndicator }>
+          { componentsToShow.map((entry, index) => (
+            <NavBarEntry
+              index={ index }
+              entry={ entry }
+              isActive={ currentIndex === index }
+              handleNavigation={ handleNavigation }
+              // only active element gets ref otherwise last child always active
+              activeElementRef={ (currentIndex === index) ? activeElement : null }
+              key={ index }
+              isFullWidth={ !showIndicator }
+            />
+          ))}
+        </NavBarList>
+      </NavBarWrapper>
+    </Wrapper>
+  );
+};
 
 const { string, number, func, node } = PropTypes;
 
@@ -164,8 +161,8 @@ NavBar.propTypes = {
   currentIndex: number.isRequired,
 };
 
-Wrapper.prototype = {
-  children: node,
+Wrapper.propTypes = {
+  children: node.isRequired,
 };
 
 export { NavBar };
