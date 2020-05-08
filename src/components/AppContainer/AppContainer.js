@@ -34,7 +34,9 @@ const AppContainer = () => {
   const componentsToShow = ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'];
 
   useEffect(() => {
+    // eslint-disable-next-line
     getBoxData();
+  // eslint-disable-next-line
   }, []);
 
   function getBoxData() {

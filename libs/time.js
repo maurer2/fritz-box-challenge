@@ -4,7 +4,7 @@ import {
   subDays,
   subMonths,
   subYears,
-  distanceInWords,
+  formatDistance,
 } from 'date-fns';
 
 const getHours = (dateString) => {
@@ -54,7 +54,7 @@ const getDateAsIsoDate = (dateString, nowDate) => {
 };
 
 const getTimeBetween = (dateIsoString, nowDate) => {
-  const time = distanceInWords(dateIsoString, nowDate);
+  const time = formatDistance(dateIsoString, nowDate);
 
   return time;
 };

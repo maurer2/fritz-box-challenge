@@ -51,7 +51,7 @@ test('getDateAsIsoDate returns correct iso string', () => {
   expect(getDateAsIsoDate(testDate, nowDate)).toBe(oldDate);
 });
 
-test('distanceInWords returns time span', () => {
+test('formatDistance returns time span', () => {
   const nowDate = format(new Date(2019, 1, 1));
   const oldDate = format(new Date(2018, 1, 1));
 
