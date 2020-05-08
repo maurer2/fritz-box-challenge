@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, createRef } from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
-// import { throttle } from 'lodash';
+import throttle from 'lodash.throttle';
 
 import { NavBarEntry } from '../NavBarEntry';
 
@@ -79,39 +79,49 @@ const Wrapper = ({ children }) => {
 };
 
 const NavBar = ({ componentsToShow, currentIndex, handleNavigation }) => {
-  // const trottledResizeHandler = useRef({});
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState('auto'); // prevent css transition on load
 
   const oldIndex = useRef(-1);
+
+  const offsetValue = useRef(offset);
+
+  useEffect(() => {
+    offsetValue.current = offset;
+  });
+
   const showIndicator = useRef(true);
   const activeElement = createRef();
 
   const height = 5;
 
   useEffect(() => {
-    // trottledResizeHandler.current = throttle(handleResize, 300);
     const activeElementHasChanged = currentIndex !== oldIndex.current;
 
     if (activeElementHasChanged) {
       oldIndex.current = currentIndex;
 
-      updateIndicator();
+      updateIndicator(offset);
     }
+  }, [currentIndex, oldIndex]);
 
-    /*
+  useEffect(() => {
+    const throttledResize = throttle(handleResize, 1000);
+
+    window.addEventListener('resize', throttledResize);
+
     return () => {
+      window.removeEventListener('resize', throttledResize);
     };
-    */
-  });
+  }, []);
 
-  /*
   function handleResize() {
-    updateIndicator();
+    updateIndicator(offset);
   }
-  */
 
-  function updateIndicator() {
+  function updateIndicator(offsetParam) {
+    console.log(oldIndex, width, offsetValue, offsetParam);
+
     if (activeElement.current == null) {
       return;
     }
