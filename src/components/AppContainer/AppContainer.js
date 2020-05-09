@@ -60,7 +60,8 @@ const AppContainer = () => {
         setBoxData(newBoxData);
         setIsValid(true);
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         setIsValid(false);
 
         Promise.resolve();

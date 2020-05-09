@@ -1,12 +1,16 @@
 import {
   format,
-  subHours,
-  subDays,
-  subMonths,
-  subYears,
   formatDistance,
   parseISO,
 } from 'date-fns';
+import {
+  subHours as subHoursFP,
+  subDays as subDaysFP,
+  subMonths as subMonthsFP,
+  subYears as subYearsFP,
+} from 'date-fns/fp';
+
+import { flow } from 'lodash';
 
 const getHours = (dateString) => {
   const hoursString = dateString.substring(0, 2);
@@ -44,14 +48,16 @@ const getDateAsIsoDate = (dateString, nowDate) => {
   const months = getMonths(dateString);
   const years = getYears(dateString);
 
-  let oldDate = parseISO(nowDate, { additionalDigits: 2 });
+  const oldDateISO = parseISO(nowDate, { additionalDigits: 2 });
 
-  oldDate = subHours(oldDate, hours);
-  oldDate = subDays(oldDate, days);
-  oldDate = subMonths(oldDate, months);
-  oldDate = subYears(oldDate, years);
+  const oldDateConverted = flow(
+    subHoursFP(hours),
+    subDaysFP(days),
+    subMonthsFP(months),
+    subYearsFP(years),
+  )(oldDateISO);
 
-  return format(oldDate, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+  return format(oldDateConverted, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 };
 
 const getTimeBetween = (dateIsoString, nowDate) => {
