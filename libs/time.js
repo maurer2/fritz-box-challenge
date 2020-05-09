@@ -5,6 +5,7 @@ import {
   subMonths,
   subYears,
   formatDistance,
+  parseISO,
 } from 'date-fns';
 
 const getHours = (dateString) => {
@@ -32,7 +33,7 @@ const getYears = (dateString) => {
 };
 
 const getDate = (dateAsIsoDate) => {
-  const newDate = format(dateAsIsoDate, 'DD.MM.YYYY-HH:MM');
+  const newDate = format(parseISO(dateAsIsoDate), 'dd.MM.yyyy-HH:MM');
 
   return newDate;
 };
@@ -43,23 +44,27 @@ const getDateAsIsoDate = (dateString, nowDate) => {
   const months = getMonths(dateString);
   const years = getYears(dateString);
 
-  let oldDate = nowDate;
+  let oldDate = parseISO(nowDate, { additionalDigits: 2 });
 
   oldDate = subHours(oldDate, hours);
   oldDate = subDays(oldDate, days);
   oldDate = subMonths(oldDate, months);
   oldDate = subYears(oldDate, years);
 
-  return format(oldDate);
+  return format(oldDate, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 };
 
 const getTimeBetween = (dateIsoString, nowDate) => {
-  const time = formatDistance(dateIsoString, nowDate);
+  const time = formatDistance(parseISO(dateIsoString), parseISO(nowDate));
 
   return time;
 };
 
-const getNowDate = () => format(new Date());
+const getNowDate = () => {
+  const formattedDate = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+
+  return formattedDate;
+};
 
 export {
   getHours,

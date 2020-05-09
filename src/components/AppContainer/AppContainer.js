@@ -33,12 +33,6 @@ const AppContainer = () => {
   const url = (process.env.REACT_APP_MODE === 'dev') ? mockResponse : '/cgi-bin/system_status';
   const componentsToShow = ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'];
 
-  useEffect(() => {
-    // eslint-disable-next-line
-    getBoxData();
-  // eslint-disable-next-line
-  }, []);
-
   function getBoxData() {
     setIsUpdating(true);
 
@@ -56,7 +50,9 @@ const AppContainer = () => {
         const nowDateString = getNowDate();
 
         const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);
+
         const runtime = getDate(dateIsoString);
+
         const age = getTimeBetween(dateIsoString, nowDateString);
 
         const newBoxData = mapBoxData(componentsToShow, mappedValues, runtime, age);
@@ -74,6 +70,12 @@ const AppContainer = () => {
       setIsUpdating(false);
     });
   }
+
+  useEffect(() => {
+    getBoxData();
+  // eslint-disable-next-line
+  }, []);
+
 
   return (
     <App
