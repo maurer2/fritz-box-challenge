@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
 import { UpdateBar } from '../UpdateBar';
@@ -7,15 +6,7 @@ import { MainContent } from '../MainContent';
 import { Slide } from '../Slide';
 import { NavBar } from '../NavBar';
 
-const AppWrapper = styled.div`
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: stretch;
-  align-self: stretch;
-  background: #080808;
-`;
+import * as Styles from './App.styles';
 
 const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,7 +29,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   }
 
   return (
-    <AppWrapper>
+    <Styles.AppWrapper>
       <UpdateBar isUpdating={isUpdating} isValid={isValid} />
       { !isUpdating && !!isValid && (
         <>
@@ -56,7 +47,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
           />
         </>
       )}
-    </AppWrapper>
+    </Styles.AppWrapper>
   );
 };
 

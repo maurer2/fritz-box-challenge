@@ -1,42 +1,22 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { upperFirst } from 'lodash';
 
-const Wrapper = styled.div`
-  user-select: none;
-  text-align: center;
-  will-change: transform;
-`;
-
-const TitleWrapper = styled.h2`
-  margin-top: 0;
-  margin-bottom: 2vh;
-  font-size: 5vw;
-  color: #F2F2F2;
-`;
-
-const TextWrapper = styled.div`
-  margin: 0;
-  font-size: ${(props) => Math.floor(100 / props.characterCount * 1.35)}vw;
-  line-height: 1;
-  font-weight: bold;
-  color: #D2D2D2;
-`;
+import * as Styles from './Slide.styles';
 
 const Slide = ({ title, text }) => (
-  <Wrapper>
-    <TitleWrapper>
+  <Styles.Wrapper>
+    <Styles.TitleWrapper>
       { upperFirst(title) }
-    </TitleWrapper>
-    <TextWrapper characterCount={text.length}>
+    </Styles.TitleWrapper>
+    <Styles.TextWrapper characterCount={text.length}>
       {text.split('').map((character, index) => (
         <span className="character" key={index}>
           { (index === 0) ? upperFirst(character) : character }
         </span>
       ))}
-    </TextWrapper>
-  </Wrapper>
+    </Styles.TextWrapper>
+  </Styles.Wrapper>
 );
 
 const { string } = PropTypes;

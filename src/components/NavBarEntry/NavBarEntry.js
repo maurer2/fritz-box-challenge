@@ -1,30 +1,8 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
-import upperFirst from 'lodash/upperFirst';
+import { upperFirst } from 'lodash';
 
-const NavBarEntryWrapper = styled.li`
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: ${(props) => (props.isFullWidth ? '33%' : '0')};
-`;
-
-const defaultButton = styled.button`
-  padding: 1rem;
-  appearance: none;
-  background: none;
-  outline: none;
-`;
-
-const NavBarButton = styled(defaultButton)`
-  display: block;
-  width: 100%;
-  border: 0;
-  font-size: 1rem;
-  color: ${(props) => (props.isActive ? '#080808' : '#121212')};
-  font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
-  transition: color 500ms;
-`;
+import * as Styles from './NavBarEntry.styles';
 
 const NavBarEntry = ({ index, entry, isActive, handleNavigation, activeElementRef, isFullWidth }) => {
   function handleClick() {
@@ -32,15 +10,15 @@ const NavBarEntry = ({ index, entry, isActive, handleNavigation, activeElementRe
   }
 
   return (
-    <NavBarEntryWrapper
+    <Styles.NavBarEntryWrapper
       onClick={handleClick}
       isFullWidth={isFullWidth}
       ref={activeElementRef}
     >
-      <NavBarButton isActive={isActive}>
+      <Styles.NavBarButton isActive={isActive}>
         { upperFirst(entry) }
-      </NavBarButton>
-    </NavBarEntryWrapper>
+      </Styles.NavBarButton>
+    </Styles.NavBarEntryWrapper>
   );
 };
 
