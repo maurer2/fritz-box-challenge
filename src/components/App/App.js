@@ -32,7 +32,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   return (
     <>
       <Normalize />
-      <Styles.AppWrapper>
+      <Styles.AppWrapper isUpdating={isUpdating}>
         <UpdateBar isUpdating={isUpdating} isValid={isValid} />
         { !isUpdating && !!isValid && (
           <>
