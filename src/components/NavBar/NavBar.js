@@ -63,15 +63,15 @@ const Wrapper = ({ children }) => {
   const transitionName = 'slide-vertically';
 
   return (
-    <SlideYTransition transitionName={ transitionName }>
+    <SlideYTransition transitionName={transitionName}>
       <CSSTransitionGroup
-        component={ React.Fragment }
-        transitionAppear={ false }
-        transitionEnter={ false }
-        transitionName={ transitionName }
-        transitionAppearTimeout={ 500 }
-        transitionLeaveTimeout={ 500 }
-        transitionEnterTimeout={ 0 }
+        component={React.Fragment}
+        transitionAppear={false}
+        transitionEnter={false}
+        transitionName={transitionName}
+        transitionAppearTimeout={500}
+        transitionLeaveTimeout={500}
+        transitionEnterTimeout={0}
       >
         { children }
       </CSSTransitionGroup>
@@ -128,24 +128,25 @@ const NavBar = ({ componentsToShow, currentIndex, handleNavigation }) => {
 
   return (
     <Wrapper>
-      <NavBarWrapper reservedSpaceTop={ height }>
-        { showIndicator && <Indicator
-          offset={ offset }
-          width={ width }
-          height={ height }
+      <NavBarWrapper reservedSpaceTop={height}>
+        { showIndicator && (
+        <Indicator
+          offset={offset}
+          width={width}
+          height={height}
         />
-        }
-        <NavBarList isRow={ showIndicator }>
+        )}
+        <NavBarList isRow={showIndicator}>
           { componentsToShow.map((entry, index) => (
             <NavBarEntry
-              index={ index }
-              entry={ entry }
-              isActive={ currentIndex === index }
-              handleNavigation={ handleNavigation }
+              index={index}
+              entry={entry}
+              isActive={currentIndex === index}
+              handleNavigation={handleNavigation}
               // only active element gets ref otherwise last child always active
-              activeElementRef={ (currentIndex === index) ? activeElement : null }
-              key={ index }
-              isFullWidth={ !showIndicator }
+              activeElementRef={(currentIndex === index) ? activeElement : null}
+              key={index}
+              isFullWidth={!showIndicator}
             />
           ))}
         </NavBarList>

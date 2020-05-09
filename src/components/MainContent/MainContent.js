@@ -83,15 +83,15 @@ const MainContent = ({ handleClick, currentIndex, oldIndex, children }) => {
   const slideInFromRight = currentIndex > oldIndex;
 
   return (
-    <MainWrapper onClick={ handleClick }>
+    <MainWrapper onClick={handleClick}>
       <CSSTransitionGroup
-        component={ React.Fragment }
-        transitionName={ slideInFromRight ? 'slide-in-right' : 'slide-in-left' }
-        transitionEnterTimeout={ 500 }
-        transitionLeaveTimeout={ 500 }
-        transitionAppearTimeout={ 100 }
-        transitionLeave={ true }
-        transitionAppear={ true }
+        component={React.Fragment}
+        transitionName={slideInFromRight ? 'slide-in-right' : 'slide-in-left'}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+        transitionAppearTimeout={100}
+        transitionLeave
+        transitionAppear
       >
         { children }
       </CSSTransitionGroup>

@@ -6,7 +6,7 @@ import upperFirst from 'lodash/upperFirst';
 const NavBarEntryWrapper = styled.li`
   flex-grow: 1;
   flex-shrink: 0;
-  flex-basis: ${props => (props.isFullWidth ? '33%' : '0')};
+  flex-basis: ${(props) => (props.isFullWidth ? '33%' : '0')};
 `;
 
 const defaultButton = styled.button`
@@ -21,8 +21,8 @@ const NavBarButton = styled(defaultButton)`
   width: 100%;
   border: 0;
   font-size: 1rem;
-  color: ${props => (props.isActive ? '#080808' : '#121212')};
-  font-weight: ${props => (props.isActive ? 'bold' : 'normal')};
+  color: ${(props) => (props.isActive ? '#080808' : '#121212')};
+  font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
   transition: color 500ms;
 `;
 
@@ -33,11 +33,11 @@ const NavBarEntry = ({ index, entry, isActive, handleNavigation, activeElementRe
 
   return (
     <NavBarEntryWrapper
-      onClick={ handleClick }
-      isFullWidth={ isFullWidth }
-      ref={ activeElementRef }
+      onClick={handleClick}
+      isFullWidth={isFullWidth}
+      ref={activeElementRef}
     >
-      <NavBarButton isActive={ isActive }>
+      <NavBarButton isActive={isActive}>
         { upperFirst(entry) }
       </NavBarButton>
     </NavBarEntryWrapper>

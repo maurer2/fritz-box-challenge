@@ -80,10 +80,10 @@ const AppContainer = () => {
 
   return (
     <App
-      isUpdating={ isUpdating }
-      isValid={ isValid }
-      boxData={ boxData }
-      componentsToShow={ componentsToShow}
+      isUpdating={isUpdating}
+      isValid={isValid}
+      boxData={boxData}
+      componentsToShow={componentsToShow}
     />
   );
 };

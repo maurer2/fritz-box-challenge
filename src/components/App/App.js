@@ -39,20 +39,20 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
 
   return (
     <AppWrapper>
-      <UpdateBar isUpdating={ isUpdating } isValid={ isValid } />
+      <UpdateBar isUpdating={isUpdating} isValid={isValid} />
       { !isUpdating && !!isValid && (
         <>
           <MainContent
-            handleClick={ handleClick }
-            currentIndex={ currentIndex }
-            oldIndex={ oldIndex.current }
+            handleClick={handleClick}
+            currentIndex={currentIndex}
+            oldIndex={oldIndex.current}
           >
-            <Slide title={ title } text={ text } key={ title } />
+            <Slide title={title} text={text} key={title} />
           </MainContent>
           <NavBar
-            componentsToShow={ componentsToShow }
-            currentIndex={ currentIndex }
-            handleNavigation={ handleNavigation }
+            componentsToShow={componentsToShow}
+            currentIndex={currentIndex}
+            handleNavigation={handleNavigation}
           />
         </>
       )}

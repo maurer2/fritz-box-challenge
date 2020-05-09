@@ -13,11 +13,11 @@ describe('MainContent', () => {
   const mockedHandleClick = jest.fn();
 
   const wrapper = shallow(<MainContent
-    onClick={ mockedHandleClick }
+    onClick={mockedHandleClick}
   />);
 
   const wrapperDeep = mount(<MainContent
-    onClick={ mockedHandleClick }
+    onClick={mockedHandleClick}
   />);
 
   it('should match snapshot', () => {

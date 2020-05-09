@@ -28,21 +28,21 @@ describe('NavBar', () => {
   });
 
   const wrapper = shallow(<NavBar
-    isUpdating={ false }
-    boxData={ boxData }
-    currentIndex={ 1 }
-    handleNavigation={ mockedHandleNavigation }
-    showIndicator= { true }
+    isUpdating={false}
+    boxData={boxData}
+    currentIndex={1}
+    handleNavigation={mockedHandleNavigation}
+    showIndicator
   />);
 
   wrapper.instance().updateIndicator = mockedUpdateIndicator;
 
   const wrapperDeep = mount(<NavBar
-    isUpdating={ false }
-    boxData={ boxData }
-    currentIndex={ 1 }
-    handleNavigation={ mockedHandleNavigation }
-    showIndicator= { true }
+    isUpdating={false}
+    boxData={boxData}
+    currentIndex={1}
+    handleNavigation={mockedHandleNavigation}
+    showIndicator
   />);
 
   it('should match snapshot', () => {

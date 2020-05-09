@@ -38,9 +38,9 @@ const mapValueToField = (fieldValue, index) => {
   };
 };
 
-const flatenArray = nestedArray => Array.prototype.concat(...nestedArray);
+const flatenArray = (nestedArray) => Array.prototype.concat(...nestedArray);
 
-const flattenMapValues = nestedValues => Object.assign(...nestedValues);
+const flattenMapValues = (nestedValues) => Object.assign(...nestedValues);
 
 const getMappedFields = (fieldValues) => {
   const mappedValues = fieldValues.map((fieldValue, index) => mapValueToField(fieldValue, index));

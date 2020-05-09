@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const getData = url => fetch(url)
+const getData = (url) => fetch(url)
   .then((response) => {
     if (!response.ok) {
       throw Error(response.statusText);
@@ -8,6 +8,6 @@ const getData = url => fetch(url)
 
     return response.text();
   })
-  .catch(error => Promise.reject(error));
+  .catch((error) => Promise.reject(error));
 
 export default getData;

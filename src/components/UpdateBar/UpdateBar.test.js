@@ -11,13 +11,13 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('UpdateBar', () => {
   const wrapper = shallow(<UpdateBar
-    isUpdating={ true }
-    isValid={ true }
+    isUpdating
+    isValid
   />);
 
   const wrapperDeep = mount(<UpdateBar
-    isUpdating={ true }
-    isValid={ true }
+    isUpdating
+    isValid
   />);
 
   it('should match snapshot', () => {

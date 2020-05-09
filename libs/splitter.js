@@ -1,6 +1,6 @@
-const splitString = stringValue => stringValue.split('-');
+const splitString = (stringValue) => stringValue.split('-');
 
-const isEmptyString = stringValue => stringValue.length === 0;
+const isEmptyString = (stringValue) => stringValue.length === 0;
 
 const hasCorrectNumberOfParts = (parts, numberOfParts) => parts.length === numberOfParts;
 
