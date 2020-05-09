@@ -57,6 +57,7 @@
     "regenerator-runtime": "^0.13.5",
     "sinon": "^9.0.2",
     "styled-components": "^5.1.0",
+    "styled-normalize": "^8.0.7",
     "uid": "^1.0.0"
   },
   "proxy": "http://fritz.box/",

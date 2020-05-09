@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { Normalize } from 'styled-normalize';
 
 import { UpdateBar } from '../UpdateBar';
 import { MainContent } from '../MainContent';
@@ -29,25 +30,28 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   }
 
   return (
-    <Styles.AppWrapper>
-      <UpdateBar isUpdating={isUpdating} isValid={isValid} />
-      { !isUpdating && !!isValid && (
-        <>
-          <MainContent
-            handleClick={handleClick}
-            currentIndex={currentIndex}
-            oldIndex={oldIndex.current}
-          >
-            <Slide title={title} text={text} key={title} />
-          </MainContent>
-          <NavBar
-            componentsToShow={componentsToShow}
-            currentIndex={currentIndex}
-            handleNavigation={handleNavigation}
-          />
-        </>
-      )}
-    </Styles.AppWrapper>
+    <>
+      <Normalize />
+      <Styles.AppWrapper>
+        <UpdateBar isUpdating={isUpdating} isValid={isValid} />
+        { !isUpdating && !!isValid && (
+          <>
+            <MainContent
+              handleClick={handleClick}
+              currentIndex={currentIndex}
+              oldIndex={oldIndex.current}
+            >
+              <Slide title={title} text={text} key={title} />
+            </MainContent>
+            <NavBar
+              componentsToShow={componentsToShow}
+              currentIndex={currentIndex}
+              handleNavigation={handleNavigation}
+            />
+          </>
+        )}
+      </Styles.AppWrapper>
+    </>
   );
 };
 
