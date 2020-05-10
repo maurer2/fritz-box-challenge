@@ -4,15 +4,16 @@ export const AppWrapper = styled.article`
   display: grid;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   grid-template-areas:
     "updateBar"
     "main"
     "navBar"
   ;
   grid-template-rows:
-    50px
+    auto
     1fr
-    50px
+    auto
   ;
   grid-template-columns: 1fr;
   background: #080808;
