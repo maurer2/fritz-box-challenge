@@ -7,7 +7,7 @@ import * as Styles from './NavBar.styles';
 
 import { NavBarEntry } from '../NavBarEntry';
 
-const Wrapper = ({ children }) => {
+const TransitionWrapper = ({ children }) => {
   const transitionName = 'slide-vertically';
 
   return (
@@ -28,7 +28,7 @@ const Wrapper = ({ children }) => {
 };
 
 const NavBar = ({ componentsToShow, currentIndex, handleNavigation }) => {
-  // const trottledResizeHandler = useRef({});
+  // const throttledResizeHandler = useRef({});
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState('auto'); // prevent css transition on load
 
@@ -39,7 +39,7 @@ const NavBar = ({ componentsToShow, currentIndex, handleNavigation }) => {
   const height = 5;
 
   useEffect(() => {
-    // trottledResizeHandler.current = throttle(handleResize, 300);
+    // throttledResizeHandler.current = throttle(handleResize, 300);
     const activeElementHasChanged = currentIndex !== oldIndex.current;
 
     if (activeElementHasChanged) {
@@ -47,11 +47,6 @@ const NavBar = ({ componentsToShow, currentIndex, handleNavigation }) => {
 
       updateIndicator();
     }
-
-    /*
-    return () => {
-    };
-    */
   });
 
   /*
@@ -75,31 +70,33 @@ const NavBar = ({ componentsToShow, currentIndex, handleNavigation }) => {
   }
 
   return (
-    <Wrapper>
-      <Styles.NavBarWrapper reservedSpaceTop={height}>
-        { showIndicator && (
-        <Styles.Indicator
-          offset={offset}
-          width={width}
-          height={height}
-        />
-        )}
-        <Styles.NavBarList isRow={showIndicator}>
-          { componentsToShow.map((entry, index) => (
-            <NavBarEntry
-              index={index}
-              entry={entry}
-              isActive={currentIndex === index}
-              handleNavigation={handleNavigation}
-              // only active element gets ref otherwise last child always active
-              activeElementRef={(currentIndex === index) ? activeElement : null}
-              key={index}
-              isFullWidth={!showIndicator}
-            />
-          ))}
-        </Styles.NavBarList>
-      </Styles.NavBarWrapper>
-    </Wrapper>
+    <Styles.NavBar>
+      <TransitionWrapper>
+        <Styles.NavBarWrapper reservedSpaceTop={height}>
+          { showIndicator.current && (
+          <Styles.Indicator
+            offset={offset}
+            width={width}
+            height={height}
+          />
+          )}
+          <Styles.NavBarList isRow={showIndicator}>
+            { componentsToShow.map((entry, index) => (
+              <NavBarEntry
+                index={index}
+                entry={entry}
+                isActive={currentIndex === index}
+                handleNavigation={handleNavigation}
+                // only active element gets ref otherwise last child always active
+                activeElementRef={(currentIndex === index) ? activeElement : null}
+                key={index}
+                isFullWidth={!showIndicator}
+              />
+            ))}
+          </Styles.NavBarList>
+        </Styles.NavBarWrapper>
+      </TransitionWrapper>
+    </Styles.NavBar>
   );
 };
 
@@ -111,7 +108,7 @@ NavBar.propTypes = {
   currentIndex: number.isRequired,
 };
 
-Wrapper.propTypes = {
+TransitionWrapper.propTypes = {
   children: node.isRequired,
 };
 

@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro';
 
-export const SlideYTransition = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+export const NavBar = styled.div`
+  grid-area: navBar;
+  position: relative;
+`;
 
+export const SlideYTransition = styled.div`
   > .${(props) => props.transitionName}-appear {
     transform: translateY(100%);
     transition: transform 500ms ease-out;
@@ -27,8 +27,7 @@ export const SlideYTransition = styled.div`
 
 export const NavBarWrapper = styled.footer`
   position: relative;
-  display: block;
-  padding-top: ${(props) => props.reservedSpaceTop}px;
+  padding-top: ${({ reservedSpaceTop }) => reservedSpaceTop}px;
 `;
 
 export const Indicator = styled.div`

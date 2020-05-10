@@ -5,25 +5,22 @@ export const AppWrapper = styled.article`
   width: 100%;
   height: 100%;
   grid-template-areas:
+    "updateBar"
     "main"
     "navBar"
   ;
   grid-template-rows:
+    50px
     1fr
-    auto
+    50px
   ;
   grid-template-columns: 1fr;
 
   ${({ isUpdating }) => isUpdating && `
-    grid-template-areas:
-      "updateBar"
-      "main"
-      "navBar"
-    ;
     grid-template-rows:
-      auto
+      50px
       1fr
-      auto
+      50px
     ;
   `}
   background: #080808;

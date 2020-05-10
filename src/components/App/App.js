@@ -35,21 +35,19 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
       <Styles.AppWrapper isUpdating={isUpdating}>
         <UpdateBar isUpdating={isUpdating} isValid={isValid} />
         { !isUpdating && !!isValid && (
-          <>
-            <MainContent
-              handleClick={handleClick}
-              currentIndex={currentIndex}
-              oldIndex={oldIndex.current}
-            >
-              <Slide title={title} text={text} key={title} />
-            </MainContent>
-            <NavBar
-              componentsToShow={componentsToShow}
-              currentIndex={currentIndex}
-              handleNavigation={handleNavigation}
-            />
-          </>
+          <MainContent
+            handleClick={handleClick}
+            currentIndex={currentIndex}
+            oldIndex={oldIndex.current}
+          >
+            <Slide title={title} text={text} key={title} />
+          </MainContent>
         )}
+        <NavBar
+          componentsToShow={componentsToShow}
+          currentIndex={currentIndex}
+          handleNavigation={handleNavigation}
+        />
       </Styles.AppWrapper>
     </>
   );

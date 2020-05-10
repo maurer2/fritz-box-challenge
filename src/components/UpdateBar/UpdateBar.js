@@ -8,19 +8,21 @@ const Wrapper = ({ children }) => {
   const transitionName = 'slide-vertically';
 
   return (
-    <Styles.SlideYTransition transitionName={transitionName}>
-      <CSSTransitionGroup
-        component={React.Fragment}
-        transitionAppear={false}
-        transitionEnter={false}
-        transitionName={transitionName}
-        transitionAppearTimeout={500}
-        transitionLeaveTimeout={500}
-        transitionEnterTimeout={0}
-      >
-        { children }
-      </CSSTransitionGroup>
-    </Styles.SlideYTransition>
+    <Styles.UpdateBar>
+      <Styles.SlideYTransition transitionName={transitionName}>
+        <CSSTransitionGroup
+          component={React.Fragment}
+          transitionAppear={false}
+          transitionEnter={false}
+          transitionName={transitionName}
+          transitionAppearTimeout={500}
+          transitionLeaveTimeout={500}
+          transitionEnterTimeout={0}
+        >
+          { children }
+        </CSSTransitionGroup>
+      </Styles.SlideYTransition>
+    </Styles.UpdateBar>
   );
 };
 

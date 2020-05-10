@@ -1,18 +1,11 @@
 import styled from 'styled-components/macro';
 
-export const Text = styled.div`
-  padding: 1rem;
-  text-align: center;
-  font-size: 1rem;
-  background: gray;
+export const UpdateBar = styled.aside`
+  grid-area: updateBar;
+  position: relative;
 `;
 
 export const SlideYTransition = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-
   > .${(props) => props.transitionName}-appear {
     transform: translateY(-100%);
     transition: transform 500ms ease-out;
@@ -30,4 +23,11 @@ export const SlideYTransition = styled.div`
       transform: translateY(-100%);
     }
   }
+`;
+
+export const Text = styled.div`
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  background: gray;
 `;
