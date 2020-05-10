@@ -15,13 +15,5 @@ export const AppWrapper = styled.article`
     50px
   ;
   grid-template-columns: 1fr;
-
-  ${({ isUpdating }) => isUpdating && `
-    grid-template-rows:
-      50px
-      1fr
-      50px
-    ;
-  `}
   background: #080808;
 `;

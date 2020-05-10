@@ -32,7 +32,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   return (
     <>
       <Normalize />
-      <Styles.AppWrapper isUpdating={isUpdating}>
+      <Styles.AppWrapper>
         <UpdateBar isUpdating={isUpdating} isValid={isValid} />
         { !isUpdating && !!isValid && (
           <MainContent
@@ -47,6 +47,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
           componentsToShow={componentsToShow}
           currentIndex={currentIndex}
           handleNavigation={handleNavigation}
+          isUpdating={isUpdating}
         />
       </Styles.AppWrapper>
     </>
