@@ -1,21 +1,14 @@
 import React, { useState, useRef } from 'react';
-import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
+import { Normalize } from 'styled-normalize';
 
 import { UpdateBar } from '../UpdateBar';
 import { MainContent } from '../MainContent';
 import { Slide } from '../Slide';
 import { NavBar } from '../NavBar';
+import { Theme } from '../Theme';
 
-const AppWrapper = styled.div`
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: stretch;
-  align-self: stretch;
-  background: #080808;
-`;
+import * as Styles from './App.styles';
 
 const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,10 +31,11 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   }
 
   return (
-    <AppWrapper>
-      <UpdateBar isUpdating={isUpdating} isValid={isValid} />
-      { !isUpdating && !!isValid && (
-        <>
+    <Theme>
+      <Normalize />
+      <Styles.AppWrapper>
+        <UpdateBar isUpdating={isUpdating} isValid={isValid} />
+        { !isUpdating && !!isValid && (
           <MainContent
             handleClick={handleClick}
             currentIndex={currentIndex}
@@ -49,14 +43,15 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
           >
             <Slide title={title} text={text} key={title} />
           </MainContent>
-          <NavBar
-            componentsToShow={componentsToShow}
-            currentIndex={currentIndex}
-            handleNavigation={handleNavigation}
-          />
-        </>
-      )}
-    </AppWrapper>
+        )}
+        <NavBar
+          componentsToShow={componentsToShow}
+          currentIndex={currentIndex}
+          handleNavigation={handleNavigation}
+          isUpdating={isUpdating}
+        />
+      </Styles.AppWrapper>
+    </Theme>
   );
 };
 
