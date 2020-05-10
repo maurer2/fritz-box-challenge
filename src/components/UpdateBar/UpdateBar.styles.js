@@ -5,7 +5,7 @@ export const UpdateBar = styled.aside`
   will-change: transform;
   transform: translateY(0);
   transition: transform 500ms ease-out;
-  background: gray;
+  background: ${({ theme }) => theme.secondaryColor};
   text-align: center;
 
   ${({ isUpdating }) => !isUpdating && css`

@@ -21,7 +21,7 @@ export const Indicator = styled.div`
   height: ${({ height }) => `${height}px`};
   transform: translateX(${({ offset }) => offset}px);
   transition: transform 500ms, width 500ms;
-  background: white;
+  background: ${({ theme }) => theme.primaryColor};
 `;
 
 export const NavBarList = styled.ul`
@@ -31,5 +31,5 @@ export const NavBarList = styled.ul`
   flex-wrap: ${({ isRow }) => (isRow ? 'no-wrap' : 'wrap')};
   justify-content: space-between;
   list-style: none;
-  background: #BDBDBD;
+  background: ${({ theme }) => theme.secondaryColor};
 `;

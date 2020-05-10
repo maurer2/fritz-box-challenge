@@ -16,5 +16,5 @@ export const AppWrapper = styled.article`
     auto
   ;
   grid-template-columns: 1fr;
-  background: #080808;
+  background: ${({ theme }) => theme.tertiaryColor};
 `;

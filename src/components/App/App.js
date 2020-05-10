@@ -6,6 +6,7 @@ import { UpdateBar } from '../UpdateBar';
 import { MainContent } from '../MainContent';
 import { Slide } from '../Slide';
 import { NavBar } from '../NavBar';
+import { Theme } from '../Theme';
 
 import * as Styles from './App.styles';
 
@@ -30,7 +31,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   }
 
   return (
-    <>
+    <Theme>
       <Normalize />
       <Styles.AppWrapper>
         <UpdateBar isUpdating={isUpdating} isValid={isValid} />
@@ -50,7 +51,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
           isUpdating={isUpdating}
         />
       </Styles.AppWrapper>
-    </>
+    </Theme>
   );
 };
 
