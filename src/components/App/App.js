@@ -30,12 +30,14 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
     setCurrentIndex(index);
   }
 
+  const showContent = !isUpdating && isValid;
+
   return (
     <Theme>
       <Normalize />
       <Styles.AppWrapper>
         <UpdateBar isUpdating={isUpdating} isValid={isValid} />
-        { !isUpdating && !!isValid && (
+        { showContent && (
           <MainContent
             handleClick={handleClick}
             currentIndex={currentIndex}
@@ -48,7 +50,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
           componentsToShow={componentsToShow}
           currentIndex={currentIndex}
           handleNavigation={handleNavigation}
-          isUpdating={isUpdating}
+          isUpdating={!showContent}
         />
       </Styles.AppWrapper>
     </Theme>
