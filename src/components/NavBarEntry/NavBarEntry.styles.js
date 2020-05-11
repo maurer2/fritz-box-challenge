@@ -6,17 +6,17 @@ export const NavBarEntryWrapper = styled.li`
 
 export const defaultButton = styled.button`
   padding: 1rem;
-  appearance: none;
   background: none;
   outline: none;
+  appearance: none;
 `;
 
 export const NavBarButton = styled(defaultButton)`
   display: block;
   width: 100%;
   border: 0;
-  font-size: 1rem;
   color: ${({ theme }) => theme.tertiaryColor};
   font-weight: ${({ isActive }) => (isActive ? 'bold' : 'normal')};
+  font-size: 1rem;
   transition: color 500ms;
 `;
