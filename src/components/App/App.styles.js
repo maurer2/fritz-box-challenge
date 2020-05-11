@@ -2,19 +2,17 @@ import styled from 'styled-components/macro';
 
 export const AppWrapper = styled.article`
   display: grid;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
   grid-template-areas:
     "updateBar"
     "main"
-    "navBar"
-  ;
+    "navBar";
   grid-template-rows:
     auto
     1fr
-    auto
-  ;
+    auto;
   grid-template-columns: 1fr;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   background: ${({ theme }) => theme.tertiaryColor};
 `;

@@ -2,12 +2,11 @@ import styled, { css } from 'styled-components/macro';
 
 export const UpdateBar = styled.aside`
   grid-area: updateBar;
-  will-change: transform;
+  text-align: center;
+  background: ${({ theme }) => theme.secondaryColor};
   transform: translateY(0);
   transition: transform 500ms ease-out;
-  background: ${({ theme }) => theme.secondaryColor};
-  text-align: center;
-
+  will-change: transform;
   ${({ isUpdating }) => !isUpdating && css`
     transform: translateY(-100%);
   `}
