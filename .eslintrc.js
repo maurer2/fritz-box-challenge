@@ -25,7 +25,7 @@ module.exports = {
     'comma-dangle': [2, 'always-multiline'],
     semi: ['error', 'always'],
     'react/jsx-uses-react': 'error',
-    'react/jsx-filename-extension': [1, { "extensions": [".js", ".jsx"] }],
+    'react/jsx-filename-extension': [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     'object-curly-newline': ['error', {
       ObjectPattern: 'never',
     }],
