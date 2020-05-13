@@ -1,10 +1,11 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   extends: [
     'airbnb',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
     'eslint:recommended',
     'plugin:react/recommended',
-    // 'plugin:react-hooks/recommended',
     'plugin:import/errors',
     'plugin:lodash/recommended',
   ],
@@ -12,6 +13,7 @@ module.exports = {
     'react',
     'react-hooks',
     'lodash',
+    '@typescript-eslint'
   ],
   env: {
     jest: true,
@@ -62,7 +64,9 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'lodash/import-scope': [2, 'member'],
-    'lodash/prefer-lodash-method': 'off'
+    'lodash/prefer-lodash-method': 'off',
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'error'
   },
   settings: {
     react: {
@@ -72,5 +76,12 @@ module.exports = {
       '.js',
       '.jsx',
     ],
+  },
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
   },
 };
