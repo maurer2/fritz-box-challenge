@@ -23,6 +23,9 @@
     "noEmit": true
   },
   "include": [
-    "src"
+    "./src/**/*",
+  ],
+  "files": [
+    "./src/types.d.ts"
   ]
 }

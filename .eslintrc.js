@@ -7,6 +7,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
     'plugin:lodash/recommended',
   ],
   plugins: [
@@ -66,7 +68,17 @@ module.exports = {
     'lodash/import-scope': [2, 'member'],
     'lodash/prefer-lodash-method': 'off',
     'no-useless-constructor': 'off',
-    '@typescript-eslint/no-useless-constructor': 'error'
+    '@typescript-eslint/no-useless-constructor': 'error',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        'js': 'never',
+        'js': 'never',
+        'ts': 'never',
+        'tsx': 'never'
+      }
+    ]
   },
   settings: {
     react: {
