@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { upperFirst } from 'lodash';
 
 import * as Styles from './NavBarEntry.styles';
+import * as Types from './NavBarEntry.types';
 
-const NavBarEntry = ({ index, entry, isActive, handleNavigation, activeElementRef, isFullWidth }) => {
-  function handleClick() {
+const NavBarEntry: React.FC<Types.NavBarEntryProps> = ({ index, entry, isActive, handleNavigation, activeElementRef, isFullWidth }) => {
+  function handleClick(): void {
     handleNavigation(index);
   }
 

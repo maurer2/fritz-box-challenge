@@ -18,7 +18,7 @@ const NavBar: React.FC<Types.NavBarProps> = ({ componentsToShow, currentIndex, h
 
   const height = 5;
 
-  function updateIndicator() {
+  function updateIndicator(): void {
     if (activeElement.current == null) {
       return;
     }

@@ -2,8 +2,9 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 import * as Styles from './UpdateBar.styles';
+import * as Types from './UpdateBar.types';
 
-const UpdateBar = ({ isUpdating, isValid }) => (
+const UpdateBar: React.FC<Types.UpdateBarProps> = ({ isUpdating, isValid }) => (
   <Styles.UpdateBar isUpdating={isUpdating}>
     { isUpdating ? (
       <Styles.Text>
