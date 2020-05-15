@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 // import { throttle } from 'lodash';
 import * as Styles from './NavBar.styles';
+import * as Types from './NavBar.types';
 
 import { NavBarEntry } from '../NavBarEntry';
 
-const NavBar = ({ componentsToShow, currentIndex, handleNavigation, isUpdating }) => {
+const NavBar: React.FC<Types.NavBarProps> = ({ componentsToShow, currentIndex, handleNavigation, isUpdating }) => {
   // const throttledResizeHandler = useRef({});
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState('auto'); // prevent css transition on load
@@ -16,12 +17,6 @@ const NavBar = ({ componentsToShow, currentIndex, handleNavigation, isUpdating }
   const activeElement = createRef();
 
   const height = 5;
-
-  /*
-  function handleResize() {
-    updateIndicator();
-  }
-  */
 
   function updateIndicator() {
     if (activeElement.current == null) {
