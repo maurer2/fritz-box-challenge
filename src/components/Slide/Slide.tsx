@@ -7,13 +7,11 @@ import * as Types from './Slide.types';
 
 const Slide: React.FC<Types.SlideProps> = ({ title, text }): JSX.Element => (
   <Styles.Wrapper>
-    <Styles.TitleWrapper>
-      { upperFirst(title) }
-    </Styles.TitleWrapper>
+    <Styles.TitleWrapper>{upperFirst(title)}</Styles.TitleWrapper>
     <Styles.TextWrapper characterCount={text.length}>
       {text.split('').map((character, index) => (
         <span className="character" key={index}>
-          { (index === 0) ? upperFirst(character) : character }
+          {index === 0 ? upperFirst(character) : character}
         </span>
       ))}
     </Styles.TextWrapper>

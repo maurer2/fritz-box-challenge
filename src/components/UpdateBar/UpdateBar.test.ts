@@ -10,15 +10,9 @@ import UpdateBar from './UpdateBar';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('UpdateBar', () => {
-  const wrapper = shallow(<UpdateBar
-    isUpdating
-    isValid
-  />);
+  const wrapper = shallow(<UpdateBar isUpdating isValid />);
 
-  const wrapperDeep = mount(<UpdateBar
-    isUpdating
-    isValid
-  />);
+  const wrapperDeep = mount(<UpdateBar isUpdating isValid />);
 
   it('should match snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot();

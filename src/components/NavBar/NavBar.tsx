@@ -7,7 +7,12 @@ import * as Types from './NavBar.types';
 
 import { NavBarEntry } from '../NavBarEntry';
 
-const NavBar: React.FC<Types.NavBarProps> = ({ componentsToShow, currentIndex, handleNavigation, isUpdating }): JSX.Element => {
+const NavBar: React.FC<Types.NavBarProps> = ({
+  componentsToShow,
+  currentIndex,
+  handleNavigation,
+  isUpdating,
+}): JSX.Element => {
   // const throttledResizeHandler = useRef({});
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState('auto'); // prevent css transition on load
@@ -45,22 +50,16 @@ const NavBar: React.FC<Types.NavBarProps> = ({ componentsToShow, currentIndex, h
 
   return (
     <Styles.NavBar reservedSpaceTop={height} isUpdating={isUpdating}>
-      { showIndicator.current && (
-      <Styles.Indicator
-        offset={offset}
-        width={width}
-        height={height}
-      />
-      )}
+      {showIndicator.current && <Styles.Indicator offset={offset} width={width} height={height} />}
       <Styles.NavBarList isRow={showIndicator}>
-        { componentsToShow.map((entry, index) => (
+        {componentsToShow.map((entry, index) => (
           <NavBarEntry
             index={index}
             entry={entry}
             isActive={currentIndex === index}
             handleNavigation={handleNavigation}
             // only active element gets ref otherwise last child always active
-            activeElementRef={(currentIndex === index) ? activeElement : null}
+            activeElementRef={currentIndex === index ? activeElement : null}
             key={index}
             isFullWidth={!showIndicator}
           />

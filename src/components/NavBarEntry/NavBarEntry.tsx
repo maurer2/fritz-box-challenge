@@ -5,7 +5,14 @@ import { upperFirst } from 'lodash';
 import * as Styles from './NavBarEntry.styles';
 import * as Types from './NavBarEntry.types';
 
-const NavBarEntry: React.FC<Types.NavBarEntryProps> = ({ index, entry, isActive, handleNavigation, activeElementRef, isFullWidth }): JSX.Element => {
+const NavBarEntry: React.FC<Types.NavBarEntryProps> = ({
+  index,
+  entry,
+  isActive,
+  handleNavigation,
+  activeElementRef,
+  isFullWidth,
+}): JSX.Element => {
   function handleClick(): void {
     handleNavigation(index);
   }
@@ -16,9 +23,7 @@ const NavBarEntry: React.FC<Types.NavBarEntryProps> = ({ index, entry, isActive,
       isFullWidth={isFullWidth}
       ref={activeElementRef}
     >
-      <Styles.NavBarButton isActive={isActive}>
-        { upperFirst(entry) }
-      </Styles.NavBarButton>
+      <Styles.NavBarButton isActive={isActive}>{upperFirst(entry)}</Styles.NavBarButton>
     </Styles.NavBarEntryWrapper>
   );
 };

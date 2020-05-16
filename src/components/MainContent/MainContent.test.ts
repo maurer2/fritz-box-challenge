@@ -12,13 +12,9 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('MainContent', () => {
   const mockedHandleClick = jest.fn();
 
-  const wrapper = shallow(<MainContent
-    onClick={mockedHandleClick}
-  />);
+  const wrapper = shallow(<MainContent onClick={mockedHandleClick} />);
 
-  const wrapperDeep = mount(<MainContent
-    onClick={mockedHandleClick}
-  />);
+  const wrapperDeep = mount(<MainContent onClick={mockedHandleClick} />);
 
   it('should match snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot();

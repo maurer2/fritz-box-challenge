@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from '../../libs/time';
 import { getMappedFields } from '../../libs/mapper';
-import { transformString as splitData, getDashPositionsInString, splitString as splitToArray } from '../../libs/splitter';
+import {
+  transformString as splitData,
+  getDashPositionsInString,
+  splitString as splitToArray,
+} from '../../libs/splitter';
 import getData from '../../libs/modem';
 import parseData from '../../libs/parser';
 
@@ -32,8 +36,16 @@ const AppContainer: React.FC = (): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [boxData, setBoxData] = useState({});
 
-  const url = (process.env.REACT_APP_MODE === 'dev') ? mockResponse : '/cgi-bin/system_status';
-  const componentsToShow = ['branding', 'firmware', 'model', 'restarts', 'technology', 'runtime', 'age'];
+  const url = process.env.REACT_APP_MODE === 'dev' ? mockResponse : '/cgi-bin/system_status';
+  const componentsToShow = [
+    'branding',
+    'firmware',
+    'model',
+    'restarts',
+    'technology',
+    'runtime',
+    'age',
+  ];
 
   function getBoxData(): void {
     setIsUpdating(true);
@@ -76,7 +88,7 @@ const AppContainer: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     getBoxData();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (

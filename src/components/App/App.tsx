@@ -11,7 +11,12 @@ import { Theme } from '../Theme';
 import * as Styles from './App.styles';
 import * as Types from './App.types';
 
-const App: React.FC<Types.AppProps> = ({ boxData, isUpdating, isValid, componentsToShow }): JSX.Element => {
+const App: React.FC<Types.AppProps> = ({
+  boxData,
+  isUpdating,
+  isValid,
+  componentsToShow,
+}): JSX.Element => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const oldIndex = useRef(0);
 
@@ -20,7 +25,7 @@ const App: React.FC<Types.AppProps> = ({ boxData, isUpdating, isValid, component
 
   function handleClick(): void {
     const lastIndex = componentsToShow.length - 1;
-    const newCurrentIndex = (currentIndex < lastIndex) ? currentIndex + 1 : 0;
+    const newCurrentIndex = currentIndex < lastIndex ? currentIndex + 1 : 0;
 
     oldIndex.current = currentIndex;
     setCurrentIndex(newCurrentIndex);
@@ -38,7 +43,7 @@ const App: React.FC<Types.AppProps> = ({ boxData, isUpdating, isValid, component
       <Normalize />
       <Styles.AppWrapper>
         <UpdateBar isUpdating={isUpdating} isValid={isValid} />
-        { showContent && (
+        {showContent && (
           <MainContent
             handleClick={handleClick}
             currentIndex={currentIndex}

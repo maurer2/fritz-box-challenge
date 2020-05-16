@@ -6,14 +6,12 @@ import * as Types from './UpdateBar.types';
 
 const UpdateBar: React.FC<Types.UpdateBarProps> = ({ isUpdating, isValid }): JSX.Element => (
   <Styles.UpdateBar isUpdating={isUpdating}>
-    { isUpdating ? (
-      <Styles.Text>
-        Updating!
-      </Styles.Text>
+    {isUpdating ? (
+      <Styles.Text>Updating!</Styles.Text>
     ) : (
       <Styles.Text>
-        { !isValid && <>Error!</> }
-        { !!isValid && <>Data loaded!</> }
+        {!isValid && <>Error!</>}
+        {!!isValid && <>Data loaded!</>}
       </Styles.Text>
     )}
   </Styles.UpdateBar>

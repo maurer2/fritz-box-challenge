@@ -11,9 +11,7 @@ export const theme = {
 };
 
 export const Theme: React.FC<{}> = ({ children }): JSX.Element => (
-  <ThemeProvider theme={theme}>
-    {children}
-  </ThemeProvider>
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 
 const { node } = PropTypes;

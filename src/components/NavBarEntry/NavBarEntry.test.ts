@@ -13,12 +13,14 @@ describe('NavBarEntry', () => {
   const mockedHandleNavigation = jest.fn();
   const spiedHandleClick = jest.spyOn(NavBarEntry.prototype, 'handleClick');
 
-  const wrapper = shallow(<NavBarEntry
-    index={5}
-    entry="model"
-    isActive={false}
-    handleNavigation={mockedHandleNavigation}
-  />);
+  const wrapper = shallow(
+    <NavBarEntry
+      index={5}
+      entry="model"
+      isActive={false}
+      handleNavigation={mockedHandleNavigation}
+    />
+  );
 
   it('should match snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
