@@ -61,7 +61,9 @@ const App: React.FC<Types.AppProps> = ({
   );
 };
 
-const { bool, objectOf, string, arrayOf } = PropTypes;
+const {
+  bool, objectOf, string, arrayOf,
+} = PropTypes;
 
 App.propTypes = {
   boxData: objectOf(string).isRequired,

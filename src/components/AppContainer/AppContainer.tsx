@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from '../../libs/time';
+import {
+  getTimeBetween, getDate, getDateAsIsoDate, getNowDate,
+} from '../../libs/time';
 import { getMappedFields } from '../../libs/mapper';
 import {
   transformString as splitData,
