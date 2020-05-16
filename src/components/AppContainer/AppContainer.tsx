@@ -27,7 +27,7 @@ function mapBoxData(componentsToShow: any, boxData: any, runtime: any, age: any)
   return mappedEntries;
 }
 
-const AppContainer: React.FC = () => {
+const AppContainer: React.FC = (): JSX.Element => {
   const [isUpdating, setIsUpdating] = useState(true);
   const [isValid, setIsValid] = useState(true);
   const [boxData, setBoxData] = useState({});

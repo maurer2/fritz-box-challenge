@@ -5,7 +5,7 @@ import { upperFirst } from 'lodash';
 import * as Styles from './Slide.styles';
 import * as Types from './Slide.types';
 
-const Slide: React.FC<Types.SlideProps> = ({ title, text }) => (
+const Slide: React.FC<Types.SlideProps> = ({ title, text }): JSX.Element => (
   <Styles.Wrapper>
     <Styles.TitleWrapper>
       { upperFirst(title) }

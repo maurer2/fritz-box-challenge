@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components/macro';
 
-import * as Types from './Theme.types';
+// import * as Types from './Theme.types';
 
 export const theme = {
   primaryColor: '#F2F2F2',
@@ -10,7 +10,7 @@ export const theme = {
   tertiaryColor: '#080808',
 };
 
-export const Theme: React.FC<Types.ThemeProps> = ({ children }) => (
+export const Theme: React.FC<{}> = ({ children }): JSX.Element => (
   <ThemeProvider theme={theme}>
     {children}
   </ThemeProvider>
