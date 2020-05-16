@@ -1,7 +1,5 @@
 module.exports = {
-  processors: [
-    'stylelint-processor-styled-components',
-  ],
+  processors: ['stylelint-processor-styled-components'],
   extends: [
     'stylelint-config-standard',
     'stylelint-config-styled-components',
@@ -21,8 +19,5 @@ module.exports = {
     ],
     'no-invalid-double-slash-comments': null,
   },
-  ignoreFiles: [
-    'node_modules',
-    '.lintstagedrc',
-  ],
+  ignoreFiles: ['node_modules', '.lintstagedrc'],
 };

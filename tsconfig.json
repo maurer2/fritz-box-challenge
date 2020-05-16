@@ -6,11 +6,7 @@
     "module": "esnext",
     "target": "es6",
     "jsx": "react",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,14 +18,7 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": [
-    "./src/**/*",
-  ],
-  "exclude": [
-    "./src/libs/*.js",
-    "./libs/*.js"
-  ],
-  "files": [
-    "./src/types.d.ts"
-  ]
+  "include": ["./src/**/*"],
+  "exclude": ["./src/libs/*.js", "./libs/*.js"],
+  "files": ["./src/types.d.ts"]
 }

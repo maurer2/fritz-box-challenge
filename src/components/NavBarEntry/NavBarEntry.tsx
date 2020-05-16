@@ -5,14 +5,12 @@ import { upperFirst } from 'lodash';
 import * as Styles from './NavBarEntry.styles';
 import * as Types from './NavBarEntry.types';
 
-const NavBarEntry: React.FC<Types.NavBarEntryProps> = ({
-  index,
+const NavBarEntry: React.FC<Types.NavBarEntryProps> = ({ index,
   entry,
   isActive,
   handleNavigation,
   activeElementRef,
-  isFullWidth,
-}): JSX.Element => {
+  isFullWidth }): JSX.Element => {
   function handleClick(): void {
     handleNavigation(index);
   }

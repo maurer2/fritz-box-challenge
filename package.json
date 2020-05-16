@@ -13,11 +13,12 @@
     "lint:js": "eslint 'libs/**/*.{js,jsx}'",
     "lint:js:fix": "npm run lint:js --fix",
     "lint:ts": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:ts:fix": "npm run lint:ts --fix",
+    "lint:ts:fix": "npm run lint:ts -- --fix",
     "start": "BROWSER=none REACT_APP_MODE=live react-scripts start",
     "start:dev": "BROWSER=none REACT_APP_MODE=dev react-scripts start",
     "test": "react-scripts test",
-    "test:lib": "jest './libs/*' --colors --coverage --watchAll"
+    "test:lib": "jest './libs/*' --colors --coverage --watchAll",
+    "mau": "prettier --write './**/*.{ts,tsx,js,jsx,json}'"
   },
   "dependencies": {
     "@babel/core": "^7.9.6",
@@ -42,6 +43,7 @@
     "lodash": "^4.17.15",
     "moxios": "^0.4.0",
     "node-fetch": "^2.6.0",
+    "prettier": "^2.0.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

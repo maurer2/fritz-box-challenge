@@ -8,9 +8,8 @@ export const NavBar = styled.nav`
   transform: translateY(0);
   transition: transform 500ms ease-out;
 
-  ${({ isUpdating }) =>
-    isUpdating &&
-    css`
+  ${({ isUpdating }) => isUpdating
+    && css`
       transform: translateY(100%);
     `}
 `;
@@ -19,8 +18,7 @@ export const Indicator = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${({ width }) =>
-    width === 'auto' ? width : `${width}px`}; // might cause layout thrashing
+  width: ${({ width }) => (width === 'auto' ? width : `${width}px`)}; // might cause layout thrashing
   height: ${({ height }) => `${height}px`};
   transform: translateX(${({ offset }) => offset}px);
   transition: transform 500ms, width 500ms;

@@ -7,12 +7,10 @@ import * as Types from './NavBar.types';
 
 import { NavBarEntry } from '../NavBarEntry';
 
-const NavBar: React.FC<Types.NavBarProps> = ({
-  componentsToShow,
+const NavBar: React.FC<Types.NavBarProps> = ({ componentsToShow,
   currentIndex,
   handleNavigation,
-  isUpdating,
-}): JSX.Element => {
+  isUpdating }): JSX.Element => {
   // const throttledResizeHandler = useRef({});
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState('auto'); // prevent css transition on load

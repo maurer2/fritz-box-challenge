@@ -1,13 +1,11 @@
-import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import React, { useRef, useState } from 'react';
 import { Normalize } from 'styled-normalize';
-
-import { UpdateBar } from '../UpdateBar';
 import { MainContent } from '../MainContent';
-import { Slide } from '../Slide';
 import { NavBar } from '../NavBar';
+import { Slide } from '../Slide';
 import { Theme } from '../Theme';
-
+import { UpdateBar } from '../UpdateBar';
 import * as Styles from './App.styles';
 import * as Types from './App.types';
 
