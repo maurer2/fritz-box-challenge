@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from '../../libs/time';
 import { getMappedFields } from '../../libs/mapper';
-import { transformString as splitData, getDashPositonsInString, splitString as splitToArray } from '../../libs/splitter';
+import { transformString as splitData, getDashPositionsInString, splitString as splitToArray } from '../../libs/splitter';
 import getData from '../../libs/modem';
 import parseData from '../../libs/parser';
 
@@ -42,7 +42,7 @@ const AppContainer: React.FC = () => {
       .then((data: any) => {
         const parsedTextString = parseData(data);
 
-        const dashPositions = getDashPositonsInString(parsedTextString);
+        const dashPositions = getDashPositionsInString(parsedTextString);
         const splitString = splitData(parsedTextString, dashPositions);
         const splitStringAsArray = splitToArray(splitString);
 
