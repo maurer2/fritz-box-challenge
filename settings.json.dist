@@ -1,0 +1,41 @@
+{
+  // stylelint
+  "stylelint.enable": true,
+  "css.validate": true,
+  "less.validate": false,
+  "scss.validate": true,
+  // eslint
+  "eslint.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": false, // done by prettier
+  "eslint.validate": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+  // editor
+  "editor.formatOnSave": false, // done by codeActionsOnSave in correct order
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSaveTimeout": 1000, // 750 default
+  // sequentially run
+  "editor.codeActionsOnSave": [
+    "source.organizeImports",
+    "source.fixAll.format", // prettier
+    "source.fixAll.eslint" // eslint
+    // "source.fixAll.stylelint" // stylelint
+  ],
+  "autoFix": true,
+  // language specific settings
+  "[javascript]": {
+    // "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    // "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    // "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    // "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
