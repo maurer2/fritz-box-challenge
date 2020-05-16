@@ -21,9 +21,8 @@ module.exports = {
     ],
     'no-invalid-double-slash-comments': null,
   },
-  ignoreFiles:
-    [
-      'node_modules',
-      '.lintstagedrc',
-    ],
+  ignoreFiles: [
+    'node_modules',
+    '.lintstagedrc',
+  ],
 };

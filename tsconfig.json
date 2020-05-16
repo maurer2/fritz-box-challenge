@@ -25,6 +25,10 @@
   "include": [
     "./src/**/*",
   ],
+  "exclude": [
+    "./src/libs/*.js",
+    "./libs/*.js"
+  ],
   "files": [
     "./src/types.d.ts"
   ]
