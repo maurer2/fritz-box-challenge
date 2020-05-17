@@ -11,12 +11,10 @@ import {
 } from '../../libs/splitter';
 import getData from '../../libs/modem';
 import parseData from '../../libs/parser';
-
 import mockResponse from '../../mocks/box-iu7nl.txt';
+import { App } from '../App';
 
 import * as Types from './AppContainer.types';
-
-import { App } from '../App';
 
 function mapBoxData(componentsToShow: any, boxData: any, runtime: any, age: any): Types.StringMap {
   const mappedEntries = componentsToShow.reduce((total: any, current: any) => {

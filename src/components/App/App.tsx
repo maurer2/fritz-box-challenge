@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import { Normalize } from 'styled-normalize';
+
 import { MainContent } from '../MainContent';
 import { NavBar } from '../NavBar';
 import { Slide } from '../Slide';
 import { Theme } from '../Theme';
 import { UpdateBar } from '../UpdateBar';
-import * as Styles from './App.styles';
+
 import * as Types from './App.types';
+import * as Styles from './App.styles';
 
 const App: React.FC<Types.AppProps> = ({
   boxData,

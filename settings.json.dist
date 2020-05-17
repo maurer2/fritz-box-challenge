@@ -15,10 +15,10 @@
   "editor.codeActionsOnSaveTimeout": 1000, // 750 default
   // sequentially run
   "editor.codeActionsOnSave": [
-    "source.organizeImports",
-    "source.fixAll.format", // prettier
-    "source.fixAll.eslint" // eslint
-    // "source.fixAll.stylelint" // stylelint
+    // "source.organizeImports",
+    "source.fixAll.format", // https://github.com/rohit-gohri/vscode-format-code-action
+    "source.fixAll.eslint", // eslint
+    "source.fixAll.stylelint" // stylelint
   ],
   "autoFix": true,
   // language specific settings

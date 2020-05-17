@@ -4,10 +4,10 @@ import React, {
 import PropTypes from 'prop-types';
 
 // import { throttle } from 'lodash';
+import { NavBarEntry } from '../NavBarEntry';
+
 import * as Styles from './NavBar.styles';
 import * as Types from './NavBar.types';
-
-import { NavBarEntry } from '../NavBarEntry';
 
 const NavBar: React.FC<Types.NavBarProps> = ({
   componentsToShow,

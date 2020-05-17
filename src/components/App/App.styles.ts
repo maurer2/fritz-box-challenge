@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 
 export const AppWrapper = styled.article`
   display: grid;
+
   grid-template-areas:
     'updateBar'
     'main'
@@ -14,5 +15,5 @@ export const AppWrapper = styled.article`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: ${({ theme }: any) => theme.tertiaryColor};
+  background: ${({ theme }: any) => theme.tertiarycolor};
 `;
