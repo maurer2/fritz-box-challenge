@@ -3,9 +3,17 @@ import PropTypes from 'prop-types';
 import { upperFirst } from 'lodash';
 
 import * as Styles from './NavBarEntry.styles';
+import * as Types from './NavBarEntry.types';
 
-const NavBarEntry = ({ index, entry, isActive, handleNavigation, activeElementRef, isFullWidth }) => {
-  function handleClick() {
+const NavBarEntry: React.FC<Types.NavBarEntryProps> = ({
+  index,
+  entry,
+  isActive,
+  handleNavigation,
+  activeElementRef,
+  isFullWidth,
+}): JSX.Element => {
+  function handleClick(): void {
     handleNavigation(index);
   }
 
@@ -15,14 +23,14 @@ const NavBarEntry = ({ index, entry, isActive, handleNavigation, activeElementRe
       isFullWidth={isFullWidth}
       ref={activeElementRef}
     >
-      <Styles.NavBarButton isActive={isActive}>
-        { upperFirst(entry) }
-      </Styles.NavBarButton>
+      <Styles.NavBarButton isActive={isActive}>{upperFirst(entry)}</Styles.NavBarButton>
     </Styles.NavBarEntryWrapper>
   );
 };
 
-const { string, number, bool, func, shape, instanceOf } = PropTypes;
+const {
+  string, number, bool, func, shape, instanceOf,
+} = PropTypes;
 
 NavBarEntry.defaultProps = {
   activeElementRef: shape({

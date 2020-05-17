@@ -1,12 +1,20 @@
-import React, { useState, useRef, useEffect, createRef } from 'react';
+import React, {
+  useState, useRef, useEffect, createRef,
+} from 'react';
 import PropTypes from 'prop-types';
 
 // import { throttle } from 'lodash';
-import * as Styles from './NavBar.styles';
-
 import { NavBarEntry } from '../NavBarEntry';
 
-const NavBar = ({ componentsToShow, currentIndex, handleNavigation, isUpdating }) => {
+import * as Styles from './NavBar.styles';
+import * as Types from './NavBar.types';
+
+const NavBar: React.FC<Types.NavBarProps> = ({
+  componentsToShow,
+  currentIndex,
+  handleNavigation,
+  isUpdating,
+}): JSX.Element => {
   // const throttledResizeHandler = useRef({});
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState('auto'); // prevent css transition on load
@@ -17,13 +25,7 @@ const NavBar = ({ componentsToShow, currentIndex, handleNavigation, isUpdating }
 
   const height = 5;
 
-  /*
-  function handleResize() {
-    updateIndicator();
-  }
-  */
-
-  function updateIndicator() {
+  function updateIndicator(): void {
     if (activeElement.current == null) {
       return;
     }
@@ -50,22 +52,16 @@ const NavBar = ({ componentsToShow, currentIndex, handleNavigation, isUpdating }
 
   return (
     <Styles.NavBar reservedSpaceTop={height} isUpdating={isUpdating}>
-      { showIndicator.current && (
-      <Styles.Indicator
-        offset={offset}
-        width={width}
-        height={height}
-      />
-      )}
+      {showIndicator.current && <Styles.Indicator offset={offset} width={width} height={height} />}
       <Styles.NavBarList isRow={showIndicator}>
-        { componentsToShow.map((entry, index) => (
+        {componentsToShow.map((entry, index) => (
           <NavBarEntry
             index={index}
             entry={entry}
             isActive={currentIndex === index}
             handleNavigation={handleNavigation}
             // only active element gets ref otherwise last child always active
-            activeElementRef={(currentIndex === index) ? activeElement : null}
+            activeElementRef={currentIndex === index ? activeElement : null}
             key={index}
             isFullWidth={!showIndicator}
           />
@@ -75,7 +71,9 @@ const NavBar = ({ componentsToShow, currentIndex, handleNavigation, isUpdating }
   );
 };
 
-const { string, number, func, bool } = PropTypes;
+const {
+  string, number, func, bool,
+} = PropTypes;
 
 NavBar.propTypes = {
   componentsToShow: PropTypes.arrayOf(string).isRequired,

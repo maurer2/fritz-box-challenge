@@ -17,7 +17,7 @@ const transformString = (stringValue, dashPositions) => {
   return `${stringBeforeSplitPoint}-${stringAfterSplitPoint}`;
 };
 
-const getDashPositonsInString = (stringValue) => {
+const getDashPositionsInString = (stringValue) => {
   const dashPositions = stringValue.split('').reduce((total, current, index) => {
     if (current === '-') {
       total.push(index);
@@ -33,5 +33,5 @@ export {
   isEmptyString,
   hasCorrectNumberOfParts,
   transformString,
-  getDashPositonsInString,
+  getDashPositionsInString,
 };

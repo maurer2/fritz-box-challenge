@@ -8,9 +8,10 @@ export const NavBar = styled.nav`
   transform: translateY(0);
   transition: transform 500ms ease-out;
 
-  ${({ isUpdating }) => isUpdating && css`
-    transform: translateY(100%);
-  `}
+  ${({ isUpdating }) => isUpdating
+    && css`
+      transform: translateY(100%);
+    `}
 `;
 
 export const Indicator = styled.div`

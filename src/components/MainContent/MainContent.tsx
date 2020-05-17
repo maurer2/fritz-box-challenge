@@ -3,8 +3,14 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 
 import * as Styles from './MainContent.styles';
+import * as Types from './MainContent.types';
 
-const MainContent = ({ handleClick, currentIndex, oldIndex, children }) => {
+const MainContent: React.FC<Types.MainContentProps> = ({
+  handleClick,
+  currentIndex,
+  oldIndex,
+  children,
+}): JSX.Element => {
   const slideInFromRight = currentIndex > oldIndex;
 
   return (
@@ -18,7 +24,7 @@ const MainContent = ({ handleClick, currentIndex, oldIndex, children }) => {
         transitionLeave
         transitionAppear
       >
-        { children }
+        {children}
       </CSSTransitionGroup>
     </Styles.MainWrapper>
   );

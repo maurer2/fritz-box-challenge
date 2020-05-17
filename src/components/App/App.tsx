@@ -1,31 +1,37 @@
-import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import React, { useRef, useState } from 'react';
 import { Normalize } from 'styled-normalize';
 
-import { UpdateBar } from '../UpdateBar';
 import { MainContent } from '../MainContent';
-import { Slide } from '../Slide';
 import { NavBar } from '../NavBar';
+import { Slide } from '../Slide';
 import { Theme } from '../Theme';
+import { UpdateBar } from '../UpdateBar';
 
+import * as Types from './App.types';
 import * as Styles from './App.styles';
 
-const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
+const App: React.FC<Types.AppProps> = ({
+  boxData,
+  isUpdating,
+  isValid,
+  componentsToShow,
+}): JSX.Element => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const oldIndex = useRef(0);
 
   const title = componentsToShow[currentIndex] || '';
   const text = boxData[title] || '';
 
-  function handleClick() {
+  function handleClick(): void {
     const lastIndex = componentsToShow.length - 1;
-    const newCurrentIndex = (currentIndex < lastIndex) ? currentIndex + 1 : 0;
+    const newCurrentIndex = currentIndex < lastIndex ? currentIndex + 1 : 0;
 
     oldIndex.current = currentIndex;
     setCurrentIndex(newCurrentIndex);
   }
 
-  function handleNavigation(index) {
+  function handleNavigation(index: number): void {
     oldIndex.current = currentIndex;
     setCurrentIndex(index);
   }
@@ -37,7 +43,7 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
       <Normalize />
       <Styles.AppWrapper>
         <UpdateBar isUpdating={isUpdating} isValid={isValid} />
-        { showContent && (
+        {showContent && (
           <MainContent
             handleClick={handleClick}
             currentIndex={currentIndex}
@@ -57,7 +63,9 @@ const App = ({ boxData, isUpdating, isValid, componentsToShow }) => {
   );
 };
 
-const { bool, objectOf, string, arrayOf } = PropTypes;
+const {
+  bool, objectOf, string, arrayOf,
+} = PropTypes;
 
 App.propTypes = {
   boxData: objectOf(string).isRequired,

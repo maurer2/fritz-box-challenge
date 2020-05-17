@@ -7,9 +7,10 @@ export const UpdateBar = styled.aside`
   transform: translateY(0);
   transition: transform 500ms ease-out;
   will-change: transform;
-  ${({ isUpdating }) => !isUpdating && css`
-    transform: translateY(-100%);
-  `}
+  ${({ isUpdating }) => !isUpdating
+    && css`
+      transform: translateY(-100%);
+    `}
 `;
 
 export const Text = styled.div`
