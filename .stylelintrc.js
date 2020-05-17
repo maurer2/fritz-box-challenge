@@ -24,6 +24,7 @@ module.exports = {
         ignore: ['after-comment', 'after-declaration', 'first-nested', 'inside-single-line-block'],
       },
     ],
+    'value-keyword-case': null,
   },
   ignoreFiles: ['node_modules', '.lintstagedrc'],
 };
