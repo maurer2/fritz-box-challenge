@@ -13,6 +13,7 @@ import getData from '../../libs/modem';
 import parseData from '../../libs/parser';
 import mockResponse from '../../mocks/box-iu7nl.txt';
 import { App } from '../App';
+import { DataProvider } from '../DataProvider';
 
 import * as Types from './AppContainer.types';
 
@@ -92,12 +93,14 @@ const AppContainer: React.FC = (): JSX.Element => {
   }, []);
 
   return (
-    <App
-      isUpdating={isUpdating}
-      isValid={isValid}
-      boxData={boxData}
-      componentsToShow={componentsToShow}
-    />
+    <DataProvider>
+      <App
+        isUpdating={isUpdating}
+        isValid={isValid}
+        boxData={boxData}
+        componentsToShow={componentsToShow}
+      />
+    </DataProvider>
   );
 };
 
