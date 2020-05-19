@@ -15,3 +15,9 @@ export interface BoxData {
   runtime: string;
   age: string;
 }
+
+export interface RootState {
+  boxData: BoxData;
+  isUpdating: boolean;
+  isValid: boolean;
+}
