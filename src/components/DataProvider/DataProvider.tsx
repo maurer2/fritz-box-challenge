@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -37,6 +37,8 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(true);
   const [boxData, setBoxData] = useState<Types.BoxData>({} as any);
+
+  const state = useRef({} as Types.RootState);
 
   const url = process.env.REACT_APP_MODE === 'dev' ? mockResponse : '/cgi-bin/system_status';
   const componentsToShow = [
@@ -94,10 +96,16 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
   }, []);
 
   useEffect(() => {
-    console.log(isUpdating, isValid, boxData);
+    state.current = {
+      boxData,
+      isUpdating,
+      isValid,
+    };
   }, [isUpdating, isValid, boxData]);
 
-  return <BoxDataContext.Provider boxData={boxData}>{children}</BoxDataContext.Provider>;
+  render {
+    return <BoxDataContext.Provider state={state.current}>{children}</BoxDataContext.Provider>;
+  }
 };
 
 const { node } = PropTypes;
