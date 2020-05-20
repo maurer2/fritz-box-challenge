@@ -2,9 +2,7 @@ export interface StringMap {
   [key: string]: string;
 }
 
-export interface DataProviderProps {
-  name: string;
-}
+export interface DataProviderProps {}
 
 export interface BoxData {
   branding: string;
@@ -20,4 +18,5 @@ export interface RootState {
   boxData: BoxData;
   isUpdating: boolean;
   isValid: boolean;
+  componentsToShow: string[];
 }

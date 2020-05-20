@@ -100,12 +100,11 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
       boxData,
       isUpdating,
       isValid,
+      componentsToShow,
     };
-  }, [isUpdating, isValid, boxData]);
+  }, [isUpdating, isValid, boxData, componentsToShow]);
 
-  render {
-    return <BoxDataContext.Provider state={state.current}>{children}</BoxDataContext.Provider>;
-  }
+  return <BoxDataContext.Provider value={state.current}>{children}</BoxDataContext.Provider>;
 };
 
 const { node } = PropTypes;
@@ -114,4 +113,4 @@ DataProvider.propTypes = {
   children: node.isRequired,
 };
 
-export { DataProvider };
+export { BoxDataContext, DataProvider };
