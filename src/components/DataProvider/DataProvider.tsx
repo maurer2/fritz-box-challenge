@@ -95,16 +95,18 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
     // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    state.current = {
-      boxData,
-      isUpdating,
-      isValid,
-      componentsToShow,
-    };
-  }, [isUpdating, isValid, boxData, componentsToShow]);
-
-  return <BoxDataContext.Provider value={state.current}>{children}</BoxDataContext.Provider>;
+  return (
+    <BoxDataContext.Provider
+      value={{
+        boxData,
+        isUpdating,
+        isValid,
+        componentsToShow,
+      }}
+    >
+      {children}
+    </BoxDataContext.Provider>
+  );
 };
 
 const { node } = PropTypes;
