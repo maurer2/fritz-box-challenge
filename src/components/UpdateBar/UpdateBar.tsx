@@ -8,10 +8,9 @@ import * as Types from './UpdateBar.types';
 
 const UpdateBar: React.FC<Types.UpdateBarProps> = (): JSX.Element => {
   const state = React.useContext(BoxDataContext);
-  console.log(state);
 
-  const isUpdating = true;
-  const isValid = true;
+  const isUpdating = 'isUpdating' in state ? state.isUpdating : true;
+  const isValid = 'isValid' in state ? state.isValid : false;
 
   return (
     <Styles.UpdateBar isUpdating={isUpdating}>

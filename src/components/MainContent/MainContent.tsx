@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
+
+import { Slide } from '../Slide';
+import { DataProvider, BoxDataContext } from '../DataProvider';
 
 import * as Styles from './MainContent.styles';
 import * as Types from './MainContent.types';
 
-const MainContent: React.FC<Types.MainContentProps> = ({
-  handleClick,
-  currentIndex,
-  oldIndex,
-  children,
-}): JSX.Element => {
-  const slideInFromRight = currentIndex > oldIndex;
+const MainContent: React.FC<Types.MainContentProps> = ({}): JSX.Element => {
+  const [currentIndex, setCurrentIndex] = useState(0 as number);
+  const oldIndex = useRef(0 as number);
+
+  const state = React.useContext(BoxDataContext);
+
+  const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];
+  const boxData = 'boxData' in state ? state.boxData : {};
+
+  const slideInFromRight = currentIndex > oldIndex.current;
+  const title = componentsToShow[currentIndex] || '';
+  const text = boxData[title] || '';
+
+  function handleClick(): void {
+    const lastIndex = componentsToShow.length - 1;
+    const newCurrentIndex = currentIndex < lastIndex ? currentIndex + 1 : 0;
+
+    oldIndex.current = currentIndex;
+    setCurrentIndex(newCurrentIndex);
+  }
+
+  function handleNavigation(index: number): void {
+    oldIndex.current = currentIndex;
+    setCurrentIndex(index);
+  }
 
   return (
     <Styles.MainWrapper onClick={handleClick}>
@@ -24,7 +45,7 @@ const MainContent: React.FC<Types.MainContentProps> = ({
         transitionLeave
         transitionAppear
       >
-        {children}
+        <Slide title={title} text={text} key={title} />
       </CSSTransitionGroup>
     </Styles.MainWrapper>
   );

@@ -4,7 +4,6 @@ import { Normalize } from 'styled-normalize';
 
 import { MainContent } from '../MainContent';
 import { NavBar } from '../NavBar';
-import { Slide } from '../Slide';
 import { Theme } from '../Theme';
 import { UpdateBar } from '../UpdateBar';
 import { DataProvider, BoxDataContext } from '../DataProvider';
@@ -13,18 +12,26 @@ import * as Types from './App.types';
 import * as Styles from './App.styles';
 
 const App: React.FC = (): JSX.Element => {
-  const boxData = {};
-  const isUpdating = true;
-  const isValid = true;
+  function handleClick(): void {
+    const lastIndex = componentsToShow.length - 1;
+    const newCurrentIndex = currentIndex < lastIndex ? currentIndex + 1 : 0;
 
-  const showContent = false;
+    oldIndex.current = currentIndex;
+    setCurrentIndex(newCurrentIndex);
+  }
+
+  function handleNavigation(index: number): void {
+    oldIndex.current = currentIndex;
+    setCurrentIndex(index);
+  }
 
   return (
     <DataProvider>
       <Theme>
         <Normalize />
         <Styles.AppWrapper>
-          <UpdateBar isUpdating={isUpdating} isValid={isValid} />
+          <UpdateBar />
+          <MainContent />
         </Styles.AppWrapper>
       </Theme>
     </DataProvider>
