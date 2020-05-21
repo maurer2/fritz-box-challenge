@@ -19,7 +19,7 @@ const MainContent: React.FC<Types.MainContentProps> = ({}): JSX.Element => {
 
   const slideInFromRight = currentIndex > oldIndex.current;
   const title = componentsToShow[currentIndex] || '';
-  const text = boxData[title] || '';
+  const text = (boxData as any)[title] || '';
 
   function handleClick(): void {
     const lastIndex = componentsToShow.length - 1;
@@ -27,11 +27,6 @@ const MainContent: React.FC<Types.MainContentProps> = ({}): JSX.Element => {
 
     oldIndex.current = currentIndex;
     setCurrentIndex(newCurrentIndex);
-  }
-
-  function handleNavigation(index: number): void {
-    oldIndex.current = currentIndex;
-    setCurrentIndex(index);
   }
 
   return (

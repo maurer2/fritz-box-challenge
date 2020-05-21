@@ -32,6 +32,7 @@ const App: React.FC = (): JSX.Element => {
         <Styles.AppWrapper>
           <UpdateBar />
           <MainContent />
+          <NavBar />
         </Styles.AppWrapper>
       </Theme>
     </DataProvider>

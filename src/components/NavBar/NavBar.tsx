@@ -5,25 +5,33 @@ import PropTypes from 'prop-types';
 
 // import { throttle } from 'lodash';
 import { NavBarEntry } from '../NavBarEntry';
+import { DataProvider, BoxDataContext } from '../DataProvider';
 
 import * as Styles from './NavBar.styles';
 import * as Types from './NavBar.types';
 
-const NavBar: React.FC<Types.NavBarProps> = ({
-  componentsToShow,
-  currentIndex,
-  handleNavigation,
-  isUpdating,
-}): JSX.Element => {
+const NavBar: React.FC<Types.NavBarProps> = ({}): JSX.Element => {
   // const throttledResizeHandler = useRef({});
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState('auto'); // prevent css transition on load
+
+  const state = React.useContext(BoxDataContext);
 
   const oldIndex = useRef(-1);
   const showIndicator = useRef(true);
   const activeElement = createRef();
 
   const height = 5;
+
+  const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];
+  const currentIndex = 0;
+
+  const isUpdating = 'isUpdating' in state ? state.isUpdating : true;
+
+  function handleNavigation(index: number): void {
+    // oldIndex.current = currentIndex;
+    // setCurrentIndex(index);
+  }
 
   function updateIndicator(): void {
     if (activeElement.current == null) {
