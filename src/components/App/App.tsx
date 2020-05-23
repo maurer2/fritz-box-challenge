@@ -6,7 +6,7 @@ import { MainContent } from '../MainContent';
 import { NavBar } from '../NavBar';
 import { Theme } from '../Theme';
 import { UpdateBar } from '../UpdateBar';
-import { DataProvider, BoxDataContext } from '../DataProvider';
+import { DataProvider } from '../DataProvider';
 
 import * as Types from './App.types';
 import * as Styles from './App.styles';

@@ -18,13 +18,17 @@ const MainContent: React.FC<Types.MainContentProps> = ({}): JSX.Element => {
   const boxData = 'boxData' in state ? state.boxData : {};
   const currentIndex = 'currentIndex' in state ? state.currentIndex : 0;
 
+  console.log('currentIndex' in state);
+
   const slideInFromRight = currentIndex > oldIndex.current;
   const title = componentsToShow[currentIndex] || '';
   const text = (boxData as any)[title] || '';
 
   function handleClick(): void {
     const lastIndex = componentsToShow.length - 1;
-    const newCurrentIndex = currentIndex < lastIndex ? currentIndex + 1 : 0;
+    // const newCurrentIndex = currentIndex < lastIndex ? currentIndex + 1 : 0;
+
+    const newCurrentIndex = Math.random();
 
     oldIndex.current = currentIndex;
     state.updateCurrentIndex(newCurrentIndex);
