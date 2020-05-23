@@ -38,6 +38,7 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
   const [isValid, setIsValid] = useState<boolean>(true);
   const [boxData, setBoxData] = useState<Types.BoxData>({} as any);
   const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const url = process.env.REACT_APP_MODE === 'dev' ? mockResponse : '/cgi-bin/system_status';
   const componentsToShow = [
@@ -49,6 +50,11 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
     'runtime',
     'age',
   ];
+
+  function handleActiveIndex(newActiveIndex: number): void {
+    console.log(newActiveIndex);
+    setActiveIndex(newActiveIndex);
+  }
 
   function getBoxData(): void {
     setIsUpdating(true);
@@ -82,6 +88,8 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
           isUpdating: false,
           isValid: true,
           componentsToShow,
+          currentIndex: 0,
+          updateCurrentIndex: handleActiveIndex,
         });
       })
       .catch((error: Error) => {

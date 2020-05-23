@@ -9,13 +9,14 @@ import * as Styles from './MainContent.styles';
 import * as Types from './MainContent.types';
 
 const MainContent: React.FC<Types.MainContentProps> = ({}): JSX.Element => {
-  const [currentIndex, setCurrentIndex] = useState(0 as number);
+  // const [currentIndex, setCurrentIndex] = useState(0 as number);
   const oldIndex = useRef(0 as number);
 
   const state = React.useContext(BoxDataContext);
 
   const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];
   const boxData = 'boxData' in state ? state.boxData : {};
+  const currentIndex = 'currentIndex' in state ? state.currentIndex : 0;
 
   const slideInFromRight = currentIndex > oldIndex.current;
   const title = componentsToShow[currentIndex] || '';
@@ -26,7 +27,7 @@ const MainContent: React.FC<Types.MainContentProps> = ({}): JSX.Element => {
     const newCurrentIndex = currentIndex < lastIndex ? currentIndex + 1 : 0;
 
     oldIndex.current = currentIndex;
-    setCurrentIndex(newCurrentIndex);
+    state.updateCurrentIndex(newCurrentIndex);
   }
 
   return (

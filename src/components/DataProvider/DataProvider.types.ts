@@ -19,6 +19,8 @@ export interface RootState {
   isUpdating: boolean;
   isValid: boolean;
   componentsToShow: string[];
+  currentIndex: number;
+  updateCurrentIndex: (number: number) => void;
 }
 
 export type RootStateInitial = Partial<RootState>;
