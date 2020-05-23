@@ -20,3 +20,5 @@ export interface RootState {
   isValid: boolean;
   componentsToShow: string[];
 }
+
+export type RootStateInitial = Partial<RootState>;

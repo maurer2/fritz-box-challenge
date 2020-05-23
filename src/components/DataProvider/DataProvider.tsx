@@ -16,7 +16,7 @@ import mockResponse from '../../mocks/box-iu7nl.txt';
 
 import * as Types from './DataProvider.types';
 
-const BoxDataContext = React.createContext({} as Types.RootState);
+const BoxDataContext = React.createContext({} as Types.RootStateInitial);
 
 function mapBoxData(componentsToShow: any, boxData: any, runtime: any, age: any): Types.BoxData {
   const mappedEntries = componentsToShow.reduce((total: any, current: any) => {
@@ -37,8 +37,7 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(true);
   const [boxData, setBoxData] = useState<Types.BoxData>({} as any);
-
-  const state = useRef({} as Types.RootState);
+  const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
 
   const url = process.env.REACT_APP_MODE === 'dev' ? mockResponse : '/cgi-bin/system_status';
   const componentsToShow = [
@@ -77,6 +76,13 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
 
         setBoxData(newBoxData);
         setIsValid(true);
+
+        setState({
+          boxData: newBoxData,
+          isUpdating: false,
+          isValid: true,
+          componentsToShow,
+        });
       })
       .catch((error: Error) => {
         console.log(error);
@@ -95,18 +101,7 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
     // eslint-disable-next-line
   }, []);
 
-  return (
-    <BoxDataContext.Provider
-      value={{
-        boxData,
-        isUpdating,
-        isValid,
-        componentsToShow,
-      }}
-    >
-      {children}
-    </BoxDataContext.Provider>
-  );
+  return <BoxDataContext.Provider value={state}>{children}</BoxDataContext.Provider>;
 };
 
 const { node } = PropTypes;
