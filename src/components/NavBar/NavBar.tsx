@@ -11,11 +11,10 @@ import * as Styles from './NavBar.styles';
 import * as Types from './NavBar.types';
 
 const NavBar: React.FC<Types.NavBarProps> = ({}): JSX.Element => {
-  // const throttledResizeHandler = useRef({});
+  const state = React.useContext(BoxDataContext);
+
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState('auto'); // prevent css transition on load
-
-  const state = React.useContext(BoxDataContext);
 
   const oldIndex = useRef(-1);
   const showIndicator = useRef(true);
@@ -24,13 +23,22 @@ const NavBar: React.FC<Types.NavBarProps> = ({}): JSX.Element => {
   const height = 5;
 
   const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];
-  const currentIndex = 0;
+  const currentIndex = 'currentIndex' in state ? state.currentIndex : 0;
 
   const isUpdating = 'isUpdating' in state ? state.isUpdating : true;
 
-  function handleNavigation(index: number): void {
-    // oldIndex.current = currentIndex;
+  function handleNavigation(newCurrentIndex: number): void {
+    oldIndex.current = currentIndex;
+
+    state.updateCurrentIndex(newCurrentIndex);
     // setCurrentIndex(index);
+  }
+
+  function handleClick(): void {
+    // const indexOfLastEntry = componentsToShow.length - 1;
+    // const newCurrentIndex = currentIndex < indexOfLastEntry ? currentIndex + 1 : 0;
+    // oldIndex.current = currentIndex;
+    // state.updateCurrentIndex(newCurrentIndex);
   }
 
   function updateIndicator(): void {

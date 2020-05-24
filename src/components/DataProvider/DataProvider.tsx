@@ -99,7 +99,6 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
   }, []);
 
   useEffect(() => {
-    console.log('state');
     setState({
       boxData,
       isUpdating,
