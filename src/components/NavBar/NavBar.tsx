@@ -5,12 +5,11 @@ import PropTypes from 'prop-types';
 
 // import { throttle } from 'lodash';
 import { NavBarEntry } from '../NavBarEntry';
-import { DataProvider, BoxDataContext } from '../DataProvider';
+import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './NavBar.styles';
-import * as Types from './NavBar.types';
 
-const NavBar: React.FC<Types.NavBarProps> = ({}): JSX.Element => {
+const NavBar: React.FC<{}> = (): JSX.Element => {
   const state = React.useContext(BoxDataContext);
 
   const [offset, setOffset] = useState(0);
@@ -34,13 +33,6 @@ const NavBar: React.FC<Types.NavBarProps> = ({}): JSX.Element => {
     // setCurrentIndex(index);
   }
 
-  function handleClick(): void {
-    // const indexOfLastEntry = componentsToShow.length - 1;
-    // const newCurrentIndex = currentIndex < indexOfLastEntry ? currentIndex + 1 : 0;
-    // oldIndex.current = currentIndex;
-    // state.updateCurrentIndex(newCurrentIndex);
-  }
-
   function updateIndicator(): void {
     if (activeElement.current == null) {
       return;
@@ -56,7 +48,6 @@ const NavBar: React.FC<Types.NavBarProps> = ({}): JSX.Element => {
   }
 
   useEffect(() => {
-    // throttledResizeHandler.current = throttle(handleResize, 300);
     const activeElementHasChanged = currentIndex !== oldIndex.current;
 
     if (activeElementHasChanged) {

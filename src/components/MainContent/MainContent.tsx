@@ -6,9 +6,8 @@ import { Slide } from '../Slide';
 import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './MainContent.styles';
-import * as Types from './MainContent.types';
 
-const MainContent: React.FC<Types.MainContentProps> = ({}): JSX.Element => {
+const MainContent: React.FC<{}> = (): JSX.Element => {
   const state = React.useContext(BoxDataContext);
   const oldIndex = useRef(0 as number);
 
