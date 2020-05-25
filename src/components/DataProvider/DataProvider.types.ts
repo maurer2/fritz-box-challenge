@@ -1,3 +1,8 @@
+export enum AppMode {
+  DEV = 'dev',
+  LIVE = 'live',
+}
+
 export type ComponentType =
   | 'branding'
   | 'firmware'
@@ -9,12 +14,8 @@ export type ComponentType =
 
 export type ComponentTypes = { [type in ComponentType]: string };
 
-export interface BoxData {
-  // [ComponentType]: string;
-}
-
 export interface RootState {
-  boxData: BoxData;
+  boxData: ComponentType[];
   isUpdating: boolean;
   isValid: boolean;
   componentsToShow: string[];

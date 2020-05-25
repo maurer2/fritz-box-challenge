@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useCallback, useMemo,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -33,29 +35,31 @@ function mapBoxData(componentsToShow: any, boxData: any, runtime: any, age: any)
   return mappedEntries;
 }
 
-const componentsToShow: Types.ComponentType[] = [
-  'branding',
-  'firmware',
-  'model',
-  'restarts',
-  'technology',
-  'runtime',
-  'age',
-];
-
-const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Element => {
+const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as any);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
   const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
 
-  const url = process.env.REACT_APP_MODE === 'dev' ? mockResponse : '/cgi-bin/system_status';
+  const componentsToShow = useMemo((): Types.ComponentType[] => {
+    const componentsArray: Types.ComponentType[] = [
+      'branding',
+      'firmware',
+      'model',
+      'restarts',
+      'technology',
+      'runtime',
+      'age',
+    ];
+    return componentsArray;
+  }, []);
+
+  const url = process.env.REACT_APP_MODE === Types.AppMode.DEV ? mockResponse : '/cgi-bin/system_status';
 
   const handleActiveIndex = (newActiveIndex: number) => setCurrentIndex(() => newActiveIndex);
 
-  function getBoxData(): void {
+  const getBoxData = useCallback((): void => {
     setIsUpdating(true);
 
     const fetchedFinally = getData(url)
@@ -91,12 +95,11 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
     fetchedFinally.then(() => {
       setIsUpdating(false);
     });
-  }
+  }, [url, componentsToShow]);
 
   useEffect(() => {
     getBoxData();
-    // eslint-disable-next-line
-  }, []);
+  }, [getBoxData]);
 
   useEffect(() => {
     setState({
@@ -107,7 +110,7 @@ const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Elem
       currentIndex,
       updateCurrentIndex: handleActiveIndex,
     });
-  }, [isUpdating, isValid, boxData, currentIndex]);
+  }, [isUpdating, isValid, boxData, currentIndex, componentsToShow]);
 
   return <BoxDataContext.Provider value={state}>{children}</BoxDataContext.Provider>;
 };
