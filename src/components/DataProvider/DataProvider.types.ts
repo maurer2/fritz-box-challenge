@@ -1,17 +1,16 @@
-export interface StringMap {
-  [key: string]: string;
-}
+export type ComponentType =
+  | 'branding'
+  | 'firmware'
+  | 'model'
+  | 'restarts'
+  | 'technology'
+  | 'runtime'
+  | 'age';
 
-export interface DataProviderProps {}
+export type ComponentTypes = { [type in ComponentType]: string };
 
 export interface BoxData {
-  branding: string;
-  firmware: string;
-  model: string;
-  restarts: string;
-  technology: string;
-  runtime: string;
-  age: string;
+  // [ComponentType]: string;
 }
 
 export interface RootState {

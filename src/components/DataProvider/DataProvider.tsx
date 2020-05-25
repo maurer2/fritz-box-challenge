@@ -33,7 +33,7 @@ function mapBoxData(componentsToShow: any, boxData: any, runtime: any, age: any)
   return mappedEntries;
 }
 
-const componentsToShow = [
+const componentsToShow: Types.ComponentType[] = [
   'branding',
   'firmware',
   'model',
@@ -46,7 +46,7 @@ const componentsToShow = [
 const DataProvider: React.FC<Types.DataProviderProps> = ({ children }): JSX.Element => {
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(false);
-  const [boxData, setBoxData] = useState<Types.BoxData>({} as any);
+  const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as any);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
