@@ -5,17 +5,13 @@ import PropTypes from 'prop-types';
 
 // import { throttle } from 'lodash';
 import { NavBarEntry } from '../NavBarEntry';
+import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './NavBar.styles';
-import * as Types from './NavBar.types';
 
-const NavBar: React.FC<Types.NavBarProps> = ({
-  componentsToShow,
-  currentIndex,
-  handleNavigation,
-  isUpdating,
-}): JSX.Element => {
-  // const throttledResizeHandler = useRef({});
+const NavBar: React.FC<{}> = (): JSX.Element => {
+  const state = React.useContext(BoxDataContext);
+
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState('auto'); // prevent css transition on load
 
@@ -24,6 +20,18 @@ const NavBar: React.FC<Types.NavBarProps> = ({
   const activeElement = createRef();
 
   const height = 5;
+
+  const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];
+  const currentIndex = 'currentIndex' in state ? state.currentIndex : 0;
+
+  const isUpdating = 'isUpdating' in state ? state.isUpdating : true;
+
+  function handleNavigation(newCurrentIndex: number): void {
+    oldIndex.current = currentIndex;
+
+    state.updateCurrentIndex(newCurrentIndex);
+    // setCurrentIndex(index);
+  }
 
   function updateIndicator(): void {
     if (activeElement.current == null) {
@@ -40,7 +48,6 @@ const NavBar: React.FC<Types.NavBarProps> = ({
   }
 
   useEffect(() => {
-    // throttledResizeHandler.current = throttle(handleResize, 300);
     const activeElementHasChanged = currentIndex !== oldIndex.current;
 
     if (activeElementHasChanged) {
