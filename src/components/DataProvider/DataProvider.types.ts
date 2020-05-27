@@ -12,7 +12,9 @@ export type ComponentType =
   | 'runtime'
   | 'age';
 
-export type ComponentTypes = { [type in ComponentType]: string };
+export type ComponentTypes = {
+  [type in ComponentType]: string;
+};
 
 export interface RootState {
   boxData: ComponentType[];
@@ -24,3 +26,4 @@ export interface RootState {
 }
 
 export type RootStateInitial = Partial<RootState>;
+export type ComponentTypeInitial = Partial<ComponentTypes>;

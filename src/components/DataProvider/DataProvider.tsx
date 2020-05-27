@@ -20,14 +20,22 @@ import * as Types from './DataProvider.types';
 
 const BoxDataContext = React.createContext({} as Types.RootStateInitial);
 
-function mapBoxData(componentsToShow: any, boxData: any, runtime: any, age: any): Types.BoxData {
-  const mappedEntries = componentsToShow.reduce((total: any, current: any) => {
-    const entries = total;
+function mapBoxData(
+  componentsToShow: Types.ComponentType[],
+  boxData: Types.ComponentTypes,
+  runtime: any,
+  age: any,
+): Types.ComponentTypes {
+  const mappedEntries = componentsToShow.reduce(
+    (total: Types.ComponentTypeInitial, current: Types.ComponentType) => {
+      const entries = total;
 
-    entries[current] = boxData[current] || '';
+      entries[current] = boxData[current] || '';
 
-    return entries;
-  }, {} as any);
+      return entries;
+    },
+    {} as any,
+  );
 
   mappedEntries.runtime = runtime;
   mappedEntries.age = age;
@@ -81,7 +89,12 @@ const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
 
         const age = getTimeBetween(dateIsoString, nowDateString);
 
-        const newBoxData: Types.BoxData = mapBoxData(componentsToShow, mappedValues, runtime, age);
+        const newBoxData: Types.ComponentTypes = mapBoxData(
+          componentsToShow,
+          mappedValues,
+          runtime,
+          age,
+        );
 
         setBoxData(newBoxData);
         setIsValid(true);
