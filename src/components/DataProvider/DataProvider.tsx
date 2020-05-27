@@ -48,6 +48,8 @@ const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
   const [isValid, setIsValid] = useState<boolean>(false);
   const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as any);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [prevIndex, setPrevIndex] = useState<number>(0);
+
   const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
 
   const componentsToShow = useMemo((): Types.ComponentType[] => {
@@ -65,7 +67,13 @@ const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
 
   const url = process.env.REACT_APP_MODE === Types.AppMode.DEV ? mockResponse : '/cgi-bin/system_status';
 
-  const handleActiveIndex = (newActiveIndex: number) => setCurrentIndex(() => newActiveIndex);
+  const updateIndex = useCallback(
+    (newIndex: number): void => {
+      setPrevIndex(currentIndex);
+      setCurrentIndex(newIndex);
+    },
+    [currentIndex],
+  );
 
   const getBoxData = useCallback((): void => {
     setIsUpdating(true);
@@ -121,9 +129,10 @@ const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
       isValid,
       componentsToShow,
       currentIndex,
-      updateCurrentIndex: handleActiveIndex,
+      prevIndex,
+      updateCurrentIndex: updateIndex,
     });
-  }, [isUpdating, isValid, boxData, currentIndex, componentsToShow]);
+  }, [isUpdating, isValid, boxData, currentIndex, prevIndex, componentsToShow, updateIndex]);
 
   return <BoxDataContext.Provider value={state}>{children}</BoxDataContext.Provider>;
 };

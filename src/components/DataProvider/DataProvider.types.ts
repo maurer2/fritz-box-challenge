@@ -22,6 +22,7 @@ export interface RootState {
   isValid: boolean;
   componentsToShow: string[];
   currentIndex: number;
+  prevIndex: number;
   updateCurrentIndex: (number: number) => void;
 }
 
