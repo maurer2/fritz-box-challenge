@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import 'jest-styled-components';
 
-import UpdateBar from './UpdateBar';
+import { UpdateBar } from './UpdateBar';
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
@@ -12,7 +12,8 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('UpdateBar', () => {
   const wrapper = shallow(<UpdateBar isUpdating isValid />);
 
-  const wrapperDeep = mount(<UpdateBar isUpdating isValid />);
+  const wrapperDeep = mount(<UpdateBar isUpdating isValid />
+  );
 
   it('should match snapshot', () => {
     expect(toJson(wrapper)).toMatchSnapshot();

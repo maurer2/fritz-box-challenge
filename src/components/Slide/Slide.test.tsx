@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import 'jest-styled-components';
 import toJson from 'enzyme-to-json';
 
-import Slide from './Slide';
+import { Slide } from './Slide';
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });

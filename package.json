@@ -17,7 +17,7 @@
     "format": "prettier --write './**/*.{ts,tsx,js,jsx,json}'",
     "format-and-lint": "npm run format && npm run lint:style && npm run lint:ts:fix",
     "start": "BROWSER=none REACT_APP_MODE=live react-scripts start",
-    "start:dev": "BROWSER=none REACT_APP_MODE=dev react-scripts start",
+    "start:demo": "BROWSER=none REACT_APP_MODE=dev react-scripts start",
     "test": "react-scripts test",
     "test:lib": "jest './libs/*' --colors --coverage --watchAll"
   },
