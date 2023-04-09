@@ -1,0 +1,1 @@
+const bodyTagContent = new RegExp(/<body[^>]*>(.*?)<\/body>/is);

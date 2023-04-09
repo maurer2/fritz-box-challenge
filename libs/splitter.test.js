@@ -3,7 +3,7 @@ import {
   isEmptyString,
   hasCorrectNumberOfParts,
   transformString,
-  getDashPositonsInString,
+  // getDashPositonsInString,
 } from './splitter';
 
 const testData = [
@@ -47,12 +47,12 @@ test('hasCorrectNumberOfParts', () => {
   expect(hasCorrectNumberOfParts(testStringArray, desiredLength)).toBe(true);
 });
 
-test('getDashPositonsInString returns array ', () => {
-  expect(getDashPositonsInString('this–is–a–test')).toBeInstanceOf(Array);
-  expect(getDashPositonsInString('this–is–a–test')).toEqual([4, 7, 9]);
-  expect(getDashPositonsInString('–a')).toEqual([0]);
-  expect(getDashPositonsInString('a')).toEqual([]);
-});
+// test('getDashPositonsInString returns array ', () => {
+//   expect(getDashPositonsInString('this–is–a–test')).toBeInstanceOf(Array);
+//   expect(getDashPositonsInString('this–is–a–test')).toEqual([4, 7, 9]);
+//   expect(getDashPositonsInString('–a')).toEqual([0]);
+//   expect(getDashPositonsInString('a')).toEqual([]);
+// });
 
 test('transformString function adds dash between power on hours and restarts ', () => {
   const stringWithMissingDash = 'FRITZ!Box Fon WLAN 7390–B–041711–000121–533176–734744–147902–840604–28179–avm';

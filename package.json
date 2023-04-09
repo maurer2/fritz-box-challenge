@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "build": "react-scripts build",
-    "dump-box-data": "node -r esm ./scripts/dump-box-data.js",
+    "dump:box-data": "ts-node ./scripts/dump-box-data.ts",
     "eject": "react-scripts eject",
     "lint:style": "stylelint 'src/**/*.{css,js,jsx}'; exit 0",
     "lint:js": "eslint 'libs/**/*.{js,jsx}'",
@@ -53,6 +53,7 @@
     "regenerator-runtime": "^0.13.5",
     "styled-components": "^5.1.0",
     "styled-normalize": "^8.0.7",
+    "ts-node": "^10.9.1",
     "typescript": "^3.8.3",
     "uid": "^1.0.0"
   },

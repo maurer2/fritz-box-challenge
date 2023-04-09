@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import getData from './modem';
+import getData from './getData';
 
 jest.mock('node-fetch');
 
