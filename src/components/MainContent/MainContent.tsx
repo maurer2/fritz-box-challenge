@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 
 import { Slide } from '../Slide';
@@ -28,7 +28,7 @@ const MainContent: React.FC<{}> = (): JSX.Element => {
 
   return (
     <Styles.MainWrapper onClick={handleClick}>
-      <CSSTransitionGroup
+      <TransitionGroup
         component={React.Fragment}
         transitionName={slideInFromRight ? 'slide-in-right' : 'slide-in-left'}
         transitionEnterTimeout={500}
@@ -38,7 +38,7 @@ const MainContent: React.FC<{}> = (): JSX.Element => {
         transitionAppear
       >
         <Slide title={title} text={text} key={title} />
-      </CSSTransitionGroup>
+      </TransitionGroup>
     </Styles.MainWrapper>
   );
 };

@@ -44,19 +44,19 @@ module.exports = {
       },
     ],
     'import/prefer-default-export': 'off',
-    'no-restricted-imports': [
-      'error',
-      {
-        paths: [
-          {
-            name: 'styled-components',
-            message:
-              'Direct import of styled-components prohibited. Use styled-components/macro instead',
-          },
-        ],
-        patterns: ['!styled-components/macro'],
-      },
-    ],
+    // 'no-restricted-imports': [
+    //   'error',
+    //   {
+    //     paths: [
+    //       {
+    //         name: 'styled-components',
+    //         message:
+    //           'Direct import of styled-components prohibited. Use styled-components/macro instead',
+    //       },
+    //     ],
+    //     patterns: ['!styled-components/macro'],
+    //   },
+    // ],
     'import/order': [
       'error',
       {

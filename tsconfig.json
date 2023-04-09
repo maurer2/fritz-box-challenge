@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
     "module": "esnext",
-    "target": "es6",
+    "target": "ES2022",
     "jsx": "react",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -16,7 +13,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "types": ["vite/client"],
   },
   "include": ["./src/**/*"],
   "exclude": ["./src/libs/*.js", "./libs/*.js"],

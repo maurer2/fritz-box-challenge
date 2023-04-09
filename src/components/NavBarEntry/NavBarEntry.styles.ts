@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 export const NavBarEntryWrapper = styled.li`
   flex: 1 0 ${(props) => (props.isFullWidth ? '33%' : '0')};
