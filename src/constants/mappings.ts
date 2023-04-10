@@ -18,4 +18,5 @@ export const technologyMapping = {
   J: 'Annex J',
   Q: 'Annex Q',
   Cable: 'Cable',
+  // ?? : Fibre
 } as const;

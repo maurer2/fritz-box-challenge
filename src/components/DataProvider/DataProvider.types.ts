@@ -17,7 +17,7 @@ export type ComponentTypes = {
 };
 
 export interface RootState {
-  boxData: ComponentType[];
+  boxData: ComponentTypes;
   isUpdating: boolean;
   isValid: boolean;
   componentsToShow: string[];

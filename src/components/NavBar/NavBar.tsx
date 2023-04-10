@@ -1,7 +1,6 @@
 import React, {
   useState, useRef, useEffect, createRef,
 } from 'react';
-import PropTypes from 'prop-types';
 
 // import { throttle } from 'lodash';
 import { NavBarEntry } from '../NavBarEntry';
@@ -76,17 +75,6 @@ const NavBar: React.FC<{}> = (): JSX.Element => {
       </Styles.NavBarList>
     </Styles.NavBar>
   );
-};
-
-const {
-  string, number, func, bool,
-} = PropTypes;
-
-NavBar.propTypes = {
-  componentsToShow: PropTypes.arrayOf(string).isRequired,
-  handleNavigation: func.isRequired,
-  currentIndex: number.isRequired,
-  isUpdating: bool.isRequired,
 };
 
 export { NavBar };

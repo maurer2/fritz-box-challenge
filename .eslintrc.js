@@ -8,7 +8,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    'plugin:lodash/recommended',
+    // 'plugin:lodash/recommended',
     'plugin:react/recommended',
   ],
   plugins: ['react', 'react-hooks', 'lodash', '@typescript-eslint'],
@@ -44,19 +44,19 @@ module.exports = {
       },
     ],
     'import/prefer-default-export': 'off',
-    'no-restricted-imports': [
-      'error',
-      {
-        paths: [
-          {
-            name: 'styled-components',
-            message:
-              'Direct import of styled-components prohibited. Use styled-components/macro instead',
-          },
-        ],
-        patterns: ['!styled-components/macro'],
-      },
-    ],
+    // 'no-restricted-imports': [
+    //   'error',
+    //   {
+    //     paths: [
+    //       {
+    //         name: 'styled-components',
+    //         message:
+    //           'Direct import of styled-components prohibited. Use styled-components/macro instead',
+    //       },
+    //     ],
+    //     patterns: ['!styled-components/macro'],
+    //   },
+    // ],
     'import/order': [
       'error',
       {
@@ -80,6 +80,7 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'react/prop-types': 0,
   },
   settings: {
     react: {

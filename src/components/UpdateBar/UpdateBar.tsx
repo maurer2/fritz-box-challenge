@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { BoxDataContext } from '../DataProvider';
 
@@ -23,13 +22,6 @@ const UpdateBar: React.FC<{}> = (): JSX.Element => {
       )}
     </Styles.UpdateBar>
   );
-};
-
-const { bool } = PropTypes;
-
-UpdateBar.propTypes = {
-  isUpdating: bool.isRequired,
-  isValid: bool.isRequired,
 };
 
 export { UpdateBar };

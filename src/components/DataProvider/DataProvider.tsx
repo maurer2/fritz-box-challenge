@@ -1,7 +1,6 @@
 import React, {
   useState, useEffect, useCallback, useMemo,
 } from 'react';
-import PropTypes from 'prop-types';
 
 import {
   getTimeBetween, getDate, getDateAsIsoDate, getNowDate,
@@ -46,7 +45,7 @@ function mapBoxData(
 const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(false);
-  const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as any);
+  const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as Types.ComponentTypes);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [prevIndex, setPrevIndex] = useState<number>(0);
 
@@ -135,12 +134,6 @@ const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
   }, [isUpdating, isValid, boxData, currentIndex, prevIndex, componentsToShow, updateIndex]);
 
   return <BoxDataContext.Provider value={state}>{children}</BoxDataContext.Provider>;
-};
-
-const { node } = PropTypes;
-
-DataProvider.propTypes = {
-  children: node.isRequired,
 };
 
 export { BoxDataContext, DataProvider };

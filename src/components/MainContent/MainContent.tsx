@@ -1,7 +1,5 @@
 import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
-import PropTypes from 'prop-types';
-
 import { Slide } from '../Slide';
 import { BoxDataContext } from '../DataProvider';
 
@@ -41,15 +39,6 @@ const MainContent: React.FC<{}> = (): JSX.Element => {
       </CSSTransitionGroup>
     </Styles.MainWrapper>
   );
-};
-
-const { number, func, node } = PropTypes;
-
-MainContent.propTypes = {
-  currentIndex: number.isRequired,
-  oldIndex: number.isRequired,
-  children: node.isRequired,
-  handleClick: func.isRequired,
 };
 
 export { MainContent };

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { upperFirst } from 'lodash';
 
 import * as Styles from './Slide.styles';
@@ -17,12 +16,5 @@ const Slide: React.FC<Types.SlideProps> = ({ title, text }): JSX.Element => (
     </Styles.TextWrapper>
   </Styles.Wrapper>
 );
-
-const { string } = PropTypes;
-
-Slide.propTypes = {
-  text: string.isRequired,
-  title: string.isRequired,
-};
 
 export { Slide };
