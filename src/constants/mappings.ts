@@ -1,4 +1,4 @@
-const fieldsMappings = [
+export const fieldsMappings = [
   'model',
   'technology',
   'powerOnHours 1',
@@ -10,12 +10,12 @@ const fieldsMappings = [
   'firmware',
   'subfirmware',
   'branding',
-];
+] as const; // satisfies string[];
 
-const technologyMapping = {
+export const technologyMapping = {
   A: 'Annex A',
   B: 'Annex B',
   J: 'Annex J',
   Q: 'Annex Q',
   Cable: 'Cable',
-};
+} as const;
