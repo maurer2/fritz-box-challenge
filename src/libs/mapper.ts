@@ -1,11 +1,12 @@
-import { fieldsMappings, technologyMapping } from '../src/constants/mappings';
+import { fieldsMappings, technologyMapping } from '../constants/mappings';
 
 const mapValueToField = (fieldValue: string, index: number) => {
   const field = fieldsMappings[index];
 
   if (field === 'technology') {
-    const augmentedFieldValue =
-      fieldValue in technologyMapping ? technologyMapping[fieldValue] : fieldValue;
+    const augmentedFieldValue = Object.hasOwn(technologyMapping, fieldValue)
+      ? technologyMapping[fieldValue as keyof typeof technologyMapping]
+      : fieldValue;
 
     return {
       [field]: augmentedFieldValue,
@@ -17,9 +18,10 @@ const mapValueToField = (fieldValue: string, index: number) => {
   };
 };
 
-const flattenMapValues = (nestedValues: any) => Object.assign(...nestedValues);
-
 const getMappedFields = (fieldValues: typeof fieldsMappings) => {
+  console.log(fieldValues);
+
+  // assign key of value by position in array
   const mappedValues = fieldValues.map((fieldValue, index: number) =>
     mapValueToField(fieldValue, index)
   );
@@ -29,4 +31,4 @@ const getMappedFields = (fieldValues: typeof fieldsMappings) => {
   return flattenedValues;
 };
 
-export { getMappedFields, fieldsMappings, flattenMapValues, mapValueToField };
+export { getMappedFields, fieldsMappings, mapValueToField };

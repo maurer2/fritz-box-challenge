@@ -1,7 +1,3 @@
-export interface StringMap {
-  [key: string]: string;
-}
-
 export interface NavBarEntryProps {
   index: number;
   entry: string;

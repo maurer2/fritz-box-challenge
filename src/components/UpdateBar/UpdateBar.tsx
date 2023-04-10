@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './UpdateBar.styles';
+import * as Types from './UpdateBar.types';
 
-const UpdateBar: React.FC<{}> = (): JSX.Element => {
+const UpdateBar: FC<Types.UpdateBarProps> = (): JSX.Element => {
   const state = React.useContext(BoxDataContext);
 
   const isUpdating = 'isUpdating' in state ? state.isUpdating : true;

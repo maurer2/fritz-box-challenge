@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { upperFirst } from 'lodash';
 
 import * as Styles from './NavBarEntry.styles';
 import * as Types from './NavBarEntry.types';
 
-const NavBarEntry: React.FC<Types.NavBarEntryProps> = ({
+const NavBarEntry: FC<Types.NavBarEntryProps> = ({
   index,
   entry,
   isActive,

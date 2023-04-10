@@ -1,7 +1,5 @@
 import {
   fieldsMappings,
-  flatenArray,
-  flattenMapValues,
   mapValueToField,
 } from './mapper';
 
@@ -33,16 +31,3 @@ test('mapValueToField returns proper object ', () => {
   expect(mapValueToField(value, index)).toEqual({ [key]: value });
 });
 
-test('flatenArray flattens 1 level down ', () => {
-  const nestedArray = [1, [2]];
-
-  expect(flatenArray(nestedArray)).toEqual([1, 2]);
-});
-
-test('flattenMapValues map ', () => {
-  const unNestedObjectsInArray = [{ test1: 'test2' }];
-  const nestedObjectsInArray = [{ test1: 'test2' }, { test3: 'test4' }, { test5: 'test5' }];
-
-  expect(flattenMapValues(unNestedObjectsInArray)).toEqual({ test1: 'test2' });
-  expect(flattenMapValues(nestedObjectsInArray)).toEqual({ test1: 'test2', test3: 'test4', test5: 'test5' });
-});

@@ -95,6 +95,8 @@ module.exports = {
       jsx: true,
     },
   },
+  'no-use-before-define': 'off',
+  '@typescript-eslint/no-use-before-define': ['error'],
   // plain js files
   overrides: [
     {
@@ -104,12 +106,12 @@ module.exports = {
         'eslint:recommended',
         'plugin:import/errors',
         'plugin:import/warnings',
-        'plugin:lodash/recommended',
+        // 'plugin:lodash/recommended',
       ],
       parser: 'babel-eslint',
-      plugins: ['lodash'],
+      // plugins: ['lodash'],
       rules: {
-        'lodash/prefer-lodash-method': 'off',
+        // 'lodash/prefer-lodash-method': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
       },
     },

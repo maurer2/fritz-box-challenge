@@ -1,17 +1,13 @@
-import React, {
-  useState, useEffect, useCallback, useMemo,
-} from 'react';
+import React, { FC, useState, useEffect, useCallback, useMemo } from 'react';
 
-import {
-  getTimeBetween, getDate, getDateAsIsoDate, getNowDate,
-} from '../../libs/time';
+import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from '../../libs/time';
 import { getMappedFields } from '../../libs/mapper';
 import {
   transformString as splitData,
   getDashPositionsInString,
   splitString as splitToArray,
 } from '../../libs/splitter';
-import getData from '../../libs/modem';
+import getData from '../../libs/getData';
 import parseData from '../../libs/parser';
 import mockResponse from '../../mocks/box-iu7nl.txt';
 
@@ -23,7 +19,7 @@ function mapBoxData(
   componentsToShow: Types.ComponentType[],
   boxData: Types.ComponentTypes,
   runtime: any,
-  age: any,
+  age: any
 ): Types.ComponentTypes {
   const mappedEntries = componentsToShow.reduce(
     (total: Types.ComponentTypeInitial, current: Types.ComponentType) => {
@@ -33,7 +29,7 @@ function mapBoxData(
 
       return entries;
     },
-    {} as any,
+    {} as any
   );
 
   mappedEntries.runtime = runtime;
@@ -42,7 +38,7 @@ function mapBoxData(
   return mappedEntries;
 }
 
-const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
+const DataProvider: FC<{}> = ({ children }): JSX.Element => {
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as Types.ComponentTypes);
@@ -64,14 +60,15 @@ const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
     return componentsArray;
   }, []);
 
-  const url = process.env.REACT_APP_MODE === Types.AppMode.DEV ? mockResponse : '/cgi-bin/system_status';
+  const url =
+    process.env.REACT_APP_MODE === Types.AppMode.DEV ? mockResponse : '/cgi-bin/system_status';
 
   const updateIndex = useCallback(
     (newIndex: number): void => {
       setPrevIndex(currentIndex);
       setCurrentIndex(newIndex);
     },
-    [currentIndex],
+    [currentIndex]
   );
 
   const getBoxData = useCallback((): void => {
@@ -100,7 +97,7 @@ const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
           componentsToShow,
           mappedValues,
           runtime,
-          age,
+          age
         );
 
         setBoxData(newBoxData);

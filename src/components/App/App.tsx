@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Normalize } from 'styled-normalize';
 
 import { MainContent } from '../MainContent';
@@ -9,7 +9,7 @@ import { DataProvider } from '../DataProvider';
 
 import * as Styles from './App.styles';
 
-const App: React.FC<{}> = (): JSX.Element => (
+const App: FC<{}> = (): JSX.Element => (
   <DataProvider>
     <Theme>
       <Normalize />

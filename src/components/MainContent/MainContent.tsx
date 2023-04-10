@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { Slide } from '../Slide';
 import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './MainContent.styles';
+import * as Types from './MainContent.types';
 
-const MainContent: React.FC<{}> = (): JSX.Element => {
+const MainContent: FC<Types.MainContentProps> = (): JSX.Element => {
   const state = React.useContext(BoxDataContext);
 
   const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];

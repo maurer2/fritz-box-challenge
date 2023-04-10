@@ -13,7 +13,14 @@ export type ComponentType =
   | 'age';
 
 export type ComponentTypes = {
-  [type in ComponentType]: string;
+  // [K in ComponentType]: string;
+  'branding': string,
+  'firmware': string,
+  'model': string,
+  'restarts': string,
+  'technology': string,
+  'runtime': string,
+  'age': string,
 };
 
 export interface RootState {

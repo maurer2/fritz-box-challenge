@@ -1,14 +1,13 @@
-import React, {
-  useState, useRef, useEffect, createRef,
-} from 'react';
+import React, { FC, useState, useRef, useEffect, createRef } from 'react';
 
 // import { throttle } from 'lodash';
 import { NavBarEntry } from '../NavBarEntry';
 import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './NavBar.styles';
+import * as Types from './NavBar.types';
 
-const NavBar: React.FC<{}> = (): JSX.Element => {
+const NavBar: FC<Types.NavBarProps> = (): JSX.Element => {
   const state = React.useContext(BoxDataContext);
 
   const [offset, setOffset] = useState(0);
