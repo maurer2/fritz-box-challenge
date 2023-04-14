@@ -1,4 +1,3 @@
-export interface UpdateBarProps {
+export interface UpdateBarStyleProps {
   isUpdating: boolean;
-  isValid: boolean;
 }

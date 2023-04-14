@@ -1,6 +1,11 @@
-import React, { FC, useState, useEffect, useCallback, useMemo } from 'react';
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
+import React, {
+  FC, useState, useEffect, useCallback, useMemo, PropsWithChildren,
+} from 'react';
 
-import { getTimeBetween, getDate, getDateAsIsoDate, getNowDate } from '../../libs/time';
+import {
+  getTimeBetween, getDate, getDateAsIsoDate, getNowDate,
+} from '../../libs/time';
 import { getMappedFields } from '../../libs/mapper';
 import {
   transformString as splitData,
@@ -38,7 +43,7 @@ function mapBoxData(
   return mappedEntries;
 }
 
-const DataProvider: FC<{}> = ({ children }): JSX.Element => {
+const DataProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as Types.ComponentTypes);

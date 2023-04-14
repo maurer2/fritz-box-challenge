@@ -1,14 +1,15 @@
-import React, { FC } from 'react';
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
+import React, { FC, PropsWithChildren } from 'react';
 import { ThemeProvider } from 'styled-components/macro';
-
-import * as Types from './Theme.types';
 
 export const theme = {
   primaryColor: '#F2F2F2',
   secondaryColor: '#BDBDBD',
   tertiaryColor: '#080808',
-};
+} as const;
 
-export const Theme: FC<Types.SlideProps> = ({ children }): JSX.Element => (
+export type ThemeType = keyof typeof theme;
+
+export const Theme: FC<PropsWithChildren<{}>> = ({ children }) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );

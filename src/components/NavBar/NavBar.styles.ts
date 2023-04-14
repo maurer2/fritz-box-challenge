@@ -1,20 +1,21 @@
 import styled, { css } from 'styled-components/macro';
 
-export const NavBar = styled.nav`
+import { NavBarStyleProps, IndicatorStyleProps, NavBarListStyleProps } from './NavBar.types';
+
+export const NavBar = styled.nav<NavBarStyleProps>`
   position: relative;
   padding-top: ${({ reservedSpaceTop }) => `${reservedSpaceTop}px`};
   grid-area: navBar;
   will-change: transform;
   transform: translateY(0);
   transition: transform 500ms ease-out;
-
   ${({ isUpdating }) => isUpdating
     && css`
       transform: translateY(100%);
     `}
 `;
 
-export const Indicator = styled.div`
+export const Indicator = styled.div<IndicatorStyleProps>`
   position: absolute;
   top: 0;
   left: 0;
@@ -25,7 +26,7 @@ export const Indicator = styled.div`
   background: ${({ theme }) => theme.primaryColor};
 `;
 
-export const NavBarList = styled.ul`
+export const NavBarList = styled.ul<NavBarListStyleProps>`
   display: flex;
   margin: 0;
   padding: 0;

@@ -1,12 +1,13 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, { FC } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
+
 import { Slide } from '../Slide';
 import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './MainContent.styles';
-import * as Types from './MainContent.types';
 
-const MainContent: FC<Types.MainContentProps> = (): JSX.Element => {
+const MainContent: FC<Record<string, never>> = () => {
   const state = React.useContext(BoxDataContext);
 
   const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];
@@ -16,7 +17,7 @@ const MainContent: FC<Types.MainContentProps> = (): JSX.Element => {
 
   const slideInFromRight = currentIndex > prevIndex;
   const title = componentsToShow[currentIndex] || '';
-  const text = (boxData as any)[title] || '';
+  const text = (boxData as any)[title] || ''; // todo remove any
 
   function handleClick(): void {
     const indexOfLastEntry = componentsToShow.length - 1;

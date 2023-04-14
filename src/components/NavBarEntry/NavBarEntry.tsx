@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, { FC } from 'react';
 import { upperFirst } from 'lodash';
 
@@ -11,7 +12,7 @@ const NavBarEntry: FC<Types.NavBarEntryProps> = ({
   handleNavigation,
   activeElementRef,
   isFullWidth,
-}): JSX.Element => {
+}) => {
   function handleClick(): void {
     handleNavigation(index);
   }

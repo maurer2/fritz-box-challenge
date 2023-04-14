@@ -1,5 +1,7 @@
 import styled from 'styled-components/macro';
 
+import { TextWrapperStyleProps } from './Slide.types';
+
 export const Wrapper = styled.div`
   text-align: center;
   user-select: none;
@@ -13,7 +15,7 @@ export const TitleWrapper = styled.h2`
   font-size: 5vw;
 `;
 
-export const TextWrapper = styled.div`
+export const TextWrapper = styled.div<TextWrapperStyleProps>`
   margin: 0;
   color: ${({ theme }) => theme.primaryColor};
   font-weight: bold;

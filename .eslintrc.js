@@ -86,7 +86,7 @@ module.exports = {
     react: {
       version: 'detect',
     },
-    'import/extensions': ['.js', '.jsx'],
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
   },
   parserOptions: {
     ecmaVersion: 2020,

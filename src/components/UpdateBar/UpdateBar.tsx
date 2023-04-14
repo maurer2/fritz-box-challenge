@@ -1,11 +1,11 @@
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, { FC } from 'react';
 
 import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './UpdateBar.styles';
-import * as Types from './UpdateBar.types';
 
-const UpdateBar: FC<Types.UpdateBarProps> = (): JSX.Element => {
+const UpdateBar: FC<Record<string, never>> = () => {
   const state = React.useContext(BoxDataContext);
 
   const isUpdating = 'isUpdating' in state ? state.isUpdating : true;

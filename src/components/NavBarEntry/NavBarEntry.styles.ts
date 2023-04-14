@@ -1,6 +1,8 @@
 import styled from 'styled-components/macro';
 
-export const NavBarEntryWrapper = styled.li`
+import type { NavBarEntryWrapperStyleProps, NavBarButtonStyleProps } from './NavBarEntry.types';
+
+export const NavBarEntryWrapper = styled.li<NavBarEntryWrapperStyleProps>`
   flex: 1 0 ${(props) => (props.isFullWidth ? '33%' : '0')};
 `;
 
@@ -11,7 +13,7 @@ export const defaultButton = styled.button`
   appearance: none;
 `;
 
-export const NavBarButton = styled(defaultButton)`
+export const NavBarButton = styled(defaultButton)<NavBarButtonStyleProps>`
   display: block;
   width: 100%;
   border: 0;

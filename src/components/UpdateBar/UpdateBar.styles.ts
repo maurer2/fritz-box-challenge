@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components/macro';
 
-export const UpdateBar = styled.aside`
+import type { UpdateBarStyleProps } from './UpdateBar.types';
+
+export const UpdateBar = styled.aside<UpdateBarStyleProps>`
   grid-area: updateBar;
   text-align: center;
   background: ${({ theme }) => theme.secondaryColor};

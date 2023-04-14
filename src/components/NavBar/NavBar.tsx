@@ -1,13 +1,15 @@
-import React, { FC, useState, useRef, useEffect, createRef } from 'react';
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
+import React, {
+  FC, useState, useRef, useEffect, createRef,
+} from 'react';
 
 // import { throttle } from 'lodash';
 import { NavBarEntry } from '../NavBarEntry';
 import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './NavBar.styles';
-import * as Types from './NavBar.types';
 
-const NavBar: FC<Types.NavBarProps> = (): JSX.Element => {
+const NavBar: FC<Record<string, never>> = () => {
   const state = React.useContext(BoxDataContext);
 
   const [offset, setOffset] = useState(0);
@@ -15,7 +17,7 @@ const NavBar: FC<Types.NavBarProps> = (): JSX.Element => {
 
   const oldIndex = useRef(-1);
   const showIndicator = useRef(true);
-  const activeElement = createRef();
+  const activeElement = createRef<HTMLLIElement>();
 
   const height = 5;
 
@@ -67,7 +69,7 @@ const NavBar: FC<Types.NavBarProps> = (): JSX.Element => {
             handleNavigation={handleNavigation}
             // only active element gets ref otherwise last child always active
             activeElementRef={currentIndex === index ? activeElement : null}
-            key={index}
+            key={entry}
             isFullWidth={!showIndicator}
           />
         ))}
