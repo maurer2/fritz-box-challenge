@@ -8,7 +8,6 @@
   "scripts": {
     "build": "react-scripts build",
     "dump:box-data": "ts-node ./scripts/dump-box-data.ts",
-    "eject": "react-scripts eject",
     "lint:style": "stylelint 'src/**/*.{css,js,jsx}'; exit 0",
     "lint:js": "eslint 'libs/**/*.{js,jsx}'",
     "lint:js:fix": "npm run lint:js -- --fix",

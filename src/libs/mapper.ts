@@ -1,34 +1,23 @@
 import { fieldsMappings, technologyMapping } from '../constants/mappings';
 
-const mapValueToField = (fieldValue: string, index: number) => {
-  const field = fieldsMappings[index];
+type FieldsMappings = typeof fieldsMappings[number];
+type FieldsWithValues = Record<FieldsMappings, string | number>;
 
-  if (field === 'technology') {
-    const augmentedFieldValue = Object.hasOwn(technologyMapping, fieldValue)
-      ? technologyMapping[fieldValue as keyof typeof technologyMapping]
-      : fieldValue;
+const getMappedFields = (fieldValues: string[]) => {
+  // assign key of value by position in array
+  const mappedValues = fieldValues.map((fieldValue: FieldsMappings, index: number) => {
+    const field = fieldsMappings[index];
 
     return {
-      [field]: augmentedFieldValue,
+      [field]: field === 'technology'
+        ? technologyMapping[fieldValue as keyof typeof technologyMapping]
+        : fieldValue
     };
-  }
+  });
 
-  return {
-    [field]: fieldValue,
-  };
+  const mappedValuesAsSingleObject = Object.assign(...mappedValues);
+
+  return mappedValuesAsSingleObject;
 };
 
-const getMappedFields = (fieldValues: typeof fieldsMappings) => {
-  console.log(fieldValues);
-
-  // assign key of value by position in array
-  const mappedValues = fieldValues.map((fieldValue, index: number) =>
-    mapValueToField(fieldValue, index)
-  );
-
-  const flattenedValues = Object.assign(...mappedValues);
-
-  return flattenedValues;
-};
-
-export { getMappedFields, fieldsMappings, mapValueToField };
+export { getMappedFields, fieldsMappings };

@@ -1,9 +1,9 @@
 const bodyTagContent = new RegExp(/<body[^>]*>(.*?)<\/body>/is);
 
-const parseData = (data) => {
+const parseData = (data: string): string | null => {
   const parsedHtmlString = data.match(bodyTagContent);
 
-  return parsedHtmlString !== null ? parsedHtmlString[1] : '';
+  return parsedHtmlString !== null ? parsedHtmlString[1] : null;
 };
 
 export default parseData;

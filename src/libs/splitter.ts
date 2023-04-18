@@ -19,7 +19,7 @@ const transformString = (stringValue: string, dashPositions: number[]): string =
   return `${stringBeforeSplitPoint}-${stringAfterSplitPoint}`;
 };
 
-const getDashPositionsInString = (stringValue: string) => {
+const getDashPositionsInString = (stringValue: string): number[] => {
   const dashPositions: number[] = stringValue
     .split('')
     .reduce((total: number[], current: string, index: number) => {
@@ -27,7 +27,7 @@ const getDashPositionsInString = (stringValue: string) => {
         total.push(index);
       }
       return total;
-    }, [] as number[]);
+    }, []);
 
   return dashPositions;
 };

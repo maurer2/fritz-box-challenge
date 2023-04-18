@@ -9,7 +9,7 @@ import { DataProvider } from '../DataProvider';
 
 import * as Styles from './App.styles';
 
-const App: FC<{}> = () => (
+const App: FC<Record<string, never>> = () => (
   <DataProvider>
     <Theme>
       <Styles.AppWrapper>

@@ -65,23 +65,22 @@ const DataProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
     return componentsArray;
   }, []);
 
-  const url =
-    process.env.REACT_APP_MODE === Types.AppMode.DEV ? mockResponse : '/cgi-bin/system_status';
+  const url = process.env.REACT_APP_MODE === Types.AppMode.DEV ? mockResponse : '/cgi-bin/system_status';
 
   const updateIndex = useCallback(
     (newIndex: number): void => {
       setPrevIndex(currentIndex);
       setCurrentIndex(newIndex);
     },
-    [currentIndex]
+    [currentIndex],
   );
 
   const getBoxData = useCallback((): void => {
     setIsUpdating(true);
 
     const fetchedFinally = getData(url)
-      .then((data: any) => {
-        const parsedTextString = parseData(data);
+      .then((htmlString: string) => {
+        const parsedTextString = parseData(htmlString);
 
         const dashPositions = getDashPositionsInString(parsedTextString);
         const splitString = splitData(parsedTextString, dashPositions);
@@ -102,7 +101,7 @@ const DataProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
           componentsToShow,
           mappedValues,
           runtime,
-          age
+          age,
         );
 
         setBoxData(newBoxData);
