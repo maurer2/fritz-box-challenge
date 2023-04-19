@@ -19,7 +19,7 @@ const NavBarEntry: FC<Types.NavBarEntryProps> = ({
 
   return (
     <Styles.NavBarEntryWrapper
-      onClick={handleClick}
+      onClick={(): void => handleClick()}
       isFullWidth={isFullWidth}
       ref={activeElementRef}
     >

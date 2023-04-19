@@ -17,7 +17,7 @@ const MainContent: FC<Record<string, never>> = () => {
 
   const slideInFromRight = currentIndex > prevIndex;
   const title = componentsToShow[currentIndex] || '';
-  const text = (boxData as any)[title] || ''; // todo remove any
+  const text = (boxData as unknown)[title] || ''; // todo remove any
 
   function handleClick(): void {
     const indexOfLastEntry = componentsToShow.length - 1;
@@ -27,7 +27,7 @@ const MainContent: FC<Record<string, never>> = () => {
   }
 
   return (
-    <Styles.MainWrapper onClick={handleClick}>
+    <Styles.MainWrapper onClick={(): void => handleClick()}>
       <CSSTransitionGroup
         component={React.Fragment}
         transitionName={slideInFromRight ? 'slide-in-right' : 'slide-in-left'}

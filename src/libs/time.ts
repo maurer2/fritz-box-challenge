@@ -5,7 +5,6 @@ import {
   subMonths as subMonthsFP,
   subYears as subYearsFP,
 } from 'date-fns/fp';
-
 import { flow } from 'lodash';
 
 const getHours = (dateString: string): number => {
@@ -50,7 +49,7 @@ const getDateAsIsoDate = (dateString: string, nowDate: string): string => {
     subHoursFP(hours),
     subDaysFP(days),
     subMonthsFP(months),
-    subYearsFP(years)
+    subYearsFP(years),
   )(oldDateISO);
 
   return format(oldDateConverted, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");

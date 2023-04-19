@@ -10,6 +10,6 @@ export const theme = {
 
 export type ThemeType = keyof typeof theme;
 
-export const Theme: FC<PropsWithChildren<{}>> = ({ children }) => (
+export const Theme: FC<PropsWithChildren<Record<string, unknown>>> = ({ children }) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );

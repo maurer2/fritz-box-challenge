@@ -14,5 +14,6 @@ export const AppWrapper = styled.article`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: ${({ theme }: any) => theme.tertiaryColor};
+  // eslint-disable-next-line
+  background: ${({ theme }: unknown) => theme.tertiaryColor};
 `;

@@ -66,7 +66,7 @@ const NavBar: FC<Record<string, never>> = () => {
             index={index}
             entry={entry}
             isActive={currentIndex === index}
-            handleNavigation={handleNavigation}
+            handleNavigation={(): void => handleNavigation()}
             // only active element gets ref otherwise last child always active
             activeElementRef={currentIndex === index ? activeElement : null}
             key={entry}

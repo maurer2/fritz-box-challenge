@@ -81,6 +81,8 @@ module.exports = {
       },
     ],
     'react/prop-types': 0,
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
   },
   settings: {
     react: {
@@ -95,8 +97,6 @@ module.exports = {
       jsx: true,
     },
   },
-  'no-use-before-define': 'off',
-  '@typescript-eslint/no-use-before-define': ['error'],
   // plain js files
   overrides: [
     {

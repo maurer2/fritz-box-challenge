@@ -23,8 +23,8 @@ const BoxDataContext = React.createContext({} as Types.RootStateInitial);
 function mapBoxData(
   componentsToShow: Types.ComponentType[],
   boxData: Types.ComponentTypes,
-  runtime: any,
-  age: any
+  runtime: unknown,
+  age: unknown,
 ): Types.ComponentTypes {
   const mappedEntries = componentsToShow.reduce(
     (total: Types.ComponentTypeInitial, current: Types.ComponentType) => {
@@ -34,7 +34,7 @@ function mapBoxData(
 
       return entries;
     },
-    {} as any
+    {} as Record<string, unknown>,
   );
 
   mappedEntries.runtime = runtime;
@@ -43,7 +43,7 @@ function mapBoxData(
   return mappedEntries;
 }
 
-const DataProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
+const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children }) => {
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as Types.ComponentTypes);
@@ -107,7 +107,7 @@ const DataProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
         setBoxData(newBoxData);
         setIsValid(true);
       })
-      .catch((error: Error) => {
+      .catch(() => {
         setIsValid(false);
 
         Promise.resolve();

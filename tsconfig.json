@@ -6,24 +6,36 @@
     "module": "esnext",
     "target": "ES2020",
     "jsx": "react",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": false, // todo
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["./src/**/*"],
-  "exclude": ["./src/libs/*.js", "src/libs/*.js"],
-  "files": ["./src/types.d.ts"],
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./src/libs/*.js",
+    "src/libs/*.js"
+  ],
+  "files": [
+    "./src/types.d.ts"
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"
     }
-  },
+  }
 }

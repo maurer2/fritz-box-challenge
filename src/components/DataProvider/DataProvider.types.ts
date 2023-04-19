@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-shadow
 export enum AppMode {
   DEV = 'dev',
   LIVE = 'live',
@@ -14,13 +15,13 @@ export type ComponentType =
 
 export type ComponentTypes = {
   // [K in ComponentType]: string;
-  'branding': string,
-  'firmware': string,
-  'model': string,
-  'restarts': string,
-  'technology': string,
-  'runtime': string,
-  'age': string,
+  'branding': string;
+  'firmware': string;
+  'model': string;
+  'restarts': string;
+  'technology': string;
+  'runtime': string;
+  'age': string;
 };
 
 export interface RootState {

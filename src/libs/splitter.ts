@@ -3,8 +3,8 @@ const splitString = (stringValue: string): string[] => stringValue.split('-');
 
 const isEmptyString = (stringValue: string): boolean => Boolean(stringValue.length);
 
-const hasCorrectNumberOfParts = (parts: string | string[], numberOfParts: number): boolean =>
-  parts.length === numberOfParts;
+// eslint-disable-next-line max-len
+const hasCorrectNumberOfParts = (parts: string | string[], numberOfParts: number): boolean => parts.length === numberOfParts;
 
 // add Dash after second dash
 // workaround since powerOnHours and restarts is not separated by a dash
