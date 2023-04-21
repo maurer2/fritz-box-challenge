@@ -21,4 +21,5 @@ export const NavBarButton = styled(defaultButton)<NavBarButtonStyleProps>`
   font-weight: ${({ isActive }) => (isActive ? 'bold' : 'normal')};
   font-size: 1rem;
   transition: color 500ms;
+  cursor: pointer;
 `;

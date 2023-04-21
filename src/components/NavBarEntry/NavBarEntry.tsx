@@ -13,13 +13,14 @@ const NavBarEntry: FC<Types.NavBarEntryProps> = ({
   activeElementRef,
   isFullWidth,
 }) => {
-  function handleClick(): void {
+  function handleClick(event): void {
+    event.preventDefault();
     handleNavigation(index);
   }
 
   return (
     <Styles.NavBarEntryWrapper
-      onClick={(): void => handleClick()}
+      onClick={(event): void => handleClick(event)}
       isFullWidth={isFullWidth}
       ref={activeElementRef}
     >

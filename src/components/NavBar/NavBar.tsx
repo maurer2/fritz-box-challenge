@@ -30,7 +30,6 @@ const NavBar: FC<Record<string, never>> = () => {
     oldIndex.current = currentIndex;
 
     state.updateCurrentIndex(newCurrentIndex);
-    // setCurrentIndex(index);
   }
 
   function updateIndicator(): void {
@@ -66,7 +65,7 @@ const NavBar: FC<Record<string, never>> = () => {
             index={index}
             entry={entry}
             isActive={currentIndex === index}
-            handleNavigation={(): void => handleNavigation()}
+            handleNavigation={(newCurrentIndex): void => handleNavigation(newCurrentIndex)}
             // only active element gets ref otherwise last child always active
             activeElementRef={currentIndex === index ? activeElement : null}
             key={entry}
