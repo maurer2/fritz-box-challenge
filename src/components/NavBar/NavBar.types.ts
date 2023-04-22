@@ -7,7 +7,7 @@ export interface NavBarStyleProps {
 
 export interface IndicatorStyleProps {
   offset: number;
-  width: string; // todo change to number
+  width: string | number;
   height: number;
 }
 

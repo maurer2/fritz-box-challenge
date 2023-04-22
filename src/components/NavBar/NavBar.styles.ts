@@ -19,7 +19,7 @@ export const Indicator = styled.div<IndicatorStyleProps>`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${({ width }) => (width === 'auto' ? width : `${width}px`)}; // might cause layout thrashing
+  width: ${({ width }) => (typeof width === 'string' ? width : `${width}px`)}; // might cause layout thrashing
   height: ${({ height }) => `${height}px`};
   transform: translateX(${({ offset }) => offset}px);
   transition: transform 500ms, width 500ms;

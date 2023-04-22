@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-use-before-define
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import { upperFirst } from 'lodash';
 
 import * as Styles from './NavBarEntry.styles';
@@ -13,7 +13,7 @@ const NavBarEntry: FC<Types.NavBarEntryProps> = ({
   activeElementRef,
   isFullWidth,
 }) => {
-  function handleClick(event): void {
+  function handleClick(event: MouseEvent<HTMLLIElement>): void {
     event.preventDefault();
     handleNavigation(index);
   }

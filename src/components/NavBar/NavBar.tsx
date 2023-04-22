@@ -13,17 +13,15 @@ const NavBar: FC<Record<string, never>> = () => {
   const state = React.useContext(BoxDataContext);
 
   const [offset, setOffset] = useState(0);
-  const [width, setWidth] = useState('auto'); // prevent css transition on load
+  const [width, setWidth] = useState<string | number>('auto'); // prevent css transition on load
 
   const oldIndex = useRef(-1);
   const showIndicator = useRef(true);
   const activeElement = createRef<HTMLLIElement>();
 
   const height = 5;
-
   const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];
   const currentIndex = 'currentIndex' in state ? state.currentIndex : 0;
-
   const isUpdating = 'isUpdating' in state ? state.isUpdating : true;
 
   function handleNavigation(newCurrentIndex: number): void {
@@ -65,7 +63,7 @@ const NavBar: FC<Record<string, never>> = () => {
             index={index}
             entry={entry}
             isActive={currentIndex === index}
-            handleNavigation={(newCurrentIndex): void => handleNavigation(newCurrentIndex)}
+            handleNavigation={(newCurrentIndex: number): void => handleNavigation(newCurrentIndex)}
             // only active element gets ref otherwise last child always active
             activeElementRef={currentIndex === index ? activeElement : null}
             key={entry}
