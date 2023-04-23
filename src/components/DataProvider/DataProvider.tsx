@@ -3,6 +3,7 @@ import React, {
   FC, useState, useEffect, useCallback, useMemo, PropsWithChildren,
 } from 'react';
 
+// import { apiClient } from '../../api/apiClient';
 import {
   getTimeBetween, getDate, getDateAsIsoDate, getNowDate,
 } from '../../libs/time';
@@ -17,6 +18,12 @@ import parseData from '../../libs/parser';
 import mockResponse from '../../mocks/box-iu7nl.txt';
 
 import * as Types from './DataProvider.types';
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// (async () => {
+//   const mockBoxData = await apiClient.getBoxData();
+//   console.log(mockBoxData);
+// })();
 
 const BoxDataContext = React.createContext({} as Types.RootStateInitial);
 

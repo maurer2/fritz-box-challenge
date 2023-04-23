@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+
 import getData from '../src/libs/getData';
 import dumpData from '../src/libs/dumpData';
 
