@@ -1,9 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, {
   FC, useState, useEffect, useCallback, useMemo, PropsWithChildren,
 } from 'react';
 
-// import { apiClient } from '../../api/apiClient';
+import { apiClient } from '../../api/apiClient';
 import {
   getTimeBetween, getDate, getDateAsIsoDate, getNowDate,
 } from '../../libs/time';
@@ -13,17 +12,9 @@ import {
   getDashPositionsInString,
   splitString as splitToArray,
 } from '../../libs/splitter';
-import getData from '../../libs/getData';
 import parseData from '../../libs/parser';
-import mockResponse from '../../mocks/box-iu7nl.txt';
 
 import * as Types from './DataProvider.types';
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-// (async () => {
-//   const mockBoxData = await apiClient.getBoxData();
-//   console.log(mockBoxData);
-// })();
 
 const BoxDataContext = React.createContext({} as Types.RootStateInitial);
 
@@ -72,8 +63,6 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
     return componentsArray;
   }, []);
 
-  const url = process.env.REACT_APP_MODE === Types.AppMode.DEV ? mockResponse : '/cgi-bin/system_status';
-
   const updateIndex = useCallback(
     (newIndex: number): void => {
       setPrevIndex(currentIndex);
@@ -85,7 +74,7 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
   const getBoxData = useCallback((): void => {
     setIsUpdating(true);
 
-    const fetchedFinally = getData(url)
+    const fetchedFinally = apiClient.getBoxData()
       .then((htmlString: string) => {
         const parsedTextString = parseData(htmlString);
 
@@ -123,7 +112,7 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
     fetchedFinally.then(() => {
       setIsUpdating(false);
     });
-  }, [url, componentsToShow]);
+  }, [componentsToShow]);
 
   useEffect(() => {
     getBoxData();
