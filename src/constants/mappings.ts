@@ -10,7 +10,17 @@ export const fieldsMappings = [
   'firmware',
   'subfirmware',
   'branding',
-] as const; // satisfies string[];
+] as const satisfies readonly string[];
+
+export const fieldsShown = [
+  'Model',
+  'Technology',
+  'PowerOnHours',
+  'Restarts',
+  'Firmware',
+  'Branding',
+] as const satisfies readonly string[];
+export type FieldsShown = typeof fieldsShown[number];
 
 export const technologyMapping = {
   A: 'Annex A',
