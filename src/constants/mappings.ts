@@ -21,6 +21,11 @@ export const fieldsShown = [
   'Branding',
 ] as const satisfies readonly string[];
 export type FieldsShown = typeof fieldsShown[number];
+export type FieldsShownMap = {
+  [K in Exclude<FieldsShown, 'PowerOnHours'>]: string;
+} & {
+  'PowerOnHours': Date;
+}
 
 export const technologyMapping = {
   A: 'Annex A',

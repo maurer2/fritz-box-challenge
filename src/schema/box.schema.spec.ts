@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { boxValueString, sectionsOfBoxValues } from './box.schema';
+import { boxValueString, sectionsOfBoxValues, boxValuesMap } from './box.schema';
 
 describe('boxValueString', () => {
   it('should allow string with correct number of hyphens', () => {
@@ -24,5 +24,29 @@ describe('boxValueString', () => {
     [false, null, 0, NaN, undefined, ''].forEach((value) => {
       expect(boxValueString.safeParse(value).success).toBeFalsy();
     });
+  });
+});
+
+describe('boxValuesMap', () => {
+  it('should contain all object keys', () => {
+    expect(boxValuesMap.safeParse({
+      'Model': 'Model',
+      'Technology': 'Technology',
+      'Restarts': 'Restarts',
+      'Firmware': 'Firmware',
+      'Branding': 'Branding',
+      'PowerOnHours':  new Date(),
+    }).success).toBeTruthy();
+  });
+
+  it('should fail if key is missing', () => {
+    expect(boxValuesMap.safeParse({
+      'Model': 'Model',
+      'Technology': 'Technology',
+      // 'Restarts': 'Restarts',
+      'Firmware': 'Firmware',
+      'Branding': 'Branding',
+      'PowerOnHours':  new Date(),
+    }).success).toBeFalsy();
   });
 });

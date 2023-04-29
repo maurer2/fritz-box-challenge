@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { fieldsShown } from '../constants/mappings';
+import type { FieldsShownMap } from '../constants/mappings';
 
 export const sectionsOfBoxValues = 10;
 
@@ -22,7 +23,13 @@ export const boxValueString = z
     { message: 'no section in string must have missing values' },
   ) satisfies z.ZodType<string>;
 
-export const boxValues = z
-  .object(
-    Object.fromEntries(fieldsShown.map((field) => [z.literal(field), z.string()])),
-  ) satisfies z.ZodType<Record<string, string>>;
+export const boxValuesMap = z
+  .object({
+    'Model': z.string(),
+    'Technology': z.string(),
+    'PowerOnHours': z.date(),
+    'Restarts': z.string(),
+    'Firmware': z.string(),
+    'Branding': z.string(),
+  })
+  .strict();
