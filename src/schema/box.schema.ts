@@ -1,8 +1,5 @@
 import { z } from 'zod';
 
-import { fieldsShown } from '../constants/mappings';
-import type { FieldsShownMap } from '../constants/mappings';
-
 export const sectionsOfBoxValues = 10;
 
 export const boxValueString = z
@@ -22,14 +19,16 @@ export const boxValueString = z
     (value): boolean => (value.split('-').every((entry) => Boolean(entry.length))),
     { message: 'no section in string must have missing values' },
   ) satisfies z.ZodType<string>;
+export type BoxValueString = z.infer<typeof boxValueString>;
 
 export const boxValuesMap = z
   .object({
-    'Model': z.string(),
-    'Technology': z.string(),
-    'PowerOnHours': z.date(),
-    'Restarts': z.string(),
-    'Firmware': z.string(),
-    'Branding': z.string(),
+    model: z.string().nonempty(),
+    technology: z.string().nonempty(), // todo add enum
+    powerOnHours: z.date(), // todo rename
+    restarts: z.string().nonempty(),
+    firmware: z.string().nonempty(),
+    branding: z.string().nonempty(),
   })
   .strict();
+export type BoxValuesMap = z.infer<typeof boxValuesMap>;

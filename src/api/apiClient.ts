@@ -1,13 +1,15 @@
-import { Zodios } from '@zodios/core';
-import z from 'zod';
+import { Zodios, makeApi } from '@zodios/core';
 
-export const apiClient = new Zodios('/api', [
+import { boxValueString } from '../schema/box.schema';
+
+export const endpoints = makeApi([
   {
     alias: 'getBoxData',
     method: 'get',
     path: 'http://fritz.box/cgi-bin/system_status',
-    response: z
-      .string()
-      .nonempty('Must not be empty'),
+    response: boxValueString,
+    requestFormat: 'text',
   },
 ]);
+
+export const apiClient = new Zodios('/api', endpoints);

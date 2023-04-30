@@ -1,6 +1,7 @@
 import React, {
   FC, useState, useEffect, useCallback, useMemo, PropsWithChildren,
 } from 'react';
+import { isErrorFromAlias, ZodiosError } from '@zodios/core';
 
 import { apiClient } from '../../api/apiClient';
 import {
@@ -71,47 +72,50 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
     [currentIndex],
   );
 
-  const getBoxData = useCallback((): void => {
-    setIsUpdating(true);
+  const getBoxData = useCallback(async (): Promise<void> => {
+    try {
+      setIsUpdating(true);
+      const htmlString = await apiClient.getBoxData();
+      const parsedTextString = parseData(htmlString);
 
-    const fetchedFinally = apiClient.getBoxData()
-      .then((htmlString: string) => {
-        const parsedTextString = parseData(htmlString);
+      const dashPositions = getDashPositionsInString(parsedTextString);
+      const splitString = splitData(parsedTextString, dashPositions);
+      const splitStringAsArray = splitToArray(splitString);
 
-        const dashPositions = getDashPositionsInString(parsedTextString);
-        const splitString = splitData(parsedTextString, dashPositions);
-        const splitStringAsArray = splitToArray(splitString);
+      const mappedValues = getMappedFields(splitStringAsArray);
 
-        const mappedValues = getMappedFields(splitStringAsArray);
+      const extractedDateString = `${mappedValues['powerOnHours 1']}-${mappedValues['powerOnHours 2']}`;
+      const nowDateString = getNowDate();
 
-        const extractedDateString = `${mappedValues['powerOnHours 1']}-${mappedValues['powerOnHours 2']}`;
-        const nowDateString = getNowDate();
+      const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);
 
-        const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);
+      const runtime = getDate(dateIsoString);
 
-        const runtime = getDate(dateIsoString);
+      const age = getTimeBetween(dateIsoString, nowDateString);
 
-        const age = getTimeBetween(dateIsoString, nowDateString);
+      const newBoxData: Types.ComponentTypes = mapBoxData(
+        componentsToShow,
+        mappedValues,
+        runtime,
+        age,
+      );
 
-        const newBoxData: Types.ComponentTypes = mapBoxData(
-          componentsToShow,
-          mappedValues,
-          runtime,
-          age,
-        );
-
-        setBoxData(newBoxData);
-        setIsValid(true);
-      })
-      .catch(() => {
+      setBoxData(newBoxData);
+      setIsValid(true);
+      setIsUpdating(false);
+    } catch (error) {
+      if (error instanceof ZodiosError) {
+        console.log(error.message);
         setIsValid(false);
 
-        Promise.resolve();
-      });
-
-    fetchedFinally.then(() => {
+        // possibly not called due to mismatching url of mirage server
+        // if (isErrorFromAlias(endpoints, 'getBoxData', error)) {
+        //   console.log(error);
+        // }
+      }
+      setIsValid(false);
       setIsUpdating(false);
-    });
+    }
   }, [componentsToShow]);
 
   useEffect(() => {

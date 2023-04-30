@@ -30,23 +30,29 @@ describe('boxValueString', () => {
 describe('boxValuesMap', () => {
   it('should contain all object keys', () => {
     expect(boxValuesMap.safeParse({
-      'Model': 'Model',
-      'Technology': 'Technology',
-      'Restarts': 'Restarts',
-      'Firmware': 'Firmware',
-      'Branding': 'Branding',
-      'PowerOnHours':  new Date(),
+      model: 'Model',
+      technology: 'Technology',
+      restarts: 'Restarts',
+      firmware: 'Firmware',
+      branding: 'Branding',
+      powerOnHours: new Date(),
     }).success).toBeTruthy();
   });
 
-  it('should fail if key is missing', () => {
+  it('should fail if one or more keys is missing', () => {
     expect(boxValuesMap.safeParse({
-      'Model': 'Model',
-      'Technology': 'Technology',
-      // 'Restarts': 'Restarts',
-      'Firmware': 'Firmware',
-      'Branding': 'Branding',
-      'PowerOnHours':  new Date(),
+      model: 'Model',
+    }).success).toBeFalsy();
+  });
+
+  it('should fail if one or more values have a mismatching type', () => {
+    expect(boxValuesMap.safeParse({
+      model: 0,
+      technology: 'Technology',
+      restarts: 'Restarts',
+      firmware: 'Firmware',
+      branding: 'Branding',
+      powerOnHours: new Date(),
     }).success).toBeFalsy();
   });
 });
