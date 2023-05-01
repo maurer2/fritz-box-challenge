@@ -1,13 +1,13 @@
 import React, {
   FC, useState, useEffect, useCallback, useMemo, PropsWithChildren,
 } from 'react';
-import { isErrorFromAlias, ZodiosError } from '@zodios/core';
+import { ZodiosError } from '@zodios/core';
 
 import { apiClient } from '../../api/apiClient';
 import {
   getTimeBetween, getDate, getDateAsIsoDate, getNowDate,
 } from '../../libs/time';
-import { getMappedFields } from '../../libs/mapper';
+import { getMappedFields, getKeyValueMapOfBoxValues } from '../../libs/mapper';
 import {
   transformString as splitData,
   getDashPositionsInString,
@@ -23,8 +23,8 @@ const BoxDataContext = React.createContext({} as Types.RootStateInitial);
 function mapBoxData(
   componentsToShow: Types.ComponentType[],
   boxData: Types.ComponentTypes,
-  runtime: unknown,
-  age: unknown,
+  runtime: string,
+  age: string,
 ): Types.ComponentTypes {
   const mappedEntries = componentsToShow.reduce(
     (total: Types.ComponentTypeInitial, current: Types.ComponentType) => {
@@ -34,13 +34,14 @@ function mapBoxData(
 
       return entries;
     },
-    {} as Record<string, unknown>,
+    // {} as Record<string, keyof Types.ComponentTypes>,
+    {} as Types.ComponentTypes,
   );
 
   mappedEntries.runtime = runtime;
   mappedEntries.age = age;
 
-  return mappedEntries;
+  return mappedEntries as Required<Types.ComponentTypes>;
 }
 
 const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children }) => {
@@ -79,11 +80,13 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
 
       const parsedTextString = parseData(htmlString);
 
-      console.log(getValueList(parsedTextString));
-
       const dashPositions = getDashPositionsInString(parsedTextString);
       const splitString = splitData(parsedTextString, dashPositions);
       const splitStringAsArray = splitToArray(splitString);
+
+      const extractedValuesAsList = getValueList(parsedTextString);
+      const extractedValuesMapped = getKeyValueMapOfBoxValues(extractedValuesAsList);
+      console.log(extractedValuesMapped);
 
       const mappedValues = getMappedFields(splitStringAsArray);
 
