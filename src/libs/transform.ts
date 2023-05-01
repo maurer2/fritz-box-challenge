@@ -11,7 +11,7 @@ const getPositionsOfHyphensInString = (value: string): number[] => {
   return dashPositions;
 };
 
-// add Dash after second dash since powerOnHours and restarts are not separated by a hyphen
+// move hyphen between powerOnHours and restarts as they are not separated by a hyphen
 const getValueWithFixedPowerOnHoursAndRestarts = (
   value: string,
   positionsOfHyphens: number[],
@@ -35,13 +35,29 @@ const getValueWithFixedPowerOnHoursAndRestarts = (
   return `${stringBeforeSplitPoint}-${stringAfterSplitPoint}`;
 };
 
+const fixFirmware = (value: string, positionsOfHyphens: number[]): string => {
+  const startPosition = positionsOfHyphens[6] + 1; // + 1 to get first character after hyphen
+  const endPosition = positionsOfHyphens[7];
+
+  const firmwareString = value.substring(startPosition, endPosition);
+  const fixedFirmwareString = firmwareString.slice(-3); // firmware is Xxx, e.g. 7.50
+
+  return value.replace(firmwareString, fixedFirmwareString);
+};
+
 const getValueList = (value: string): string[] => {
   const positionsOfHyphensBeforeFix: number[] = getPositionsOfHyphensInString(value);
-  const fixedValue: string = getValueWithFixedPowerOnHoursAndRestarts(
+  const valueWithFixedRestartsAndPowerOnHours: string = getValueWithFixedPowerOnHoursAndRestarts(
     value,
     positionsOfHyphensBeforeFix,
   );
-  const valuesAsList: string[] = fixedValue.split('-');
+  // breaks positionsOfHyphensBeforeFix
+  const valueWithFixedFirmware: string = fixFirmware(
+    valueWithFixedRestartsAndPowerOnHours,
+    positionsOfHyphensBeforeFix,
+  );
+
+  const valuesAsList: string[] = valueWithFixedFirmware.split('-');
 
   return valuesAsList;
 };
