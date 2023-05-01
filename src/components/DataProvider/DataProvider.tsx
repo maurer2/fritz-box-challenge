@@ -13,6 +13,7 @@ import {
   getDashPositionsInString,
   splitString as splitToArray,
 } from '../../libs/splitter';
+import { getValueList } from '../../libs/transform';
 import parseData from '../../libs/parser';
 
 import * as Types from './DataProvider.types';
@@ -43,16 +44,15 @@ function mapBoxData(
 }
 
 const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children }) => {
+  const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as Types.ComponentTypes);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [prevIndex, setPrevIndex] = useState<number>(0);
 
-  const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
-
-  const componentsToShow = useMemo((): Types.ComponentType[] => {
-    const componentsArray: Types.ComponentType[] = [
+  const componentsToShow = useMemo(
+    (): Types.ComponentType[] => ([
       'branding',
       'firmware',
       'model',
@@ -60,9 +60,9 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
       'technology',
       'runtime',
       'age',
-    ];
-    return componentsArray;
-  }, []);
+    ]),
+    [],
+  );
 
   const updateIndex = useCallback(
     (newIndex: number): void => {
@@ -76,7 +76,10 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
     try {
       setIsUpdating(true);
       const htmlString = await apiClient.getBoxData();
+
       const parsedTextString = parseData(htmlString);
+
+      console.log(getValueList(parsedTextString));
 
       const dashPositions = getDashPositionsInString(parsedTextString);
       const splitString = splitData(parsedTextString, dashPositions);
@@ -134,7 +137,11 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
     });
   }, [isUpdating, isValid, boxData, currentIndex, prevIndex, componentsToShow, updateIndex]);
 
-  return <BoxDataContext.Provider value={state}>{children}</BoxDataContext.Provider>;
+  return (
+    <BoxDataContext.Provider value={state}>
+      {children}
+    </BoxDataContext.Provider>
+  );
 };
 
 export { BoxDataContext, DataProvider };
