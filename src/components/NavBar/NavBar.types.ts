@@ -1,8 +1,8 @@
 import { MutableRefObject } from 'react';
 
 export interface NavBarStyleProps {
-  reservedSpaceTop: number;
-  isUpdating: boolean;
+  $reservedSpaceTop: number;
+  $isUpdating: boolean;
 }
 
 export interface IndicatorStyleProps {
@@ -12,5 +12,5 @@ export interface IndicatorStyleProps {
 }
 
 export interface NavBarListStyleProps {
-  isRow: MutableRefObject<boolean>;
+  $isRow: MutableRefObject<boolean>;
 }

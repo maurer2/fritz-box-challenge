@@ -8,7 +8,7 @@ import * as Types from './Slide.types';
 const Slide: FC<Types.SlideProps> = ({ title, text }) => (
   <Styles.Wrapper>
     <Styles.TitleWrapper>{upperFirst(title)}</Styles.TitleWrapper>
-    <Styles.TextWrapper characterCount={text.length}>
+    <Styles.TextWrapper $characterCount={text.length}>
       {text.split('').map((character, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <span className="character" key={index}>

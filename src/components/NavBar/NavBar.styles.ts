@@ -4,12 +4,12 @@ import { NavBarStyleProps, IndicatorStyleProps, NavBarListStyleProps } from './N
 
 export const NavBar = styled.nav<NavBarStyleProps>`
   position: relative;
-  padding-top: ${({ reservedSpaceTop }) => `${reservedSpaceTop}px`};
+  padding-top: ${({ $reservedSpaceTop }) => `${$reservedSpaceTop}px`};
   grid-area: navBar;
   will-change: transform;
   transform: translateY(0);
   transition: transform 500ms ease-out;
-  ${({ isUpdating }) => isUpdating
+  ${({ $isUpdating }) => $isUpdating
     && css`
       transform: translateY(100%);
     `}
@@ -30,7 +30,7 @@ export const NavBarList = styled.ul<NavBarListStyleProps>`
   display: flex;
   margin: 0;
   padding: 0;
-  flex-wrap: ${({ isRow }) => (isRow ? 'no-wrap' : 'wrap')};
+  flex-wrap: ${({ $isRow }) => ($isRow ? 'no-wrap' : 'wrap')};
   justify-content: space-between;
   list-style: none;
   background: ${({ theme }) => theme.secondaryColor};

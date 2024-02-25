@@ -4,5 +4,5 @@ export interface SlideProps {
 }
 
 export interface TextWrapperStyleProps {
-  characterCount: number;
+  $characterCount: number;
 }

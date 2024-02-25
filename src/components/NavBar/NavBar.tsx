@@ -55,19 +55,19 @@ const NavBar: FC<Record<string, never>> = () => {
   });
 
   return (
-    <Styles.NavBar reservedSpaceTop={height} isUpdating={isUpdating}>
+    <Styles.NavBar $reservedSpaceTop={height} $isUpdating={isUpdating}>
       {showIndicator.current && <Styles.Indicator offset={offset} width={width} height={height} />}
-      <Styles.NavBarList isRow={showIndicator}>
+      <Styles.NavBarList $isRow={showIndicator}>
         {componentsToShow.map((entry, index) => (
           <NavBarEntry
             index={index}
             entry={entry}
-            isActive={currentIndex === index}
+            $isActive={currentIndex === index}
             handleNavigation={(newCurrentIndex: number): void => handleNavigation(newCurrentIndex)}
             // only active element gets ref otherwise last child always active
             activeElementRef={currentIndex === index ? activeElement : null}
             key={entry}
-            isFullWidth={!showIndicator}
+            $isFullWidth={!showIndicator}
           />
         ))}
       </Styles.NavBarList>

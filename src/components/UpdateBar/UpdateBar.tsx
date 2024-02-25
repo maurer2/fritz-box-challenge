@@ -12,7 +12,7 @@ const UpdateBar: FC<Record<string, never>> = () => {
   const isValid = 'isValid' in state ? state.isValid : false;
 
   return (
-    <Styles.UpdateBar isUpdating={isUpdating}>
+    <Styles.UpdateBar $isUpdating={isUpdating}>
       {isUpdating ? (
         <Styles.Text>Updating!</Styles.Text>
       ) : (

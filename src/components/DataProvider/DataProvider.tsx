@@ -76,7 +76,13 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
   const getBoxData = useCallback(async (): Promise<void> => {
     try {
       setIsUpdating(true);
-      const htmlString = await apiClient.getBoxData();
+      // const htmlString = await apiClient.getBoxData();
+      const response = await fetch('http://fritz.box/cgi-bin/system_status');
+      if (!response.ok) {
+        throw new Error('Response error');
+      }
+
+      const htmlString = await response.text();
 
       const parsedTextString = parseData(htmlString);
 
@@ -112,13 +118,14 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
     } catch (error) {
       if (error instanceof ZodiosError) {
         console.log(error.message);
-        setIsValid(false);
-
-        // possibly not called due to mismatching url of mirage server
-        // if (isErrorFromAlias(endpoints, 'getBoxData', error)) {
-        //   console.log(error);
-        // }
+        // setIsValid(false);
       }
+
+      if (error instanceof Error) {
+        console.log(error.message);
+        // setIsValid(false);
+      }
+
       setIsValid(false);
       setIsUpdating(false);
     }

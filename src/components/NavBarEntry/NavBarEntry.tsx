@@ -8,10 +8,10 @@ import * as Types from './NavBarEntry.types';
 const NavBarEntry: FC<Types.NavBarEntryProps> = ({
   index,
   entry,
-  isActive,
+  $isActive,
   handleNavigation,
   activeElementRef,
-  isFullWidth,
+  $isFullWidth,
 }) => {
   function handleClick(event: MouseEvent<HTMLLIElement>): void {
     event.preventDefault();
@@ -21,10 +21,10 @@ const NavBarEntry: FC<Types.NavBarEntryProps> = ({
   return (
     <Styles.NavBarEntryWrapper
       onClick={(event): void => handleClick(event)}
-      isFullWidth={isFullWidth}
+      $isFullWidth={$isFullWidth}
       ref={activeElementRef}
     >
-      <Styles.NavBarButton isActive={isActive}>{upperFirst(entry)}</Styles.NavBarButton>
+      <Styles.NavBarButton $isActive={$isActive}>{upperFirst(entry)}</Styles.NavBarButton>
     </Styles.NavBarEntryWrapper>
   );
 };

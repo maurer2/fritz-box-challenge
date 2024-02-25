@@ -1,3 +1,3 @@
 export interface UpdateBarStyleProps {
-  isUpdating: boolean;
+  $isUpdating: boolean;
 }

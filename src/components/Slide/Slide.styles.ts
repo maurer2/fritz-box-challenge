@@ -19,6 +19,6 @@ export const TextWrapper = styled.div<TextWrapperStyleProps>`
   margin: 0;
   color: ${({ theme }) => theme.primaryColor};
   font-weight: bold;
-  font-size: ${(props) => Math.floor((100 / props.characterCount) * 1.35)}vw;
+  font-size: ${(props) => Math.floor((100 / props.$characterCount) * 1.35)}vw;
   line-height: 1;
 `;
