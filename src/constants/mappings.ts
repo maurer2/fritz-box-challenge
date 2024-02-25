@@ -33,7 +33,7 @@ export const fieldsShown = [
   'Firmware',
   'Branding',
 ] as const satisfies readonly string[];
-export type FieldsShown = typeof fieldsShown[number];
+export type FieldsShown = (typeof fieldsShown)[number];
 export type FieldsShownMap = {
   [K in Exclude<FieldsShown, 'PowerOnHours'>]: string;
 } & {
@@ -46,5 +46,7 @@ export const technologyMapping = {
   J: 'Annex J',
   Q: 'Annex Q',
   Cable: 'Cable',
-  // ?? : Fibre
+  // ?? : 'GPON',
+  // ?? : 'XGS PON',
+  // ?? : 'AON',
 } as const;

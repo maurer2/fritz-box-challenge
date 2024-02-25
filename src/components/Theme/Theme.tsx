@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, { FC, PropsWithChildren } from 'react';
-import { ThemeProvider } from 'styled-components/macro';
+import { ThemeProvider } from 'styled-components';
 
 export const theme = {
   primaryColor: '#F2F2F2',
