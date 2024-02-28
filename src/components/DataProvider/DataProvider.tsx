@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import { ZodiosError } from '@zodios/core';
 
-import { apiClient } from '../../api/apiClient';
 import {
   getTimeBetween, getDate, getDateAsIsoDate, getNowDate,
 } from '../../libs/time';
@@ -15,6 +14,7 @@ import {
 } from '../../libs/splitter';
 import { getValueList } from '../../libs/transform';
 import parseData from '../../libs/parser';
+import { useGetData } from '../../hooks/useGetABoxData/useGetABoxData';
 
 import * as Types from './DataProvider.types';
 
@@ -44,6 +44,16 @@ function mapBoxData(
   return mappedEntries as Required<Types.ComponentTypes>;
 }
 
+const componentsToShow: Types.ComponentType[] = [
+  'branding',
+  'firmware',
+  'model',
+  'restarts',
+  'technology',
+  'runtime',
+  'age',
+];
+
 const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children }) => {
   const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
@@ -52,18 +62,8 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [prevIndex, setPrevIndex] = useState<number>(0);
 
-  const componentsToShow = useMemo(
-    (): Types.ComponentType[] => ([
-      'branding',
-      'firmware',
-      'model',
-      'restarts',
-      'technology',
-      'runtime',
-      'age',
-    ]),
-    [],
-  );
+  const { data: boxData2 } = useGetData({ key: 'box-data', url: 'http://fritz.box/cgi-bin/system_status' });
+  console.log(isUpdating);
 
   const updateIndex = useCallback(
     (newIndex: number): void => {
@@ -76,15 +76,8 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
   const getBoxData = useCallback(async (): Promise<void> => {
     try {
       setIsUpdating(true);
-      // const htmlString = await apiClient.getBoxData();
-      const response = await fetch('http://fritz.box/cgi-bin/system_status');
-      if (!response.ok) {
-        throw new Error('Response error');
-      }
 
-      const htmlString = await response.text();
-
-      const parsedTextString = parseData(htmlString);
+      const parsedTextString = parseData(boxData2);
 
       const dashPositions = getDashPositionsInString(parsedTextString);
       const splitString = splitData(parsedTextString, dashPositions);
@@ -129,7 +122,7 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
       setIsValid(false);
       setIsUpdating(false);
     }
-  }, [componentsToShow]);
+  }, [boxData2]);
 
   useEffect(() => {
     getBoxData();
@@ -145,7 +138,7 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
       prevIndex,
       updateCurrentIndex: updateIndex,
     });
-  }, [isUpdating, isValid, boxData, currentIndex, prevIndex, componentsToShow, updateIndex]);
+  }, [isUpdating, isValid, boxData, currentIndex, prevIndex, updateIndex]);
 
   return (
     <BoxDataContext.Provider value={state}>

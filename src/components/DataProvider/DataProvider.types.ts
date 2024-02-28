@@ -1,6 +1,6 @@
-export enum AppMode {
-  DEV = 'dev',
-  LIVE = 'live',
+export type AppMode = {
+  DEV: 'dev',
+  LIVE: 'live',
 }
 
 export type ComponentType =
