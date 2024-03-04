@@ -1,5 +1,5 @@
 import React, {
-  FC, useState, useEffect, useCallback, useMemo, PropsWithChildren,
+  FC, useState, useEffect, useCallback, PropsWithChildren,
 } from 'react';
 import { ZodiosError } from '@zodios/core';
 
@@ -13,8 +13,9 @@ import {
   splitString as splitToArray,
 } from '../../libs/splitter';
 import { getValueList } from '../../libs/transform';
-import parseData from '../../libs/parser';
-import { useGetData } from '../../hooks/useGetABoxData/useGetABoxData';
+import { useFetchBoxData } from '../../hooks/useFetchBoxData/useFetchBoxData';
+import { useBoxDataExtractor } from '../../hooks/useBoxDataExtractor/useBoxDataExtractor';
+import { useGetMappedData } from '../../hooks/useGetMappedData/useGetMappedData';
 
 import * as Types from './DataProvider.types';
 
@@ -54,6 +55,8 @@ const componentsToShow: Types.ComponentType[] = [
   'age',
 ];
 
+type FieldMap = ReturnType<typeof useGetMappedData>;
+
 const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children }) => {
   const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
   const [isUpdating, setIsUpdating] = useState<boolean>(true);
@@ -62,8 +65,14 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [prevIndex, setPrevIndex] = useState<number>(0);
 
-  const { data: boxData2 } = useGetData({ key: 'box-data', url: 'http://fritz.box/cgi-bin/system_status' });
-  console.log(isUpdating);
+  const {
+    data: boxDataAsString,
+    isPending,
+  } = useFetchBoxData({ key: 'box-data', url: 'http://fritz.box/cgi-bin/system_status' });
+  const extractedValuesUncategorized: string[] = useBoxDataExtractor(boxDataAsString);
+  const extractedValuesMapped: FieldMap = useGetMappedData(extractedValuesUncategorized);
+
+  console.log(extractedValuesMapped);
 
   const updateIndex = useCallback(
     (newIndex: number): void => {
@@ -77,25 +86,16 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
     try {
       setIsUpdating(true);
 
-      const parsedTextString = parseData(boxData2);
+      if (isPending) {
+        return;
+      }
 
-      const dashPositions = getDashPositionsInString(parsedTextString);
-      const splitString = splitData(parsedTextString, dashPositions);
-      const splitStringAsArray = splitToArray(splitString);
+      const mappedValues = getMappedFields(extractedValuesUncategorized);
 
-      const extractedValuesAsList = getValueList(parsedTextString);
-      const extractedValuesMapped = getKeyValueMapOfBoxValues(extractedValuesAsList);
-      console.log(extractedValuesMapped);
-
-      const mappedValues = getMappedFields(splitStringAsArray);
-
-      const extractedDateString = `${mappedValues['powerOnHours 1']}-${mappedValues['powerOnHours 2']}`;
       const nowDateString = getNowDate();
-
-      const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);
+      const dateIsoString = getDateAsIsoDate(extractedValuesMapped.powerOnHours, nowDateString);
 
       const runtime = getDate(dateIsoString);
-
       const age = getTimeBetween(dateIsoString, nowDateString);
 
       const newBoxData: Types.ComponentTypes = mapBoxData(
@@ -122,7 +122,7 @@ const DataProvider: FC<PropsWithChildren<Record<string, unknown>>> = ({ children
       setIsValid(false);
       setIsUpdating(false);
     }
-  }, [boxData2]);
+  }, [boxDataAsString, isPending]);
 
   useEffect(() => {
     getBoxData();

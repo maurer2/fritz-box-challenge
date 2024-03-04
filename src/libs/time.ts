@@ -26,7 +26,7 @@ const getMonths = (dateString: string): number => {
 };
 
 const getYears = (dateString: string): number => {
-  const yearString = dateString.substring(7, 10);
+  const yearString = dateString.substring(6, 9);
 
   return parseInt(yearString, 10);
 };

@@ -1,8 +1,7 @@
 export const fieldsMappings = [
   'model',
   'technology',
-  'powerOnHours 1',
-  'powerOnHours 2',
+  'powerOnHours',
   'restarts',
   'hash 1',
   'hash 2',
