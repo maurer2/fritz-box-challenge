@@ -90,7 +90,7 @@ export function useGetMappedData(
     : '';
   const age = mappedValuesAsList?.length ? getTimeBetweenTwoDates(runtime) : '';
 
-  mappedValuesAsMap.runtime = runtime;
+  mappedValuesAsMap.runtime = runtime !== '' ? format(parseISO(runtime), 'dd/MM/yyyy-HH:MM') : '';
   mappedValuesAsMap.age = age;
 
   return mappedValuesAsMap;
