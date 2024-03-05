@@ -1,8 +1,6 @@
-import { fieldsMappings, fieldsMappings2, technologyMapping } from '../constants/mappings';
+import { fieldsMappings, technologyMapping } from '../constants/mappings';
 
 type FieldsMappings = (typeof fieldsMappings)[number];
-type FieldsMappings2 = (typeof fieldsMappings2)[number];
-// type FieldsWithValues2 = Record<FieldsMappings2, string | number>;
 
 export const getMappedFields = (fieldValues: string[]) => {
   // assign key of value by position in array
@@ -23,8 +21,8 @@ export const getMappedFields = (fieldValues: string[]) => {
 };
 
 export const getKeyValueMapOfBoxValues = (fieldValues: string[]) => {
-  const mappedValuesAsList = fieldValues.flatMap((fieldName: FieldsMappings2, index: number) => {
-    const field = fieldsMappings2?.[index];
+  const mappedValuesAsList = fieldValues.flatMap((fieldName: FieldsMappings, index: number) => {
+    const field = fieldsMappings?.[index];
 
     if (!field) {
       return [];
