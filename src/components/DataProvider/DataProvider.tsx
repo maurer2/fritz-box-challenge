@@ -1,14 +1,13 @@
 import React, {
-  FC, useState, useCallback, PropsWithChildren, useMemo, createContext,
+  PropsWithChildren, useMemo, createContext, useReducer,
 } from 'react';
+import type { Reducer } from 'react';
 
 import { useFetchBoxData } from '../../hooks/useFetchBoxData/useFetchBoxData';
 import { useBoxDataExtractor } from '../../hooks/useBoxDataExtractor/useBoxDataExtractor';
 import { useGetMappedData } from '../../hooks/useGetMappedData/useGetMappedData';
 
 import { ComponentType, RootStateInitial } from './DataProvider.types';
-
-const BoxDataContext = createContext<RootStateInitial>(null);
 
 // function mapBoxData(
 //   componentsToShow: Types.ComponentType[],
@@ -29,6 +28,8 @@ const BoxDataContext = createContext<RootStateInitial>(null);
 //   return mappedEntries as Required<Types.ComponentTypes>;
 // }
 
+type NavIndices = { currentIndex: number; prevIndex: number };
+
 const componentsToShow: ComponentType[] = [
   'branding',
   'firmware',
@@ -39,10 +40,9 @@ const componentsToShow: ComponentType[] = [
   'age',
 ];
 
-const DataProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(0);
+const BoxDataContext = createContext<RootStateInitial>(null);
 
+const DataProvider = ({ children }: PropsWithChildren) => {
   const {
     data: boxDataAsString,
     isPending,
@@ -51,12 +51,14 @@ const DataProvider: FC<PropsWithChildren> = ({ children }) => {
   const extractedValuesUncategorised: string[] = useBoxDataExtractor(boxDataAsString);
   const extractedValuesMapped = useGetMappedData(extractedValuesUncategorised);
 
-  const updateIndex = useCallback(
-    (newIndex: number): void => {
-      setPrevIndex(currentIndex);
-      setCurrentIndex(newIndex);
+  const [navIndices, updateIndices] = useReducer<Reducer<NavIndices, number>>(
+    (oldIndices, newIndex): NavIndices => {
+      const prevIndex = oldIndices.currentIndex;
+      const currentIndex = newIndex;
+
+      return { currentIndex, prevIndex };
     },
-    [currentIndex],
+    { currentIndex: 0, prevIndex: 0 },
   );
 
   // const newBoxData: Types.ComponentTypes = mapBoxData(componentsToShow, extractedValuesMapped);
@@ -67,11 +69,11 @@ const DataProvider: FC<PropsWithChildren> = ({ children }) => {
       isUpdating: isPending,
       isValid: isSuccess,
       componentsToShow,
-      currentIndex,
-      prevIndex,
-      updateCurrentIndex: updateIndex,
+      currentIndex: navIndices.currentIndex,
+      prevIndex: navIndices.prevIndex,
+      updateCurrentIndex: updateIndices,
     }),
-    [extractedValuesMapped, currentIndex, isPending, isSuccess, prevIndex, updateIndex],
+    [extractedValuesMapped, navIndices, isPending, isSuccess, updateIndices],
   );
 
   return <BoxDataContext.Provider value={value}>{children}</BoxDataContext.Provider>;
