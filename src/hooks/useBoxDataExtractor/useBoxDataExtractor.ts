@@ -1,17 +1,17 @@
 const dateLength = 9;
 
 // add dash after second dash
-// workaround since powerOnHours and restarts are not separated by a dash
-function createValueStringWithDashes(stringValue: string, dashPositions: number[]): string {
+// power on hours  and restarts are not separated by a dash
+function addDashBetweenDateAndRestarts(stringValue: string, dashPositions: number[]): string {
   const dateStartPosition = dashPositions[1] + 1;
-  const splitPoint = dateStartPosition + dateLength;
+  const splitPoint = dateStartPosition + dateLength; // position between date and power in hours
 
   const stringBeforeSplitPoint = stringValue.substring(0, splitPoint);
   const stringAfterSplitPoint = stringValue.substring(splitPoint);
 
-  const stringBeforeSplitPointWithoutLastDash = stringBeforeSplitPoint
-    .substring(0, stringBeforeSplitPoint.length - 3) + stringBeforeSplitPoint
-    .substring(stringBeforeSplitPoint.length - 2);
+  const tempStringArray = stringBeforeSplitPoint.split('');
+  tempStringArray.splice(-3, 1);
+  const stringBeforeSplitPointWithoutLastDash = tempStringArray.join('');
 
   return `${stringBeforeSplitPointWithoutLastDash}-${stringAfterSplitPoint}`;
 }
@@ -30,8 +30,8 @@ export function useBoxDataExtractor(htmlString: string): string[] {
       return total;
     }, [] as number[]);
 
-  const stringWithDashes = createValueStringWithDashes(htmlString, dashPositions);
-  const valuesList = stringWithDashes.split('-');
+  const stringWithFixedDashPositions = addDashBetweenDateAndRestarts(htmlString, dashPositions);
+  const valuesList = stringWithFixedDashPositions.split('-');
 
   return valuesList;
 }
