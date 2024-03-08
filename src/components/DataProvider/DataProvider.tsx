@@ -4,7 +4,6 @@ import React, {
 import type { Reducer } from 'react';
 
 import { useFetchBoxData } from '../../hooks/useFetchBoxData/useFetchBoxData';
-import { useBoxDataExtractor } from '../../hooks/useBoxDataExtractor/useBoxDataExtractor';
 import { useGetMappedData } from '../../hooks/useGetMappedData/useGetMappedData';
 
 import { ComponentType, RootStateInitial } from './DataProvider.types';
@@ -44,12 +43,11 @@ const BoxDataContext = createContext<RootStateInitial>(null);
 
 const DataProvider = ({ children }: PropsWithChildren) => {
   const {
-    data: boxDataAsString,
+    data: boxData,
     isPending,
     isSuccess,
   } = useFetchBoxData({ key: 'box-data', url: 'http://fritz.box/cgi-bin/system_status' });
-  const extractedValuesUncategorised: string[] = useBoxDataExtractor(boxDataAsString);
-  const extractedValuesMapped = useGetMappedData(extractedValuesUncategorised);
+  const extractedValuesMapped = useGetMappedData(boxData ?? []);
 
   const [navIndices, updateIndices] = useReducer<Reducer<NavIndices, number>>(
     (oldIndices, newIndex): NavIndices => {
