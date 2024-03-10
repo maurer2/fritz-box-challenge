@@ -7,10 +7,9 @@ import {
 } from 'date-fns/fp';
 import { flow } from 'lodash';
 
-import { fieldsMappings, technologyMapping } from '../../constants/mappings';
-
-type FieldsMappings = (typeof fieldsMappings)[number];
-type FieldMap = Record<FieldsMappings, string>;
+import {
+  fields, technologyMapping, type Fields, type FieldMap,
+} from '../../constants/mappings';
 
 const getHours = (dateString: string): number => {
   const hoursString = dateString.substring(0, 2);
@@ -63,11 +62,9 @@ const getApproximateProductionDate = (dateString: string): string => {
   return format(calculatedProductionDate, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 };
 
-export function useGetMappedData(
-  fieldValues: string[],
-): FieldMap & { age: string; runtime: string } {
+export function useGetMappedData(fieldValues: string[]): FieldMap {
   const mappedValuesAsList = fieldValues.flatMap((fieldName, index) => {
-    const field = fieldsMappings?.[index];
+    const field = fields?.[index];
 
     if (!field) {
       return [];
@@ -77,13 +74,13 @@ export function useGetMappedData(
       [field]:
         field === 'technology'
           ? technologyMapping[fieldName as keyof typeof technologyMapping]
-          : (fieldName as Omit<FieldsMappings, 'technology'>),
+          : (fieldName as Omit<Fields, 'technology'>),
     };
   });
 
   const mappedValuesAsMap = Object.fromEntries(
     mappedValuesAsList.flatMap((value) => Object.entries(value)),
-  ) as FieldMap & { age: string; runtime: string };
+  ) as FieldMap;
 
   const runtime = mappedValuesAsList?.length
     ? getApproximateProductionDate(mappedValuesAsMap?.powerOnHours)

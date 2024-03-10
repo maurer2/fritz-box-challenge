@@ -1,29 +1,35 @@
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
-import React, { FC } from 'react';
-import { CSSTransitionGroup } from 'react-transition-group';
+import React, { useContext } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group'; // todo replace with https://github.com/szhsin/react-transition-state
 
 import { Slide } from '../Slide';
 import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './MainContent.styles';
 
-const MainContent: FC<Record<string, never>> = () => {
-  const state = React.useContext(BoxDataContext);
+const MainContent = () => {
+  const state = useContext(BoxDataContext);
 
-  const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];
-  const boxData = 'boxData' in state ? state.boxData : {};
-  const currentIndex = 'currentIndex' in state ? state.currentIndex : 0;
-  const prevIndex = 'prevIndex' in state ? state.prevIndex : 0;
+  const {
+    visibleComponents,
+    boxData,
+    currentIndex,
+    prevIndex,
+    updateCurrentIndex
+  } = state;
 
+  if (!boxData) {
+    return null
+  }
+
+  const title = visibleComponents[currentIndex];
+  const text = boxData?.[title];
   const slideInFromRight = currentIndex > prevIndex;
-  const title = componentsToShow[currentIndex] || '';
-  const text = (boxData as unknown)[title] || ''; // todo remove any
 
   function handleClick(): void {
-    const indexOfLastEntry = componentsToShow.length - 1;
+    const indexOfLastEntry = visibleComponents.length - 1;
     const newCurrentIndex = currentIndex < indexOfLastEntry ? currentIndex + 1 : 0;
 
-    state.updateCurrentIndex(newCurrentIndex);
+    updateCurrentIndex(newCurrentIndex);
   }
 
   return (

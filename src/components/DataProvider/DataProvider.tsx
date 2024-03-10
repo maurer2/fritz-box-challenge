@@ -6,30 +6,11 @@ import type { Reducer } from 'react';
 import { useFetchBoxData } from '../../hooks/useFetchBoxData/useFetchBoxData';
 import { useGetMappedData } from '../../hooks/useGetMappedData/useGetMappedData';
 
-import { ComponentType, RootStateInitial } from './DataProvider.types';
-
-// function mapBoxData(
-//   componentsToShow: Types.ComponentType[],
-//   boxData: Types.ComponentTypes,
-// ): Types.ComponentTypes {
-//   const mappedEntries = componentsToShow.reduce(
-//     (total: Types.ComponentTypeInitial, current: Types.ComponentType) => {
-//       const entries = total;
-
-//       entries[current] = boxData[current] || '';
-
-//       return entries;
-//     },
-//     // {} as Record<string, keyof Types.ComponentTypes>,
-//     {} as Types.ComponentTypes,
-//   );
-
-//   return mappedEntries as Required<Types.ComponentTypes>;
-// }
+import { RootState } from './DataProvider.types';
 
 type NavIndices = { currentIndex: number; prevIndex: number };
 
-const componentsToShow: ComponentType[] = [
+const visibleComponents: RootState['visibleComponents'] = [
   'branding',
   'firmware',
   'model',
@@ -38,16 +19,17 @@ const componentsToShow: ComponentType[] = [
   'runtime',
   'age',
 ];
-
-const BoxDataContext = createContext<RootStateInitial>(null);
+const BoxDataContext = createContext<RootState>(null);
 
 const DataProvider = ({ children }: PropsWithChildren) => {
   const {
-    data: boxData,
+    data,
     isPending,
+    isLoading,
     isSuccess,
+    isError,
   } = useFetchBoxData({ key: 'box-data', url: 'http://fritz.box/cgi-bin/system_status' });
-  const extractedValuesMapped = useGetMappedData(boxData ?? []);
+  const extractedValuesMapped = useGetMappedData(data ?? []);
 
   const [navIndices, updateIndices] = useReducer<Reducer<NavIndices, number>>(
     (oldIndices, newIndex): NavIndices => {
@@ -59,19 +41,16 @@ const DataProvider = ({ children }: PropsWithChildren) => {
     { currentIndex: 0, prevIndex: 0 },
   );
 
-  // const newBoxData: Types.ComponentTypes = mapBoxData(componentsToShow, extractedValuesMapped);
-
-  const value = useMemo(
-    () => ({
-      boxData: extractedValuesMapped,
-      isUpdating: isPending,
+  const value = useMemo(() => ({
+      boxData: isPending || isLoading || isError ? null : extractedValuesMapped, // todo add descriminated union
+      isUpdating: isPending || isLoading,
       isValid: isSuccess,
-      componentsToShow,
+      visibleComponents,
       currentIndex: navIndices.currentIndex,
       prevIndex: navIndices.prevIndex,
       updateCurrentIndex: updateIndices,
     }),
-    [extractedValuesMapped, navIndices, isPending, isSuccess, updateIndices],
+    [extractedValuesMapped, navIndices, isPending, isSuccess, updateIndices, isLoading],
   );
 
   return <BoxDataContext.Provider value={value}>{children}</BoxDataContext.Provider>;

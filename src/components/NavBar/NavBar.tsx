@@ -1,6 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
 import React, {
-  FC, useState, useRef, useEffect, createRef,
+  FC, useState, useRef, useEffect, createRef, useContext
 } from 'react';
 
 // import { throttle } from 'lodash';
@@ -9,20 +8,22 @@ import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './NavBar.styles';
 
-const NavBar: FC<Record<string, never>> = () => {
-  const state = React.useContext(BoxDataContext);
+const NavBar = () => {
+  const state = useContext(BoxDataContext);
 
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState<string | number>('auto'); // prevent css transition on load
-
   const oldIndex = useRef(-1);
   const showIndicator = useRef(true);
   const activeElement = createRef<HTMLLIElement>();
 
+  const {
+    visibleComponents,
+    currentIndex,
+    isUpdating
+  } = state;
+
   const height = 5;
-  const componentsToShow = 'componentsToShow' in state ? state.componentsToShow : [];
-  const currentIndex = 'currentIndex' in state ? state.currentIndex : 0;
-  const isUpdating = 'isUpdating' in state ? state.isUpdating : true;
 
   function handleNavigation(newCurrentIndex: number): void {
     oldIndex.current = currentIndex;
@@ -58,7 +59,7 @@ const NavBar: FC<Record<string, never>> = () => {
     <Styles.NavBar $reservedSpaceTop={height} $isUpdating={isUpdating}>
       {showIndicator.current && <Styles.Indicator offset={offset} width={width} height={height} />}
       <Styles.NavBarList $isRow={showIndicator}>
-        {componentsToShow.map((entry, index) => (
+        {visibleComponents.map((entry, index) => (
           <NavBarEntry
             index={index}
             entry={entry}

@@ -1,4 +1,4 @@
-export const fieldsMappings = [
+export const fields = [
   'model',
   'technology',
   'powerOnHours',
@@ -9,22 +9,27 @@ export const fieldsMappings = [
   'firmware',
   'subfirmware',
   'branding',
+  'age',
+  'runtime',
 ] as const satisfies readonly string[];
 
-export const fieldsShown = [
-  'Model',
-  'Technology',
-  'PowerOnHours',
-  'Restarts',
-  'Firmware',
-  'Branding',
-] as const satisfies readonly string[];
-export type FieldsShown = (typeof fieldsShown)[number];
-export type FieldsShownMap = {
-  [K in Exclude<FieldsShown, 'PowerOnHours'>]: string;
-} & {
-  'PowerOnHours': Date;
-}
+export type Fields = (typeof fields)[number];
+export type FieldMap = Record<Fields, string>;
+
+// export const fieldsShown = [
+//   'Model',
+//   'Technology',
+//   'PowerOnHours',
+//   'Restarts',
+//   'Firmware',
+//   'Branding',
+// ] as const satisfies readonly string[];
+// export type FieldsShown = (typeof fieldsShown)[number];
+// export type FieldsShownMap = {
+//   [K in Exclude<FieldsShown, 'PowerOnHours'>]: string;
+// } & {
+//   'PowerOnHours': Date;
+// }
 
 export const technologyMapping = {
   A: 'Annex A',
