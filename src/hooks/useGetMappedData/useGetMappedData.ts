@@ -8,7 +8,7 @@ import {
 import { flow } from 'lodash';
 
 import {
-  fields, technologyMapping, type Fields, type FieldMap,
+  fields, technologyMapping, type Fields, type FieldValueMap,
 } from '../../constants/mappings';
 
 const getHours = (dateString: string): number => {
@@ -62,7 +62,7 @@ const getApproximateProductionDate = (dateString: string): string => {
   return format(calculatedProductionDate, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 };
 
-export function useGetMappedData(fieldValues: string[]): FieldMap {
+export function useGetMappedData(fieldValues: string[]): FieldValueMap {
   const mappedValuesAsList = fieldValues.flatMap((fieldName, index) => {
     const field = fields?.[index];
 
@@ -80,7 +80,7 @@ export function useGetMappedData(fieldValues: string[]): FieldMap {
 
   const mappedValuesAsMap = Object.fromEntries(
     mappedValuesAsList.flatMap((value) => Object.entries(value)),
-  ) as FieldMap;
+  ) as FieldValueMap;
 
   const runtime = mappedValuesAsList?.length
     ? getApproximateProductionDate(mappedValuesAsMap?.powerOnHours)

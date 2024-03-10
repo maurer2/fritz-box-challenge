@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { setupWorker } from 'msw/browser';
 import { http, HttpResponse } from 'msw';
 
@@ -20,7 +20,7 @@ const worker = setupWorker(...[
 
 await worker.start();
 
-const App: FC<Record<string, never>> = () => (
+const App = () => (
   <DataProvider>
     <Theme>
       <Styles.AppWrapper>

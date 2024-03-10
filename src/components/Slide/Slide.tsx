@@ -1,11 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
-import React, { FC } from 'react';
+import React from 'react';
 import { upperFirst } from 'lodash';
 
 import * as Styles from './Slide.styles';
-import * as Types from './Slide.types';
+import { SlideProps } from './Slide.types';
 
-const Slide: FC<Types.SlideProps> = ({ title, text }) => (
+const Slide = ({ title, text }: SlideProps) => (
   <Styles.Wrapper>
     <Styles.TitleWrapper>{upperFirst(title)}</Styles.TitleWrapper>
     <Styles.TextWrapper $characterCount={text.length}>

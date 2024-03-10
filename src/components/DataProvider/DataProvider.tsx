@@ -29,11 +29,11 @@ const DataProvider = ({ children }: PropsWithChildren) => {
     isSuccess,
     isError,
   } = useFetchBoxData({ key: 'box-data', url: 'http://fritz.box/cgi-bin/system_status' });
-  const extractedValuesMapped = useGetMappedData(data ?? []);
+  const mappedBoxData = useGetMappedData(data ?? []);
 
-  const [navIndices, updateIndices] = useReducer<Reducer<NavIndices, number>>(
-    (oldIndices, newIndex): NavIndices => {
-      const prevIndex = oldIndices.currentIndex;
+  const [navIndices, updateNavIndices] = useReducer<Reducer<NavIndices, number>>(
+    (oldNavState, newIndex): NavIndices => {
+      const prevIndex = oldNavState.currentIndex;
       const currentIndex = newIndex;
 
       return { currentIndex, prevIndex };
@@ -42,15 +42,15 @@ const DataProvider = ({ children }: PropsWithChildren) => {
   );
 
   const value = useMemo(() => ({
-      boxData: isPending || isLoading || isError ? null : extractedValuesMapped, // todo add descriminated union
-      isUpdating: isPending || isLoading,
-      isValid: isSuccess,
-      visibleComponents,
-      currentIndex: navIndices.currentIndex,
-      prevIndex: navIndices.prevIndex,
-      updateCurrentIndex: updateIndices,
-    }),
-    [extractedValuesMapped, navIndices, isPending, isSuccess, updateIndices, isLoading],
+    boxData: isPending || isLoading || isError ? null : mappedBoxData, // todo add descriminated union
+    isUpdating: isPending || isLoading,
+    isValid: isSuccess,
+    visibleComponents,
+    currentIndex: navIndices.currentIndex,
+    prevIndex: navIndices.prevIndex,
+    updateCurrentIndex: updateNavIndices,
+  }),
+    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, updateNavIndices],
   );
 
   return <BoxDataContext.Provider value={value}>{children}</BoxDataContext.Provider>;

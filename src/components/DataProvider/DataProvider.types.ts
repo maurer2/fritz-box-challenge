@@ -1,4 +1,4 @@
-import { FieldMap, Fields } from '../../constants/mappings';
+import { FieldValueMap, Fields } from '../../constants/mappings';
 
 // export type ComponentType =
 //   | 'branding'
@@ -47,7 +47,7 @@ import { FieldMap, Fields } from '../../constants/mappings';
 // }
 
 export interface RootState {
-  boxData: FieldMap | null;
+  boxData: FieldValueMap | null;
   isUpdating: boolean;
   isValid: boolean;
   visibleComponents: Fields[];

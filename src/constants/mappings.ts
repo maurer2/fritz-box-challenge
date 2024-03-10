@@ -14,7 +14,7 @@ export const fields = [
 ] as const satisfies readonly string[];
 
 export type Fields = (typeof fields)[number];
-export type FieldMap = Record<Fields, string>;
+export type FieldValueMap = Record<Fields, string>;
 
 // export const fieldsShown = [
 //   'Model',

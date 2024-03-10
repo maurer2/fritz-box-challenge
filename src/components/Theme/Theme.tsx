@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
-import React, { FC, PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 export const theme = {
@@ -10,6 +9,6 @@ export const theme = {
 
 export type ThemeType = keyof typeof theme;
 
-export const Theme: FC<PropsWithChildren<Record<string, unknown>>> = ({ children }) => (
+export const Theme = ({ children }: PropsWithChildren) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );

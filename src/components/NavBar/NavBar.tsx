@@ -1,6 +1,4 @@
-import React, {
-  FC, useState, useRef, useEffect, createRef, useContext
-} from 'react';
+import React, { useState, useRef, useEffect, createRef, useContext } from 'react';
 
 // import { throttle } from 'lodash';
 import { NavBarEntry } from '../NavBarEntry';
@@ -22,7 +20,6 @@ const NavBar = () => {
     currentIndex,
     isUpdating
   } = state;
-
   const height = 5;
 
   function handleNavigation(newCurrentIndex: number): void {

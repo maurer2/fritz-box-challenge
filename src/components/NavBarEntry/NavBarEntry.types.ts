@@ -1,9 +1,11 @@
+import { RefObject } from "react";
+
 export interface NavBarEntryProps {
   index: number;
   entry: string;
   $isActive: boolean;
   handleNavigation: any;
-  activeElementRef: React.RefObject<HTMLLIElement>;
+  activeElementRef: RefObject<HTMLLIElement>;
   $isFullWidth: boolean;
 }
 
