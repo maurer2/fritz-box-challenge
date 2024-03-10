@@ -9,7 +9,7 @@ export const UpdateBar = styled.aside<UpdateBarStyleProps>`
   transform: translateY(0);
   transition: transform 500ms ease-out;
   will-change: transform;
-  ${({ $isUpdating }) => !$isUpdating
+  ${({ $shouldShowUpdateBar }) => !$shouldShowUpdateBar
     && css`
       transform: translateY(-100%);
     `}

@@ -12,5 +12,5 @@ export interface IndicatorStyleProps {
 }
 
 export interface NavBarListStyleProps {
-  $isRow: MutableRefObject<boolean>;
+  $isRow: boolean;
 }

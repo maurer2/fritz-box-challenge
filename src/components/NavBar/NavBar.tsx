@@ -18,7 +18,8 @@ const NavBar = () => {
   const {
     visibleComponents,
     currentIndex,
-    isUpdating
+    isUpdating,
+    boxData,
   } = state;
   const height = 5;
 
@@ -52,10 +53,14 @@ const NavBar = () => {
     }
   });
 
+  if (!boxData) {
+    return null;
+  }
+
   return (
     <Styles.NavBar $reservedSpaceTop={height} $isUpdating={isUpdating}>
       {showIndicator.current && <Styles.Indicator offset={offset} width={width} height={height} />}
-      <Styles.NavBarList $isRow={showIndicator}>
+      <Styles.NavBarList $isRow={showIndicator.current}>
         {visibleComponents.map((entry, index) => (
           <NavBarEntry
             index={index}

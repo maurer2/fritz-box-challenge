@@ -12,8 +12,10 @@ const UpdateBar = () => {
     isValid,
   } = state;
 
+  const shouldShowUpdateBar = isUpdating || !isValid;
+
   return (
-    <Styles.UpdateBar $isUpdating={isUpdating}>
+    <Styles.UpdateBar $shouldShowUpdateBar={shouldShowUpdateBar}>
       {isUpdating ? (
         <Styles.Text>Updating!</Styles.Text>
       ) : (
