@@ -35,9 +35,13 @@ const getYears = (dateString: string): number => {
   return parseInt(yearString, 10);
 };
 
+// const relativeTimeFormatter = new Intl.RelativeTimeFormat('en-GB', { style: 'long' });
+
 const getTimeBetweenTwoDates = (dateString: string): string => {
   const nowDate = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
   const time = formatDistance(parseISO(dateString), parseISO(nowDate));
+
+  // const days = differenceInDays(parseISO(dateString), parseISO(nowDate));
 
   return time;
 };
@@ -64,17 +68,16 @@ const getApproximateProductionDate = (dateString: string): string => {
 
 export function useGetMappedData(fieldValues: string[]): FieldValueMap {
   const mappedValuesAsList = fieldValues.flatMap((fieldName, index) => {
-    const field = fields?.[index];
+    const currentFieldName = fields?.[index];
 
-    if (!field) {
+    if (!currentFieldName) {
       return [];
     }
 
     return {
-      [field]:
-        field === 'technology'
+      [currentFieldName]: currentFieldName === 'technology'
           ? technologyMapping[fieldName as keyof typeof technologyMapping]
-          : (fieldName as Omit<Fields, 'technology'>),
+          : currentFieldName === 'firmware' ? `${fieldName.slice(-3, -2)}.${fieldName.slice(-2)}` : fieldName
     };
   });
 

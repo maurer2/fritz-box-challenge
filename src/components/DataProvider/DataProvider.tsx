@@ -11,12 +11,12 @@ import { RootState } from './DataProvider.types';
 type NavIndices = { currentIndex: number; prevIndex: number };
 
 const visibleComponents: RootState['visibleComponents'] = [
+  'model',
   'branding',
   'firmware',
-  'model',
   'restarts',
   'technology',
-  'runtime',
+  // 'runtime',
   'age',
 ];
 const BoxDataContext = createContext<RootState>(null);
