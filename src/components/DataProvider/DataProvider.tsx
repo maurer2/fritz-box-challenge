@@ -1,146 +1,61 @@
 import React, {
-  useState, useEffect, useCallback, useMemo,
+  PropsWithChildren, useMemo, createContext, useReducer,
 } from 'react';
-import PropTypes from 'prop-types';
+import type { Reducer } from 'react';
 
-import {
-  getTimeBetween, getDate, getDateAsIsoDate, getNowDate,
-} from '../../libs/time';
-import { getMappedFields } from '../../libs/mapper';
-import {
-  transformString as splitData,
-  getDashPositionsInString,
-  splitString as splitToArray,
-} from '../../libs/splitter';
-import getData from '../../libs/modem';
-import parseData from '../../libs/parser';
-import mockResponse from '../../mocks/box-iu7nl.txt';
+import { useFetchBoxData } from '../../hooks/useFetchBoxData/useFetchBoxData';
+import { useGetMappedData } from '../../hooks/useGetMappedData/useGetMappedData';
 
-import * as Types from './DataProvider.types';
+import { RootState } from './DataProvider.types';
 
-const BoxDataContext = React.createContext({} as Types.RootStateInitial);
+type NavIndices = { currentIndex: number; prevIndex: number };
 
-function mapBoxData(
-  componentsToShow: Types.ComponentType[],
-  boxData: Types.ComponentTypes,
-  runtime: any,
-  age: any,
-): Types.ComponentTypes {
-  const mappedEntries = componentsToShow.reduce(
-    (total: Types.ComponentTypeInitial, current: Types.ComponentType) => {
-      const entries = total;
+const visibleComponents: RootState['visibleComponents'] = [
+  'model',
+  'branding',
+  'firmware',
+  'restarts',
+  'technology',
+  // 'runtime',
+  'age',
+];
+const BoxDataContext = createContext<RootState>(null);
 
-      entries[current] = boxData[current] || '';
+const DataProvider = ({ children }: PropsWithChildren) => {
+  const {
+    data,
+    isPending,
+    isLoading,
+    isSuccess,
+    isError,
+  } = useFetchBoxData({ key: 'box-data', url: 'http://fritz.box/cgi-bin/system_status' });
+  const mappedBoxData = useGetMappedData(data ?? []);
 
-      return entries;
+  const [navIndices, updateNavIndices] = useReducer<Reducer<NavIndices, number>>(
+    (oldNavState, newIndex): NavIndices => {
+      const prevIndex = oldNavState.currentIndex;
+      const currentIndex = newIndex;
+
+      return { currentIndex, prevIndex };
     },
-    {} as any,
+    { currentIndex: 0, prevIndex: 0 },
   );
 
-  mappedEntries.runtime = runtime;
-  mappedEntries.age = age;
-
-  return mappedEntries;
-}
-
-const DataProvider: React.FC<{}> = ({ children }): JSX.Element => {
-  const [isUpdating, setIsUpdating] = useState<boolean>(true);
-  const [isValid, setIsValid] = useState<boolean>(false);
-  const [boxData, setBoxData] = useState<Types.ComponentTypes>({} as any);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [prevIndex, setPrevIndex] = useState<number>(0);
-
-  const [state, setState] = useState<Types.RootStateInitial | Types.RootState>({});
-
-  const componentsToShow = useMemo((): Types.ComponentType[] => {
-    const componentsArray: Types.ComponentType[] = [
-      'branding',
-      'firmware',
-      'model',
-      'restarts',
-      'technology',
-      'runtime',
-      'age',
-    ];
-    return componentsArray;
-  }, []);
-
-  const url = process.env.REACT_APP_MODE === Types.AppMode.DEV ? mockResponse : '/cgi-bin/system_status';
-
-  const updateIndex = useCallback(
-    (newIndex: number): void => {
-      setPrevIndex(currentIndex);
-      setCurrentIndex(newIndex);
-    },
-    [currentIndex],
+  const value = useMemo(
+    () => ({
+      // todo add discriminated union
+      boxData: isPending || isLoading || isError ? null : mappedBoxData,
+      isUpdating: isPending || isLoading,
+      isValid: isSuccess,
+      visibleComponents,
+      currentIndex: navIndices.currentIndex,
+      prevIndex: navIndices.prevIndex,
+      updateCurrentIndex: updateNavIndices,
+    }),
+    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, isError, updateNavIndices],
   );
 
-  const getBoxData = useCallback((): void => {
-    setIsUpdating(true);
-
-    const fetchedFinally = getData(url)
-      .then((data: any) => {
-        const parsedTextString = parseData(data);
-
-        const dashPositions = getDashPositionsInString(parsedTextString);
-        const splitString = splitData(parsedTextString, dashPositions);
-        const splitStringAsArray = splitToArray(splitString);
-
-        const mappedValues = getMappedFields(splitStringAsArray);
-
-        const extractedDateString = `${mappedValues['powerOnHours 1']}-${mappedValues['powerOnHours 2']}`;
-        const nowDateString = getNowDate();
-
-        const dateIsoString = getDateAsIsoDate(extractedDateString, nowDateString);
-
-        const runtime = getDate(dateIsoString);
-
-        const age = getTimeBetween(dateIsoString, nowDateString);
-
-        const newBoxData: Types.ComponentTypes = mapBoxData(
-          componentsToShow,
-          mappedValues,
-          runtime,
-          age,
-        );
-
-        setBoxData(newBoxData);
-        setIsValid(true);
-      })
-      .catch((error: Error) => {
-        setIsValid(false);
-
-        Promise.resolve();
-      });
-
-    fetchedFinally.then(() => {
-      setIsUpdating(false);
-    });
-  }, [url, componentsToShow]);
-
-  useEffect(() => {
-    getBoxData();
-  }, [getBoxData]);
-
-  useEffect(() => {
-    setState({
-      boxData,
-      isUpdating,
-      isValid,
-      componentsToShow,
-      currentIndex,
-      prevIndex,
-      updateCurrentIndex: updateIndex,
-    });
-  }, [isUpdating, isValid, boxData, currentIndex, prevIndex, componentsToShow, updateIndex]);
-
-  return <BoxDataContext.Provider value={state}>{children}</BoxDataContext.Provider>;
-};
-
-const { node } = PropTypes;
-
-DataProvider.propTypes = {
-  children: node.isRequired,
+  return <BoxDataContext.Provider value={value}>{children}</BoxDataContext.Provider>;
 };
 
 export { BoxDataContext, DataProvider };

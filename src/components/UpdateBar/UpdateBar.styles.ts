@@ -1,13 +1,15 @@
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 
-export const UpdateBar = styled.aside`
+import type { UpdateBarStyleProps } from './UpdateBar.types';
+
+export const UpdateBar = styled.aside<UpdateBarStyleProps>`
   grid-area: updateBar;
   text-align: center;
   background: ${({ theme }) => theme.secondaryColor};
   transform: translateY(0);
   transition: transform 500ms ease-out;
   will-change: transform;
-  ${({ isUpdating }) => !isUpdating
+  ${({ $shouldShowUpdateBar }) => !$shouldShowUpdateBar
     && css`
       transform: translateY(-100%);
     `}

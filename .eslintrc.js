@@ -8,7 +8,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    'plugin:lodash/recommended',
+    // 'plugin:lodash/recommended',
     'plugin:react/recommended',
   ],
   plugins: ['react', 'react-hooks', 'lodash', '@typescript-eslint'],
@@ -44,19 +44,19 @@ module.exports = {
       },
     ],
     'import/prefer-default-export': 'off',
-    'no-restricted-imports': [
-      'error',
-      {
-        paths: [
-          {
-            name: 'styled-components',
-            message:
-              'Direct import of styled-components prohibited. Use styled-components/macro instead',
-          },
-        ],
-        patterns: ['!styled-components/macro'],
-      },
-    ],
+    // 'no-restricted-imports': [
+    //   'error',
+    //   {
+    //     paths: [
+    //       {
+    //         name: 'styled-components',
+    //         message:
+    //           'Direct import of styled-components prohibited. Use styled-components/macro instead',
+    //       },
+    //     ],
+    //     patterns: ['!styled-components/macro'],
+    //   },
+    // ],
     'import/order': [
       'error',
       {
@@ -80,12 +80,17 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'react/prop-types': 0,
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'react/function-component-definition': 'off',
+    'no-console': 'off',
   },
   settings: {
     react: {
       version: 'detect',
     },
-    'import/extensions': ['.js', '.jsx'],
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
   },
   parserOptions: {
     ecmaVersion: 2020,
@@ -103,12 +108,12 @@ module.exports = {
         'eslint:recommended',
         'plugin:import/errors',
         'plugin:import/warnings',
-        'plugin:lodash/recommended',
+        // 'plugin:lodash/recommended',
       ],
       parser: 'babel-eslint',
-      plugins: ['lodash'],
+      // plugins: ['lodash'],
       rules: {
-        'lodash/prefer-lodash-method': 'off',
+        // 'lodash/prefer-lodash-method': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
       },
     },

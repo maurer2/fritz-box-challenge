@@ -1,4 +1,6 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
+
+import { TextWrapperStyleProps } from './Slide.types';
 
 export const Wrapper = styled.div`
   text-align: center;
@@ -13,10 +15,10 @@ export const TitleWrapper = styled.h2`
   font-size: 5vw;
 `;
 
-export const TextWrapper = styled.div`
+export const TextWrapper = styled.div<TextWrapperStyleProps>`
   margin: 0;
   color: ${({ theme }) => theme.primaryColor};
   font-weight: bold;
-  font-size: ${(props) => Math.floor((100 / props.characterCount) * 1.35)}vw;
+  font-size: ${(props) => Math.floor((100 / props.$characterCount) * 1.35)}vw;
   line-height: 1;
 `;

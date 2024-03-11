@@ -1,52 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { MouseEvent } from 'react';
 import { upperFirst } from 'lodash';
 
 import * as Styles from './NavBarEntry.styles';
-import * as Types from './NavBarEntry.types';
+import { NavBarEntryProps } from './NavBarEntry.types';
 
-const NavBarEntry: React.FC<Types.NavBarEntryProps> = ({
+const NavBarEntry = ({
   index,
   entry,
-  isActive,
   handleNavigation,
   activeElementRef,
-  isFullWidth,
-}): JSX.Element => {
-  function handleClick(): void {
+  $isActive,
+  $isFullWidth,
+}: NavBarEntryProps) => {
+  function handleClick(event: MouseEvent<HTMLLIElement>): void {
+    event.preventDefault();
+
     handleNavigation(index);
   }
 
   return (
     <Styles.NavBarEntryWrapper
-      onClick={handleClick}
-      isFullWidth={isFullWidth}
+      onClick={(event) => handleClick(event)}
       ref={activeElementRef}
+      $isFullWidth={$isFullWidth}
     >
-      <Styles.NavBarButton isActive={isActive}>{upperFirst(entry)}</Styles.NavBarButton>
+      <Styles.NavBarButton $isActive={$isActive}>{upperFirst(entry)}</Styles.NavBarButton>
     </Styles.NavBarEntryWrapper>
   );
-};
-
-const {
-  string, number, bool, func, shape, instanceOf,
-} = PropTypes;
-
-NavBarEntry.defaultProps = {
-  activeElementRef: shape({
-    current: null,
-  }),
-};
-
-NavBarEntry.propTypes = {
-  index: number.isRequired,
-  entry: string.isRequired,
-  isActive: bool.isRequired,
-  handleNavigation: func.isRequired,
-  activeElementRef: shape({
-    current: instanceOf(HTMLElement),
-  }),
-  isFullWidth: bool.isRequired,
 };
 
 export { NavBarEntry };

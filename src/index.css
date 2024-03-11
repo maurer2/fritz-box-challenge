@@ -1,18 +1,7 @@
-html {
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
 body {
-  overflow: hidden;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: clip;
+  overflow-x: clip;
+  overflow-y: clip;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -32,5 +21,5 @@ body {
 .root {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: clip;
 }
