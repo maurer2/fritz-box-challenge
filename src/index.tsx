@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import 'modern-normalize';
 
 import './index.css';
 
-import { App } from './components/App';
 import { setupWorker } from 'msw/browser';
 import { http, HttpResponse } from 'msw';
+
+import { App } from './components/App';
 
 const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
 
@@ -25,7 +23,9 @@ const worker = setupWorker(...[
       statusText: 'Mocked status',
     },
   ))]);
-isDevMode && await worker.start();
+if (isDevMode) {
+  await worker.start();
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {

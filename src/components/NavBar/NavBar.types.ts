@@ -1,5 +1,3 @@
-import { MutableRefObject } from 'react';
-
 export interface NavBarStyleProps {
   $reservedSpaceTop: number;
   $isUpdating: boolean;

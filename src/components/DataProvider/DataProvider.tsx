@@ -41,16 +41,18 @@ const DataProvider = ({ children }: PropsWithChildren) => {
     { currentIndex: 0, prevIndex: 0 },
   );
 
-  const value = useMemo(() => ({
-    boxData: isPending || isLoading || isError ? null : mappedBoxData, // todo add descriminated union
-    isUpdating: isPending || isLoading,
-    isValid: isSuccess,
-    visibleComponents,
-    currentIndex: navIndices.currentIndex,
-    prevIndex: navIndices.prevIndex,
-    updateCurrentIndex: updateNavIndices,
-  }),
-    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, updateNavIndices],
+  const value = useMemo(
+    () => ({
+      // todo add discriminated union
+      boxData: isPending || isLoading || isError ? null : mappedBoxData,
+      isUpdating: isPending || isLoading,
+      isValid: isSuccess,
+      visibleComponents,
+      currentIndex: navIndices.currentIndex,
+      prevIndex: navIndices.prevIndex,
+      updateCurrentIndex: updateNavIndices,
+    }),
+    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, isError, updateNavIndices],
   );
 
   return <BoxDataContext.Provider value={value}>{children}</BoxDataContext.Provider>;

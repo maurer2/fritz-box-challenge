@@ -7,9 +7,7 @@ import {
 } from 'date-fns/fp';
 import { flow } from 'lodash';
 
-import {
-  fields, technologyMapping, type Fields, type FieldValueMap,
-} from '../../constants/mappings';
+import { fields, technologyMapping, type FieldValueMap } from '../../constants/mappings';
 
 const getHours = (dateString: string): number => {
   const hoursString = dateString.substring(0, 2);
@@ -75,9 +73,13 @@ export function useGetMappedData(fieldValues: string[]): FieldValueMap {
     }
 
     return {
-      [currentFieldName]: currentFieldName === 'technology'
+      [currentFieldName]:
+        // eslint-disable-next-line no-nested-ternary
+        currentFieldName === 'technology'
           ? technologyMapping[fieldName as keyof typeof technologyMapping]
-          : currentFieldName === 'firmware' ? `${fieldName.slice(-3, -2)}.${fieldName.slice(-2)}` : fieldName
+          : currentFieldName === 'firmware'
+            ? `${fieldName.slice(-3, -2)}.${fieldName.slice(-2)}`
+            : fieldName,
     };
   });
 

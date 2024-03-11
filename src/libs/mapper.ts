@@ -23,7 +23,7 @@ export const getMappedFields = (fieldValues: string[]) => {
 export const getKeyValueMapOfBoxValues = (fieldValues: string[]) => {
   const mappedValuesAsList = fieldValues.flatMap((fieldName: FieldsMappings, index: number) => {
     const field = fields?.[index];
-    fields
+    fields;
     if (!field) {
       return [];
     }

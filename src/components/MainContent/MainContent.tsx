@@ -14,11 +14,11 @@ const MainContent = () => {
     boxData,
     currentIndex,
     prevIndex,
-    updateCurrentIndex
+    updateCurrentIndex,
   } = state;
 
   if (!boxData) {
-    return null
+    return null;
   }
 
   const title = visibleComponents[currentIndex];

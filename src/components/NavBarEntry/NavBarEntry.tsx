@@ -10,7 +10,7 @@ const NavBarEntry = ({
   handleNavigation,
   activeElementRef,
   $isActive,
-  $isFullWidth
+  $isFullWidth,
 }: NavBarEntryProps) => {
   function handleClick(event: MouseEvent<HTMLLIElement>): void {
     event.preventDefault();
@@ -20,7 +20,7 @@ const NavBarEntry = ({
 
   return (
     <Styles.NavBarEntryWrapper
-      onClick={handleClick}
+      onClick={(event) => handleClick(event)}
       ref={activeElementRef}
       $isFullWidth={$isFullWidth}
     >
