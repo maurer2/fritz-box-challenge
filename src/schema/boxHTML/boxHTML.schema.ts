@@ -8,8 +8,15 @@ export const boxHTMLSchema = z
   .trim()
   .regex(/<body[^>]*>(.*?)<\/body>/is, 'body tag is missing')
   .includes('FRITZ!Box', { message: '"FRITZ!Box" is missing in string' })
-  .refine((value) => value.match(/-/g).length >= 9, {
-    message: 'string structure is wrong (not enough dashes)',
+  .refine((value) => {
+    const listOfDashes = value?.match(/-/g) ?? [];
+
+    if (!listOfDashes.length || listOfDashes.length < 9) {
+      return false;
+    }
+    return true;
+  }, {
+    message: 'structure of string is invalid (not enough or too few dashes)',
   });
 
 export type BoxHTML = z.infer<typeof boxHTMLSchema>;

@@ -26,10 +26,10 @@ function addMissingDashes(stringValue: string, dashPositions: number[]): string 
 export function useFetchBoxData({ key, url }: { key: string; url: string }) {
   const queryResult = useQuery({
     queryKey: [key],
-    queryFn: () => fetcher(url, boxHTMLSchema),
+    queryFn: async () => fetcher(url, boxHTMLSchema),
     select: useCallback(
       (data: string) => {
-        const bodyContent = data.match(/<body[^>]*>(.*?)<\/body>/is)?.[1];
+        const bodyContent = data.match(/<body[^>]*>(.*?)<\/body>/is)?.[1] ?? '';
 
         const dashPositions = bodyContent
           .split('')

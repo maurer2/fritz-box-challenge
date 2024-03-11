@@ -1,4 +1,4 @@
-import uid from 'uid';
+import { uid } from 'uid';
 import fs from 'fs-extra';
 
 const dumpData = (data: unknown) => new Promise((resolve, reject) => {

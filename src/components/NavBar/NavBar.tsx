@@ -1,5 +1,5 @@
 import React, {
-  useState, useRef, useEffect, createRef, useContext,
+  useState, useRef, useEffect, useContext,
 } from 'react';
 
 // import { throttle } from 'lodash';
@@ -15,7 +15,7 @@ const NavBar = () => {
   const [width, setWidth] = useState<string | number>('auto'); // prevent css transition on load
   const oldIndex = useRef(-1);
   const showIndicator = useRef(true);
-  const activeElement = createRef<HTMLLIElement>();
+  const activeElement = useRef<HTMLLIElement>(null);
 
   const {
     visibleComponents,

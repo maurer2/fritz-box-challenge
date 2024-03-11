@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// eslint-disable-next-line import/order
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import 'modern-normalize';
 
@@ -13,7 +14,11 @@ import { App } from './components/App';
 
 const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('root element is missing');
+}
+const root = ReactDOM.createRoot(rootElement);
 
 const worker = setupWorker(...[
   http.all('http://fritz.box/cgi-bin/system_status', () => HttpResponse.text(
@@ -36,12 +41,12 @@ const queryClient = new QueryClient({
 });
 
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <QueryClientProvider client={queryClient}>
       <App />
       {isDevMode ? (
         <ReactQueryDevtools initialIsOpen />
       ) : null}
     </QueryClientProvider>
-  </React.StrictMode>,
+  </StrictMode>,
 );

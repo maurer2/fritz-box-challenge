@@ -1,11 +1,12 @@
-import { RefObject } from 'react';
+import { type Ref } from 'react';
+// import type Ref from 'react'; // doesn't work
 
 export interface NavBarEntryProps {
   index: number;
   entry: string;
   $isActive: boolean;
   handleNavigation: (index: number) => void;
-  activeElementRef: RefObject<HTMLLIElement>;
+  activeElementRef: Ref<HTMLLIElement> | null;
   $isFullWidth: boolean;
 }
 
