@@ -1,8 +1,7 @@
-import React, { StrictMode } from 'react';
+import React, { StrictMode, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // eslint-disable-next-line import/order
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'modern-normalize';
 
 import './index.css';
@@ -28,6 +27,13 @@ const worker = setupWorker(...[
       statusText: 'Mocked status',
     },
   ))]);
+
+const ReactQueryDevtools = isDevMode ? lazy(() => import('@tanstack/react-query-devtools').then(
+  (module) => ({
+    default: module.ReactQueryDevtools,
+  }),
+)) : null;
+
 if (isDevMode) {
   await worker.start();
 }
@@ -44,9 +50,7 @@ root.render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <App />
-      {isDevMode ? (
-        <ReactQueryDevtools initialIsOpen />
-      ) : null}
+      {ReactQueryDevtools !== null && <ReactQueryDevtools initialIsOpen />}
     </QueryClientProvider>
   </StrictMode>,
 );
