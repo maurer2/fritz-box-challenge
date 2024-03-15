@@ -30,7 +30,7 @@ export const NavBarList = styled.ul<NavBarListStyleProps>`
   display: flex;
   margin: 0;
   padding: 0;
-  flex-wrap: ${({ $isRow }) => ($isRow ? 'no-wrap' : 'wrap')};
+  flex-wrap: ${({ $isRow }) => ($isRow ? 'nowrap' : 'wrap')};
   justify-content: space-between;
   list-style: none;
   background: ${({ theme }) => theme.secondaryColor};

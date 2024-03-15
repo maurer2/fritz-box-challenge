@@ -1,34 +1,31 @@
-import React, {
-  useState, useRef, useEffect, useContext,
-} from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 
 // import { throttle } from 'lodash';
 import { NavBarEntry } from '../NavBarEntry';
-import { BoxDataContext } from '../DataProvider';
+import useBoxDataContext from '../../hooks/useBoxDataContext/useBoxDataContext';
 
 import * as Styles from './NavBar.styles';
 
 const NavBar = () => {
-  const state = useContext(BoxDataContext);
-
+  const {
+    _state,
+    visibleComponents,
+    currentIndex,
+    isUpdating,
+    updateCurrentIndex,
+  } = useBoxDataContext();
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState<string | number>('auto'); // prevent css transition on load
   const oldIndex = useRef(-1);
   const showIndicator = useRef(true);
   const activeElement = useRef<HTMLLIElement>(null);
 
-  const {
-    visibleComponents,
-    currentIndex,
-    isUpdating,
-    boxData,
-  } = state;
   const height = 5;
 
   function handleNavigation(newCurrentIndex: number): void {
     oldIndex.current = currentIndex;
 
-    state.updateCurrentIndex(newCurrentIndex);
+    updateCurrentIndex(newCurrentIndex);
   }
 
   function updateIndicator(): void {
@@ -45,7 +42,7 @@ const NavBar = () => {
     showIndicator.current = isLargeScreen;
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const activeElementHasChanged = currentIndex !== oldIndex.current;
 
     if (activeElementHasChanged) {
@@ -55,7 +52,7 @@ const NavBar = () => {
     }
   });
 
-  if (!boxData) {
+  if (_state === 'error') {
     return null;
   }
 

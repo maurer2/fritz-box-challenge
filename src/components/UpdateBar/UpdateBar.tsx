@@ -1,29 +1,25 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { BoxDataContext } from '../DataProvider';
+import useBoxDataContext from '../../hooks/useBoxDataContext/useBoxDataContext';
 
 import * as Styles from './UpdateBar.styles';
 
 const UpdateBar = () => {
-  const state = useContext(BoxDataContext);
-
   const {
     isUpdating,
-    isValid,
-  } = state;
-
-  const shouldShowUpdateBar = isUpdating || !isValid;
+    isError,
+  } = useBoxDataContext();
 
   return (
-    <Styles.UpdateBar $shouldShowUpdateBar={shouldShowUpdateBar}>
+    <Styles.UpdateBar $shouldShowUpdateBar={isUpdating || isError}>
       {isUpdating ? (
         <Styles.Text>Updating!</Styles.Text>
       ) : (
         <Styles.Text>
-          {isValid ? (
-            <>Data loaded!</>
-          ) : (
+          {isError ? (
             <>Error!</>
+          ) : (
+            <>Data loaded!</>
           )}
         </Styles.Text>
       )}

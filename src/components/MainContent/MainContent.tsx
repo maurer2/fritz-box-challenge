@@ -1,23 +1,22 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group'; // todo replace with https://github.com/szhsin/react-transition-state
 
+import useBoxDataContext from '../../hooks/useBoxDataContext/useBoxDataContext';
 import { Slide } from '../Slide';
-import { BoxDataContext } from '../DataProvider';
 
 import * as Styles from './MainContent.styles';
 
 const MainContent = () => {
-  const state = useContext(BoxDataContext);
-
   const {
+    _state,
     visibleComponents,
     boxData,
     currentIndex,
     prevIndex,
     updateCurrentIndex,
-  } = state;
+  } = useBoxDataContext();
 
-  if (!boxData) {
+  if (_state !== 'success') {
     return null;
   }
 
@@ -33,7 +32,7 @@ const MainContent = () => {
   }
 
   return (
-    <Styles.MainWrapper onClick={(): void => handleClick()}>
+    <Styles.MainWrapper onClick={() => handleClick()}>
       <CSSTransitionGroup
         component={React.Fragment}
         transitionName={slideInFromRight ? 'slide-in-right' : 'slide-in-left'}

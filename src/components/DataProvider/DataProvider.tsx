@@ -10,7 +10,7 @@ import { RootState } from './DataProvider.types';
 
 type NavIndices = { currentIndex: number; prevIndex: number };
 
-const visibleComponents: RootState['visibleComponents'] = [
+const visibleComponents: NonNullable<RootState>['visibleComponents'] = [
   'model',
   'branding',
   'firmware',
@@ -19,7 +19,7 @@ const visibleComponents: RootState['visibleComponents'] = [
   // 'runtime',
   'age',
 ];
-const BoxDataContext = createContext<RootState>(null);
+const BoxDataContext = createContext<RootState>(undefined);
 
 const DataProvider = ({ children }: PropsWithChildren) => {
   const {
@@ -27,7 +27,6 @@ const DataProvider = ({ children }: PropsWithChildren) => {
     isPending,
     isLoading,
     isSuccess,
-    isError,
   } = useFetchBoxData({ key: 'box-data', url: 'http://fritz.box/cgi-bin/system_status' });
   const mappedBoxData = useGetMappedData(data ?? []);
 
@@ -43,8 +42,7 @@ const DataProvider = ({ children }: PropsWithChildren) => {
 
   const value = useMemo(
     () => ({
-      // todo add discriminated union
-      boxData: isPending || isLoading || isError ? null : mappedBoxData,
+      boxData: mappedBoxData,
       isUpdating: isPending || isLoading,
       isValid: isSuccess,
       visibleComponents,
@@ -52,7 +50,7 @@ const DataProvider = ({ children }: PropsWithChildren) => {
       prevIndex: navIndices.prevIndex,
       updateCurrentIndex: updateNavIndices,
     }),
-    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, isError, updateNavIndices],
+    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, updateNavIndices],
   );
 
   return <BoxDataContext.Provider value={value}>{children}</BoxDataContext.Provider>;
