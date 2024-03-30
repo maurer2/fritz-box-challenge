@@ -2,13 +2,11 @@ import React, { StrictMode, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 // eslint-disable-next-line import/order
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { setupWorker } from 'msw/browser';
+import { http, HttpResponse } from 'msw';
 import 'modern-normalize';
 
 import './index.css';
-
-import { setupWorker } from 'msw/browser';
-import { http, HttpResponse } from 'msw';
-
 import { App } from './components/App';
 
 const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
@@ -42,6 +40,8 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
     },
   },
 });

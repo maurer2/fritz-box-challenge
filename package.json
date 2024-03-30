@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node scripts/build.js",
-    "dump:box-data": "ts-node ./scripts/dump-box-data.ts",
+    "dump-box-data": "tsx ./scripts/dump-box-data.ts",
     "lint:style": "stylelint 'src/**/*.{css,js,jsx}'; exit 0",
     "lint:ts": "eslint 'src/**/*.{ts,tsx}'",
     "lint:ts:fix": "npm run lint:ts -- --fix",
@@ -48,6 +48,7 @@
     "react-transition-group": "1.x",
     "styled-components": "^6.1.8",
     "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
     "typescript": "^5.4.2",
     "uid": "^2.0.2",
     "vite": "^5.1.5",
