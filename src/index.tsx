@@ -17,9 +17,13 @@ if (!rootElement) {
 }
 const root = ReactDOM.createRoot(rootElement);
 
+// fetch from public folder
+const mockDataResponse = await fetch('/mock-data.txt');
+const mockData = await mockDataResponse.text();
+
 const worker = setupWorker(...[
   http.all('http://fritz.box/cgi-bin/system_status', () => HttpResponse.text(
-    '<html><body>FRITZ!Box 7590-B-030601-050110-XXXXXX-XXXXXX-787902-1540750-101716-1und1</body></html>',
+    mockData,
     {
       status: 202,
       statusText: 'Mocked status',
