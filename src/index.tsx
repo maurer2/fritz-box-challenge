@@ -17,18 +17,27 @@ if (!rootElement) {
 }
 const root = ReactDOM.createRoot(rootElement);
 
-// fetch from public folder
-const mockDataResponse = await fetch('/mock-data.txt');
-const mockData = await mockDataResponse.text();
-
 const worker = setupWorker(...[
-  http.all('http://fritz.box/cgi-bin/system_status', () => HttpResponse.text(
-    mockData,
-    {
-      status: 202,
-      statusText: 'Mocked status',
-    },
-  ))]);
+  http.all('http://fritz.box/cgi-bin/system_status', async () => {
+    const response = await fetch('/mock-data.txt');
+
+    if (!response.ok) {
+      return new HttpResponse(null, {
+        status: 404,
+        statusText: 'Box data not found',
+      });
+    }
+
+    const mockData = await response.text();
+
+    return HttpResponse.text(
+      mockData,
+      {
+        status: 202,
+        statusText: 'Mocked status',
+      },
+    );
+  })]);
 
 const ReactQueryDevtools = isDevMode ? lazy(() => import('@tanstack/react-query-devtools').then(
   (module) => ({
