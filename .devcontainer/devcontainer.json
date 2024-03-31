@@ -89,9 +89,14 @@
         "wmaurer.change-case",
         "yatki.vscode-surround",
         "Orta.vscode-jest", // jest
-        // "ZixuanChen.vitest-explorer" // vitest
+        // "ZixuanChen.vitest-explorer", // vitest
         "yoavbls.pretty-ts-errors",
-        "mikestead.dotenv"
+        "mikestead.dotenv",
+        "vunguyentuan/vscode-css-variables",
+        "qcz/vscode-restart-ts-server-button",
+        "microsoft/vscode-pull-request-github",
+        "github.copilot",
+        "vincaslt.highlight-matching-tag"
       ]
     }
   }
