@@ -1,4 +1,34 @@
 import styled from 'styled-components';
+import { type TransitionStatus } from 'react-transition-state';
+
+export interface MainWrapperStyleProps {
+  $status: TransitionStatus;
+}
+
+export const MainWrapperSlideWrapper = styled.main<MainWrapperStyleProps>`
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  transform: translateX(0) translateY(-50%);
+  background: red;
+
+  ${({ $status }) => ($status === 'entering') && `
+      background: green;
+    `}
+
+    ${({ $status }) => ($status === 'entered') && `
+      background: blue;
+    `}
+
+    ${({ $status }) => ($status === 'exiting') && `
+      background: yellow;
+    `}
+
+    ${({ $status }) => ($status === 'exited') && `
+      background: purple;
+    `}
+`;
 
 export const MainWrapper = styled.main`
   position: relative;
