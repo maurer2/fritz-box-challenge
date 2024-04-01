@@ -32,7 +32,7 @@ const MainContent = () => {
   }
 
   return (
-    <Styles.MainWrapper onClick={() => handleClick()}>
+    <Styles.MainWrapper>
       <CSSTransitionGroup
         component={React.Fragment}
         transitionName={slideInFromRight ? 'slide-in-right' : 'slide-in-left'}
@@ -44,6 +44,11 @@ const MainContent = () => {
       >
         <Slide title={title} text={text} key={title} />
       </CSSTransitionGroup>
+      <Styles.MainWrapperTrigger onClick={() => handleClick()}>
+        <span className="text">
+          Next slide
+        </span>
+      </Styles.MainWrapperTrigger>
     </Styles.MainWrapper>
   );
 };
