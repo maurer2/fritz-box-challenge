@@ -22,7 +22,7 @@ const BoxDataContext = createContext<RootState>(undefined);
 const DataProvider = ({ children }: PropsWithChildren) => {
   const { data, isPending, isLoading, isSuccess } = useFetchBoxData({
     key: 'box-data',
-    url: 'http://fritz.box/cgi-bin/system_status',
+    url: '/box-data',
   });
 
   const mappedBoxData = useGetMappedData(data ?? []);

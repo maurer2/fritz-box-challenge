@@ -1,12 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { useCallback } from 'react';
 // import { boxValueString as boxStatusSchema } from '../../schema/box.schema'; // todo fix naming
-// eslint-disable-next-line import/no-unresolved
-import virtualBoxData from 'virtual:box-data';
 
-// import fetcher from '../../helpers/fetcher/fetcher';
-// import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
-// eslint-disable-next-line import/no-unresolved
+import fetcher from '../../helpers/fetcher/fetcher';
+import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
 
 const dateLength = 9;
 
@@ -29,8 +26,7 @@ function addMissingDashes(stringValue: string, dashPositions: number[]): string 
 export function useFetchBoxData({ key, url }: { key: string; url: string }) {
   const queryResult = useQuery({
     queryKey: [key],
-    // queryFn: () => fetcher(url, boxHTMLSchema),
-    queryFn: () => Promise.resolve(virtualBoxData),
+    queryFn: () => fetcher(url, boxHTMLSchema),
     select: useCallback((data: string) => {
       const bodyContent = data.match(/<body[^>]*>(.*?)<\/body>/is)?.[1] ?? '';
 

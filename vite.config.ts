@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv, PluginOption } from 'vite';
+import { defineConfig, loadEnv, PluginOption, ProxyOptions } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 
@@ -29,6 +29,13 @@ function fetchBoxDataPlugin(mode: string): PluginOption {
   };
 }
 
+// https://pietrobondioli.com.br/articles/how-to-solve-cors-problems-using-vite-proxy
+const boxDataProxyOptions = {
+  changeOrigin: true,
+  secure: false,
+  rewrite: (p: string) => p.replace(/^\/box-data/, ''),
+} satisfies ProxyOptions;
+
 /** @type {import('vite').UserConfig} */
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -38,10 +45,24 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.URL_BOX_STATUS': JSON.stringify(env.URL_BOX_STATUS),
     },
-    plugins: [react(), viteTsconfigPaths(), fetchBoxDataPlugin(mode)],
+    plugins: [react(), viteTsconfigPaths()],
     server: {
       open: false,
       port: 3000,
+      proxy: {
+        '/box-data': {
+          target: env.URL_BOX_STATUS,
+          ...boxDataProxyOptions,
+        },
+      },
+    },
+    preview: {
+      proxy: {
+        '/box-data': {
+          target: env.URL_BOX_STATUS,
+          ...boxDataProxyOptions,
+        },
+      },
     },
   };
 });
