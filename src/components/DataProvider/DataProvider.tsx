@@ -1,6 +1,4 @@
-import React, {
-  PropsWithChildren, useMemo, createContext, useReducer,
-} from 'react';
+import React, { PropsWithChildren, useMemo, createContext, useReducer } from 'react';
 import type { Reducer } from 'react';
 
 import { useFetchBoxData } from '../../hooks/useFetchBoxData/useFetchBoxData';
@@ -22,12 +20,11 @@ const visibleComponents: NonNullable<RootState>['visibleComponents'] = [
 const BoxDataContext = createContext<RootState>(undefined);
 
 const DataProvider = ({ children }: PropsWithChildren) => {
-  const {
-    data,
-    isPending,
-    isLoading,
-    isSuccess,
-  } = useFetchBoxData({ key: 'box-data', url: 'http://fritz.box/cgi-bin/system_status' });
+  const { data, isPending, isLoading, isSuccess } = useFetchBoxData({
+    key: 'box-data',
+    url: 'http://fritz.box/cgi-bin/system_status',
+  });
+
   const mappedBoxData = useGetMappedData(data ?? []);
 
   const [navIndices, updateNavIndices] = useReducer<Reducer<NavIndices, number>>(
@@ -37,7 +34,7 @@ const DataProvider = ({ children }: PropsWithChildren) => {
 
       return { currentIndex, prevIndex };
     },
-    { currentIndex: 0, prevIndex: 0 },
+    { currentIndex: 0, prevIndex: 0 }
   );
 
   const value = useMemo(
@@ -50,7 +47,7 @@ const DataProvider = ({ children }: PropsWithChildren) => {
       prevIndex: navIndices.prevIndex,
       updateCurrentIndex: updateNavIndices,
     }),
-    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, updateNavIndices],
+    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, updateNavIndices]
   );
 
   return <BoxDataContext.Provider value={value}>{children}</BoxDataContext.Provider>;
