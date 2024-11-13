@@ -7,13 +7,8 @@ import useBoxDataContext from '../../hooks/useBoxDataContext/useBoxDataContext';
 import * as Styles from './NavBar.styles';
 
 const NavBar = () => {
-  const {
-    _state,
-    visibleComponents,
-    currentIndex,
-    isUpdating,
-    updateCurrentIndex,
-  } = useBoxDataContext();
+  const { _state, visibleComponents, currentIndex, isUpdating, updateCurrentIndex } =
+    useBoxDataContext();
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState<string | number>('auto'); // prevent css transition on load
   const oldIndex = useRef(-1);

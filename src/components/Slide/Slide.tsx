@@ -2,7 +2,7 @@ import React from 'react';
 import { upperFirst } from 'lodash';
 
 import * as Styles from './Slide.styles';
-import { SlideProps } from './Slide.types';
+import type { SlideProps } from './Slide.types';
 
 const Slide = ({ title, text }: SlideProps) => (
   <Styles.Wrapper>

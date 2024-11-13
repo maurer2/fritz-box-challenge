@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { NavBarStyleProps, IndicatorStyleProps, NavBarListStyleProps } from './NavBar.types';
+import type { NavBarStyleProps, IndicatorStyleProps, NavBarListStyleProps } from './NavBar.types';
 
 export const NavBar = styled.nav<NavBarStyleProps>`
   position: relative;

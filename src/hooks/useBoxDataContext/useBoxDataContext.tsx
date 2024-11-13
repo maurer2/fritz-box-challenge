@@ -1,9 +1,12 @@
 import { useContext } from 'react';
 
 import { BoxDataContext } from '../../components/DataProvider/DataProvider';
-import { RootState } from '../../components/DataProvider/DataProvider.types';
+import type { RootState } from '../../components/DataProvider/DataProvider.types';
 
-type RootStateBase = Pick<NonNullable<RootState>, 'visibleComponents' | 'currentIndex' | 'prevIndex' | 'updateCurrentIndex'>
+type RootStateBase = Pick<
+  NonNullable<RootState>,
+  'visibleComponents' | 'currentIndex' | 'prevIndex' | 'updateCurrentIndex'
+>;
 
 interface RootStateLoading extends RootStateBase {
   _state: 'loading';

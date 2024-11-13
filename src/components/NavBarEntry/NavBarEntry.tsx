@@ -1,8 +1,9 @@
-import React, { MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
+import React from 'react';
 import { upperFirst } from 'lodash';
 
 import * as Styles from './NavBarEntry.styles';
-import { NavBarEntryProps } from './NavBarEntry.types';
+import type { NavBarEntryProps } from './NavBarEntry.types';
 
 const NavBarEntry = ({
   index,

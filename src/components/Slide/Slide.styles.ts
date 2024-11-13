@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { TextWrapperStyleProps } from './Slide.types';
+import type { TextWrapperStyleProps } from './Slide.types';
 
 export const Wrapper = styled.div`
   text-align: center;

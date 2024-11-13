@@ -7,14 +7,8 @@ import { Slide } from '../Slide';
 import * as Styles from './MainContent.styles';
 
 const MainContent = () => {
-  const {
-    _state,
-    visibleComponents,
-    boxData,
-    currentIndex,
-    prevIndex,
-    updateCurrentIndex,
-  } = useBoxDataContext();
+  const { _state, visibleComponents, boxData, currentIndex, prevIndex, updateCurrentIndex } =
+    useBoxDataContext();
 
   if (_state !== 'success') {
     return null;
@@ -45,9 +39,7 @@ const MainContent = () => {
         <Slide title={title} text={text} key={title} />
       </CSSTransitionGroup>
       <Styles.MainWrapperTrigger onClick={() => handleClick()}>
-        <span className="text">
-          Next slide
-        </span>
+        <span className="text">Next slide</span>
       </Styles.MainWrapperTrigger>
     </Styles.MainWrapper>
   );

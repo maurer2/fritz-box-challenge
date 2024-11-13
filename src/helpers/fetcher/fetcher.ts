@@ -1,4 +1,5 @@
-import { ZodType, z, ZodError } from 'zod';
+import type { ZodType, z } from 'zod';
+import { ZodError } from 'zod';
 
 // import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
 

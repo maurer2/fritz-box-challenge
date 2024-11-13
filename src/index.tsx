@@ -21,7 +21,7 @@ const ReactQueryDevtools = isDevMode
   ? lazy(() =>
       import('@tanstack/react-query-devtools').then((module) => ({
         default: module.ReactQueryDevtools,
-      }))
+      })),
     )
   : null;
 
@@ -48,5 +48,5 @@ root.render(
         <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
       )}
     </QueryClientProvider>
-  </StrictMode>
+  </StrictMode>,
 );

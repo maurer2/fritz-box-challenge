@@ -1,10 +1,10 @@
-import React, { PropsWithChildren, useMemo, createContext, useReducer } from 'react';
-import type { Reducer } from 'react';
+import React, { useMemo, createContext, useReducer } from 'react';
+import type { Reducer, PropsWithChildren } from 'react';
 
 import { useFetchBoxData } from '../../hooks/useFetchBoxData/useFetchBoxData';
 import { useGetMappedData } from '../../hooks/useGetMappedData/useGetMappedData';
 
-import { RootState } from './DataProvider.types';
+import type { RootState } from './DataProvider.types';
 
 type NavIndices = { currentIndex: number; prevIndex: number };
 
@@ -34,7 +34,7 @@ const DataProvider = ({ children }: PropsWithChildren) => {
 
       return { currentIndex, prevIndex };
     },
-    { currentIndex: 0, prevIndex: 0 }
+    { currentIndex: 0, prevIndex: 0 },
   );
 
   const value = useMemo(
@@ -47,7 +47,7 @@ const DataProvider = ({ children }: PropsWithChildren) => {
       prevIndex: navIndices.prevIndex,
       updateCurrentIndex: updateNavIndices,
     }),
-    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, updateNavIndices]
+    [mappedBoxData, navIndices, isPending, isSuccess, isLoading, updateNavIndices],
   );
 
   return <BoxDataContext.Provider value={value}>{children}</BoxDataContext.Provider>;
