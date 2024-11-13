@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv, PluginOption, ProxyOptions } from 'vite';
+import { defineConfig, loadEnv, type PluginOption, type ProxyOptions } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 
@@ -40,6 +40,8 @@ const boxDataProxyOptions = {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
+  const isDevMode = process.env.VITE_APP_MODE === 'dev';
+
   return {
     base: '',
     define: {
@@ -49,20 +51,24 @@ export default defineConfig(({ mode }) => {
     server: {
       open: false,
       port: 3000,
-      proxy: {
-        '/box-data': {
-          target: env.URL_BOX_STATUS,
-          ...boxDataProxyOptions,
-        },
-      },
+      proxy: !isDevMode
+        ? {
+            '/box-data': {
+              target: env.URL_BOX_STATUS,
+              ...boxDataProxyOptions,
+            },
+          }
+        : undefined,
     },
     preview: {
-      proxy: {
-        '/box-data': {
-          target: env.URL_BOX_STATUS,
-          ...boxDataProxyOptions,
-        },
-      },
+      proxy: !isDevMode
+        ? {
+            '/box-data': {
+              target: env.URL_BOX_STATUS,
+              ...boxDataProxyOptions,
+            },
+          }
+        : undefined,
     },
   };
 });

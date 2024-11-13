@@ -18,9 +18,11 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 
 const ReactQueryDevtools = isDevMode
-  ? lazy(() => import('@tanstack/react-query-devtools').then((module) => ({
-    default: module.ReactQueryDevtools,
-  })))
+  ? lazy(() =>
+      import('@tanstack/react-query-devtools').then((module) => ({
+        default: module.ReactQueryDevtools,
+      }))
+    )
   : null;
 
 if (isDevMode) {
@@ -46,5 +48,5 @@ root.render(
         <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
       )}
     </QueryClientProvider>
-  </StrictMode>,
+  </StrictMode>
 );

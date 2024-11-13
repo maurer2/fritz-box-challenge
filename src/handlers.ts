@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 
 const handlers = [
-  http.all('http://fritz.box/cgi-bin/system_status', async () => {
+  http.all('/box-data', async () => {
     const response = await fetch('/mock-data.txt');
 
     if (!response.ok) {
