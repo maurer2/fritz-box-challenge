@@ -65,21 +65,36 @@ const getApproximateProductionDate = (dateString: string): string => {
 };
 
 export function useGetMappedData(fieldValues: string[]): FieldValueMap {
-  const mappedValuesAsList = fieldValues.flatMap((fieldName, index) => {
+  const mappedValuesAsList = fieldValues.flatMap((fieldValue, index) => {
     const currentFieldName = fields?.[index];
 
     if (!currentFieldName) {
       return [];
     }
 
+    if (currentFieldName === 'restarts') {
+      // https://www.ip-phone-forum.de/threads/servicecode-der-fritzbox.310849/
+      // https://www.ip-phone-forum.de/threads/was-wird-beim-system-status-angezeigt.138546/
+      // todo: investigate calculation changes in fritz os 8+
+      const majorValue = fieldValue.substring(0, 2);
+      const minorValue = fieldValue.substring(2);
+
+      const calculatedRestarts = parseInt(majorValue, 10) * 32 + parseInt(minorValue, 10);
+      const calculatedRestartsFormatted = calculatedRestarts.toString().padStart(4, '0');
+
+      return {
+        restarts: calculatedRestartsFormatted,
+      };
+    }
+
     return {
       [currentFieldName]:
         // eslint-disable-next-line no-nested-ternary
         currentFieldName === 'technology'
-          ? technologyMapping[fieldName as keyof typeof technologyMapping]
+          ? technologyMapping[fieldValue as keyof typeof technologyMapping]
           : currentFieldName === 'firmware'
-            ? `${fieldName.slice(-3, -2)}.${fieldName.slice(-2)}`
-            : fieldName,
+            ? `${fieldValue.slice(-3, -2)}.${fieldValue.slice(-2)}`
+            : fieldValue,
     };
   });
 

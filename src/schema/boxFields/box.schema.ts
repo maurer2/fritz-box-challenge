@@ -21,12 +21,12 @@ export type BoxValueString = z.infer<typeof boxValueString>;
 
 export const boxValuesMap = z
   .object({
-    model: z.string().nonempty(),
-    technology: z.string().nonempty(), // todo add enum
+    model: z.string().min(1),
+    technology: z.string().min(1), // todo add enum
     powerOnHours: z.date(), // todo rename
-    restarts: z.string().nonempty(),
-    firmware: z.string().nonempty(),
-    branding: z.string().nonempty(),
+    restarts: z.string().min(1),
+    firmware: z.string().min(1),
+    branding: z.string().min(1),
   })
   .strict();
 export type BoxValuesMap = z.infer<typeof boxValuesMap>;
