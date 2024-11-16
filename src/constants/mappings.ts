@@ -9,8 +9,6 @@ export const fields = [
   'firmware',
   'subfirmware',
   'branding',
-  'age',
-  'runtime',
 ] as const satisfies readonly string[];
 
 export type Fields = (typeof fields)[number];

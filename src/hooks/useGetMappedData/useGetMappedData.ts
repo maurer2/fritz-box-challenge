@@ -1,4 +1,4 @@
-import { format, formatDistance, parseISO } from 'date-fns';
+import { format, formatDistance, parseISO, isValid } from 'date-fns';
 import {
   subHours as subHoursFP,
   subDays as subDaysFP,
@@ -69,15 +69,12 @@ export function useGetMappedData(fieldValues: string[]): FieldValueMap {
     const currentFieldName = fields?.[index];
 
     switch (currentFieldName) {
-      case 'age':
       case 'branding':
       case 'hash 1':
       case 'hash 2':
       case 'model':
-      case 'powerOnHours':
-      case 'status':
-      case 'runtime':
-      case 'subfirmware': {
+      case 'subfirmware':
+      case 'status': {
         return {
           [currentFieldName]: fieldValue,
         };
@@ -106,6 +103,16 @@ export function useGetMappedData(fieldValues: string[]): FieldValueMap {
           firmware: `${fieldValue.slice(-3, -2)}.${fieldValue.slice(-2)}`,
         };
       }
+      case 'powerOnHours': {
+        const guesstimateProductionDate = getApproximateProductionDate(fieldValue);
+        const guesstimateProductionDateAsDate = parseISO(guesstimateProductionDate);
+        const elapsedTime = getTimeBetweenTwoDates(guesstimateProductionDate);
+
+        return {
+          // powerOnHours: isValid(dateParsed) ? format(dateParsed, 'dd/MM/yyyy-HH:MM') : '-'
+          powerOnHours: isValid(guesstimateProductionDateAsDate) ? elapsedTime : '-',
+        };
+      }
       default: {
         return currentFieldName satisfies never; // ts error if switch case is not exhaustive
       }
@@ -113,14 +120,6 @@ export function useGetMappedData(fieldValues: string[]): FieldValueMap {
   });
 
   const mappedValuesAsMap: FieldValueMap = Object.assign({}, ...mappedValuesAsList);
-
-  const runtime = mappedValuesAsList?.length
-    ? getApproximateProductionDate(mappedValuesAsMap?.powerOnHours)
-    : '';
-  const age = mappedValuesAsList?.length ? getTimeBetweenTwoDates(runtime) : '';
-
-  mappedValuesAsMap.runtime = runtime !== '' ? format(parseISO(runtime), 'dd/MM/yyyy-HH:MM') : '';
-  mappedValuesAsMap.age = age;
 
   return mappedValuesAsMap;
 }

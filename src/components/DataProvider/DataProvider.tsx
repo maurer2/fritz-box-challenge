@@ -11,18 +11,17 @@ type NavIndices = { currentIndex: number; prevIndex: number };
 const visibleComponents: NonNullable<RootState>['visibleComponents'] = [
   'model',
   'branding',
+  'powerOnHours',
   'firmware',
   'restarts',
   'technology',
-  // 'runtime',
-  'age',
 ];
 const BoxDataContext = createContext<RootState>(undefined);
 
 const DataProvider = ({ children }: PropsWithChildren) => {
   const { data, isPending, isLoading, isSuccess } = useFetchBoxData({
     key: 'box-data',
-    url: '/box-data',
+    url: '/box-data', // proxy
   });
 
   const mappedBoxData = useGetMappedData(data ?? []);
