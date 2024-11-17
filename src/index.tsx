@@ -4,10 +4,12 @@ import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { setupWorker } from 'msw/browser';
 import 'modern-normalize';
+import { RouterProvider, createRouter } from '@tanstack/react-router';
 
 import handlers from './handlers';
 import './index.css';
 import { App } from './components/App';
+import { routeTree } from './routeTree.gen'
 
 const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
 
@@ -16,6 +18,12 @@ if (!rootElement) {
   throw new Error('root element is missing');
 }
 const root = ReactDOM.createRoot(rootElement);
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
 const ReactQueryDevtools = isDevMode
   ? lazy(() =>
@@ -40,13 +48,17 @@ const queryClient = new QueryClient({
   },
 });
 
+const router = createRouter({ routeTree })
+
 root.render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <RouterProvider router={router} />
+
+      {/* <App />
       {ReactQueryDevtools !== null && (
         <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
-      )}
+      )} */}
     </QueryClientProvider>
   </StrictMode>,
 );

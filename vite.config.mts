@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv, type PluginOption, type ProxyOptions } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 
 import { boxHTMLSchema } from './src/schema/boxHTML/boxHTML.schema';
 import fetcher from './src/helpers/fetcher/fetcher';
@@ -47,7 +48,7 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.URL_BOX_STATUS': JSON.stringify(env.URL_BOX_STATUS),
     },
-    plugins: [react(), viteTsconfigPaths()],
+    plugins: [TanStackRouterVite(), react(), viteTsconfigPaths()],
     server: {
       open: false,
       port: 3000,
