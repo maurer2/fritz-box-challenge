@@ -4,10 +4,19 @@
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/branding')({
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   component: Branding,
+  loader: async ({ context }) => context.getBoxData(),
+  pendingComponent: () => <p>Loading box data</p>,
 });
 
 function Branding() {
-  return <h1>Branding</h1>;
+  const posts = Route.useLoaderData();
+
+  return (
+    <>
+      <h1>Branding</h1>
+
+      {typeof posts === 'string' ? <pre>{posts}</pre> : null}
+    </>
+  );
 }

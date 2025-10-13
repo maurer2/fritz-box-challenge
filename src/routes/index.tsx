@@ -4,13 +4,18 @@ import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
   component: Index,
+  loader: async ({ context }) => context.getBoxData(),
+  pendingComponent: () => <p>Loading box data</p>,
 });
 
 function Index() {
-  const context = Route.useRouteContext();
+  const posts = Route.useLoaderData();
 
-  const globalFetch = context.fetchBoxData;
+  return (
+    <>
+      <h1>Home</h1>
 
-  globalFetch();
-  return <h1>Welcome Home!</h1>;
+      {typeof posts === 'string' ? <pre>{posts}</pre> : null}
+    </>
+  );
 }

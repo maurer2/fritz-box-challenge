@@ -48,14 +48,32 @@ if (isDevMode) {
 //   },
 // });
 
+async function getBoxData() {
+  try {
+    const response = await fetch('/box-data');
+    if (!response.ok) {
+      throw new Error('HTTP error');
+    }
+
+    const data = (await response.text()) as unknown;
+
+    return data;
+  } catch (error) {
+    // todo add Error.isError
+    console.error('Fetch error');
+
+    throw error;
+  }
+}
+
 // context type is defined in createRootRouteWithContext in __root.tsx
 const router = createRouter({
   routeTree,
   context: {
-    fetchBoxData: () => {
-      console.log('fetch');
-    },
+    getBoxData,
   },
+  defaultStaleTime: Infinity,
+  defaultPreload: 'intent',
 });
 
 root.render(

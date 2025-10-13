@@ -4,7 +4,7 @@ import { createRootRouteWithContext, Link, Outlet } from '@tanstack/react-router
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
 type Context = {
-  fetchBoxData: () => void;
+  getBoxData: () => Promise<unknown>;
 };
 
 export const Route = createRootRouteWithContext<Context>()({
