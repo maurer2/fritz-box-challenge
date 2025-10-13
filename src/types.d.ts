@@ -5,9 +5,3 @@ declare module 'virtual:box-data' {
 
   export default boxData;
 }
-
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router
-  }
-}

@@ -1,15 +1,15 @@
-import React, { StrictMode, lazy } from 'react';
+import React, { StrictMode /* lazy */ } from 'react';
 import ReactDOM from 'react-dom/client';
 // eslint-disable-next-line import/order
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { setupWorker } from 'msw/browser';
 import 'modern-normalize';
-import { RouterProvider, createRouter } from '@tanstack/react-router';
 
 import handlers from './handlers';
 import './index.css';
-import { App } from './components/App';
-import { routeTree } from './routeTree.gen'
+// import { App } from './components/App';
+import { routeTree } from './routeTree.gen';
 
 const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
 
@@ -21,44 +21,51 @@ const root = ReactDOM.createRoot(rootElement);
 
 declare module '@tanstack/react-router' {
   interface Register {
-    router: typeof router
+    router: typeof router;
   }
 }
 
-const ReactQueryDevtools = isDevMode
-  ? lazy(() =>
-      import('@tanstack/react-query-devtools').then((module) => ({
-        default: module.ReactQueryDevtools,
-      })),
-    )
-  : null;
+// const ReactQueryDevtools = isDevMode
+//   ? lazy(() =>
+//       import('@tanstack/react-query-devtools').then((module) => ({
+//         default: module.ReactQueryDevtools,
+//       })),
+//     )
+//   : null;
 
 if (isDevMode) {
   const worker = setupWorker(...handlers);
   await worker.start();
 }
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
+// const queryClient = new QueryClient({
+//   defaultOptions: {
+//     queries: {
+//       refetchOnWindowFocus: false,
+//       refetchOnMount: false,
+//       refetchOnReconnect: false,
+//     },
+//   },
+// });
+
+// context type is defined in createRootRouteWithContext in __root.tsx
+const router = createRouter({
+  routeTree,
+  context: {
+    fetchBoxData: () => {
+      console.log('fetch');
     },
   },
 });
 
-const router = createRouter({ routeTree })
-
 root.render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-
-      {/* <App />
+    {/* <QueryClientProvider client={queryClient}> */}
+    <RouterProvider router={router} />
+    {/* <App />
       {ReactQueryDevtools !== null && (
         <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
       )} */}
-    </QueryClientProvider>
+    {/* </QueryClientProvider> */}
   </StrictMode>,
 );

@@ -8,81 +8,182 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as TechnologyRouteImport } from './routes/technology'
+import { Route as RestartsRouteImport } from './routes/restarts'
+import { Route as PowerOnHoursRouteImport } from './routes/power-on-hours'
+import { Route as ModelRouteImport } from './routes/model'
+import { Route as FirmwareRouteImport } from './routes/firmware'
+import { Route as BrandingRouteImport } from './routes/branding'
+import { Route as IndexRouteImport } from './routes/index'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-
-// Create/Update Routes
-
-const IndexRoute = IndexImport.update({
+const TechnologyRoute = TechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RestartsRoute = RestartsRouteImport.update({
+  id: '/restarts',
+  path: '/restarts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PowerOnHoursRoute = PowerOnHoursRouteImport.update({
+  id: '/power-on-hours',
+  path: '/power-on-hours',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModelRoute = ModelRouteImport.update({
+  id: '/model',
+  path: '/model',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FirmwareRoute = FirmwareRouteImport.update({
+  id: '/firmware',
+  path: '/firmware',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandingRoute = BrandingRouteImport.update({
+  id: '/branding',
+  path: '/branding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/branding': typeof BrandingRoute
+  '/firmware': typeof FirmwareRoute
+  '/model': typeof ModelRoute
+  '/power-on-hours': typeof PowerOnHoursRoute
+  '/restarts': typeof RestartsRoute
+  '/technology': typeof TechnologyRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/branding': typeof BrandingRoute
+  '/firmware': typeof FirmwareRoute
+  '/model': typeof ModelRoute
+  '/power-on-hours': typeof PowerOnHoursRoute
+  '/restarts': typeof RestartsRoute
+  '/technology': typeof TechnologyRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/branding': typeof BrandingRoute
+  '/firmware': typeof FirmwareRoute
+  '/model': typeof ModelRoute
+  '/power-on-hours': typeof PowerOnHoursRoute
+  '/restarts': typeof RestartsRoute
+  '/technology': typeof TechnologyRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/branding'
+    | '/firmware'
+    | '/model'
+    | '/power-on-hours'
+    | '/restarts'
+    | '/technology'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/branding'
+    | '/firmware'
+    | '/model'
+    | '/power-on-hours'
+    | '/restarts'
+    | '/technology'
+  id:
+    | '__root__'
+    | '/'
+    | '/branding'
+    | '/firmware'
+    | '/model'
+    | '/power-on-hours'
+    | '/restarts'
+    | '/technology'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  BrandingRoute: typeof BrandingRoute
+  FirmwareRoute: typeof FirmwareRoute
+  ModelRoute: typeof ModelRoute
+  PowerOnHoursRoute: typeof PowerOnHoursRoute
+  RestartsRoute: typeof RestartsRoute
+  TechnologyRoute: typeof TechnologyRoute
+}
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/technology': {
+      id: '/technology'
+      path: '/technology'
+      fullPath: '/technology'
+      preLoaderRoute: typeof TechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restarts': {
+      id: '/restarts'
+      path: '/restarts'
+      fullPath: '/restarts'
+      preLoaderRoute: typeof RestartsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/power-on-hours': {
+      id: '/power-on-hours'
+      path: '/power-on-hours'
+      fullPath: '/power-on-hours'
+      preLoaderRoute: typeof PowerOnHoursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/model': {
+      id: '/model'
+      path: '/model'
+      fullPath: '/model'
+      preLoaderRoute: typeof ModelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/firmware': {
+      id: '/firmware'
+      path: '/firmware'
+      fullPath: '/firmware'
+      preLoaderRoute: typeof FirmwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/branding': {
+      id: '/branding'
+      path: '/branding'
+      fullPath: '/branding'
+      preLoaderRoute: typeof BrandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
-}
-
-// Create and export the route tree
-
-export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-}
-
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
-  fileRoutesById: FileRoutesById
-}
-
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrandingRoute: BrandingRoute,
+  FirmwareRoute: FirmwareRoute,
+  ModelRoute: ModelRoute,
+  PowerOnHoursRoute: PowerOnHoursRoute,
+  RestartsRoute: RestartsRoute,
+  TechnologyRoute: TechnologyRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
