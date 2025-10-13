@@ -4,10 +4,44 @@ import { createRootRouteWithContext, Link, Outlet } from '@tanstack/react-router
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
 type Context = {
-  getBoxData: () => Promise<unknown>;
+  boxData: string | null;
+  hasBoxData?: boolean;
+  setHasBoxData?: (newValue: boolean) => void;
 };
 
+async function getBoxData() {
+  try {
+    const response = await fetch('/box-data');
+    if (!response.ok) {
+      throw new Error('HTTP error');
+    }
+
+    const data = (await response.text()) as string;
+
+    return data;
+  } catch (error) {
+    // todo add Error.isError
+    console.error('Fetch error');
+
+    throw error;
+  }
+}
+
 export const Route = createRootRouteWithContext<Context>()({
+  beforeLoad: async ({ context }) => {
+    if (!context.hasBoxData) {
+      const boxData = await getBoxData();
+      context?.setHasBoxData?.(true);
+
+      return { boxData };
+    }
+
+    return context;
+  },
+  pendingComponent: () => <p>Loading box data</p>,
+  wrapInSuspense: true, // required for pending components in root routes: https://github.com/TanStack/router/issues/2182
+  staleTime: Infinity,
+  pendingMinMs: 0,
   component: () => (
     <>
       <nav>

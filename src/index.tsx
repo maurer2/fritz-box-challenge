@@ -8,7 +8,7 @@ import 'modern-normalize';
 
 import handlers from './handlers';
 import './index.css';
-// import { App } from './components/App';
+import App2 from './components/App2';
 import { routeTree } from './routeTree.gen';
 
 const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
@@ -48,38 +48,44 @@ if (isDevMode) {
 //   },
 // });
 
-async function getBoxData() {
-  try {
-    const response = await fetch('/box-data');
-    if (!response.ok) {
-      throw new Error('HTTP error');
-    }
+// async function getBoxData() {
+//   try {
+//     const response = await fetch('/box-data');
+//     if (!response.ok) {
+//       throw new Error('HTTP error');
+//     }
 
-    const data = (await response.text()) as unknown;
+//     const data = (await response.text()) as unknown;
 
-    return data;
-  } catch (error) {
-    // todo add Error.isError
-    console.error('Fetch error');
+//     return data;
+//   } catch (error) {
+//     // todo add Error.isError
+//     console.error('Fetch error');
 
-    throw error;
-  }
-}
+//     throw error;
+//   }
+// }
 
 // context type is defined in createRootRouteWithContext in __root.tsx
-const router = createRouter({
+export const router = createRouter({
   routeTree,
   context: {
-    getBoxData,
+    boxData: null,
+    hasBoxData: undefined,
+    setHasBoxData: undefined,
   },
   defaultStaleTime: Infinity,
   defaultPreload: 'intent',
+  defaultPreloadStaleTime: Infinity,
+  defaultGcTime: Infinity,
+  defaultPendingMs: 0,
 });
 
 root.render(
   <StrictMode>
+    <App2 />
     {/* <QueryClientProvider client={queryClient}> */}
-    <RouterProvider router={router} />
+    {/* <RouterProvider router={router} /> */}
     {/* <App />
       {ReactQueryDevtools !== null && (
         <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
