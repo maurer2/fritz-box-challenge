@@ -7,17 +7,8 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { setupWorker } from 'msw/browser';
 import 'modern-normalize';
 
-import handlers from './handlers';
 import './index.css';
 import { routeTree } from './routeTree.gen';
-
-const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
-
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error('root element is missing');
-}
-const root = ReactDOM.createRoot(rootElement);
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -25,6 +16,13 @@ declare module '@tanstack/react-router' {
   }
 }
 
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('root element is missing');
+}
+const root = ReactDOM.createRoot(rootElement);
+
+const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
 const ReactQueryDevtools = isDevMode
   ? lazy(() =>
       import('@tanstack/react-query-devtools').then((module) => ({
@@ -32,7 +30,6 @@ const ReactQueryDevtools = isDevMode
       })),
     )
   : null;
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -43,28 +40,17 @@ const queryClient = new QueryClient({
   },
 });
 
-if (isDevMode) {
-  const worker = setupWorker(...handlers);
-  await worker.start();
+async function mockEndpoints() {
+  if (isDevMode) {
+    const handlers = (await import('./mocks/handlers')).default;
+    const worker = setupWorker(...handlers);
+
+    return worker.start();
+  }
+
+  return Promise.resolve();
 }
-
-// async function getBoxData() {
-//   try {
-//     const response = await fetch('/box-data');
-//     if (!response.ok) {
-//       throw new Error('HTTP error');
-//     }
-
-//     const data = (await response.text()) as unknown;
-
-//     return data;
-//   } catch (error) {
-//     // todo add Error.isError
-//     console.error('Fetch error');
-
-//     throw error;
-//   }
-// }
+await mockEndpoints();
 
 // context type is defined in createRootRouteWithContext in __root.tsx
 export const router = createRouter({

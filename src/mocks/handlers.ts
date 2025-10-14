@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, delay } from 'msw';
 
 const handlers = [
   http.all('/box-data', async () => {
@@ -13,6 +13,7 @@ const handlers = [
 
     const mockData = await response.text();
 
+    await delay(1000);
     return HttpResponse.text(mockData, {
       status: 202,
       statusText: 'Mocked status',
