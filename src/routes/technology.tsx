@@ -12,9 +12,9 @@ function Technology() {
   const { data: boxData } = useSuspenseQuery(fetchBoxDataQueryOptions);
 
   return (
-    <>
+    <div className="view-transition">
       <h1>Technology</h1>
       <pre>{JSON.stringify(boxData)}</pre>
-    </>
+    </div>
   );
 }

@@ -26,29 +26,31 @@ export const Route = createRootRouteWithContext<Context>()({
   component: () => (
     <>
       <nav>
-        <Link to="/" className="">
+        <Link to="/" className="" viewTransition={{ types: ['test'] }}>
           Home
         </Link>
-        <Link to="/branding" className="">
+        <Link to="/branding" className="" viewTransition={{ types: ['test'] }}>
           Branding
         </Link>
-        <Link to="/firmware" className="">
+        <Link to="/firmware" className="" viewTransition={{ types: ['test'] }}>
           Firmware
         </Link>
-        <Link to="/model" className="">
+        <Link to="/model" className="" viewTransition={{ types: ['test'] }}>
           Model
         </Link>
-        <Link to="/power-on-hours" className="">
+        <Link to="/power-on-hours" className="" viewTransition={{ types: ['test'] }}>
           Power on hours
         </Link>
-        <Link to="/restarts" className="">
+        <Link to="/restarts" className="" viewTransition={{ types: ['test'] }}>
           Restarts
         </Link>
-        <Link to="/technology" className="">
+        <Link to="/technology" className="" viewTransition={{ types: ['test'] }}>
           Technology
         </Link>
       </nav>
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <TanStackRouterDevtools />
     </>
   ),

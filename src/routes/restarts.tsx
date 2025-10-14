@@ -12,9 +12,9 @@ function Restarts() {
   const { data: boxData } = useSuspenseQuery(fetchBoxDataQueryOptions);
 
   return (
-    <>
+    <div className="view-transition">
       <h1>Restarts</h1>
       <pre>{JSON.stringify(boxData)}</pre>
-    </>
+    </div>
   );
 }

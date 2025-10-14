@@ -14,3 +14,36 @@ body {
   height: 100vh;
   overflow: clip;
 }
+
+html:active-view-transition-type(test) {
+  &::view-transition-old(test) {
+    animation: 0.5s linear both slide-out;
+  }
+  &::view-transition-new(test) {
+    animation: 0.5s linear both slide-in;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    translate: 0;
+  }
+  to {
+    translate: -100%;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    translate: 100%;
+  }
+  to {
+    translate: 0;
+  }
+}
+
+.view-transition {
+  view-transition-name: test;
+}
+
+/* stylelint-enable */

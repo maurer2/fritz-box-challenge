@@ -12,9 +12,9 @@ function Model() {
   const { data: boxData } = useSuspenseQuery(fetchBoxDataQueryOptions);
 
   return (
-    <>
+    <div className="view-transition">
       <h1>Model</h1>
       <pre>{JSON.stringify(boxData)}</pre>
-    </>
+    </div>
   );
 }
