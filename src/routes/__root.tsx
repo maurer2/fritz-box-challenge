@@ -2,72 +2,52 @@ import React from 'react';
 import { createRootRouteWithContext, Link, Outlet } from '@tanstack/react-router';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import type { QueryClient } from '@tanstack/react-query';
+
+import { fetchBoxDataQueryOptions } from '../hooks/useFetchBoxData/useFetchBoxData';
 
 type Context = {
-  boxData: string | null;
-  hasBoxData?: boolean;
-  setHasBoxData?: (newValue: boolean) => void;
+  queryClient: QueryClient;
 };
 
-async function getBoxData() {
-  try {
-    const response = await fetch('/box-data');
-    if (!response.ok) {
-      throw new Error('HTTP error');
-    }
-
-    const data = (await response.text()) as string;
-
-    return data;
-  } catch (error) {
-    // todo add Error.isError
-    console.error('Fetch error');
-
-    throw error;
-  }
-}
-
 export const Route = createRootRouteWithContext<Context>()({
-  beforeLoad: async ({ context }) => {
-    if (!context.hasBoxData) {
-      const boxData = await getBoxData();
-      context?.setHasBoxData?.(true);
-
-      return { boxData };
-    }
-
-    return context;
+  pendingComponent: () => <p>Loading box data</p>, // suspense boundary
+  wrapInSuspense: true, // required when a pending component is used in a root route: https://github.com/TanStack/router/issues/2182
+  ssr: false,
+  beforeLoad({ context }) {
+    return {
+      queryClient: context.queryClient,
+      fetchBoxDataQueryOptions,
+    };
   },
-  pendingComponent: () => <p>Loading box data</p>,
-  wrapInSuspense: true, // required for pending components in root routes: https://github.com/TanStack/router/issues/2182
-  staleTime: Infinity,
-  pendingMinMs: 0,
+  loader: async ({ context }) => {
+    await context.queryClient.ensureQueryData(context.fetchBoxDataQueryOptions); // show root pending component until until query has finished
+  },
   component: () => (
     <>
       <nav>
-        <Link to="/" className="[&.active]:font-bold">
+        <Link to="/" className="">
           Home
         </Link>
-        <Link to="/branding" className="[&.active]:font-bold">
+        <Link to="/branding" className="">
           Branding
         </Link>
-        <Link to="/firmware" className="[&.active]:font-bold">
+        <Link to="/firmware" className="">
           Firmware
         </Link>
-        <Link to="/model" className="[&.active]:font-bold">
+        <Link to="/model" className="">
           Model
         </Link>
-        <Link to="/power-on-hours" className="[&.active]:font-bold">
+        <Link to="/power-on-hours" className="">
           Power on hours
         </Link>
-        <Link to="/restarts" className="[&.active]:font-bold">
+        <Link to="/restarts" className="">
           Restarts
         </Link>
-        <Link to="/technology" className="[&.active]:font-bold">
+        <Link to="/technology" className="">
           Technology
         </Link>
       </nav>
-      <hr />
       <Outlet />
       <TanStackRouterDevtools />
     </>
