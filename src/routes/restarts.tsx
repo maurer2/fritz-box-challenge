@@ -11,11 +11,20 @@ export const Route = createFileRoute('/restarts')({
 
 function Restarts() {
   const { fetchBoxDataQueryOptions } = Route.useRouteContext();
-  const { data: boxData } = useSuspenseQuery(fetchBoxDataQueryOptions);
+  const {
+    data: { restarts },
+  } = useSuspenseQuery(fetchBoxDataQueryOptions);
+
+  const majorValue = parseInt(restarts.substring(0, 2), 10);
+  const minorValue = parseInt(restarts.substring(2), 10);
+
+  // https://www.ip-phone-forum.de/threads/was-wird-beim-system-status-angezeigt.138546/post-2303890
+  // https://www.ip-phone-forum.de/threads/servicecode-der-fritzbox.310849/post-2438609
+  const calculatedRestarts = majorValue * 32 + minorValue;
 
   return (
     <div className="view-transition">
-      <Slide title="Restarts" text={boxData.restarts} />
+      <Slide title="Restarts" text={calculatedRestarts.toString().padStart(3, '0')} />
     </div>
   );
 }

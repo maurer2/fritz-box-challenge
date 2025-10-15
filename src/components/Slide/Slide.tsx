@@ -11,7 +11,7 @@ const Slide = ({ title, text }: SlideProps) => (
   <Styles.Wrapper>
     <Styles.Title>{title}</Styles.Title>
     {/* workaround for single letter values */}
-    <Styles.Value $characterCount={Math.max(text.length, 4)}>{text}</Styles.Value>
+    <Styles.Value $characterCount={Math.max(text.length, 3)}>{text}</Styles.Value>
   </Styles.Wrapper>
 );
 

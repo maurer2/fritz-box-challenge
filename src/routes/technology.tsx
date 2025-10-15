@@ -2,6 +2,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { match } from 'ts-pattern';
 
 import { Slide } from '../components/Slide';
