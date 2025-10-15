@@ -12,6 +12,7 @@ export const Route = createFileRoute('/branding')({
 
 const getMappedBranding = (branding: string): string =>
   match(branding)
+    .returnType<string>()
     .with('avm', () => 'AVM')
     .with('1und1', () => '1&1')
     .otherwise(() => 'Unknown');
