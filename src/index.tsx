@@ -9,6 +9,7 @@ import 'modern-normalize';
 
 import './index.css';
 import { routeTree } from './routeTree.gen';
+import { Theme } from './components/Theme';
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -68,12 +69,14 @@ export const router = createRouter({
 
 root.render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      {ReactQueryDevtools !== null && (
-        <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
-      )}
-      {/* <ReactQueryDevtools initialIsOpen buttonPosition="top-right" /> */}
-    </QueryClientProvider>
+    <Theme>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        {ReactQueryDevtools !== null && (
+          <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
+        )}
+        {/* <ReactQueryDevtools initialIsOpen buttonPosition="top-right" /> */}
+      </QueryClientProvider>
+    </Theme>
   </StrictMode>,
 );

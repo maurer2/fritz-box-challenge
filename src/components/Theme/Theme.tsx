@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from 'react';
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, type DefaultTheme } from 'styled-components';
 
-export const theme = {
+export const theme: DefaultTheme = {
   primaryColor: '#F2F2F2',
   secondaryColor: '#BDBDBD',
   tertiaryColor: '#080808',
