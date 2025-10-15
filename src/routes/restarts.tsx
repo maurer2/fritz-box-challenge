@@ -3,6 +3,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import { Slide } from '../components/Slide';
+
 export const Route = createFileRoute('/restarts')({
   component: Restarts,
 });
@@ -13,8 +15,7 @@ function Restarts() {
 
   return (
     <div className="view-transition">
-      <h1>Restarts</h1>
-      <pre>{JSON.stringify(boxData)}</pre>
+      <Slide title="Restarts" text={boxData.restarts} />
     </div>
   );
 }

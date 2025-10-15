@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type CSSProperties } from 'react';
 import { createRootRouteWithContext, Link, Outlet } from '@tanstack/react-router';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
@@ -11,7 +11,7 @@ type Context = {
 };
 
 export const Route = createRootRouteWithContext<Context>()({
-  pendingComponent: () => <p>Loading box data</p>, // suspense boundary
+  pendingComponent: () => <p style={{ color: '#FFF' } as CSSProperties}>Loading box data</p>, // suspense boundary
   wrapInSuspense: true, // required when a pending component is used in a root route: https://github.com/TanStack/router/issues/2182
   ssr: false,
   beforeLoad({ context }) {
@@ -25,10 +25,7 @@ export const Route = createRootRouteWithContext<Context>()({
   },
   component: () => (
     <>
-      <nav>
-        <Link to="/" className="" viewTransition={{ types: ['test'] }}>
-          Home
-        </Link>
+      <nav className="nav">
         <Link to="/branding" className="" viewTransition={{ types: ['test'] }}>
           Branding
         </Link>

@@ -98,6 +98,9 @@ dependencies:
   ts-node:
     specifier: ^10.9.2
     version: 10.9.2(@types/node@20.19.21)(typescript@5.9.3)
+  ts-pattern:
+    specifier: ^5.8.0
+    version: 5.8.0
   tsx:
     specifier: ^4.7.1
     version: 4.20.6
@@ -8955,6 +8958,10 @@ packages:
       typescript: 5.9.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    dev: false
+
+  /ts-pattern@5.8.0:
+    resolution: {integrity: sha512-kIjN2qmWiHnhgr5DAkAafF9fwb0T5OhMVSWrm8XEdTFnX6+wfXwYOFjeF86UZ54vduqiR7BfqScFmXSzSaH8oA==}
     dev: false
 
   /tsconfck@3.1.6(typescript@5.9.3):

@@ -3,18 +3,23 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import { Slide } from '../components/Slide';
+
 export const Route = createFileRoute('/model')({
   component: Model,
 });
 
 function Model() {
   const { fetchBoxDataQueryOptions } = Route.useRouteContext();
-  const { data: boxData } = useSuspenseQuery(fetchBoxDataQueryOptions);
+  const {
+    data: { model },
+  } = useSuspenseQuery(fetchBoxDataQueryOptions);
+
+  const modelWithoutBranding = model.replace('(UI)', '');
 
   return (
     <div className="view-transition">
-      <h1>Model</h1>
-      <pre>{JSON.stringify(boxData)}</pre>
+      <Slide title="Model" text={modelWithoutBranding} />
     </div>
   );
 }

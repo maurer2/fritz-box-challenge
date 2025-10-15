@@ -1,24 +1,35 @@
 import styled from 'styled-components';
 
-import type { TextWrapperStyleProps } from './Slide.types';
+type TextWrapperStyleProps = {
+  $characterCount: number;
+};
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.dl`
+  margin: 0;
   text-align: center;
   user-select: none;
   will-change: transform;
 `;
 
-export const TitleWrapper = styled.h2`
+export const Title = styled.dt`
   margin-top: 0;
   margin-bottom: 2vh;
   color: ${({ theme }) => theme.primaryColor};
   font-size: 5vw;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `;
 
-export const TextWrapper = styled.div<TextWrapperStyleProps>`
+export const Value = styled.dd<TextWrapperStyleProps>`
   margin: 0;
   color: ${({ theme }) => theme.primaryColor};
   font-weight: bold;
   font-size: ${(props) => Math.floor((100 / props.$characterCount) * 1.35)}vw;
   line-height: 1;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `;

@@ -3,18 +3,28 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import { Slide } from '../components/Slide';
+
 export const Route = createFileRoute('/firmware')({
   component: Firmware,
 });
 
 function Firmware() {
   const { fetchBoxDataQueryOptions } = Route.useRouteContext();
-  const { data: boxData } = useSuspenseQuery(fetchBoxDataQueryOptions);
+  const {
+    data: { firmware },
+  } = useSuspenseQuery(fetchBoxDataQueryOptions);
+
+  const majorVersion = firmware.slice(-3, -2);
+  const minorVersion = firmware.slice(-2);
 
   return (
+    // <dl className="view-transition">
+    //   <dt>Firmware</dt>
+    //   <dd>{boxData.firmware}</dd>
+    // </dl>
     <div className="view-transition">
-      <h1>Firmware</h1>
-      <pre>{JSON.stringify(boxData)}</pre>
+      <Slide title="Firmware" text={`${majorVersion}.${minorVersion}`} />
     </div>
   );
 }

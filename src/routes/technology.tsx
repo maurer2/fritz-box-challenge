@@ -3,6 +3,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import { Slide } from '../components/Slide';
+
 export const Route = createFileRoute('/technology')({
   component: Technology,
 });
@@ -13,8 +15,7 @@ function Technology() {
 
   return (
     <div className="view-transition">
-      <h1>Technology</h1>
-      <pre>{JSON.stringify(boxData)}</pre>
+      <Slide title="Technology" text={boxData.technology} />
     </div>
   );
 }
