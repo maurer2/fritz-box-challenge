@@ -1,25 +1,22 @@
 import styled from 'styled-components';
+import { Link } from '@tanstack/react-router';
 
-import type { NavBarEntryWrapperStyleProps, NavBarButtonStyleProps } from './NavBarEntry.types';
+// ComponentProps-helper can't be used here due to circular dependency
+import type { NavBarEntryProps } from './NavBarEntry';
 
-export const NavBarEntryWrapper = styled.li<NavBarEntryWrapperStyleProps>`
-  flex: 1 0 ${(props) => (props.$isFullWidth ? '33%' : '0')};
-`;
-
-export const defaultButton = styled.button`
+export const NavBarEntry = styled(Link)<NavBarEntryProps>`
   padding: 1rem;
+  border: 0;
+  color: ${({ theme }) => theme.tertiaryColor};
+  font-size: 1rem;
+  font-weight: normal;
+  transition: color 500ms;
   background: none;
   outline: none;
   appearance: none;
-`;
 
-export const NavBarButton = styled(defaultButton)<NavBarButtonStyleProps>`
-  display: block;
-  width: 100%;
-  border: 0;
-  color: ${({ theme }) => theme.tertiaryColor};
-  font-weight: ${({ $isActive }) => ($isActive ? 'bold' : 'normal')};
-  font-size: 1rem;
-  transition: color 500ms;
-  cursor: pointer;
+  &[aria-current='page'] {
+    color: red;
+    font-weight: bold;
+  }
 `;

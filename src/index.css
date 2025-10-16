@@ -49,8 +49,4 @@ html:active-view-transition-type(test) {
   view-transition-name: test;
 }
 
-.nav {
-  background: whitesmoke;
-}
-
 /* stylelint-enable */

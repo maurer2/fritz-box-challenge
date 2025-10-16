@@ -1,9 +1,11 @@
 import React, { type CSSProperties } from 'react';
-import { createRootRouteWithContext, Link, Outlet } from '@tanstack/react-router';
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import type { QueryClient } from '@tanstack/react-query';
 
+import { NavBarEntry } from '../components/NavBarEntry';
+import { NavBar2 } from '../components/NavBar/NavBar.styles';
 import { fetchBoxDataQueryOptions } from '../hooks/useFetchBoxData/useFetchBoxData';
 
 type Context = {
@@ -25,26 +27,26 @@ export const Route = createRootRouteWithContext<Context>()({
   },
   component: () => (
     <>
-      <nav className="nav">
-        <Link to="/branding" className="" viewTransition={{ types: ['test'] }}>
+      <NavBar2>
+        <NavBarEntry to="/branding" viewTransition={{ types: ['test'] }}>
           Branding
-        </Link>
-        <Link to="/firmware" className="" viewTransition={{ types: ['test'] }}>
+        </NavBarEntry>
+        <NavBarEntry to="/firmware" viewTransition={{ types: ['test'] }}>
           Firmware
-        </Link>
-        <Link to="/model" className="" viewTransition={{ types: ['test'] }}>
+        </NavBarEntry>
+        <NavBarEntry to="/model" viewTransition={{ types: ['test'] }}>
           Model
-        </Link>
-        <Link to="/power-on-hours" className="" viewTransition={{ types: ['test'] }}>
+        </NavBarEntry>
+        <NavBarEntry to="/power-on-hours" viewTransition={{ types: ['test'] }}>
           Power on hours
-        </Link>
-        <Link to="/restarts" className="" viewTransition={{ types: ['test'] }}>
+        </NavBarEntry>
+        <NavBarEntry to="/restarts" viewTransition={{ types: ['test'] }}>
           Restarts
-        </Link>
-        <Link to="/technology" className="" viewTransition={{ types: ['test'] }}>
+        </NavBarEntry>
+        <NavBarEntry to="/technology" viewTransition={{ types: ['test'] }}>
           Technology
-        </Link>
-      </nav>
+        </NavBarEntry>
+      </NavBar2>
       <main>
         <Outlet />
       </main>

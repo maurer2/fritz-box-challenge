@@ -15,7 +15,7 @@ function Model() {
     data: { model },
   } = useSuspenseQuery(fetchBoxDataQueryOptions);
 
-  const modelWithoutBranding = model.replace('(UI)', '');
+  const modelWithoutBranding = model.replace('(UI)', ''); // 1und1 branding
 
   return (
     <div className="view-transition">

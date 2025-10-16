@@ -1,33 +1,17 @@
-import type { MouseEvent } from 'react';
-import React from 'react';
-import { upperFirst } from 'lodash';
+import React, { type PropsWithChildren, type ComponentProps } from 'react';
+import type { LinkProps } from '@tanstack/react-router';
 
 import * as Styles from './NavBarEntry.styles';
-import type { NavBarEntryProps } from './NavBarEntry.types';
 
-const NavBarEntry = ({
-  index,
-  entry,
-  handleNavigation,
-  activeElementRef,
-  $isActive,
-  $isFullWidth,
-}: NavBarEntryProps) => {
-  function handleClick(event: MouseEvent<HTMLLIElement>): void {
-    event.preventDefault();
+export type NavBarEntryProps = ComponentProps<'a'> &
+  LinkProps &
+  PropsWithChildren & {
+    // activeElementRef: Ref<HTMLLIElement> | null;
+  };
 
-    handleNavigation(index);
-  }
-
-  return (
-    <Styles.NavBarEntryWrapper
-      onClick={(event) => handleClick(event)}
-      ref={activeElementRef}
-      $isFullWidth={$isFullWidth}
-    >
-      <Styles.NavBarButton $isActive={$isActive}>{upperFirst(entry)}</Styles.NavBarButton>
-    </Styles.NavBarEntryWrapper>
-  );
-};
+const NavBarEntry = ({ children, ...props }: NavBarEntryProps) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Styles.NavBarEntry {...props}>{children}</Styles.NavBarEntry>
+);
 
 export { NavBarEntry };
