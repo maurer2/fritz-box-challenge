@@ -44,9 +44,6 @@ export const Indicator = styled.div<IndicatorStyleProps>`
 
 export const NavBar2 = styled.nav<NavBar2StyleProps>`
   display: flex;
-  margin: 0;
-  padding: 0;
   justify-content: space-between;
-  list-style: none;
   background: ${({ theme }) => theme.secondaryColor};
 `;

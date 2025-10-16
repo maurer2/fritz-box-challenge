@@ -8,15 +8,25 @@ export const NavBarEntry = styled(Link)<NavBarEntryProps>`
   padding: 1rem;
   border: 0;
   color: ${({ theme }) => theme.tertiaryColor};
-  font-size: 1rem;
   font-weight: normal;
-  transition: color 500ms;
   background: none;
-  outline: none;
-  appearance: none;
+  text-decoration: none;
 
   &[aria-current='page'] {
     color: red;
     font-weight: bold;
+  }
+
+  &:where(:hover, :focus) {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    // https://www.w3.org/WAI/WCAG21/Techniques/css/C40
+    /* inner indicator */
+    outline: 2px #f9f9f9 solid;
+    outline-offset: 0;
+    /* outer indicator */
+    box-shadow: 0 0 0 4px #193146;
   }
 `;
