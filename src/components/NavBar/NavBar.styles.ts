@@ -46,4 +46,5 @@ export const NavBar2 = styled.nav<NavBar2StyleProps>`
   display: flex;
   justify-content: space-between;
   background: ${({ theme }) => theme.secondaryColor};
+  contain: layout style paint;
 `;

@@ -4,8 +4,7 @@ import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import type { QueryClient } from '@tanstack/react-query';
 
-import { NavBarEntry } from '../components/NavBarEntry';
-import { NavBar2 } from '../components/NavBar/NavBar.styles';
+import { NavBarNew } from '../components/NavBarNew';
 import { fetchBoxDataQueryOptions } from '../hooks/useFetchBoxData/useFetchBoxData';
 
 type Context = {
@@ -27,26 +26,7 @@ export const Route = createRootRouteWithContext<Context>()({
   },
   component: () => (
     <>
-      <NavBar2>
-        <NavBarEntry to="/branding" viewTransition={{ types: ['test'] }}>
-          Branding
-        </NavBarEntry>
-        <NavBarEntry to="/firmware" viewTransition={{ types: ['test'] }}>
-          Firmware
-        </NavBarEntry>
-        <NavBarEntry to="/model" viewTransition={{ types: ['test'] }}>
-          Model
-        </NavBarEntry>
-        <NavBarEntry to="/power-on-hours" viewTransition={{ types: ['test'] }}>
-          Power on hours
-        </NavBarEntry>
-        <NavBarEntry to="/restarts" viewTransition={{ types: ['test'] }}>
-          Restarts
-        </NavBarEntry>
-        <NavBarEntry to="/technology" viewTransition={{ types: ['test'] }}>
-          Technology
-        </NavBarEntry>
-      </NavBar2>
+      <NavBarNew />
       <main>
         <Outlet />
       </main>
