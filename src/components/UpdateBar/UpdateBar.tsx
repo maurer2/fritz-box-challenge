@@ -1,21 +1,13 @@
-import React from 'react';
+import React, { type PropsWithChildren } from 'react';
 
-import useBoxDataContext from '../../hooks/useBoxDataContext/useBoxDataContext';
+import { UpdateBarWrapper } from './UpdateBar.styles';
 
-import * as Styles from './UpdateBar.styles';
+type UpdateBarProps = PropsWithChildren;
 
-const UpdateBar = () => {
-  const { isUpdating, isError } = useBoxDataContext();
-
-  return (
-    <Styles.UpdateBar $shouldShowUpdateBar={isUpdating || isError}>
-      {isUpdating ? (
-        <Styles.Text>Updating!</Styles.Text>
-      ) : (
-        <Styles.Text>{isError ? <>Error!</> : <>Data loaded!</>}</Styles.Text>
-      )}
-    </Styles.UpdateBar>
-  );
-};
+const UpdateBar = ({ children }: UpdateBarProps) => (
+  <UpdateBarWrapper role="status" aria-atomic>
+    {children}
+  </UpdateBarWrapper>
+);
 
 export { UpdateBar };

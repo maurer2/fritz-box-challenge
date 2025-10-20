@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from 'react';
+import React from 'react';
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
@@ -7,13 +7,15 @@ import type { QueryClient } from '@tanstack/react-query';
 import { NavBar } from '../components/NavBar';
 import { SlideMaster } from '../components/SlideMaster';
 import { fetchBoxDataQueryOptions } from '../hooks/useFetchBoxData/useFetchBoxData';
+import { UpdateBar } from '../components/UpdateBar';
 
 type Context = {
   queryClient: QueryClient;
 };
 
 export const Route = createRootRouteWithContext<Context>()({
-  pendingComponent: () => <p style={{ color: '#FFF' } as CSSProperties}>Loading box data</p>, // suspense boundary
+  pendingComponent: () => <UpdateBar>Box data is being fetched</UpdateBar>, // suspense boundary
+  errorComponent: () => <UpdateBar>Box data couldn\'t be loaded</UpdateBar>, // error boundary
   wrapInSuspense: true, // required when a pending component is used in a root route: https://github.com/TanStack/router/issues/2182
   ssr: false,
   beforeLoad({ context }) {
@@ -25,6 +27,8 @@ export const Route = createRootRouteWithContext<Context>()({
   loader: async ({ context }) => {
     await context.queryClient.ensureQueryData(context.fetchBoxDataQueryOptions); // show root pending component until until query has finished
   },
+  pendingMinMs: 1000,
+  pendingMs: 0,
   component: () => (
     <>
       <SlideMaster>
