@@ -5,6 +5,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import type { QueryClient } from '@tanstack/react-query';
 
 import { NavBar } from '../components/NavBar';
+import { SlideMaster } from '../components/SlideMaster';
 import { fetchBoxDataQueryOptions } from '../hooks/useFetchBoxData/useFetchBoxData';
 
 type Context = {
@@ -27,9 +28,9 @@ export const Route = createRootRouteWithContext<Context>()({
   component: () => (
     <>
       <NavBar />
-      <main>
+      <SlideMaster>
         <Outlet />
-      </main>
+      </SlideMaster>
       <TanStackRouterDevtools />
     </>
   ),

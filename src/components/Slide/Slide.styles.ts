@@ -8,12 +8,11 @@ export const Wrapper = styled.dl`
   margin: 0;
   text-align: center;
   user-select: none;
-  will-change: transform;
 `;
 
 export const Title = styled.dt`
-  margin-top: 0;
-  margin-bottom: 2vh;
+  margin-block-start: 0;
+  margin-block-end: 2vh;
   color: ${({ theme }) => theme.primaryColor};
   font-size: 5vw;
 
@@ -25,8 +24,8 @@ export const Title = styled.dt`
 export const Value = styled.dd<TextWrapperStyleProps>`
   margin: 0;
   color: ${({ theme }) => theme.primaryColor};
-  font-weight: bold;
   font-size: ${(props) => Math.floor((100 / props.$characterCount) * 1.35)}vw;
+  font-weight: bold;
   line-height: 1;
 
   &:first-letter {

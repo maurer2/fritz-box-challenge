@@ -8,6 +8,8 @@ import { setupWorker } from 'msw/browser';
 import 'modern-normalize';
 
 import './index.css';
+import { StyleSheetManager } from 'styled-components';
+
 import { routeTree } from './routeTree.gen';
 import { Theme } from './components/Theme';
 
@@ -69,14 +71,16 @@ export const router = createRouter({
 
 root.render(
   <StrictMode>
-    <Theme>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        {ReactQueryDevtools !== null && (
-          <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
-        )}
-        {/* <ReactQueryDevtools initialIsOpen buttonPosition="top-right" /> */}
-      </QueryClientProvider>
-    </Theme>
+    {/* needed for "height: stretch" */}
+    <StyleSheetManager enableVendorPrefixes>
+      <Theme>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          {ReactQueryDevtools !== null && (
+            <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
+          )}
+        </QueryClientProvider>
+      </Theme>
+    </StyleSheetManager>
   </StrictMode>,
 );
