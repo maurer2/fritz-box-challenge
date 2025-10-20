@@ -85,7 +85,7 @@ const NavBar = () => {
     <NavBarWrapper>
       <NavBarList>
         {navLinks.map(([to, children]) => {
-          const viewTransition: NavigateOptions['viewTransition'] = { types: ['test'] }; // todo: needs to be dynamic for direction aware transitions
+          const viewTransition: NavigateOptions['viewTransition'] = { types: ['slide-in-and-out'] }; // todo: needs to be dynamic for direction aware transitions
 
           return (
             <NavBarEntry

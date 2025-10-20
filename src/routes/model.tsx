@@ -17,9 +17,5 @@ function Model() {
 
   const modelWithoutBranding = model.replace('(UI)', ''); // 1und1 branding
 
-  return (
-    <div className="view-transition">
-      <Slide title="Model" text={modelWithoutBranding} />
-    </div>
-  );
+  return <Slide title="Model" text={modelWithoutBranding} />;
 }

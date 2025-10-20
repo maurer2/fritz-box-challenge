@@ -18,11 +18,11 @@ body {
   display: contents;
 }
 
-html:active-view-transition-type(test) {
-  &::view-transition-old(test) {
+html:active-view-transition-type(slide-in-and-out) {
+  &::view-transition-old(slide-in-and-out) {
     animation: 0.5s linear both slide-out;
   }
-  &::view-transition-new(test) {
+  &::view-transition-new(slide-in-and-out) {
     animation: 0.5s linear both slide-in;
   }
 }
@@ -43,10 +43,6 @@ html:active-view-transition-type(test) {
   to {
     translate: 0;
   }
-}
-
-.view-transition {
-  view-transition-name: test;
 }
 
 /* stylelint-enable */

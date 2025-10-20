@@ -18,13 +18,5 @@ function Firmware() {
   const majorVersion = firmware.slice(-3, -2);
   const minorVersion = firmware.slice(-2);
 
-  return (
-    // <dl className="view-transition">
-    //   <dt>Firmware</dt>
-    //   <dd>{boxData.firmware}</dd>
-    // </dl>
-    <div className="view-transition">
-      <Slide title="Firmware" text={`${majorVersion}.${minorVersion}`} />
-    </div>
-  );
+  return <Slide title="Firmware" text={`${majorVersion}.${minorVersion}`} />;
 }

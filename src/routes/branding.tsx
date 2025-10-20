@@ -25,13 +25,5 @@ function Branding() {
 
   const mappedBranding = getMappedBranding(branding);
 
-  return (
-    // <dl className="view-transition">
-    //   <dt>Branding</dt>
-    //   <dd>{boxData.branding}</dd>
-    // </dl>
-    <div className="view-transition">
-      <Slide title="Branding" text={mappedBranding} />
-    </div>
-  );
+  return <Slide title="Branding" text={mappedBranding} />;
 }

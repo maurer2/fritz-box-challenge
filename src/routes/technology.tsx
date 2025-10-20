@@ -29,9 +29,5 @@ function Technology() {
 
   const mappedTechnology = getMappedTechnology(technology);
 
-  return (
-    <div className="view-transition">
-      <Slide title="Technology" text={mappedTechnology} />
-    </div>
-  );
+  return <Slide title="Technology" text={mappedTechnology} />;
 }

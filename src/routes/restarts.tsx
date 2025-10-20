@@ -22,9 +22,5 @@ function Restarts() {
   // https://www.ip-phone-forum.de/threads/servicecode-der-fritzbox.310849/post-2438609
   const calculatedRestarts = majorValue * 32 + minorValue;
 
-  return (
-    <div className="view-transition">
-      <Slide title="Restarts" text={calculatedRestarts.toString().padStart(3, '0')} />
-    </div>
-  );
+  return <Slide title="Restarts" text={calculatedRestarts.toString().padStart(3, '0')} />;
 }

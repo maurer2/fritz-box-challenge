@@ -60,9 +60,5 @@ function PowerOnHours() {
     return powerOnHoursFormatted;
   }, [powerOnHours]);
 
-  return (
-    <div className="view-transition">
-      <Slide title="Power on hours" text={powerOnHoursCalculated} />
-    </div>
-  );
+  return <Slide title="Power on hours" text={powerOnHoursCalculated} />;
 }

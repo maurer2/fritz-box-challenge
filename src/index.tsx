@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 // eslint-disable-next-line import/order
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
-// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// eslint-disable-next-line import/order
 import { setupWorker } from 'msw/browser';
 import 'modern-normalize';
 
