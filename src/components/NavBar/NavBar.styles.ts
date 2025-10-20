@@ -4,16 +4,23 @@ import { Link, type LinkProps } from '@tanstack/react-router';
 
 export type NavBarEntryProps = ComponentProps<'a'> & LinkProps & PropsWithChildren;
 
-export const NavBarWrapper = styled.div`
+export const NavBarWrapper = styled.nav`
   display: grid;
-  grid-template-rows: auto 5px;
+  grid-template-rows: 5px auto;
 `;
 
-export const NavBarList = styled.nav`
+export const NavBarList = styled.ul`
   display: flex;
-  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  justify-content: stretch;
   background: ${({ theme }) => theme.secondaryColor};
   contain: layout style paint;
+  list-style: none;
+
+  > li {
+    display: contents;
+  }
 `;
 
 export const NavBarIndicatorWrapper = styled.div`
@@ -43,11 +50,13 @@ export const NavBarIndicator = styled.div`
 export const NavBarEntry = styled(Link)<NavBarEntryProps>`
   padding-block: 1rem;
   padding-inline: 3rem;
+  flex: 1;
   border: 0;
   color: ${({ theme }) => theme.tertiaryColor};
   font-weight: bold;
   background: none;
   text-decoration: none;
+  text-align: center;
 
   &:where(:hover, :focus-visible) {
     text-decoration: underline;

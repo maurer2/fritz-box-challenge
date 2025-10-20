@@ -27,10 +27,10 @@ export const Route = createRootRouteWithContext<Context>()({
   },
   component: () => (
     <>
-      <NavBar />
       <SlideMaster>
         <Outlet />
       </SlideMaster>
+      <NavBar />
       <TanStackRouterDevtools />
     </>
   ),

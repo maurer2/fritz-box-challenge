@@ -83,25 +83,22 @@ const NavBar = () => {
 
   return (
     <NavBarWrapper>
+      <NavBarIndicatorWrapper style={cssVars as CSSProperties} aria-hidden>
+        <NavBarIndicator />
+      </NavBarIndicatorWrapper>
       <NavBarList>
         {navLinks.map(([to, children]) => {
           const viewTransition: NavigateOptions['viewTransition'] = { types: ['slide-in-and-out'] }; // todo: needs to be dynamic for direction aware transitions
 
           return (
-            <NavBarEntry
-              key={to}
-              to={to}
-              viewTransition={viewTransition}
-              ref={entryRefCallback(to)}
-            >
-              {children}
-            </NavBarEntry>
+            <li key={to}>
+              <NavBarEntry to={to} viewTransition={viewTransition} ref={entryRefCallback(to)}>
+                {children}
+              </NavBarEntry>
+            </li>
           );
         })}
       </NavBarList>
-      <NavBarIndicatorWrapper style={cssVars as CSSProperties}>
-        <NavBarIndicator />
-      </NavBarIndicatorWrapper>
     </NavBarWrapper>
   );
 };

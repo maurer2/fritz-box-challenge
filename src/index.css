@@ -8,16 +8,19 @@
 }
 
 body {
-  overflow: clip;
-  background: #000;
   inline-size: 100dvw;
   block-size: 100dvh;
+  overflow: clip;
+  background: #000;
 }
 
 .root {
-  display: contents;
+  display: grid;
+  height: 100%;
+  grid-template-rows: 1fr auto;
 }
 
+/* /src/components/MainContent/MainContent.styles.ts */
 html:active-view-transition-type(slide-in-and-out) {
   &::view-transition-old(slide-in-and-out) {
     animation: 0.5s linear both slide-out;
@@ -30,18 +33,22 @@ html:active-view-transition-type(slide-in-and-out) {
 @keyframes slide-out {
   from {
     translate: 0;
+    opacity: 1;
   }
   to {
     translate: -100%;
+    opacity: 0.01;
   }
 }
 
 @keyframes slide-in {
   from {
     translate: 100%;
+    opacity: 0.01;
   }
   to {
     translate: 0;
+    opacity: 1;
   }
 }
 
