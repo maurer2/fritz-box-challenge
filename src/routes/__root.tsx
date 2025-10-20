@@ -4,7 +4,7 @@ import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import type { QueryClient } from '@tanstack/react-query';
 
-import { NavBarNew } from '../components/NavBarNew';
+import { NavBar } from '../components/NavBar';
 import { fetchBoxDataQueryOptions } from '../hooks/useFetchBoxData/useFetchBoxData';
 
 type Context = {
@@ -26,7 +26,7 @@ export const Route = createRootRouteWithContext<Context>()({
   },
   component: () => (
     <>
-      <NavBarNew />
+      <NavBar />
       <main>
         <Outlet />
       </main>

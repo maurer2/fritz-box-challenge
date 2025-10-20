@@ -1,74 +1,108 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+  useEffectEvent,
+  type CSSProperties,
+  type ComponentProps,
+  type ReactNode,
+} from 'react';
+import {
+  useRouter,
+  useLocation,
+  type ParsedLocation,
+  type NavigateOptions,
+} from '@tanstack/react-router';
 
-// import { throttle } from 'lodash';
-import { NavBarEntry } from '../NavBarEntry';
-import useBoxDataContext from '../../hooks/useBoxDataContext/useBoxDataContext';
+import {
+  NavBarWrapper,
+  NavBarList,
+  NavBarIndicatorWrapper,
+  NavBarIndicator,
+  NavBarEntry,
+} from './NavBar.styles';
 
-import * as Styles from './NavBar.styles';
+// prettier-ignore
+type NavLinkPath = NonNullable<(ComponentProps<typeof NavBarEntry>)['to']>;
+
+const navLinks: [path: NavLinkPath, children: ReactNode][] = [
+  ['/branding', 'Branding'],
+  ['/firmware', 'Firmware'],
+  ['/model', 'Model'],
+  ['/power-on-hours', 'Power on hours'],
+  ['/restarts', 'Restarts'],
+  ['/technology', 'Technology'],
+];
 
 const NavBar = () => {
-  const { _state, visibleComponents, currentIndex, isUpdating, updateCurrentIndex } =
-    useBoxDataContext();
-  const [offset, setOffset] = useState(0);
-  const [width, setWidth] = useState<string | number>('auto'); // prevent css transition on load
-  const oldIndex = useRef(-1);
-  const showIndicator = useRef(true);
-  const activeElement = useRef<HTMLLIElement>(null);
+  const router = useRouter();
 
-  const height = 5;
+  const [oldLocation, setOldLocation] = useState<ParsedLocation | undefined>(undefined);
+  const [offset, setOffset] = useState<string | null>(null);
+  const [prevOffset, setPrevOffset] = useState<string | null>(null);
+  const [inlineSize, setInlineSize] = useState('auto');
 
-  function handleNavigation(newCurrentIndex: number): void {
-    oldIndex.current = currentIndex;
+  // const [newLocation, setNewLocation] = useState<ParsedLocation | undefined>(undefined);
+  const currentLocation = useLocation({ select: ({ pathname }) => pathname });
 
-    updateCurrentIndex(newCurrentIndex);
-  }
+  // const navLinksDomElements = useRef<HTMLAnchorElement[]>([]);
 
-  function updateIndicator(): void {
-    if (activeElement.current == null) {
+  // https://tanstack.com/router/v1/docs/framework/react/api/router/RouterEventsType
+  router.subscribe('onBeforeLoad', async ({ toLocation, fromLocation }) => {
+    setOldLocation(fromLocation);
+    // setNewLocation(toLocation);
+  });
+
+  // called on reach render
+  const entryRefCallback = (to: NavLinkPath) => (domElement: HTMLAnchorElement) => {
+    const isActiveNavElement = to === currentLocation;
+
+    if (!isActiveNavElement) {
       return;
     }
 
-    const activeElementBB = activeElement.current.getBoundingClientRect();
-    const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
-
-    setOffset(activeElementBB.x);
-    setWidth(activeElementBB.width);
-
-    showIndicator.current = isLargeScreen;
-  }
-
-  useLayoutEffect(() => {
-    const activeElementHasChanged = currentIndex !== oldIndex.current;
-
-    if (activeElementHasChanged) {
-      oldIndex.current = currentIndex;
-
-      updateIndicator();
+    // domElement is null on first render
+    if (domElement === null) {
+      setPrevOffset(offset);
     }
-  });
 
-  if (_state === 'error') {
-    return null;
-  }
+    if (domElement !== null) {
+      const { x, width: widthBB } = domElement.getBoundingClientRect();
+
+      setInlineSize(`${Math.floor(widthBB)}px`);
+      setOffset(`${Math.floor(x)}px`);
+    }
+  };
+
+  const cssVars = {
+    '--inline-size': inlineSize,
+    '--offset-x': offset,
+    '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
+  } as const;
 
   return (
-    <Styles.NavBar $reservedSpaceTop={height} $isUpdating={isUpdating}>
-      {showIndicator.current && <Styles.Indicator offset={offset} width={width} height={height} />}
-      <Styles.NavBarList $isRow={showIndicator.current}>
-        {visibleComponents.map((entry, index) => (
-          <NavBarEntry
-            index={index}
-            entry={entry}
-            $isActive={currentIndex === index}
-            handleNavigation={(newCurrentIndex: number): void => handleNavigation(newCurrentIndex)}
-            // only active element gets ref otherwise last child always active
-            activeElementRef={currentIndex === index ? activeElement : null}
-            key={entry}
-            $isFullWidth={!showIndicator}
-          />
-        ))}
-      </Styles.NavBarList>
-    </Styles.NavBar>
+    <NavBarWrapper>
+      <NavBarList>
+        {navLinks.map(([to, children]) => {
+          const viewTransition: NavigateOptions['viewTransition'] = { types: ['test'] }; // todo: needs to be dynamic for direction aware transitions
+
+          return (
+            <NavBarEntry
+              key={to}
+              to={to}
+              viewTransition={viewTransition}
+              ref={entryRefCallback(to)}
+            >
+              {children}
+            </NavBarEntry>
+          );
+        })}
+      </NavBarList>
+      <NavBarIndicatorWrapper style={cssVars as CSSProperties}>
+        <NavBarIndicator />
+      </NavBarIndicatorWrapper>
+    </NavBarWrapper>
   );
 };
 
