@@ -1,4 +1,4 @@
-import { useQuery, queryOptions } from '@tanstack/react-query';
+import { queryOptions } from '@tanstack/react-query';
 
 import { fields } from '../../constants/mappings';
 import fetcher from '../../helpers/fetcher/fetcher';
@@ -56,9 +56,3 @@ export const fetchBoxDataQueryOptions = queryOptions({
   staleTime: Infinity,
   gcTime: Infinity,
 });
-
-export function useFetchBoxData({ key, url }: { key?: string; url?: string }) {
-  const queryResult = useQuery(fetchBoxDataQueryOptions);
-
-  return queryResult;
-}
