@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { subHours, subDays, subMonths, subYears, intervalToDuration } from 'date-fns';
+import { Temporal } from 'temporal-polyfill';
 
 import { Slide } from '../components/Slide';
 
@@ -56,6 +57,23 @@ function PowerOnHours() {
     // split by commas and add "and" before final part unless there's only one part
     const powerOnHoursAsArray = (durationFormatter.format(duration) as string).split(/\s*,\s*/);
     const powerOnHoursFormatted = listFormatter.format(powerOnHoursAsArray);
+
+    // Temporal
+    const hypotheticalProductionDate2 = Temporal.Now.plainDateISO()
+      .subtract({ hours })
+      .subtract({ hours: days * 24 })
+      .subtract({ hours: months * 720 })
+      .subtract({ hours: years * 8760 });
+    const now2 = Temporal.Now.zonedDateTimeISO();
+    const duration2 = hypotheticalProductionDate2.until(now2, {
+      smallestUnit: 'day',
+      largestUnit: 'year',
+      roundingMode: 'ceil',
+    });
+
+    const powerOnHoursAsArray2 = (durationFormatter.format(duration2) as string).split(/\s*,\s*/);
+    const powerOnHoursFormatted2 = listFormatter.format(powerOnHoursAsArray2);
+    console.log(powerOnHoursFormatted2);
 
     return powerOnHoursFormatted;
   }, [powerOnHours]);
