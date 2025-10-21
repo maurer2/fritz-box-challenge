@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@tanstack/devtools-vite':
+        specifier: ^0.3.9
+        version: 0.3.9(vite@7.1.10(@types/node@20.19.21)(jiti@2.6.1)(tsx@4.20.6))
+      '@tanstack/react-devtools':
+        specifier: ^0.7.7
+        version: 0.7.7(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(csstype@3.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(solid-js@1.9.9)
       '@tanstack/react-query':
         specifier: ^5.90.3
         version: 5.90.3(react@19.2.0)
@@ -1339,6 +1345,66 @@ packages:
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
+  '@solid-primitives/event-listener@2.4.3':
+    resolution: {integrity: sha512-h4VqkYFv6Gf+L7SQj+Y6puigL/5DIi7x5q07VZET7AWcS+9/G3WfIE9WheniHWJs51OEkRB43w6lDys5YeFceg==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
+  '@solid-primitives/keyboard@1.3.3':
+    resolution: {integrity: sha512-9dQHTTgLBqyAI7aavtO+HnpTVJgWQA1ghBSrmLtMu1SMxLPDuLfuNr+Tk5udb4AL4Ojg7h9JrKOGEEDqsJXWJA==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
+  '@solid-primitives/resize-observer@2.1.3':
+    resolution: {integrity: sha512-zBLje5E06TgOg93S7rGPldmhDnouNGhvfZVKOp+oG2XU8snA+GoCSSCz1M+jpNAg5Ek2EakU5UVQqL152WmdXQ==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
+  '@solid-primitives/rootless@1.5.2':
+    resolution: {integrity: sha512-9HULb0QAzL2r47CCad0M+NKFtQ+LrGGNHZfteX/ThdGvKIg2o2GYhBooZubTCd/RTu2l2+Nw4s+dEfiDGvdrrQ==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
+  '@solid-primitives/static-store@0.1.2':
+    resolution: {integrity: sha512-ReK+5O38lJ7fT+L6mUFvUr6igFwHBESZF+2Ug842s7fvlVeBdIVEdTCErygff6w7uR6+jrr7J8jQo+cYrEq4Iw==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
+  '@solid-primitives/utils@6.3.2':
+    resolution: {integrity: sha512-hZ/M/qr25QOCcwDPOHtGjxTD8w2mNyVAYvcfgwzBHq2RwNqHNdDNsMZYap20+ruRwW4A3Cdkczyoz0TSxLCAPQ==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
+  '@tanstack/devtools-client@0.0.3':
+    resolution: {integrity: sha512-kl0r6N5iIL3t9gGDRAv55VRM3UIyMKVH83esRGq7xBjYsRLe/BeCIN2HqrlJkObUXQMKhy7i8ejuGOn+bDqDBw==}
+    engines: {node: '>=18'}
+
+  '@tanstack/devtools-event-bus@0.3.2':
+    resolution: {integrity: sha512-yJT2As/drc+Epu0nsqCsJaKaLcaNGufiNxSlp/+/oeTD0jsBxF9/PJBfh66XVpYXkKr97b8689mSu7QMef0Rrw==}
+    engines: {node: '>=18'}
+
+  '@tanstack/devtools-event-client@0.3.3':
+    resolution: {integrity: sha512-RfV+OPV/M3CGryYqTue684u10jUt55PEqeBOnOtCe6tAmHI9Iqyc8nHeDhWPEV9715gShuauFVaMc9RiUVNdwg==}
+    engines: {node: '>=18'}
+
+  '@tanstack/devtools-ui@0.4.3':
+    resolution: {integrity: sha512-7QshnQIHifURyMwl/qmYm4KDpsf8UJrJ8BUu+YvPx35RJBe2EO5qHPsefzWh6MlG/dUdVMBxP9nPqchESyuNFg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      solid-js: '>=1.9.7'
+
+  '@tanstack/devtools-vite@0.3.9':
+    resolution: {integrity: sha512-bJwSd4B5f06/grPypfJhyJStAQjJs9tvHV2a6hd1QKED6XdTWwgL5+XBn+I0K0LrcxGZ5Nkg6zau8JQRnQ9UfA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      vite: ^6.0.0 || ^7.0.0
+
+  '@tanstack/devtools@0.6.21':
+    resolution: {integrity: sha512-j8cCmrOz7wu4G4jJ2ZZCo3fIGGDMygSQVPZDtyFylKtKC5i88Hnu6YioODP6I+0mbn9Qvr4eWgPHEONXAViXeA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      solid-js: '>=1.9.7'
+
   '@tanstack/history@1.133.3':
     resolution: {integrity: sha512-zFQnGdX0S4g5xRuS+95iiEXM+qlGvYG7ksmOKx7LaMv60lDWa0imR8/24WwXXvBWJT1KnwVdZcjvhCwz9IiJCw==}
     engines: {node: '>=12'}
@@ -1348,6 +1414,15 @@ packages:
 
   '@tanstack/query-devtools@5.90.1':
     resolution: {integrity: sha512-GtINOPjPUH0OegJExZ70UahT9ykmAhmtNVcmtdnOZbxLwT7R5OmRztR5Ahe3/Cu7LArEmR6/588tAycuaWb1xQ==}
+
+  '@tanstack/react-devtools@0.7.7':
+    resolution: {integrity: sha512-mJ7Ixa+AadGF1b13tLkC8lX0JrM7CrH/SJMOqcCWot9l80KZCWeFnDF1+Ww25QosVbZ1db611LNcgsGz8pv3Zg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      '@types/react-dom': '>=16.8'
+      react: '>=16.8'
+      react-dom: '>=16.8'
 
   '@tanstack/react-query-devtools@5.90.2':
     resolution: {integrity: sha512-vAXJzZuBXtCQtrY3F/yUNJCV4obT/A/n81kb3+YqLbro5Z2+phdAbceO+deU3ywPw8B42oyJlp4FhO0SoivDFQ==}
@@ -1964,6 +2039,10 @@ packages:
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
+
+  chalk@5.6.2:
+    resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   char-regex@1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
@@ -3445,6 +3524,9 @@ packages:
     resolution: {integrity: sha512-MbjN408fEndfiQXbFQ1vnd+1NoLDsnQW41410oQBXiyXDMYH5z505juWa4KUE1LqxRC7DgOgZDbKLxHIwm27hA==}
     engines: {node: '>=0.10'}
 
+  launch-editor@2.11.1:
+    resolution: {integrity: sha512-SEET7oNfgSaB6Ym0jufAdCeo3meJVeCaaDyzRygy0xsp2BFKCprcfHljTq4QkzTLUxEKkFK6OK4811YM2oSrRg==}
+
   leven@2.1.0:
     resolution: {integrity: sha512-nvVPLpIHUxCUoRLrFqTgSxXJ614d8AgQoWl7zPe/2VadE8+1dpU3LBhowRuBAcuwruWtOdD8oYC9jDNJjXDPyA==}
     engines: {node: '>=0.10.0'}
@@ -4463,6 +4545,10 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
+  shell-quote@1.8.3:
+    resolution: {integrity: sha512-ObmnIF4hXNg1BqhnHmgbDETF8dLPCggZWBjkQfhZpbszZnYur5DUljTcCHii5LC3J5E0yeO/1LIMyH+UvHQgyw==}
+    engines: {node: '>= 0.4'}
+
   side-channel-list@1.0.0:
     resolution: {integrity: sha512-FCLHtRD/gnpCiCHEiJLOwdmFP+wzCmDEkc9y7NsYxeF4u7Btsn1ZuwgwJGxImImHicJArLP4R0yX4c2KCrMrTA==}
     engines: {node: '>= 0.4'}
@@ -5222,6 +5308,18 @@ packages:
   write@1.0.3:
     resolution: {integrity: sha512-/lg70HAjtkUgWPVZhZcm+T4hkL8Zbtp1nFNOn3lRrxnlv50SRBv7cR7RqR+GMsd3hUXy9hWBo4CHTbFTcOYwig==}
     engines: {node: '>=4'}
+
+  ws@8.18.3:
+    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
 
   x-is-string@0.1.0:
     resolution: {integrity: sha512-GojqklwG8gpzOVEVki5KudKNoq7MbbjYZCbyWzEz7tyPA7eleiE0+ePwOWQQRb5fm86rD3S8Tc0tSFf3AOv50w==}
@@ -6366,11 +6464,113 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
+  '@solid-primitives/event-listener@2.4.3(solid-js@1.9.9)':
+    dependencies:
+      '@solid-primitives/utils': 6.3.2(solid-js@1.9.9)
+      solid-js: 1.9.9
+
+  '@solid-primitives/keyboard@1.3.3(solid-js@1.9.9)':
+    dependencies:
+      '@solid-primitives/event-listener': 2.4.3(solid-js@1.9.9)
+      '@solid-primitives/rootless': 1.5.2(solid-js@1.9.9)
+      '@solid-primitives/utils': 6.3.2(solid-js@1.9.9)
+      solid-js: 1.9.9
+
+  '@solid-primitives/resize-observer@2.1.3(solid-js@1.9.9)':
+    dependencies:
+      '@solid-primitives/event-listener': 2.4.3(solid-js@1.9.9)
+      '@solid-primitives/rootless': 1.5.2(solid-js@1.9.9)
+      '@solid-primitives/static-store': 0.1.2(solid-js@1.9.9)
+      '@solid-primitives/utils': 6.3.2(solid-js@1.9.9)
+      solid-js: 1.9.9
+
+  '@solid-primitives/rootless@1.5.2(solid-js@1.9.9)':
+    dependencies:
+      '@solid-primitives/utils': 6.3.2(solid-js@1.9.9)
+      solid-js: 1.9.9
+
+  '@solid-primitives/static-store@0.1.2(solid-js@1.9.9)':
+    dependencies:
+      '@solid-primitives/utils': 6.3.2(solid-js@1.9.9)
+      solid-js: 1.9.9
+
+  '@solid-primitives/utils@6.3.2(solid-js@1.9.9)':
+    dependencies:
+      solid-js: 1.9.9
+
+  '@tanstack/devtools-client@0.0.3':
+    dependencies:
+      '@tanstack/devtools-event-client': 0.3.3
+
+  '@tanstack/devtools-event-bus@0.3.2':
+    dependencies:
+      ws: 8.18.3
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@tanstack/devtools-event-client@0.3.3': {}
+
+  '@tanstack/devtools-ui@0.4.3(csstype@3.1.3)(solid-js@1.9.9)':
+    dependencies:
+      clsx: 2.1.1
+      goober: 2.1.18(csstype@3.1.3)
+      solid-js: 1.9.9
+    transitivePeerDependencies:
+      - csstype
+
+  '@tanstack/devtools-vite@0.3.9(vite@7.1.10(@types/node@20.19.21)(jiti@2.6.1)(tsx@4.20.6))':
+    dependencies:
+      '@babel/core': 7.28.4
+      '@babel/generator': 7.28.3
+      '@babel/parser': 7.28.4
+      '@babel/traverse': 7.28.4
+      '@babel/types': 7.28.4
+      '@tanstack/devtools-client': 0.0.3
+      '@tanstack/devtools-event-bus': 0.3.2
+      chalk: 5.6.2
+      launch-editor: 2.11.1
+      picomatch: 4.0.3
+      vite: 7.1.10(@types/node@20.19.21)(jiti@2.6.1)(tsx@4.20.6)
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+
+  '@tanstack/devtools@0.6.21(csstype@3.1.3)(solid-js@1.9.9)':
+    dependencies:
+      '@solid-primitives/event-listener': 2.4.3(solid-js@1.9.9)
+      '@solid-primitives/keyboard': 1.3.3(solid-js@1.9.9)
+      '@solid-primitives/resize-observer': 2.1.3(solid-js@1.9.9)
+      '@tanstack/devtools-client': 0.0.3
+      '@tanstack/devtools-event-bus': 0.3.2
+      '@tanstack/devtools-ui': 0.4.3(csstype@3.1.3)(solid-js@1.9.9)
+      clsx: 2.1.1
+      goober: 2.1.18(csstype@3.1.3)
+      solid-js: 1.9.9
+    transitivePeerDependencies:
+      - bufferutil
+      - csstype
+      - utf-8-validate
+
   '@tanstack/history@1.133.3': {}
 
   '@tanstack/query-core@5.90.3': {}
 
   '@tanstack/query-devtools@5.90.1': {}
+
+  '@tanstack/react-devtools@0.7.7(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(csstype@3.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(solid-js@1.9.9)':
+    dependencies:
+      '@tanstack/devtools': 0.6.21(csstype@3.1.3)(solid-js@1.9.9)
+      '@types/react': 19.2.2
+      '@types/react-dom': 19.2.2(@types/react@19.2.2)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+    transitivePeerDependencies:
+      - bufferutil
+      - csstype
+      - solid-js
+      - utf-8-validate
 
   '@tanstack/react-query-devtools@5.90.2(@tanstack/react-query@5.90.3(react@19.2.0))(react@19.2.0)':
     dependencies:
@@ -7162,6 +7362,8 @@ snapshots:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+
+  chalk@5.6.2: {}
 
   char-regex@1.0.2: {}
 
@@ -8974,6 +9176,11 @@ snapshots:
     dependencies:
       language-subtag-registry: 0.3.23
 
+  launch-editor@2.11.1:
+    dependencies:
+      picocolors: 1.1.1
+      shell-quote: 1.8.3
+
   leven@2.1.0: {}
 
   leven@3.1.0: {}
@@ -10108,6 +10315,8 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
+  shell-quote@1.8.3: {}
+
   side-channel-list@1.0.0:
     dependencies:
       es-errors: 1.3.0
@@ -11026,6 +11235,8 @@ snapshots:
   write@1.0.3:
     dependencies:
       mkdirp: 0.5.6
+
+  ws@8.18.3: {}
 
   x-is-string@0.1.0: {}
 

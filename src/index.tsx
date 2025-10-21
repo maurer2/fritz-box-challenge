@@ -1,9 +1,10 @@
-import React, { StrictMode, lazy } from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-// eslint-disable-next-line import/order
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
-// eslint-disable-next-line import/order
+import { TanStackDevtools } from '@tanstack/react-devtools';
+import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
 import 'modern-normalize';
 
@@ -26,13 +27,7 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 
 const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
-const ReactQueryDevtools = isDevMode
-  ? lazy(() =>
-      import('@tanstack/react-query-devtools').then((module) => ({
-        default: module.ReactQueryDevtools,
-      })),
-    )
-  : null;
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -76,10 +71,25 @@ root.render(
       <Theme>
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
-          {ReactQueryDevtools !== null && (
-            <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
-          )}
         </QueryClientProvider>
+        {/* <TanStackDevtools
+          config={{
+            defaultOpen: false,
+            hideUntilHover: true,
+            position: 'top-left',
+            panelLocation: 'top',
+          }}
+          plugins={[
+            {
+              name: 'TanStack Query',
+              render: <ReactQueryDevtoolsPanel client={queryClient} />,
+            },
+            {
+              name: 'TanStack Router',
+              render: <TanStackRouterDevtoolsPanel router={router} />,
+            },
+          ]}
+        /> */}
       </Theme>
     </StyleSheetManager>
   </StrictMode>,
