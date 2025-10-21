@@ -7,6 +7,8 @@ export type NavBarEntryProps = ComponentProps<'a'> & LinkProps & PropsWithChildr
 export const NavBarWrapper = styled.nav`
   display: grid;
   grid-template-rows: 5px auto;
+  position: sticky;
+  bottom: 0;
 `;
 
 export const NavBarList = styled.ul`
@@ -49,8 +51,9 @@ export const NavBarIndicator = styled.div`
 
 export const NavBarEntry = styled(Link)<NavBarEntryProps>`
   padding-block: 1rem;
-  padding-inline: 3rem;
+  padding-inline: 1rem;
   flex: 1;
+  flex-basis: auto;
   border: 0;
   color: ${({ theme }) => theme.tertiaryColor};
   font-weight: bold;

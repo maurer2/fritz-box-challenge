@@ -1,18 +1,89 @@
-import React from 'react';
+import React, { useState, useCallback, useMemo, type SVGAttributes, type Ref } from 'react';
+import type { Simplify } from 'type-fest';
 
-import * as Styles from './Slide.styles';
+import { SlideWrapper, SlideTitle, SlideText } from './Slide.styles';
 
 type SlideProps = {
   title: string;
   text: string;
 };
+type ViewBoxName = Simplify<keyof SlideProps>;
+type ViewBoxes = Record<ViewBoxName, string | undefined>;
+type ViewBoxString = SVGAttributes<SVGSVGElement>['viewBox'];
+type TextReplacementElementProps = {
+  ref: Ref<SVGSVGElement> | undefined;
+  viewBox: ViewBoxString;
+  textContent: string;
+};
 
-const Slide = ({ title, text }: SlideProps) => (
-  <Styles.Wrapper>
-    <Styles.Title>{title}</Styles.Title>
-    {/* workaround for single letter values */}
-    <Styles.Value $characterCount={Math.max(text.length, 3)}>{text}</Styles.Value>
-  </Styles.Wrapper>
+const TextReplacementElement = ({ ref, viewBox, textContent }: TextReplacementElementProps) => (
+  <svg ref={ref} viewBox={viewBox} fill="currentColor" aria-hidden>
+    <text x="0" y="15">
+      {textContent}
+    </text>
+  </svg>
 );
+
+// Uses SVG workaround: https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg
+const Slide = ({ title, text }: SlideProps) => {
+  const [viewBoxes, setViewBoxes] = useState<ViewBoxes>({
+    title: undefined,
+    text: undefined,
+  });
+
+  const svgElementRefsCallback = useCallback(
+    (viewBoxName: ViewBoxName) => (svgElement: SVGSVGElement | null) => {
+      const svgElementBoundingBox = svgElement?.getBBox() ?? null;
+      if (!svgElementBoundingBox) {
+        return;
+      }
+
+      const newViewBoxString: ViewBoxString = [
+        svgElementBoundingBox.x,
+        svgElementBoundingBox.y,
+        svgElementBoundingBox.width,
+        svgElementBoundingBox.height,
+      ].join(' ');
+
+      setViewBoxes((previousViewBoxes) => {
+        const previousViewBoxString = previousViewBoxes[viewBoxName];
+
+        if (previousViewBoxString === newViewBoxString) {
+          return previousViewBoxes;
+        }
+
+        return { ...previousViewBoxes, [viewBoxName]: newViewBoxString };
+      });
+    },
+    [],
+  );
+  const svgElementRefs = useMemo(
+    () =>
+      ({
+        title: svgElementRefsCallback('title'),
+        text: svgElementRefsCallback('text'),
+      }) satisfies Partial<Record<ViewBoxName, ReturnType<typeof svgElementRefsCallback>>>,
+    [svgElementRefsCallback],
+  );
+
+  return (
+    <SlideWrapper key={`${title}-${text}`}>
+      <SlideTitle aria-label={title}>
+        <TextReplacementElement
+          ref={svgElementRefs.title}
+          textContent={title}
+          viewBox={viewBoxes.title}
+        />
+      </SlideTitle>
+      <SlideText aria-label={text}>
+        <TextReplacementElement
+          ref={svgElementRefs.text}
+          textContent={text}
+          viewBox={viewBoxes.text}
+        />
+      </SlideText>
+    </SlideWrapper>
+  );
+};
 
 export { Slide };

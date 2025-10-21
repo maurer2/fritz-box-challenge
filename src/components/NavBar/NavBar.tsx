@@ -55,7 +55,7 @@ const NavBar = () => {
   });
 
   // called on reach render
-  const entryRefCallback = (to: NavLinkPath) => (domElement: HTMLAnchorElement) => {
+  const entryRefCallback = (to: NavLinkPath) => (domElement: HTMLAnchorElement | null) => {
     const isActiveNavElement = to === currentLocation;
 
     if (!isActiveNavElement) {
