@@ -18,10 +18,10 @@ const getMappedBranding = (branding: string): string =>
     .otherwise(() => 'Unknown');
 
 function Branding() {
-  const { fetchBoxDataQueryOptions } = Route.useRouteContext();
+  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
   const {
     data: { branding },
-  } = useSuspenseQuery(fetchBoxDataQueryOptions);
+  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
   const mappedBranding = getMappedBranding(branding);
 

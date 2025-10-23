@@ -10,10 +10,10 @@ export const Route = createFileRoute('/firmware')({
 });
 
 function Firmware() {
-  const { fetchBoxDataQueryOptions } = Route.useRouteContext();
+  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
   const {
     data: { firmware },
-  } = useSuspenseQuery(fetchBoxDataQueryOptions);
+  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
   const majorVersion = firmware.slice(-3, -2);
   const minorVersion = firmware.slice(-2);

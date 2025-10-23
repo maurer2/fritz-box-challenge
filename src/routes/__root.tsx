@@ -4,7 +4,7 @@ import type { QueryClient } from '@tanstack/react-query';
 
 import { NavBar } from '../components/NavBar';
 import { SlideMaster } from '../components/SlideMaster';
-import { fetchBoxDataQueryOptions } from '../hooks/useFetchBoxData/useFetchBoxData';
+import { getStatusFieldsFromBoxQueryOptions } from '../queries/getStatusFieldsFromBox/getStatusFieldsFromBox';
 import { UpdateBar } from '../components/UpdateBar';
 
 type Context = {
@@ -19,11 +19,11 @@ export const Route = createRootRouteWithContext<Context>()({
   beforeLoad({ context }) {
     return {
       queryClient: context.queryClient,
-      fetchBoxDataQueryOptions,
+      getStatusFieldsFromBoxQueryOptions,
     };
   },
   loader: async ({ context }) => {
-    await context.queryClient.ensureQueryData(context.fetchBoxDataQueryOptions); // show root pending component until until query has finished
+    await context.queryClient.ensureQueryData(context.getStatusFieldsFromBoxQueryOptions); // show root pending component until until query has finished
   },
   pendingMinMs: 1000,
   pendingMs: 0,

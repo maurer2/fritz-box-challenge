@@ -6,13 +6,12 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
-import 'modern-normalize';
-
-import './index.css';
 import { StyleSheetManager } from 'styled-components';
+import 'modern-normalize';
 
 import { routeTree } from './routeTree.gen';
 import { Theme } from './components/Theme';
+import './index.css';
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -58,7 +57,6 @@ export const router = createRouter({
   },
   defaultStaleTime: Infinity,
   defaultPreload: 'intent',
-  // defaultPreloadStaleTime: Infinity,
   defaultGcTime: Infinity,
   defaultPendingMs: 0,
   defaultPreloadStaleTime: 0,
@@ -72,7 +70,7 @@ root.render(
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
         </QueryClientProvider>
-        {/* <TanStackDevtools
+        <TanStackDevtools
           config={{
             defaultOpen: false,
             hideUntilHover: true,
@@ -89,7 +87,7 @@ root.render(
               render: <TanStackRouterDevtoolsPanel router={router} />,
             },
           ]}
-        /> */}
+        />
       </Theme>
     </StyleSheetManager>
   </StrictMode>,

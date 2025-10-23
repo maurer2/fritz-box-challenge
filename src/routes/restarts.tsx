@@ -10,10 +10,10 @@ export const Route = createFileRoute('/restarts')({
 });
 
 function Restarts() {
-  const { fetchBoxDataQueryOptions } = Route.useRouteContext();
+  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
   const {
     data: { restarts },
-  } = useSuspenseQuery(fetchBoxDataQueryOptions);
+  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
   const majorValue = parseInt(restarts.substring(0, 2), 10);
   const minorValue = parseInt(restarts.substring(2), 10);

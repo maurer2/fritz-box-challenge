@@ -22,10 +22,10 @@ const getMappedTechnology = (technology: string): string =>
     .otherwise(() => 'Unknown');
 
 function Technology() {
-  const { fetchBoxDataQueryOptions } = Route.useRouteContext();
+  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
   const {
     data: { technology },
-  } = useSuspenseQuery(fetchBoxDataQueryOptions);
+  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
   const mappedTechnology = getMappedTechnology(technology);
 

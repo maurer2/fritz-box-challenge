@@ -10,10 +10,10 @@ export const Route = createFileRoute('/model')({
 });
 
 function Model() {
-  const { fetchBoxDataQueryOptions } = Route.useRouteContext();
+  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
   const {
     data: { model },
-  } = useSuspenseQuery(fetchBoxDataQueryOptions);
+  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
   const modelWithoutBranding = model.replace('(UI)', ''); // 1und1 branding
 

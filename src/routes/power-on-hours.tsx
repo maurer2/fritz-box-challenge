@@ -21,10 +21,10 @@ const listFormatter = new Intl.ListFormat('en-GB', {
 
 // https://forum.vodafone.de/t5/Plauderecke/Wie-gesamte-Laufzeit-der-Fritz-Box-ermitteln/td-p/3245922
 function PowerOnHours() {
-  const { fetchBoxDataQueryOptions } = Route.useRouteContext();
+  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
   const {
     data: { powerOnHours },
-  } = useSuspenseQuery(fetchBoxDataQueryOptions);
+  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
   const powerOnHoursCalculated = useMemo(() => {
     const now = new Date();
     const hours = parseInt(powerOnHours.substring(0, 2), 10);
@@ -49,9 +49,6 @@ function PowerOnHours() {
 
     const duration = intervalToDuration({
       start: hypotheticalProductionDate,
-      // start: subDays(now, 30),
-      // start: subDays(now, 31),
-      // start: subDays(now, 62),
       end: now,
     });
     // split by commas and add "and" before final part unless there's only one part
