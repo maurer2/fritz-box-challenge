@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, type SVGAttributes, type Ref } from 'react';
+import { useState, useCallback, useMemo, type SVGAttributes, type Ref } from 'react';
 import type { Simplify } from 'type-fest';
 
 import { SlideWrapper, SlideTitle, SlideText } from './Slide.styles';

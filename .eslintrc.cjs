@@ -8,11 +8,10 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    // 'plugin:lodash/recommended',
     'plugin:react/recommended',
     'prettier',
   ],
-  plugins: ['react', 'react-hooks', 'lodash', '@typescript-eslint'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint'],
   env: {
     jest: true,
     browser: true,
@@ -37,8 +36,6 @@ module.exports = {
     ],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
-    'lodash/import-scope': [2, 'member'],
-    'lodash/prefer-lodash-method': 'off',
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': 'error',
     'import/extensions': [
@@ -57,6 +54,7 @@ module.exports = {
     'react/function-component-definition': 'off',
     'no-console': 'off',
     '@typescript-eslint/consistent-type-imports': 'error',
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     react: {
@@ -75,17 +73,9 @@ module.exports = {
   overrides: [
     {
       files: ['./libs/*.js', './src/libs/*.js'],
-      extends: [
-        'airbnb',
-        'eslint:recommended',
-        'plugin:import/errors',
-        'plugin:import/warnings',
-        // 'plugin:lodash/recommended',
-      ],
+      extends: ['airbnb', 'eslint:recommended', 'plugin:import/errors', 'plugin:import/warnings'],
       parser: 'babel-eslint',
-      // plugins: ['lodash'],
       rules: {
-        // 'lodash/prefer-lodash-method': 'off',
         // '@typescript-eslint/explicit-function-return-type': 'off',
       },
     },

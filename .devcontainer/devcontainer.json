@@ -3,7 +3,7 @@
 {
   "name": "Node.js & TypeScript",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:0-20",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
@@ -40,11 +40,16 @@
         "javascript.inlayHints.parameterTypes.enabled": true,
         "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
         "javascript.inlayHints.enumMemberValues.enabled": true,
+        // eslint
+        "eslint.useFlatConfig": false,
         // markdown
         "markdown.preview.scrollEditorWithPreview": true,
         "markdown.preview.scrollPreviewWithEditor": true,
         // icons
-        "vsicons.presets.jsOfficial": true
+        "vsicons.presets.jsOfficial": true,
+        "workbench.editorAssociations": {
+          "*.svg": "default" // https://stackoverflow.com/questions/79363302/how-to-disable-svg-preview-in-vs-code-1-97/79427278#79427278
+        }
       },
       "extensions": [
         "aaron-bond.better-comments",
@@ -88,15 +93,21 @@
         "wix.vscode-import-cost",
         "wmaurer.change-case",
         "yatki.vscode-surround",
-        "Orta.vscode-jest", // jest
-        // "ZixuanChen.vitest-explorer", // vitest
+        // "Orta.vscode-jest", // jest
+        "vitest.explorer", // vitest
+        // "ms-playwright.playwright"
         "yoavbls.pretty-ts-errors",
         "mikestead.dotenv",
         "vunguyentuan/vscode-css-variables",
         "qcz/vscode-restart-ts-server-button",
         "microsoft/vscode-pull-request-github",
         "github.copilot",
-        "vincaslt.highlight-matching-tag"
+        "vincaslt.highlight-matching-tag",
+        // "oven.bun-vscode",
+        // "biomejs.biome"
+        // astro-build.astro-vscode",
+        "tamasfe.even-better-toml"
+        // "attilabuti.vscode-mjml"
       ]
     }
   }
