@@ -1,20 +1,12 @@
 import {
   useState,
   useCallback,
-  useRef,
-  useEffect,
-  useEffectEvent,
   useMemo,
   type CSSProperties,
   type ComponentProps,
   type ReactNode,
 } from 'react';
-import {
-  useRouter,
-  useLocation,
-  type ParsedLocation,
-  type NavigateOptions,
-} from '@tanstack/react-router';
+import { useLocation, type NavigateOptions } from '@tanstack/react-router';
 
 import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
 
@@ -28,6 +20,9 @@ import {
 
 // prettier-ignore
 type NavLinkPath = NonNullable<(ComponentProps<typeof NavBarEntry>)['to']>;
+type TransitionName = 'move-left' | 'move-right';
+
+const SCREEN_WIDTH_INDICATOR = 750;
 
 const navLinks: [path: NavLinkPath, children: ReactNode][] = [
   ['/branding', 'Branding'],
@@ -38,21 +33,29 @@ const navLinks: [path: NavLinkPath, children: ReactNode][] = [
   ['/technology', 'Technology'],
 ];
 
-const SCREEN_WIDTH_INDICATOR = 750;
+const viewTransition: NavigateOptions['viewTransition'] = {
+  types: ({ fromLocation, toLocation }) => {
+    const currentRoutIndex = navLinks.findIndex(([path]) =>
+      fromLocation?.pathname.startsWith(path),
+    );
+    const newRoutIndex = navLinks.findIndex(([path]) => toLocation?.pathname.startsWith(path));
+
+    if (newRoutIndex === currentRoutIndex) {
+      return false;
+    }
+    const newDirection: TransitionName =
+      newRoutIndex > currentRoutIndex ? 'move-right' : 'move-left';
+
+    return [newDirection];
+  },
+};
 
 const NavBar = () => {
-  const router = useRouter();
-
-  const [oldLocation, setOldLocation] = useState<ParsedLocation | undefined>(undefined);
   const [offset, setOffset] = useState<string | null>(null);
   const [prevOffset, setPrevOffset] = useState<string | null>(null);
   const [inlineSize, setInlineSize] = useState('auto');
 
   const currentLocation = useLocation({ select: ({ pathname }) => pathname });
-  // https://tanstack.com/router/v1/docs/framework/react/api/router/RouterEventsType
-  router.subscribe('onBeforeLoad', async ({ fromLocation }) => {
-    setOldLocation(fromLocation);
-  });
 
   const isIndicatorVisible = useMediaQuery({
     mediaQuery: `(min-width: ${SCREEN_WIDTH_INDICATOR}px)`,
@@ -102,22 +105,17 @@ const NavBar = () => {
         {isIndicatorVisible ? <NavBarIndicator /> : null}
       </NavBarIndicatorWrapper>
       <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}>
-        {navLinks.map(([to, children]) => {
-          const viewTransition: NavigateOptions['viewTransition'] = { types: ['slide-in-and-out'] }; // todo: needs to be dynamic for direction aware transitions
-          const isActiveNavLink = to === currentLocation;
-
-          return (
-            <li key={to}>
-              <NavBarEntry
-                to={to}
-                viewTransition={viewTransition}
-                ref={isActiveNavLink ? activeNavBarEntryRefCallback : null}
-              >
-                {children}
-              </NavBarEntry>
-            </li>
-          );
-        })}
+        {navLinks.map(([to, children]) => (
+          <li key={to}>
+            <NavBarEntry
+              to={to}
+              viewTransition={viewTransition}
+              ref={to === currentLocation ? activeNavBarEntryRefCallback : null}
+            >
+              {children}
+            </NavBarEntry>
+          </li>
+        ))}
       </NavBarList>
     </NavBarWrapper>
   );

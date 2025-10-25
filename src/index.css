@@ -20,28 +20,36 @@ body {
   grid-template-rows: 1fr auto;
 }
 
-/* /src/components/MainContent/MainContent.styles.ts */
-html:active-view-transition-type(slide-in-and-out) {
-  &::view-transition-old(slide-in-and-out) {
-    animation: 0.5s linear both slide-out;
+html:active-view-transition-type(move-left) {
+  &::view-transition-old(slide-master) {
+    animation: 0.5s linear both slide-from-right reverse;
   }
-  &::view-transition-new(slide-in-and-out) {
-    animation: 0.5s linear both slide-in;
+  &::view-transition-new(slide-master) {
+    animation: 0.5s linear both slide-from-left;
   }
 }
 
-@keyframes slide-out {
-  from {
-    translate: 0;
-    opacity: 1;
+html:active-view-transition-type(move-right) {
+  &::view-transition-old(slide-master) {
+    animation: 0.5s linear both slide-from-left reverse;
   }
-  to {
+  &::view-transition-new(slide-master) {
+    animation: 0.5s linear both slide-from-right;
+  }
+}
+
+@keyframes slide-from-left {
+  from {
     translate: -100%;
     opacity: 0.01;
   }
+  to {
+    translate: 0;
+    opacity: 1;
+  }
 }
 
-@keyframes slide-in {
+@keyframes slide-from-right {
   from {
     translate: 100%;
     opacity: 0.01;

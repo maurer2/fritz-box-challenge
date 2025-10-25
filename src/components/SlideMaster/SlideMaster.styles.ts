@@ -6,5 +6,5 @@ export const SlideMasterWrapper = styled.main`
   inline-size: min(100dvw, 2000px);
   block-size: stretch; // will be vendor prefixed
   overflow: clip;
-  view-transition-name: slide-in-and-out; // set element as reference element for slide-in-and-out transition
+  view-transition-name: slide-master;
 `;
