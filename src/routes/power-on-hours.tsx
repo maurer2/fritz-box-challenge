@@ -70,7 +70,7 @@ function PowerOnHours() {
 
     const powerOnHoursAsArray2 = (durationFormatter.format(duration2) as string).split(/\s*,\s*/);
     const powerOnHoursFormatted2 = listFormatter.format(powerOnHoursAsArray2);
-    console.log(powerOnHoursFormatted2);
+    // console.log(powerOnHoursFormatted2);
 
     return powerOnHoursFormatted;
   }, [powerOnHours]);

@@ -9,25 +9,14 @@ export const NavBarWrapper = styled.nav`
   grid-template-rows: 5px auto;
   position: sticky;
   bottom: 0;
-`;
-
-export const NavBarList = styled.ul`
-  display: flex;
-  margin: 0;
-  padding: 0;
-  justify-content: stretch;
-  background: ${({ theme }) => theme.secondaryColor};
-  contain: layout style paint;
-  list-style: none;
-
-  > li {
-    display: contents;
-  }
+  container-type: inline-size;
+  container-name: navbar;
 `;
 
 export const NavBarIndicatorWrapper = styled.div`
   position: relative;
   container-type: inline-size;
+  container-name: navbar-indicator-wrapper;
 `;
 
 export const NavBarIndicator = styled.div`
@@ -41,11 +30,31 @@ export const NavBarIndicator = styled.div`
   transition-duration: 0;
   background: ${({ theme }) => theme.primaryColor};
 
-  @container style(--has-prev-offset: true) {
+  @container navbar-indicator-wrapper style(--has-prev-offset: true) {
     transition-property: translate, inline-size;
   }
   @media (prefers-reduced-motion: no-preference) {
     transition-duration: 500ms;
+  }
+`;
+
+export const NavBarList = styled.ul`
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: ${({ theme }) => theme.secondaryColor};
+  contain: layout style paint;
+  list-style: none;
+
+  @container (width > 700px) {
+    flex-wrap: no-wrap;
+    justify-content: stretch;
+  }
+
+  > li {
+    display: contents;
   }
 `;
 
@@ -60,6 +69,7 @@ export const NavBarEntry = styled(Link)<NavBarEntryProps>`
   background: none;
   text-decoration: none;
   text-align: center;
+  flex-grow: 0;
 
   &:where(:hover, :focus-visible) {
     text-decoration: underline;
@@ -74,5 +84,9 @@ export const NavBarEntry = styled(Link)<NavBarEntryProps>`
     outline-offset: 0;
     /* outer indicator */
     box-shadow: 0 0 0 4px #193146;
+  }
+
+  @container navbar (width > 700px) {
+    flex-grow: 1;
   }
 `;

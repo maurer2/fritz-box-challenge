@@ -4,6 +4,7 @@ import {
   useRef,
   useEffect,
   useEffectEvent,
+  useMemo,
   type CSSProperties,
   type ComponentProps,
   type ReactNode,
@@ -14,6 +15,8 @@ import {
   type ParsedLocation,
   type NavigateOptions,
 } from '@tanstack/react-router';
+
+import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
 
 import {
   NavBarWrapper,
@@ -43,48 +46,51 @@ const NavBar = () => {
   const [prevOffset, setPrevOffset] = useState<string | null>(null);
   const [inlineSize, setInlineSize] = useState('auto');
 
-  // const [newLocation, setNewLocation] = useState<ParsedLocation | undefined>(undefined);
+  const isLargeScreen = useMediaQuery('(min-width: 768px)');
   const currentLocation = useLocation({ select: ({ pathname }) => pathname });
 
-  // const navLinksDomElements = useRef<HTMLAnchorElement[]>([]);
-
   // https://tanstack.com/router/v1/docs/framework/react/api/router/RouterEventsType
-  router.subscribe('onBeforeLoad', async ({ toLocation, fromLocation }) => {
+  router.subscribe('onBeforeLoad', async ({ fromLocation }) => {
     setOldLocation(fromLocation);
-    // setNewLocation(toLocation);
   });
 
-  // called on reach render
-  const entryRefCallback = (to: NavLinkPath) => (domElement: HTMLAnchorElement | null) => {
-    const isActiveNavElement = to === currentLocation;
+  const navBarEntryRefCallback = useCallback(
+    (to: NavLinkPath) => (anchorElement: HTMLAnchorElement | null) => {
+      const isActiveNavElement = to === currentLocation;
 
-    if (!isActiveNavElement) {
-      return;
-    }
+      if (!isActiveNavElement) {
+        return;
+      }
 
-    // domElement is null on first render
-    if (domElement === null) {
-      setPrevOffset(offset);
-    }
+      // domElement is null on first render
+      if (anchorElement === null) {
+        setPrevOffset(offset);
 
-    if (domElement !== null) {
-      const { x, width: widthBB } = domElement.getBoundingClientRect();
+        return;
+      }
 
-      setInlineSize(`${Math.floor(widthBB)}px`);
+      const { x, width } = anchorElement.getBoundingClientRect();
+
+      setInlineSize(`${Math.floor(width)}px`);
       setOffset(`${Math.floor(x)}px`);
-    }
-  };
+    },
+    [currentLocation, offset],
+  );
 
-  const cssVars = {
-    '--inline-size': inlineSize,
-    '--offset-x': offset,
-    '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
-  } as const;
+  const navBarCssVars = useMemo(
+    () =>
+      ({
+        '--inline-size': inlineSize,
+        '--offset-x': isLargeScreen ? offset : null,
+        '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
+      }) as const,
+    [inlineSize, isLargeScreen, prevOffset, offset],
+  );
 
   return (
     <NavBarWrapper>
-      <NavBarIndicatorWrapper style={cssVars as CSSProperties} aria-hidden>
-        <NavBarIndicator />
+      <NavBarIndicatorWrapper style={navBarCssVars as CSSProperties} aria-hidden>
+        {isLargeScreen ? <NavBarIndicator /> : null}
       </NavBarIndicatorWrapper>
       <NavBarList>
         {navLinks.map(([to, children]) => {
@@ -92,7 +98,7 @@ const NavBar = () => {
 
           return (
             <li key={to}>
-              <NavBarEntry to={to} viewTransition={viewTransition} ref={entryRefCallback(to)}>
+              <NavBarEntry to={to} viewTransition={viewTransition} ref={navBarEntryRefCallback(to)}>
                 {children}
               </NavBarEntry>
             </li>
