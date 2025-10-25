@@ -38,6 +38,8 @@ const navLinks: [path: NavLinkPath, children: ReactNode][] = [
   ['/technology', 'Technology'],
 ];
 
+const SCREEN_WIDTH_INDICATOR = 750;
+
 const NavBar = () => {
   const router = useRouter();
 
@@ -46,7 +48,7 @@ const NavBar = () => {
   const [prevOffset, setPrevOffset] = useState<string | null>(null);
   const [inlineSize, setInlineSize] = useState('auto');
 
-  const isLargeScreen = useMediaQuery('(min-width: 768px)');
+  const isIndicatorVisible = useMediaQuery(`(min-width: ${SCREEN_WIDTH_INDICATOR}px)`);
   const currentLocation = useLocation({ select: ({ pathname }) => pathname });
 
   // https://tanstack.com/router/v1/docs/framework/react/api/router/RouterEventsType
@@ -54,51 +56,53 @@ const NavBar = () => {
     setOldLocation(fromLocation);
   });
 
-  const navBarEntryRefCallback = useCallback(
-    (to: NavLinkPath) => (anchorElement: HTMLAnchorElement | null) => {
-      const isActiveNavElement = to === currentLocation;
+  const activeNavBarEntryRefCallback = useCallback((activeElement: HTMLAnchorElement) => {
+    const resizeObserver = new ResizeObserver(([entry]) => {
+      const [elementSize] = entry.borderBoxSize;
+      const { offsetLeft } = activeElement;
 
-      if (!isActiveNavElement) {
-        return;
-      }
+      setOffset((currentOffset) => {
+        setPrevOffset(currentOffset);
 
-      // domElement is null on first render
-      if (anchorElement === null) {
-        setPrevOffset(offset);
+        return `${Math.floor(offsetLeft)}px`;
+      });
+      setInlineSize(`${Math.floor(elementSize.inlineSize)}px`);
+    });
 
-        return;
-      }
+    resizeObserver.observe(activeElement);
 
-      const { x, width } = anchorElement.getBoundingClientRect();
-
-      setInlineSize(`${Math.floor(width)}px`);
-      setOffset(`${Math.floor(x)}px`);
-    },
-    [currentLocation, offset],
-  );
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   const navBarCssVars = useMemo(
     () =>
       ({
         '--inline-size': inlineSize,
-        '--offset-x': isLargeScreen ? offset : null,
+        '--offset-x': isIndicatorVisible ? offset : null,
         '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
       }) as const,
-    [inlineSize, isLargeScreen, prevOffset, offset],
+    [inlineSize, isIndicatorVisible, prevOffset, offset],
   );
 
   return (
     <NavBarWrapper>
       <NavBarIndicatorWrapper style={navBarCssVars as CSSProperties} aria-hidden>
-        {isLargeScreen ? <NavBarIndicator /> : null}
+        {isIndicatorVisible ? <NavBarIndicator /> : null}
       </NavBarIndicatorWrapper>
-      <NavBarList>
+      <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}>
         {navLinks.map(([to, children]) => {
           const viewTransition: NavigateOptions['viewTransition'] = { types: ['slide-in-and-out'] }; // todo: needs to be dynamic for direction aware transitions
+          const isActiveNavLink = to === currentLocation;
 
           return (
             <li key={to}>
-              <NavBarEntry to={to} viewTransition={viewTransition} ref={navBarEntryRefCallback(to)}>
+              <NavBarEntry
+                to={to}
+                viewTransition={viewTransition}
+                ref={isActiveNavLink ? activeNavBarEntryRefCallback : null}
+              >
                 {children}
               </NavBarEntry>
             </li>
