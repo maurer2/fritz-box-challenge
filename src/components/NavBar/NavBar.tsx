@@ -48,47 +48,57 @@ const NavBar = () => {
   const [prevOffset, setPrevOffset] = useState<string | null>(null);
   const [inlineSize, setInlineSize] = useState('auto');
 
-  const isIndicatorVisible = useMediaQuery(`(min-width: ${SCREEN_WIDTH_INDICATOR}px)`);
   const currentLocation = useLocation({ select: ({ pathname }) => pathname });
-
   // https://tanstack.com/router/v1/docs/framework/react/api/router/RouterEventsType
   router.subscribe('onBeforeLoad', async ({ fromLocation }) => {
     setOldLocation(fromLocation);
   });
 
-  const activeNavBarEntryRefCallback = useCallback((activeElement: HTMLAnchorElement) => {
-    const resizeObserver = new ResizeObserver(([entry]) => {
-      const [elementSize] = entry.borderBoxSize;
-      const { offsetLeft } = activeElement;
+  const isIndicatorVisible = useMediaQuery({
+    mediaQuery: `(min-width: ${SCREEN_WIDTH_INDICATOR}px)`,
+    onChange: (isMatching) => {
+      if (!isMatching) {
+        setPrevOffset(null);
+        setOffset(null);
+      }
+    },
+  });
+  const activeNavBarEntryRefCallback = useCallback(
+    (activeElement: HTMLAnchorElement) => {
+      const resizeObserver = new ResizeObserver(([entry]) => {
+        const [elementSize] = entry.borderBoxSize;
+        const { offsetLeft } = activeElement;
 
-      setOffset((currentOffset) => {
-        setPrevOffset(currentOffset);
+        setOffset((currentOffset) => {
+          setPrevOffset(isIndicatorVisible ? currentOffset : null);
 
-        return `${Math.floor(offsetLeft)}px`;
+          return `${Math.floor(offsetLeft)}px`;
+        });
+        setInlineSize(`${Math.floor(elementSize.inlineSize)}px`);
       });
-      setInlineSize(`${Math.floor(elementSize.inlineSize)}px`);
-    });
 
-    resizeObserver.observe(activeElement);
+      resizeObserver.observe(activeElement);
 
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, []);
+      return () => {
+        resizeObserver.disconnect();
+      };
+    },
+    [isIndicatorVisible],
+  );
 
-  const navBarCssVars = useMemo(
+  const navBarIndicatorCssVars = useMemo(
     () =>
       ({
         '--inline-size': inlineSize,
-        '--offset-x': isIndicatorVisible ? offset : null,
+        '--offset-x': offset,
         '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
       }) as const,
-    [inlineSize, isIndicatorVisible, prevOffset, offset],
+    [inlineSize, prevOffset, offset],
   );
 
   return (
     <NavBarWrapper>
-      <NavBarIndicatorWrapper style={navBarCssVars as CSSProperties} aria-hidden>
+      <NavBarIndicatorWrapper style={navBarIndicatorCssVars as CSSProperties} aria-hidden>
         {isIndicatorVisible ? <NavBarIndicator /> : null}
       </NavBarIndicatorWrapper>
       <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}>

@@ -1,10 +1,21 @@
 import { useSyncExternalStore } from 'react';
 
-export function useMediaQuery(mediaQuery: string): boolean {
+type UseMediaQueryProps = {
+  mediaQuery: string;
+  onChange?: (isMatching: MediaQueryList['matches']) => void;
+};
+
+export function useMediaQuery({ mediaQuery, onChange }: UseMediaQueryProps): boolean {
   const mediaQueryList = window.matchMedia(mediaQuery);
 
-  const subscribeToMediaQuery = (listener: (event: MediaQueryListEvent) => void) => {
+  const subscribeToMediaQuery = (onStoreChange: () => void) => {
+    const listener = (event: MediaQueryListEvent) => {
+      onStoreChange();
+      onChange?.(event.matches);
+    };
+
     mediaQueryList.addEventListener('change', listener);
+    onChange?.(mediaQueryList.matches);
 
     return () => {
       mediaQueryList.removeEventListener('change', listener);
@@ -13,7 +24,5 @@ export function useMediaQuery(mediaQuery: string): boolean {
 
   const isMatchingMediaQuery = () => mediaQueryList.matches;
 
-  const stateOfMediaQuery = useSyncExternalStore(subscribeToMediaQuery, isMatchingMediaQuery);
-
-  return stateOfMediaQuery;
+  return useSyncExternalStore(subscribeToMediaQuery, isMatchingMediaQuery);
 }
