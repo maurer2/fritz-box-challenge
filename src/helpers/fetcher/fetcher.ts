@@ -1,7 +1,4 @@
-import type { ZodType, z } from 'zod';
-import { ZodError } from 'zod';
-
-// import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
+import { ZodError, type ZodType, type z } from 'zod';
 
 // https://github.com/colinhacks/zod#writing-generic-functions
 const fetcher = async <T extends ZodType>(url: string, schema: T): Promise<z.infer<T>> => {
@@ -9,24 +6,27 @@ const fetcher = async <T extends ZodType>(url: string, schema: T): Promise<z.inf
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(response.statusText || `Error fetching from ${url}}`);
+      throw new Error(
+        `${response.status.toString()} ${response.statusText} ` || `HTTP error ${url}}`,
+      );
     }
 
     const textContent = await response.text();
 
     return schema.parse(textContent);
   } catch (error) {
-    // if (error instanceof SyntaxError) {
-    //   console.warn('Payload error', error);
-    //   throw new Error('Payload error', { cause: error });
-    // }
-
-    if (error instanceof ZodError) {
-      console.warn('Parsing error', error);
-      throw new Error('Payload error', { cause: error });
+    if (!Error.isError(error)) {
+      console.warn(`Unknown error when trying to fetch "${url}"`);
+      throw new Error('Unknown error');
     }
 
-    throw new Error('Unknown error', { cause: error });
+    if (error instanceof ZodError) {
+      console.warn('Schema parsing error', error);
+      throw new Error('Schema parsing error', { cause: error });
+    }
+
+    console.warn(`Error fetching "${url}"`);
+    throw error;
   }
 };
 

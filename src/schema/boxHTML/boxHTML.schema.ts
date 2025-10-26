@@ -18,7 +18,7 @@ export const boxHTMLSchema = z
       return true;
     },
     {
-      message: 'structure of string is invalid (not enough or too few dashes)',
+      message: 'Structure of body is invalid. There are not enough or too few dashes.',
     },
   );
 

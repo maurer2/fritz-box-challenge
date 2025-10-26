@@ -1,15 +1,23 @@
-import React, { StrictMode, lazy } from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-// eslint-disable-next-line import/order
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { RouterProvider, createRouter } from '@tanstack/react-router';
+import { TanStackDevtools } from '@tanstack/react-devtools';
+import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
+import { StyleSheetManager } from 'styled-components';
 import 'modern-normalize';
 
-import handlers from './handlers';
+import { routeTree } from './routeTree.gen';
+import { Theme } from './components/Theme';
 import './index.css';
-import { App } from './components/App';
 
-const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -17,18 +25,7 @@ if (!rootElement) {
 }
 const root = ReactDOM.createRoot(rootElement);
 
-const ReactQueryDevtools = isDevMode
-  ? lazy(() =>
-      import('@tanstack/react-query-devtools').then((module) => ({
-        default: module.ReactQueryDevtools,
-      })),
-    )
-  : null;
-
-if (isDevMode) {
-  const worker = setupWorker(...handlers);
-  await worker.start();
-}
+const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,17 +33,63 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
+      staleTime: 60 * 1000,
+      gcTime: 60 * 60 * 1000,
     },
   },
 });
 
+async function mockEndpoints() {
+  if (isDevMode) {
+    const handlers = (await import('./mocks/handlers')).default;
+    const worker = setupWorker(...handlers);
+
+    return worker.start();
+  }
+
+  return Promise.resolve();
+}
+await mockEndpoints();
+
+// context type is defined in createRootRouteWithContext in __root.tsx
+export const router = createRouter({
+  routeTree,
+  context: {
+    queryClient,
+  },
+  defaultStaleTime: Infinity,
+  defaultPreload: 'intent',
+  defaultGcTime: Infinity,
+  defaultPendingMs: 0,
+  defaultPreloadStaleTime: 0,
+});
+
 root.render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-      {ReactQueryDevtools !== null && (
-        <ReactQueryDevtools initialIsOpen buttonPosition="top-right" />
-      )}
-    </QueryClientProvider>
+    {/* needed for "height: stretch" */}
+    <StyleSheetManager enableVendorPrefixes>
+      <Theme>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+        <TanStackDevtools
+          config={{
+            defaultOpen: false,
+            position: 'middle-right',
+            panelLocation: 'top',
+          }}
+          plugins={[
+            {
+              name: 'TanStack Query',
+              render: <ReactQueryDevtoolsPanel client={queryClient} />,
+            },
+            {
+              name: 'TanStack Router',
+              render: <TanStackRouterDevtoolsPanel router={router} />,
+            },
+          ]}
+        />
+      </Theme>
+    </StyleSheetManager>
   </StrictMode>,
 );

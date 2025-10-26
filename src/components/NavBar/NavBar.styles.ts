@@ -1,37 +1,86 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { Link } from '@tanstack/react-router';
 
-import type { NavBarStyleProps, IndicatorStyleProps, NavBarListStyleProps } from './NavBar.types';
+type NavBarListProps = {
+  $minScreenSizeIndicator: number;
+};
 
-export const NavBar = styled.nav<NavBarStyleProps>`
-  position: relative;
-  padding-top: ${({ $reservedSpaceTop }) => `${$reservedSpaceTop}px`};
-  grid-area: navBar;
-  will-change: transform;
-  transform: translateY(0);
-  transition: transform 500ms ease-out;
-  ${({ $isUpdating }) => $isUpdating
-    && css`
-      transform: translateY(100%);
-    `}
+export const NavBarWrapper = styled.nav`
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  grid-template-rows: 5px auto;
+  container-type: inline-size;
+  container-name: navbar;
 `;
 
-export const Indicator = styled.div<IndicatorStyleProps>`
+export const NavBarIndicatorWrapper = styled.div`
+  position: relative;
+  container-type: inline-size;
+  container-name: navbar-indicator-wrapper;
+  contain: layout style paint;
+`;
+
+export const NavBarIndicator = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${({ width }) => (typeof width === 'string' ? width : `${width}px`)}; // might cause layout thrashing
-  height: ${({ height }) => `${height}px`};
-  transform: translateX(${({ offset }) => offset}px);
-  transition: transform 500ms, width 500ms;
+  inline-size: var(--inline-size, 'auto');
+  inset-block: 0;
   background: ${({ theme }) => theme.primaryColor};
+  translate: var(--offset-x, 0px);
+  transition-property: inline-size;
+  transition-duration: 0;
+
+  @container navbar-indicator-wrapper style(--has-prev-offset: true) {
+    transition-property: translate, inline-size;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    transition-duration: 500ms;
+  }
 `;
 
-export const NavBarList = styled.ul<NavBarListStyleProps>`
-  display: flex;
+export const NavBarList = styled.ul<NavBarListProps>`
+  display: grid;
   margin: 0;
   padding: 0;
-  flex-wrap: ${({ $isRow }) => ($isRow ? 'nowrap' : 'wrap')};
-  justify-content: space-between;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
   list-style: none;
   background: ${({ theme }) => theme.secondaryColor};
+
+  @container navbar (width > ${({ $minScreenSizeIndicator }) => $minScreenSizeIndicator}px) {
+    grid-template-columns: none;
+    grid-auto-columns: minmax(max-content, 1fr);
+    grid-auto-flow: column;
+  }
+
+  > li {
+    display: contents;
+  }
+`;
+
+export const NavBarEntry = styled(Link)`
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  border: 0;
+  font-weight: bold;
+  background: none;
+  color: ${({ theme }) => theme.tertiaryColor};
+  text-decoration: none;
+  text-align: center;
+
+  &:where(:hover, :focus-visible) {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+  }
+
+  &:focus-visible {
+    // https://www.w3.org/WAI/WCAG21/Techniques/css/C40
+    /* inner indicator */
+    outline: 2px #f9f9f9 solid;
+    outline-offset: 0;
+    /* outer indicator */
+    box-shadow: 0 0 0 4px #193146;
+  }
 `;

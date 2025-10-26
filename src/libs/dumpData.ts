@@ -1,18 +1,15 @@
-import fs from 'fs-extra';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { writeFile } from 'node:fs/promises';
 
-const dumpData = (data: unknown) => new Promise((resolve, reject) => {
-  const newFile = fs.createWriteStream(`${__dirname}/../../public/mock-data.txt`);
+const dumpData = async (data: unknown) => {
+  const path = resolve(dirname(fileURLToPath(import.meta.url)), '../../public/mock-data.txt');
 
-  newFile.on('error', () => {
-    reject();
-  });
+  if (typeof data !== 'string') {
+    throw new Error('Invalid data parameter');
+  }
 
-  newFile.on('finish', () => {
-    resolve('done');
-  });
-
-  newFile.write(data, 'utf8');
-  newFile.end();
-});
+  await writeFile(path, data, 'utf8');
+};
 
 export default dumpData;

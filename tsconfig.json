@@ -4,7 +4,7 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "esnext",
-    "target": "ES2022",
+    "target": "esnext",
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -13,19 +13,15 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
+    "erasableSyntaxOnly": true,
     "types": ["vite/client"]
   },
   "include": ["./src/**/*"],
   "exclude": ["./src/libs/*.js", "src/libs/*.js"],
-  "files": ["./src/types.d.ts", "./vite.config.ts"],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  }
+  "files": ["./src/types.d.ts", "./vite.config.mts"]
 }

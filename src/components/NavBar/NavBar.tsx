@@ -1,74 +1,123 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import {
+  useState,
+  useCallback,
+  useMemo,
+  type CSSProperties,
+  type ComponentProps,
+  type ReactNode,
+} from 'react';
+import { useLocation, type NavigateOptions } from '@tanstack/react-router';
 
-// import { throttle } from 'lodash';
-import { NavBarEntry } from '../NavBarEntry';
-import useBoxDataContext from '../../hooks/useBoxDataContext/useBoxDataContext';
+import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
 
-import * as Styles from './NavBar.styles';
+import {
+  NavBarWrapper,
+  NavBarList,
+  NavBarIndicatorWrapper,
+  NavBarIndicator,
+  NavBarEntry,
+} from './NavBar.styles';
+
+// prettier-ignore
+type NavLinkPath = NonNullable<(ComponentProps<typeof NavBarEntry>)['to']>;
+type TransitionName = 'move-left' | 'move-right';
+
+const SCREEN_WIDTH_INDICATOR = 750;
+
+const navLinks: [path: NavLinkPath, children: ReactNode][] = [
+  ['/branding', 'Branding'],
+  ['/firmware', 'Firmware'],
+  ['/model', 'Model'],
+  ['/power-on-hours', 'Power on hours'],
+  ['/restarts', 'Restarts'],
+  ['/technology', 'Technology'],
+];
+
+const viewTransition: NavigateOptions['viewTransition'] = {
+  types: ({ fromLocation, toLocation }) => {
+    const currentRoutIndex = navLinks.findIndex(([path]) =>
+      fromLocation?.pathname.startsWith(path),
+    );
+    const newRoutIndex = navLinks.findIndex(([path]) => toLocation?.pathname.startsWith(path));
+
+    if (newRoutIndex === currentRoutIndex) {
+      return false;
+    }
+    const newDirection: TransitionName =
+      newRoutIndex > currentRoutIndex ? 'move-right' : 'move-left';
+
+    return [newDirection];
+  },
+};
 
 const NavBar = () => {
-  const { _state, visibleComponents, currentIndex, isUpdating, updateCurrentIndex } =
-    useBoxDataContext();
-  const [offset, setOffset] = useState(0);
-  const [width, setWidth] = useState<string | number>('auto'); // prevent css transition on load
-  const oldIndex = useRef(-1);
-  const showIndicator = useRef(true);
-  const activeElement = useRef<HTMLLIElement>(null);
+  const [offset, setOffset] = useState<string | null>(null);
+  const [prevOffset, setPrevOffset] = useState<string | null>(null);
+  const [inlineSize, setInlineSize] = useState('auto');
 
-  const height = 5;
+  const currentLocation = useLocation({ select: ({ pathname }) => pathname });
 
-  function handleNavigation(newCurrentIndex: number): void {
-    oldIndex.current = currentIndex;
-
-    updateCurrentIndex(newCurrentIndex);
-  }
-
-  function updateIndicator(): void {
-    if (activeElement.current == null) {
-      return;
-    }
-
-    const activeElementBB = activeElement.current.getBoundingClientRect();
-    const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
-
-    setOffset(activeElementBB.x);
-    setWidth(activeElementBB.width);
-
-    showIndicator.current = isLargeScreen;
-  }
-
-  useLayoutEffect(() => {
-    const activeElementHasChanged = currentIndex !== oldIndex.current;
-
-    if (activeElementHasChanged) {
-      oldIndex.current = currentIndex;
-
-      updateIndicator();
-    }
+  const isIndicatorVisible = useMediaQuery({
+    mediaQuery: `(min-width: ${SCREEN_WIDTH_INDICATOR}px)`,
+    onChange: (isMatching) => {
+      if (!isMatching) {
+        setPrevOffset(null);
+        setOffset(null);
+      }
+    },
   });
+  const activeNavBarEntryRefCallback = useCallback(
+    (activeElement: HTMLAnchorElement) => {
+      const resizeObserver = new ResizeObserver(([entry]) => {
+        const [elementSize] = entry.borderBoxSize;
+        const { offsetLeft } = activeElement;
 
-  if (_state === 'error') {
-    return null;
-  }
+        setOffset((currentOffset) => {
+          setPrevOffset(isIndicatorVisible ? currentOffset : null);
+
+          return `${Math.floor(offsetLeft)}px`;
+        });
+        setInlineSize(`${Math.floor(elementSize.inlineSize)}px`);
+      });
+
+      resizeObserver.observe(activeElement);
+
+      return () => {
+        resizeObserver.disconnect();
+      };
+    },
+    [isIndicatorVisible],
+  );
+
+  const navBarIndicatorCssVars = useMemo(
+    () =>
+      ({
+        '--inline-size': inlineSize,
+        '--offset-x': offset,
+        '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
+      }) as const,
+    [inlineSize, prevOffset, offset],
+  );
 
   return (
-    <Styles.NavBar $reservedSpaceTop={height} $isUpdating={isUpdating}>
-      {showIndicator.current && <Styles.Indicator offset={offset} width={width} height={height} />}
-      <Styles.NavBarList $isRow={showIndicator.current}>
-        {visibleComponents.map((entry, index) => (
-          <NavBarEntry
-            index={index}
-            entry={entry}
-            $isActive={currentIndex === index}
-            handleNavigation={(newCurrentIndex: number): void => handleNavigation(newCurrentIndex)}
-            // only active element gets ref otherwise last child always active
-            activeElementRef={currentIndex === index ? activeElement : null}
-            key={entry}
-            $isFullWidth={!showIndicator}
-          />
+    <NavBarWrapper>
+      <NavBarIndicatorWrapper style={navBarIndicatorCssVars as CSSProperties} aria-hidden>
+        {isIndicatorVisible ? <NavBarIndicator /> : null}
+      </NavBarIndicatorWrapper>
+      <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}>
+        {navLinks.map(([to, children]) => (
+          <li key={to}>
+            <NavBarEntry
+              to={to}
+              viewTransition={viewTransition}
+              ref={to === currentLocation ? activeNavBarEntryRefCallback : null}
+            >
+              {children}
+            </NavBarEntry>
+          </li>
         ))}
-      </Styles.NavBarList>
-    </Styles.NavBar>
+      </NavBarList>
+    </NavBarWrapper>
   );
 };
 
