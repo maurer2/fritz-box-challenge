@@ -53,6 +53,7 @@ const getStatusFieldsFromBox = async () => {
 export const getStatusFieldsFromBoxQueryOptions = queryOptions({
   queryKey: ['box-data'],
   queryFn: () => getStatusFieldsFromBox(),
-  staleTime: Infinity,
-  gcTime: Infinity,
+  refetchOnWindowFocus: true,
+  refetchOnMount: true,
+  refetchOnReconnect: false,
 });
