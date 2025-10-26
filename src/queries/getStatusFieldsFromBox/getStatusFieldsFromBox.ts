@@ -1,8 +1,20 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import fetcher from '../../helpers/fetcher/fetcher';
-import { fields } from '../../constants/mappings';
 import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
+
+const fields = [
+  'model',
+  'technology',
+  'powerOnHours',
+  'restarts',
+  'hash 1',
+  'hash 2',
+  'status',
+  'firmware',
+  'subfirmware',
+  'branding',
+] as const satisfies readonly string[];
 
 const dateLength = 9;
 // add dash after second dash

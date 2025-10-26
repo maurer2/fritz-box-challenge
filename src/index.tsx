@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
@@ -75,8 +75,7 @@ root.render(
         <TanStackDevtools
           config={{
             defaultOpen: false,
-            hideUntilHover: true,
-            position: 'top-left',
+            position: 'middle-right',
             panelLocation: 'top',
           }}
           plugins={[
