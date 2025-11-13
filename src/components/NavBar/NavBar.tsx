@@ -99,12 +99,20 @@ const NavBar = () => {
     [inlineSize, prevOffset, offset],
   );
 
-  const currentAnchor = navLinks.findIndex(([to]) => to === currentLocation);
+  const currentAnchorNumber = navLinks.findIndex(([to]) => to === currentLocation);
 
   return (
     <NavBarWrapper>
-      <style>
-        {`
+      <div
+        style={
+          {
+            '--current-anchor': `--anchor-${currentAnchorNumber}`,
+            display: 'contents',
+          } as CSSProperties
+        }
+      >
+        <style>
+          {`
           .bar2 {
             position: absolute;
             top: -5px;
@@ -112,12 +120,13 @@ const NavBar = () => {
             right: calc(anchor(right) - 1rem);
             height: 5px;
             background: fuchsia;
-            position-anchor: --anchor-${currentAnchor};
+            position-anchor: var(--current-anchor);
             transition: all 1s;
           }
           `}
-      </style>
-      <div className="bar2" />
+        </style>
+        <div className="bar2" />
+      </div>
 
       <NavBarIndicatorWrapper style={navBarIndicatorCssVars as CSSProperties} aria-hidden>
         {isIndicatorVisible ? <NavBarIndicator /> : null}
