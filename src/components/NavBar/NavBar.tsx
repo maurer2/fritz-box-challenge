@@ -99,13 +99,31 @@ const NavBar = () => {
     [inlineSize, prevOffset, offset],
   );
 
+  const currentAnchor = navLinks.findIndex(([to]) => to === currentLocation);
+
   return (
     <NavBarWrapper>
+      <style>
+        {`
+          .bar2 {
+            position: absolute;
+            top: -5px;
+            left: calc(anchor(left) - 1rem);
+            right: calc(anchor(right) - 1rem);
+            height: 5px;
+            background: fuchsia;
+            position-anchor: --anchor-${currentAnchor};
+            transition: all 1s;
+          }
+          `}
+      </style>
+      <div className="bar2" />
+
       <NavBarIndicatorWrapper style={navBarIndicatorCssVars as CSSProperties} aria-hidden>
         {isIndicatorVisible ? <NavBarIndicator /> : null}
       </NavBarIndicatorWrapper>
       <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}>
-        {navLinks.map(([to, children]) => (
+        {navLinks.map(([to, children], index) => (
           <li key={to}>
             <NavBarEntry
               to={to}
@@ -113,6 +131,12 @@ const NavBar = () => {
               ref={to === currentLocation ? activeNavBarEntryRefCallback : null}
             >
               {children}
+              {/* React ignores anchor-name property in inline styles */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `<div style="anchor-name: --anchor-${index}">--anchor-${index}</div>`,
+                }}
+              />
             </NavBarEntry>
           </li>
         ))}
