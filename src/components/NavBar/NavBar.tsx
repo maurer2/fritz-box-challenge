@@ -2,6 +2,8 @@ import {
   useState,
   useCallback,
   useMemo,
+  lazy,
+  Suspense,
   type CSSProperties,
   type ComponentProps,
   type ReactNode,
@@ -9,6 +11,7 @@ import {
 import { useLocation, type NavigateOptions } from '@tanstack/react-router';
 
 import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
+// import { NavBarIndicator as NavBarIndicatorModern } from '../NavBarIndicator';
 
 import {
   NavBarWrapper,
@@ -21,6 +24,14 @@ import {
 // prettier-ignore
 type NavLinkPath = NonNullable<(ComponentProps<typeof NavBarEntry>)['to']>;
 type TransitionName = 'move-left' | 'move-right';
+
+const NavBarIndicator2 = lazy(() => {
+  if (CSS.supports('anchor-name: --anchor')) {
+    return import('../NavBarIndicator').then((module) => ({ default: module.NavBarIndicator }));
+  }
+  // todo
+  return import('../NavBarIndicator').then((module) => ({ default: module.NavBarIndicator }));
+});
 
 const SCREEN_WIDTH_INDICATOR = 750;
 
@@ -100,33 +111,13 @@ const NavBar = () => {
   );
 
   const currentAnchorNumber = navLinks.findIndex(([to]) => to === currentLocation);
+  // const isSupportingAnchorPositioning = CSS.supports('anchor-name: --anchor');
 
   return (
     <NavBarWrapper>
-      <div
-        style={
-          {
-            '--current-anchor': `--anchor-${currentAnchorNumber}`,
-            display: 'contents',
-          } as CSSProperties
-        }
-      >
-        <style>
-          {`
-          .bar2 {
-            position: absolute;
-            top: -5px;
-            left: calc(anchor(left) - 1rem);
-            right: calc(anchor(right) - 1rem);
-            height: 5px;
-            background: fuchsia;
-            position-anchor: var(--current-anchor);
-            transition: all 1s;
-          }
-          `}
-        </style>
-        <div className="bar2" />
-      </div>
+      <Suspense>
+        <NavBarIndicator2 currentAnchorNumber={currentAnchorNumber} />
+      </Suspense>
 
       <NavBarIndicatorWrapper style={navBarIndicatorCssVars as CSSProperties} aria-hidden>
         {isIndicatorVisible ? <NavBarIndicator /> : null}
