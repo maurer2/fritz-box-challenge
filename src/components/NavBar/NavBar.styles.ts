@@ -69,6 +69,10 @@ export const NavBarEntry = styled(Link)`
   text-decoration: none;
   text-align: center;
 
+  &[aria-current='page'] {
+    color: ${({ theme }) => theme.highlightColor};
+  }
+
   &:where(:hover, :focus-visible) {
     text-decoration: underline;
     text-decoration-thickness: 3px;

@@ -2,8 +2,6 @@ import {
   useState,
   useCallback,
   useMemo,
-  lazy,
-  Suspense,
   type CSSProperties,
   type ComponentProps,
   type ReactNode,
@@ -11,7 +9,7 @@ import {
 import { useLocation, type NavigateOptions } from '@tanstack/react-router';
 
 import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
-// import { NavBarIndicator as NavBarIndicatorModern } from '../NavBarIndicator';
+import { NavBarIndicator as NavBarIndicatorModern } from '../NavBarIndicator';
 
 import {
   NavBarWrapper,
@@ -25,13 +23,13 @@ import {
 type NavLinkPath = NonNullable<(ComponentProps<typeof NavBarEntry>)['to']>;
 type TransitionName = 'move-left' | 'move-right';
 
-const NavBarIndicator2 = lazy(() => {
-  if (CSS.supports('anchor-name: --anchor')) {
-    return import('../NavBarIndicator').then((module) => ({ default: module.NavBarIndicator }));
-  }
-  // todo
-  return import('../NavBarIndicator').then((module) => ({ default: module.NavBarIndicator }));
-});
+// const NavBarIndicator2 = lazy(() => {
+//   if (CSS.supports('anchor-name: --anchor')) {
+//     return import('../NavBarIndicator').then((module) => ({ default: module.NavBarIndicator }));
+//   }
+//   // todo
+//   return import('../NavBarIndicator').then((module) => ({ default: module.NavBarIndicator }));
+// });
 
 const SCREEN_WIDTH_INDICATOR = 750;
 
@@ -111,13 +109,10 @@ const NavBar = () => {
   );
 
   const currentAnchorNumber = navLinks.findIndex(([to]) => to === currentLocation);
-  // const isSupportingAnchorPositioning = CSS.supports('anchor-name: --anchor');
 
   return (
     <NavBarWrapper>
-      <Suspense>
-        <NavBarIndicator2 currentAnchorNumber={currentAnchorNumber} />
-      </Suspense>
+      <NavBarIndicatorModern currentAnchorNumber={currentAnchorNumber} />
 
       <NavBarIndicatorWrapper style={navBarIndicatorCssVars as CSSProperties} aria-hidden>
         {isIndicatorVisible ? <NavBarIndicator /> : null}
@@ -129,14 +124,11 @@ const NavBar = () => {
               to={to}
               viewTransition={viewTransition}
               ref={to === currentLocation ? activeNavBarEntryRefCallback : null}
+              // @ts-expect-error too new a property
+              style={{ 'anchor-name': `--anchor-${index}` }}
+              aria-current={to === currentLocation ? 'page' : undefined}
             >
               {children}
-              {/* React ignores anchor-name property in inline styles */}
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `<div style="anchor-name: --anchor-${index}">--anchor-${index}</div>`,
-                }}
-              />
             </NavBarEntry>
           </li>
         ))}

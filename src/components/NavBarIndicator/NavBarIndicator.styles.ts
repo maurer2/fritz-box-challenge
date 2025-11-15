@@ -1,23 +1,30 @@
 import styled from 'styled-components';
 
+type NavBarIndicatorBarProps = {
+  $minSizeSingleRowNav: number;
+};
+
 // only used to inject CSS vars
 export const NavBarIndicatorWrapper = styled.div`
   /* contain: paint; // breaks anchor positioning */
 `;
 
-export const NavBarIndicatorBar = styled.div`
+export const NavBarIndicatorBar = styled.div<NavBarIndicatorBarProps>`
   position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: calc(anchor(start) - 1rem);
-  inset-inline-end: calc(anchor(end) - 1rem);
-  inset-block: 0;
+  inset-block-start: anchor(top);
+  inset-inline-start: anchor(start);
+  inset-inline-end: anchor(end);
   block-size: 5px;
-  background: fuchsia;
   position-anchor: var(--current-anchor);
-  transition-property: left, right;
-  transition-duration: 0s;
+  background: ${({ theme }) => theme.highlightColor};
 
-  @media (prefers-reduced-motion: no-preference) {
-    transition-duration: 500ms;
+  @media (width > ${({ $minSizeSingleRowNav }) => $minSizeSingleRowNav}px) {
+    inset-block-start: 0;
+    transition-duration: 0s;
+    transition-property: left, right;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition-duration: 500ms;
+    }
   }
 `;
