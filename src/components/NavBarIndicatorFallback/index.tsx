@@ -1,18 +1,24 @@
-import { useState, useCallback, useMemo, type CSSProperties } from 'react';
+import { useState, useMemo, useLayoutEffect, type CSSProperties } from 'react';
 
 import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
 
 import { NavBarIndicatorWrapper, NavBarIndicator } from './NavBarIndicatorFallback.styles';
 
-const SCREEN_WIDTH_INDICATOR = 750;
+type NavBarIndicatorFallback = {
+  activeNavBarEntry?: HTMLAnchorElement | null;
+  minScreenSizeIndicator: number;
+};
 
-function NavBarIndicatorFallback() {
+function NavBarIndicatorFallback({
+  activeNavBarEntry,
+  minScreenSizeIndicator,
+}: NavBarIndicatorFallback) {
   const [offset, setOffset] = useState<string | null>(null);
   const [prevOffset, setPrevOffset] = useState<string | null>(null);
   const [inlineSize, setInlineSize] = useState('auto');
 
   const isIndicatorVisible = useMediaQuery({
-    mediaQuery: `(min-width: ${SCREEN_WIDTH_INDICATOR}px)`,
+    mediaQuery: `(min-width: ${minScreenSizeIndicator}px)`,
     onChange: (isMatching) => {
       if (!isMatching) {
         setPrevOffset(null);
@@ -20,6 +26,22 @@ function NavBarIndicatorFallback() {
       }
     },
   });
+
+  useLayoutEffect(() => {
+    if (!activeNavBarEntry) {
+      return;
+    }
+
+    const { width } = activeNavBarEntry.getBoundingClientRect();
+    const { offsetLeft } = activeNavBarEntry;
+
+    setOffset((currentOffset) => {
+      setPrevOffset(isIndicatorVisible ? currentOffset : null);
+
+      return `${Math.floor(offsetLeft)}px`;
+    });
+    setInlineSize(`${Math.floor(width)}px`);
+  }, [activeNavBarEntry, isIndicatorVisible]);
 
   // const activeNavBarEntryRefCallback = useCallback(
   //   (activeElement: HTMLAnchorElement) => {

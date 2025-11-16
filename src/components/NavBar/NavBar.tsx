@@ -1,10 +1,4 @@
-import {
-  useState,
-  useCallback,
-  type ComponentProps,
-  type ReactNode,
-  type CSSProperties,
-} from 'react';
+import { useRef, type ComponentProps, type ReactNode, type CSSProperties } from 'react';
 import { useLocation, type NavigateOptions } from '@tanstack/react-router';
 
 import { NavBarIndicator } from '../NavBarIndicator';
@@ -45,19 +39,19 @@ const viewTransition: NavigateOptions['viewTransition'] = {
 
 const NavBar = () => {
   const currentLocation = useLocation({ select: ({ pathname }) => pathname });
-  const [activeNavBarEntryElement, setActiveNavBarEntryElement] =
-    useState<HTMLAnchorElement | null>(null);
-  // const activeNavBarEntryRefCallback = useCallback((activeElement: HTMLAnchorElement) => {
-  //   setActiveNavBarEntryElement(activeElement);
-  // }, []);
+  // elements are undefined during the first render when ref callbacks are not called yet
+  // refs callbacks are called with null first
+  const navBarEntryElements = useRef<(HTMLAnchorElement | null | undefined)[]>([]);
 
-  const currentAnchorNumber = navLinks.findIndex(([to]) => to === currentLocation);
+  const activeNavBarEntryIndex = navLinks.findIndex(([to]) => to === currentLocation);
+  const activeNavBarEntry = navBarEntryElements.current[activeNavBarEntryIndex];
 
   return (
     <NavBarWrapper>
       <NavBarIndicator
-        currentAnchorNumber={currentAnchorNumber}
-        // activeNavBarEntryElement={activeNavBarEntryElement}
+        activeNavBarEntry={activeNavBarEntry}
+        activeNavBarEntryIndex={activeNavBarEntryIndex}
+        minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}
       />
       <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}>
         {navLinks.map(([to, children], index) => (
@@ -65,10 +59,11 @@ const NavBar = () => {
             <NavBarEntry
               to={to}
               viewTransition={viewTransition}
-              // ref={to === currentLocation ? activeNavBarEntryRefCallback : null}
-              ref={to === currentLocation ? setActiveNavBarEntryElement : null}
+              ref={(element) => {
+                navBarEntryElements.current[index] = element;
+              }}
               style={{ anchorName: `--anchor-${index}` } as CSSProperties}
-              aria-current={to === currentLocation ? 'page' : undefined}
+              aria-current={activeNavBarEntryIndex === index ? 'page' : undefined}
             >
               {children}
             </NavBarEntry>

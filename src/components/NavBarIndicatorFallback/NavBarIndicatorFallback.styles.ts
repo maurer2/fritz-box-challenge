@@ -4,7 +4,7 @@ export const NavBarIndicatorWrapper = styled.div`
   position: relative;
   container-type: inline-size;
   container-name: navbar-indicator-wrapper;
-  contain: layout style paint;
+  contain: paint;
 `;
 
 export const NavBarIndicator = styled.div`

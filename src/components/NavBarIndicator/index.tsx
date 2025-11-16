@@ -1,28 +1,35 @@
-// import { useState } from 'react';
-
+import { lazy } from 'react';
 // import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
 
 import { NavBarIndicatorWrapper, NavBarIndicatorBar } from './NavBarIndicator.styles';
 
+const NavBarIndicatorFallback = lazy(() => {
+  if (!CSS.supports('anchor-name: --anchor')) {
+    return import('../NavBarIndicatorFallback').then((module) => ({
+      default: module.NavBarIndicatorFallback,
+    }));
+  }
+  return Promise.resolve({
+    default: () => <div>Dummy component</div>,
+  });
+});
+
 type IndicatorProps = {
-  currentAnchorNumber: number;
+  activeNavBarEntry?: HTMLAnchorElement | null;
+  activeNavBarEntryIndex: number;
+  minScreenSizeIndicator: number;
 };
 
-// const NavBarIndicator2 = lazy(() => {
-//   if (CSS.supports('anchor-name: --anchor')) {
-//     return import('../NavBarIndicator').then((module) => ({ default: module.NavBarIndicator }));
-//   }
-//   // todo
-//   return import('../NavBarIndicator').then((module) => ({ default: module.NavBarIndicator }));
-// });
+function NavBarIndicator({
+  activeNavBarEntry,
+  activeNavBarEntryIndex,
+  minScreenSizeIndicator,
+}: IndicatorProps) {
+  console.log(activeNavBarEntry, activeNavBarEntryIndex); // needed for fallback
 
-const MIN_SIZE_SINGLE_ROW_NAV = 751;
-// const query = `(min-width: ${MIN_SIZE_SINGLE_ROW_NAV}px)`;
-
-function NavBarIndicator({ currentAnchorNumber }: IndicatorProps) {
   return (
-    <NavBarIndicatorWrapper style={{ '--current-anchor': `--anchor-${currentAnchorNumber}` }}>
-      <NavBarIndicatorBar $minSizeSingleRowNav={MIN_SIZE_SINGLE_ROW_NAV} />
+    <NavBarIndicatorWrapper style={{ '--current-anchor': `--anchor-${activeNavBarEntryIndex}` }}>
+      <NavBarIndicatorBar $minSizeSingleRowNav={minScreenSizeIndicator} />
     </NavBarIndicatorWrapper>
   );
 }
