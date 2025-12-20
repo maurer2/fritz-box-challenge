@@ -30,6 +30,7 @@ function PowerOnHours() {
     const years = parseInt(powerOnHours.substring(6), 10);
 
     const now = Temporal.Now.zonedDateTimeISO();
+
     const calculatedProductionDate = now.subtract({
       hours,
       days,
