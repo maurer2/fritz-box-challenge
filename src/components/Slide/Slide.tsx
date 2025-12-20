@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo, type SVGAttributes, type Ref } from 'react';
 import type { Simplify } from 'type-fest';
 
-import { SlideWrapper, SlideTitle, SlideText } from './Slide.styles';
+import { SlideWrapper, SlideTitle, SlideText, TextFit } from './Slide.styles';
 
 type SlideProps = {
   title: string;
@@ -66,21 +66,32 @@ const Slide = ({ title, text }: SlideProps) => {
     [svgElementRefsCallback],
   );
 
+  // "experimental-web-platform-features"-flag needs to be set
+  const isSupportingTextGrow = CSS.supports('text-grow', 'per-line scale');
+
   return (
     <SlideWrapper key={`${title}-${text}`}>
       <SlideTitle aria-label={title}>
-        <TextReplacementElement
-          ref={svgElementRefs.title}
-          textContent={title}
-          viewBox={viewBoxes.title}
-        />
+        {isSupportingTextGrow ? (
+          <TextFit>{title}</TextFit>
+        ) : (
+          <TextReplacementElement
+            ref={svgElementRefs.title}
+            textContent={title}
+            viewBox={viewBoxes.title}
+          />
+        )}
       </SlideTitle>
       <SlideText aria-label={text}>
-        <TextReplacementElement
-          ref={svgElementRefs.text}
-          textContent={text}
-          viewBox={viewBoxes.text}
-        />
+        {isSupportingTextGrow ? (
+          <TextFit>{text}</TextFit>
+        ) : (
+          <TextReplacementElement
+            ref={svgElementRefs.text}
+            textContent={text}
+            viewBox={viewBoxes.text}
+          />
+        )}
       </SlideText>
     </SlideWrapper>
   );
