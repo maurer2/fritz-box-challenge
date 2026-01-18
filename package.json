@@ -81,5 +81,17 @@
     "workerDirectory": [
       "public"
     ]
+  },
+  "pnpm": {
+    "supportedArchitectures": {
+      "cpu": [
+        "x64",
+        "arm64"
+      ],
+      "os": [
+        "linux",
+        "darwin"
+      ]
+    }
   }
 }

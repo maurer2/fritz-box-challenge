@@ -49,7 +49,10 @@
         "vsicons.presets.jsOfficial": true,
         "workbench.editorAssociations": {
           "*.svg": "default" // https://stackoverflow.com/questions/79363302/how-to-disable-svg-preview-in-vs-code-1-97/79427278#79427278
-        }
+        },
+        // react-compiler-marker
+        "reactCompilerMarker.successEmoji": "✅",
+        "reactCompilerMarker.errorEmoji": "🚫"
       },
       "extensions": [
         "aaron-bond.better-comments",
@@ -106,8 +109,9 @@
         // "oven.bun-vscode",
         // "biomejs.biome"
         // astro-build.astro-vscode",
-        "tamasfe.even-better-toml"
-        // "attilabuti.vscode-mjml"
+        "tamasfe.even-better-toml",
+        // "attilabuti.vscode-mjml",
+        "blazejkustra.react-compiler-marker"
       ]
     }
   }
