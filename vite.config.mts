@@ -1,8 +1,9 @@
-import { defineConfig, loadEnv, /* type PluginOption, */ type ProxyOptions } from 'vite';
+import { defineConfig, loadEnv, type ProxyOptions /* type PluginOption, */ } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { devtools } from '@tanstack/devtools-vite';
+import type { Logger } from 'babel-plugin-react-compiler';
 
 // import { boxHTMLSchema } from './src/schema/boxHTML/boxHTML.schema';
 // import fetcher from './src/helpers/fetcher/fetcher';
@@ -39,7 +40,6 @@ const boxDataProxyOptions = {
   rewrite: (p: string) => p.replace(/^\/box-data/, ''),
 } satisfies ProxyOptions;
 
-/** @type {import('vite').UserConfig} */
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   const isDevMode = process.env.VITE_APP_MODE === 'dev';
@@ -49,7 +49,41 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.URL_BOX_STATUS': JSON.stringify(env.URL_BOX_STATUS),
     },
-    plugins: [devtools(), tanstackRouter(), react(), viteTsconfigPaths()],
+    plugins: [
+      devtools(),
+      tanstackRouter(),
+      react({
+        babel: {
+          plugins: [
+            [
+              'babel-plugin-react-compiler',
+              {
+                debug: true,
+                logger: {
+                  logEvent(filename, event) {
+                    switch (event.kind) {
+                      case 'CompileSuccess': {
+                        console.log(`✅ Compiled: ${filename}`);
+                        break;
+                      }
+                      case 'CompileError': {
+                        console.log(`❌ Compiler Error: ${filename}`);
+                        console.error(`Reason: ${event.detail.reason}`);
+                        break;
+                      }
+                      default: {
+                        break; // eslint fix
+                      }
+                    }
+                  },
+                } satisfies Logger,
+              },
+            ],
+          ],
+        },
+      }),
+      viteTsconfigPaths(),
+    ],
     server: {
       open: false,
       port: 3000,

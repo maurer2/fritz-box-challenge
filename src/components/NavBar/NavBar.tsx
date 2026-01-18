@@ -1,11 +1,4 @@
-import {
-  useState,
-  useCallback,
-  useMemo,
-  type CSSProperties,
-  type ComponentProps,
-  type ReactNode,
-} from 'react';
+import { useState, type CSSProperties, type ComponentProps, type ReactNode } from 'react';
 import { useLocation, type NavigateOptions } from '@tanstack/react-router';
 
 import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
@@ -66,38 +59,31 @@ const NavBar = () => {
       }
     },
   });
-  const activeNavBarEntryRefCallback = useCallback(
-    (activeElement: HTMLAnchorElement) => {
-      const resizeObserver = new ResizeObserver(([entry]) => {
-        const [elementSize] = entry.borderBoxSize;
-        const { offsetLeft } = activeElement;
+  const activeNavBarEntryRefCallback = (activeElement: HTMLAnchorElement) => {
+    const resizeObserver = new ResizeObserver(([entry]) => {
+      const [elementSize] = entry.borderBoxSize;
+      const { offsetLeft } = activeElement;
 
-        setOffset((currentOffset) => {
-          setPrevOffset(isIndicatorVisible ? currentOffset : null);
+      setOffset((currentOffset) => {
+        setPrevOffset(isIndicatorVisible ? currentOffset : null);
 
-          return `${Math.floor(offsetLeft)}px`;
-        });
-        setInlineSize(`${Math.floor(elementSize.inlineSize)}px`);
+        return `${Math.floor(offsetLeft)}px`;
       });
+      setInlineSize(`${Math.floor(elementSize.inlineSize)}px`);
+    });
 
-      resizeObserver.observe(activeElement);
+    resizeObserver.observe(activeElement);
 
-      return () => {
-        resizeObserver.disconnect();
-      };
-    },
-    [isIndicatorVisible],
-  );
+    return () => {
+      resizeObserver.disconnect();
+    };
+  };
 
-  const navBarIndicatorCssVars = useMemo(
-    () =>
-      ({
-        '--inline-size': inlineSize,
-        '--offset-x': offset,
-        '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
-      }) as const,
-    [inlineSize, prevOffset, offset],
-  );
+  const navBarIndicatorCssVars = {
+    '--inline-size': inlineSize,
+    '--offset-x': offset,
+    '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
+  } as const;
 
   return (
     <NavBarWrapper>

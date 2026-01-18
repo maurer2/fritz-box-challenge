@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { useMemo } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Temporal } from '@js-temporal/polyfill';
@@ -23,39 +22,36 @@ function PowerOnHours() {
   const {
     data: { powerOnHours },
   } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
-  const powerOnHoursCalculated = useMemo(() => {
-    const hours = parseInt(powerOnHours.substring(0, 2), 10);
-    const days = parseInt(powerOnHours.substring(2, 4), 10);
-    const months = parseInt(powerOnHours.substring(4, 6), 10);
-    const years = parseInt(powerOnHours.substring(6), 10);
 
-    const now = Temporal.Now.zonedDateTimeISO();
+  const hours = parseInt(powerOnHours.substring(0, 2), 10);
+  const days = parseInt(powerOnHours.substring(2, 4), 10);
+  const months = parseInt(powerOnHours.substring(4, 6), 10);
+  const years = parseInt(powerOnHours.substring(6), 10);
 
-    const calculatedProductionDate = now.subtract({
-      hours,
-      days,
-      months,
-      years,
-    });
+  const now = Temporal.Now.zonedDateTimeISO();
 
-    if (!(calculatedProductionDate instanceof Temporal.ZonedDateTime)) {
-      console.warn('Invalid calculated production date');
+  const calculatedProductionDate = now.subtract({
+    hours,
+    days,
+    months,
+    years,
+  });
 
-      return 'Unknown';
-    }
+  if (!(calculatedProductionDate instanceof Temporal.ZonedDateTime)) {
+    console.warn('Invalid calculated production date');
 
-    const duration2 = calculatedProductionDate.until(now, {
-      smallestUnit: 'hour',
-      largestUnit: 'year',
-      roundingMode: 'ceil',
-    });
+    return 'Unknown';
+  }
 
-    // split by commas and add "and" before final part unless there's only one part
-    const powerOnHoursAsArray = (durationFormatter.format(duration2) as string).split(/\s*,\s*/);
-    const powerOnHoursFormatted = listFormatter.format(powerOnHoursAsArray);
+  const duration2 = calculatedProductionDate.until(now, {
+    smallestUnit: 'hour',
+    largestUnit: 'year',
+    roundingMode: 'ceil',
+  });
 
-    return powerOnHoursFormatted;
-  }, [powerOnHours]);
+  // split by commas and add "and" before final part unless there's only one part
+  const powerOnHoursAsArray = (durationFormatter.format(duration2) as string).split(/\s*,\s*/);
+  const powerOnHoursFormatted = listFormatter.format(powerOnHoursAsArray);
 
-  return <Slide title="Power on hours" text={powerOnHoursCalculated} />;
+  return <Slide title="Power on hours" text={powerOnHoursFormatted} />;
 }

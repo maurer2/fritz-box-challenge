@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, type SVGAttributes, type Ref } from 'react';
+import { useState, type SVGAttributes, type Ref } from 'react';
 import type { Simplify } from 'type-fest';
 
 import { SlideWrapper, SlideTitle, SlideText, TextFit } from './Slide.styles';
@@ -11,15 +11,16 @@ type ViewBoxName = Simplify<keyof SlideProps>;
 type ViewBoxes = Record<ViewBoxName, string | undefined>;
 type ViewBoxString = SVGAttributes<SVGSVGElement>['viewBox'];
 type TextReplacementElementProps = {
-  ref: Ref<SVGSVGElement> | undefined;
+  svgElementRef?: Ref<SVGSVGElement>;
   viewBox: ViewBoxString;
-  textContent: string;
+  text: string;
 };
 
-const TextReplacementElement = ({ ref, viewBox, textContent }: TextReplacementElementProps) => (
-  <svg ref={ref} viewBox={viewBox} fill="currentColor" aria-hidden>
+// svgElementRef instead of ref fixes compiler issue
+const TextReplacementElement = ({ svgElementRef, viewBox, text }: TextReplacementElementProps) => (
+  <svg ref={svgElementRef} viewBox={viewBox} fill="currentColor" aria-hidden>
     <text x="0" y="15">
-      {textContent}
+      {text}
     </text>
   </svg>
 );
@@ -31,7 +32,7 @@ const Slide = ({ title, text }: SlideProps) => {
     text: undefined,
   });
 
-  const svgElementRefsCallback = useCallback(
+  const svgElementRefsCallback =
     (viewBoxName: ViewBoxName) => (svgElement: SVGSVGElement | null) => {
       const svgElementBoundingBox = svgElement?.getBBox() ?? null;
       if (!svgElementBoundingBox) {
@@ -54,17 +55,12 @@ const Slide = ({ title, text }: SlideProps) => {
 
         return { ...previousViewBoxes, [viewBoxName]: newViewBoxString };
       });
-    },
-    [],
-  );
-  const svgElementRefs = useMemo(
-    () =>
-      ({
-        title: svgElementRefsCallback('title'),
-        text: svgElementRefsCallback('text'),
-      }) satisfies Partial<Record<ViewBoxName, ReturnType<typeof svgElementRefsCallback>>>,
-    [svgElementRefsCallback],
-  );
+    };
+
+  const svgElementRefs = {
+    title: svgElementRefsCallback('title'),
+    text: svgElementRefsCallback('text'),
+  } satisfies Partial<Record<ViewBoxName, ReturnType<typeof svgElementRefsCallback>>>;
 
   // "experimental-web-platform-features"-flag needs to be set
   const isSupportingTextGrow = CSS.supports('text-grow', 'per-line scale');
@@ -76,8 +72,8 @@ const Slide = ({ title, text }: SlideProps) => {
           <TextFit>{title}</TextFit>
         ) : (
           <TextReplacementElement
-            ref={svgElementRefs.title}
-            textContent={title}
+            svgElementRef={svgElementRefs.title}
+            text={title}
             viewBox={viewBoxes.title}
           />
         )}
@@ -87,8 +83,8 @@ const Slide = ({ title, text }: SlideProps) => {
           <TextFit>{text}</TextFit>
         ) : (
           <TextReplacementElement
-            ref={svgElementRefs.text}
-            textContent={text}
+            svgElementRef={svgElementRefs.text}
+            text={text}
             viewBox={viewBoxes.text}
           />
         )}
