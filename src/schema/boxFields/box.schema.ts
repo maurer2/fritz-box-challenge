@@ -2,8 +2,7 @@ import { z } from 'zod';
 
 export const sectionsOfBoxValues = 10;
 
-export const boxValueString = z;
-z
+export const boxValueString = z
   .string({
     error: (issue) => (issue.input === undefined ? 'Value must be set' : 'Value must be a string'),
   })

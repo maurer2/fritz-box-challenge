@@ -16,7 +16,7 @@
     "format-and-lint": "pnpm run format && npm run lint:style && npm run lint:ts:fix",
     "start": "VITE_APP_MODE=prod vite",
     "dev": "VITE_APP_MODE=dev vite",
-    "test:schema": "vitest './src/schema/boxFields/box.schema.ts'",
+    "test:schema": "vitest './src/schema/boxFields/box.schema.spec.ts'",
     "test:types": "tsc --noEmit"
   },
   "dependencies": {
