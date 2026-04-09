@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SlideWrapper = styled.dl`
   margin: 0;
   user-select: none;
-  color: ${({ theme }) => theme.primaryColor};
+  color: ${({ theme }) => theme.colors.primaryColor};
 `;
 
 export const SlideTitle = styled.dt`

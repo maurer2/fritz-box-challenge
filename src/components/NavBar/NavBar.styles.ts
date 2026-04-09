@@ -27,7 +27,7 @@ export const NavBarIndicator = styled.div`
   left: 0;
   inline-size: var(--inline-size, 'auto');
   inset-block: 0;
-  background: ${({ theme }) => theme.primaryColor};
+  background: ${({ theme }) => theme.colors.primaryColor};
   translate: var(--offset-x, 0px);
   transition-property: inline-size;
   transition-duration: 0;
@@ -46,7 +46,7 @@ export const NavBarList = styled.ul<NavBarListProps>`
   padding: 0;
   grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
   list-style: none;
-  background: ${({ theme }) => theme.secondaryColor};
+  background: ${({ theme }) => theme.colors.secondaryColor};
 
   @container navbar (width > ${({ $minScreenSizeIndicator }) => $minScreenSizeIndicator}px) {
     grid-template-columns: none;
@@ -65,7 +65,7 @@ export const NavBarEntry = styled(Link)`
   border: 0;
   font-weight: bold;
   background: none;
-  color: ${({ theme }) => theme.tertiaryColor};
+  color: ${({ theme }) => theme.colors.tertiaryColor};
   text-decoration: none;
   text-align: center;
 

@@ -16,6 +16,7 @@ type TextReplacementElementProps = {
   text: string;
 };
 
+// SVG workaround: https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg
 // svgElementRef instead of ref fixes compiler issue
 const TextReplacementElement = ({ svgElementRef, viewBox, text }: TextReplacementElementProps) => (
   <svg ref={svgElementRef} viewBox={viewBox} fill="currentColor" aria-hidden>
@@ -25,7 +26,6 @@ const TextReplacementElement = ({ svgElementRef, viewBox, text }: TextReplacemen
   </svg>
 );
 
-// Uses SVG workaround: https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg
 const Slide = ({ title, text }: SlideProps) => {
   const [viewBoxes, setViewBoxes] = useState<ViewBoxes>({
     title: undefined,

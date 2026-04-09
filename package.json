@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Martin",
   "main": "index.js",
-  "packageManager": "pnpm@10.26.1",
+  "packageManager": "pnpm@10.33.0",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -34,7 +34,7 @@
     "node-fetch": "^3.3.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "styled-components": "^6.1.19",
+    "styled-components": "^6.4.0",
     "ts-pattern": "^5.8.0",
     "type-fest": "^5.1.0",
     "zod": "^4.1.12"
@@ -44,7 +44,6 @@
     "@types/node": "^24.9.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "@types/styled-components": "^5.1.34",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^5.1.0",
@@ -86,8 +85,9 @@
         "arm64"
       ],
       "os": [
+        "darwin",
         "linux",
-        "darwin"
+        "win32"
       ]
     }
   },

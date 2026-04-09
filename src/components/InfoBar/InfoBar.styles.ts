@@ -5,7 +5,7 @@ export const InfoBarWrapper = styled.div`
   top: 0;
   inset-inline: 0;
   padding: 1rem;
-  background: ${({ theme }) => theme.secondaryColor};
+  background: ${({ theme }) => theme.colors.secondaryColor};
   font-weight: bold;
 `;
 

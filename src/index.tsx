@@ -7,7 +7,8 @@ import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
 import { StyleSheetManager } from 'styled-components';
-import 'modern-normalize';
+
+import 'modern-normalize'; // todo move to style file and reset layer
 
 import { routeTree } from './routeTree.gen';
 import { Theme } from './components/Theme';
