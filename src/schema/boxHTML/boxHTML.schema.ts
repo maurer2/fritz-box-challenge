@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export const boxHTMLSchema = z
   .string({
-    invalid_type_error: 'field must be a string',
-    required_error: 'field must be set',
+    error: (issue) =>
+      issue.input === undefined ? 'Field must be filled in/out' : 'Field must be a string',
   })
   .trim()
   .regex(/<body[^>]*>(.*?)<\/body>/is, 'body tag is missing')

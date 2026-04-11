@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv, type ProxyOptions /* type PluginOption, */ } from 'vite';
-import react from '@vitejs/plugin-react';
-import viteTsconfigPaths from 'vite-tsconfig-paths';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
+import babel from '@rolldown/plugin-babel';
 import { devtools } from '@tanstack/devtools-vite';
 import type { Logger } from 'babel-plugin-react-compiler';
 
@@ -49,40 +49,37 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.URL_BOX_STATUS': JSON.stringify(env.URL_BOX_STATUS),
     },
+    resolve: {
+      tsconfigPaths: true, // replaces vite-tsconfig-paths in vite 8
+    },
     plugins: [
       devtools(),
       tanstackRouter(),
-      react({
-        babel: {
-          plugins: [
-            [
-              'babel-plugin-react-compiler',
-              {
-                debug: true,
-                logger: {
-                  logEvent(filename, event) {
-                    switch (event.kind) {
-                      case 'CompileSuccess': {
-                        console.log(`✅ Compiled: ${filename}`);
-                        break;
-                      }
-                      case 'CompileError': {
-                        console.log(`❌ Compiler Error: ${filename}`);
-                        console.error(`Reason: ${event.detail.reason}`);
-                        break;
-                      }
-                      default: {
-                        break; // eslint fix
-                      }
-                    }
-                  },
-                } satisfies Logger,
+      react(),
+      babel({
+        presets: [
+          reactCompilerPreset({
+            logger: {
+              logEvent(filename, event) {
+                switch (event.kind) {
+                  case 'CompileSuccess': {
+                    console.log(`✅ Compiled: ${filename}`);
+                    break;
+                  }
+                  case 'CompileError': {
+                    console.log(`❌ Compiler Error: ${filename}`);
+                    console.error(`Reason: ${event.detail.reason}`);
+                    break;
+                  }
+                  default: {
+                    break; // eslint fix
+                  }
+                }
               },
-            ],
-          ],
-        },
+            } satisfies Logger,
+          }),
+        ],
       }),
-      viteTsconfigPaths(),
     ],
     server: {
       open: false,

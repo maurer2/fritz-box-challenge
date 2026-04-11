@@ -9,7 +9,6 @@ export const Route = createFileRoute('/power-on-hours')({
   component: PowerOnHours,
 });
 
-// @ts-expect-error definition missing: https://github.com/microsoft/TypeScript/issues/60608
 const durationFormatter = new Intl.DurationFormat('en-GB', { style: 'long' });
 const listFormatter = new Intl.ListFormat('en-GB', {
   style: 'long',
@@ -50,7 +49,7 @@ function PowerOnHours() {
   });
 
   // split by commas and add "and" before final part unless there's only one part
-  const powerOnHoursAsArray = (durationFormatter.format(duration2) as string).split(/\s*,\s*/);
+  const powerOnHoursAsArray = durationFormatter.format(duration2).split(/\s*,\s*/);
   const powerOnHoursFormatted = listFormatter.format(powerOnHoursAsArray);
 
   return <Slide title="Power on hours" text={powerOnHoursFormatted} />;

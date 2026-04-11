@@ -61,7 +61,7 @@ module.exports = {
     react: {
       version: 'detect',
     },
-    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx', '.mts', 'cjs', 'mjs'],
   },
   parserOptions: {
     ecmaVersion: 2022,

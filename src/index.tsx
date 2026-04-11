@@ -45,7 +45,9 @@ async function mockEndpoints() {
     const handlers = (await import('./mocks/handlers')).default;
     const worker = setupWorker(...handlers);
 
-    return worker.start();
+    return worker.start({
+      onUnhandledRequest: 'bypass',
+    });
   }
 
   return Promise.resolve();
