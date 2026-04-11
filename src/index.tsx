@@ -6,12 +6,12 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
-import { StyleSheetManager } from 'styled-components';
+import { StyleSheetManager, ThemeProvider } from 'styled-components';
 
 import 'modern-normalize'; // todo move to style file and reset layer
 
 import { routeTree } from './routeTree.gen';
-import { Theme } from './components/Theme';
+import { theme } from './components/Theme';
 import './index.css';
 
 declare module '@tanstack/react-router' {
@@ -69,14 +69,15 @@ root.render(
   <StrictMode>
     {/* needed for "height: stretch" */}
     <StyleSheetManager enableVendorPrefixes>
-      <Theme>
+      <ThemeProvider theme={theme}>
+        <theme.GlobalStyle />
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
         </QueryClientProvider>
         <TanStackDevtools
           config={{
             defaultOpen: false,
-            position: 'middle-right',
+            position: 'top-right',
             panelLocation: 'top',
           }}
           plugins={[
@@ -90,7 +91,7 @@ root.render(
             },
           ]}
         />
-      </Theme>
+      </ThemeProvider>
     </StyleSheetManager>
   </StrictMode>,
 );
