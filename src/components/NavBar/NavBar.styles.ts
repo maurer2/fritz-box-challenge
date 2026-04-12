@@ -7,34 +7,34 @@ type NavBarListProps = {
 
 export const NavBarWrapper = styled.nav`
   position: sticky;
-  bottom: 0;
+  inset-block-end: 0;
   display: grid;
-  grid-template-rows: 5px auto;
-  container-type: inline-size;
+  grid-template-rows: [indicator] 5px [navbar] auto;
   container-name: navbar;
+  container-type: inline-size;
 `;
 
 export const NavBarIndicatorWrapper = styled.div`
   position: relative;
-  container-type: inline-size;
-  container-name: navbar-indicator-wrapper;
   contain: layout style paint;
+  container-name: navbar-indicator-wrapper;
+  container-type: inline-size;
 `;
 
 export const NavBarIndicator = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  inline-size: var(--inline-size, 'auto');
   inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: var(--inline-size, 'auto');
   background: ${({ theme }) => theme.colors.primaryColor};
-  translate: var(--offset-x, 0px);
+  translate: var(--offset-x, 0);
+  transition-duration: 0s;
   transition-property: inline-size;
-  transition-duration: 0;
 
   @container navbar-indicator-wrapper style(--has-prev-offset: true) {
     transition-property: translate, inline-size;
   }
+
   @media (prefers-reduced-motion: no-preference) {
     transition-duration: 500ms;
   }
@@ -42,13 +42,15 @@ export const NavBarIndicator = styled.div`
 
 export const NavBarList = styled.ul<NavBarListProps>`
   display: grid;
-  margin: 0;
-  padding: 0;
+  /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
   grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  padding: 0;
+  margin: 0;
   list-style: none;
   background: ${({ theme }) => theme.colors.secondaryColor};
 
   @container navbar (width > ${({ $minScreenSizeIndicator }) => $minScreenSizeIndicator}px) {
+    /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
     grid-template-columns: none;
     grid-auto-columns: minmax(max-content, 1fr);
     grid-auto-flow: column;
@@ -62,13 +64,14 @@ export const NavBarList = styled.ul<NavBarListProps>`
 export const NavBarEntry = styled(Link)`
   padding-block: 1rem;
   padding-inline: 1rem;
-  border: 0;
   font-weight: bold;
-  background: none;
   color: ${({ theme }) => theme.colors.tertiaryColor};
-  text-decoration: none;
   text-align: center;
+  text-decoration: none;
+  background: none;
+  border: 0;
 
+  /* todo: https://defensivecss.dev/tip/hover-media/ */
   &:where(:hover, :focus-visible) {
     text-decoration: underline;
     text-decoration-thickness: 3px;
@@ -76,10 +79,12 @@ export const NavBarEntry = styled(Link)`
   }
 
   &:focus-visible {
-    // https://www.w3.org/WAI/WCAG21/Techniques/css/C40
+    /* https://www.w3.org/WAI/WCAG21/Techniques/css/C40 */
+
     /* inner indicator */
     outline: 2px #f9f9f9 solid;
     outline-offset: 0;
+
     /* outer indicator */
     box-shadow: 0 0 0 4px #193146;
   }

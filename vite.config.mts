@@ -79,6 +79,16 @@ export default defineConfig(({ mode }) => {
             } satisfies Logger,
           }),
         ],
+        plugins: [
+          [
+            'babel-plugin-styled-components',
+            {
+              displayName: isDevMode,
+              ssr: false,
+              pure: true,
+            },
+          ],
+        ],
       }),
     ],
     server: {

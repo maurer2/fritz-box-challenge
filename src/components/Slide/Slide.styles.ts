@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const SlideWrapper = styled.dl`
   margin: 0;
-  user-select: none;
   color: ${({ theme }) => theme.colors.primaryColor};
+  user-select: none;
 `;
 
 export const SlideTitle = styled.dt`
@@ -19,5 +19,6 @@ export const SlideText = styled.dd`
 
 // needs to be a block element
 export const TextFit = styled.div`
+  /* stylelint-disable-next-line property-no-unknown */
   text-grow: per-line scale;
 `;

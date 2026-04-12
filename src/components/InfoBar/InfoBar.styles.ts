@@ -2,20 +2,20 @@ import styled from 'styled-components';
 
 export const InfoBarWrapper = styled.div`
   position: fixed;
-  top: 0;
+  inset-block-start: 0;
   inset-inline: 0;
   padding: 1rem;
-  background: ${({ theme }) => theme.colors.secondaryColor};
   font-weight: bold;
+  background: ${({ theme }) => theme.colors.secondaryColor};
 `;
 
 export const InfoBarWrapperInactive = styled(InfoBarWrapper)`
-  width: 1px;
-  height: 1px;
+  inline-size: 1px;
+  block-size: 1px;
   padding: 0;
   margin: -1px;
   overflow: clip;
-  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+  clip-path: inset(50%);
 `;
