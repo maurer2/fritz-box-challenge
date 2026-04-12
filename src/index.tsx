@@ -8,10 +8,8 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
 import { StyleSheetManager, ThemeProvider } from 'styled-components';
 
-import 'modern-normalize'; // todo move to style file and reset layer
-
 import { routeTree } from './routeTree.gen';
-import { theme } from './components/Theme';
+import { theme, GlobalStyles } from './components/Theme';
 import './index.css';
 
 declare module '@tanstack/react-router' {
@@ -72,7 +70,10 @@ root.render(
     {/* needed for "height: stretch" */}
     <StyleSheetManager enableVendorPrefixes>
       <ThemeProvider theme={theme}>
+        {/* CSS Vars */}
         <theme.GlobalStyle />
+        {/* Actual global styles */}
+        <GlobalStyles />
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
         </QueryClientProvider>

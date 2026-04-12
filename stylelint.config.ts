@@ -23,7 +23,7 @@ export default {
     'plugin/no-low-performance-animation-properties': true,
     'csstools/use-nesting': 'always',
     'defensive-css/require-pure-selectors': [
-      false,
+      null,
       {
         ignoreElements: ['html', 'body', '*'],
         ignoreAttributeModifiers: true,
