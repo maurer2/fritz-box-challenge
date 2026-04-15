@@ -5,7 +5,7 @@ const defaultTheme = createTheme({
   colors: {
     primaryColor: 'oklch(0.961 0 0)',
     secondaryColor: 'oklch(0.798 0 0)',
-    tertiaryColor: 'oklch(0.134 0 0)',
+    tertiaryColor: 'oklch(0.1448 0 0)',
   },
 });
 export { defaultTheme as theme };
