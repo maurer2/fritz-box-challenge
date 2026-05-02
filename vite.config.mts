@@ -57,29 +57,31 @@ export default defineConfig(({ mode }) => {
       tanstackRouter(),
       react(),
       babel({
-        presets: [
-          reactCompilerPreset({
-            logger: {
-              logEvent(filename, event) {
-                switch (event.kind) {
-                  case 'CompileSuccess': {
-                    console.log(`✅ Compiled: ${filename}`);
-                    break;
-                  }
-                  case 'CompileError': {
-                    console.log(`❌ Compiler Error: ${filename}`);
-                    console.error(`Reason: ${event.detail.reason}`);
-                    break;
-                  }
-                  default: {
-                    break; // eslint fix
-                  }
-                }
-              },
-            } satisfies Logger,
-          }),
-        ],
+        presets: [reactCompilerPreset()],
         plugins: [
+          [
+            'babel-plugin-react-compiler',
+            {
+              logger: {
+                logEvent(filename, event) {
+                  switch (event.kind) {
+                    case 'CompileSuccess': {
+                      console.log(`✅ Compiled: ${filename}`);
+                      break;
+                    }
+                    case 'CompileError': {
+                      console.log(`❌ Compiler Error: ${filename}`);
+                      console.error(`Reason: ${event.detail.reason}`);
+                      break;
+                    }
+                    default: {
+                      break; // eslint fix
+                    }
+                  }
+                },
+              } satisfies Logger,
+            },
+          ],
           [
             'babel-plugin-styled-components',
             {
