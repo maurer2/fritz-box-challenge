@@ -6,6 +6,7 @@ type NavBarIndicatorBarProps = {
 
 // only used to inject CSS vars
 export const NavBarIndicatorWrapper = styled.div`
+  container-type: inline-size;
   /* contain: paint; // breaks anchor positioning */
 `;
 
@@ -24,7 +25,9 @@ export const NavBarIndicatorBar = styled.div<NavBarIndicatorBarProps>`
     transition-property: left, right;
 
     @media (prefers-reduced-motion: no-preference) {
-      transition-duration: 500ms;
+      @container style(--has-prev-anchor: true) {
+        transition-duration: 500ms;
+      }
     }
   }
 `;
