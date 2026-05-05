@@ -6,11 +6,10 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
-import { StyleSheetManager } from 'styled-components';
-import 'modern-normalize';
+import { StyleSheetManager, ThemeProvider } from 'styled-components';
 
 import { routeTree } from './routeTree.gen';
-import { Theme } from './components/Theme';
+import { theme, GlobalStyles } from './components/Theme';
 import './index.css';
 
 declare module '@tanstack/react-router' {
@@ -44,7 +43,9 @@ async function mockEndpoints() {
     const handlers = (await import('./mocks/handlers')).default;
     const worker = setupWorker(...handlers);
 
-    return worker.start();
+    return worker.start({
+      onUnhandledRequest: 'bypass',
+    });
   }
 
   return Promise.resolve();
@@ -68,14 +69,18 @@ root.render(
   <StrictMode>
     {/* needed for "height: stretch" */}
     <StyleSheetManager enableVendorPrefixes>
-      <Theme>
+      <ThemeProvider theme={theme}>
+        {/* CSS Vars */}
+        <theme.GlobalStyle />
+        {/* Actual global styles */}
+        <GlobalStyles />
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
         </QueryClientProvider>
         <TanStackDevtools
           config={{
             defaultOpen: false,
-            position: 'middle-right',
+            position: 'top-right',
             panelLocation: 'top',
           }}
           plugins={[
@@ -89,7 +94,7 @@ root.render(
             },
           ]}
         />
-      </Theme>
+      </ThemeProvider>
     </StyleSheetManager>
   </StrictMode>,
 );

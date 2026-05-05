@@ -16,7 +16,7 @@ export const NavBarIndicatorBar = styled.div<NavBarIndicatorBarProps>`
   inset-inline-end: anchor(end);
   block-size: 5px;
   position-anchor: var(--current-anchor);
-  background: ${({ theme }) => theme.highlightColor};
+  background: ${({ theme }) => theme.colors.highlightColor};
 
   @media (width > ${({ $minSizeSingleRowNav }) => $minSizeSingleRowNav}px) {
     inset-block-start: 0;

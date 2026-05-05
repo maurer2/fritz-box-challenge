@@ -13,7 +13,7 @@ export const NavBarIndicator = styled.div`
   left: 0;
   inline-size: var(--inline-size, 'auto');
   inset-block: 0;
-  background: ${({ theme }) => theme.primaryColor};
+  background: ${({ theme }) => theme.colors.primaryColor};
   translate: var(--offset-x, 0px);
   transition-property: inline-size;
   transition-duration: 0;

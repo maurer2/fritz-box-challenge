@@ -7,22 +7,24 @@ type NavBarListProps = {
 
 export const NavBarWrapper = styled.nav`
   position: sticky;
-  bottom: 0;
+  inset-block-end: 0;
   display: grid;
-  grid-template-rows: 5px auto;
-  container-type: inline-size;
+  grid-template-rows: [indicator] 5px [navbar] auto;
   container-name: navbar;
+  container-type: inline-size;
 `;
 
 export const NavBarList = styled.ul<NavBarListProps>`
   display: grid;
-  margin: 0;
-  padding: 0;
+  /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
   grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  padding: 0;
+  margin: 0;
   list-style: none;
-  background: ${({ theme }) => theme.secondaryColor};
+  background: ${({ theme }) => theme.colors.secondaryColor};
 
   @container navbar (width > ${({ $minScreenSizeIndicator }) => $minScreenSizeIndicator}px) {
+    /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
     grid-template-columns: none;
     grid-auto-columns: minmax(max-content, 1fr);
     grid-auto-flow: column;
@@ -36,17 +38,14 @@ export const NavBarList = styled.ul<NavBarListProps>`
 export const NavBarEntry = styled(Link)`
   padding-block: 1rem;
   padding-inline: 1rem;
-  border: 0;
   font-weight: bold;
-  background: none;
-  color: ${({ theme }) => theme.tertiaryColor};
-  text-decoration: none;
+  color: ${({ theme }) => theme.colors.tertiaryColor};
   text-align: center;
+  text-decoration: none;
+  background: none;
+  border: 0;
 
-  &[aria-current='page'] {
-    color: ${({ theme }) => theme.highlightColor};
-  }
-
+  /* todo: https://defensivecss.dev/tip/hover-media/ */
   &:where(:hover, :focus-visible) {
     text-decoration: underline;
     text-decoration-thickness: 3px;
@@ -54,10 +53,12 @@ export const NavBarEntry = styled(Link)`
   }
 
   &:focus-visible {
-    // https://www.w3.org/WAI/WCAG21/Techniques/css/C40
+    /* https://www.w3.org/WAI/WCAG21/Techniques/css/C40 */
+
     /* inner indicator */
     outline: 2px #f9f9f9 solid;
     outline-offset: 0;
+
     /* outer indicator */
     box-shadow: 0 0 0 4px #193146;
   }
