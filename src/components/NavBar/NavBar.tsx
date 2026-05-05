@@ -36,8 +36,9 @@ const viewTransition: NavigateOptions['viewTransition'] = {
     if (newRoutIndex === currentRoutIndex) {
       return false;
     }
-    const newDirection: TransitionName =
-      newRoutIndex > currentRoutIndex ? 'move-right' : 'move-left';
+    const newDirection = (
+      newRoutIndex > currentRoutIndex ? 'move-right' : 'move-left'
+    ) satisfies TransitionName;
 
     return [newDirection];
   },
@@ -50,15 +51,15 @@ const NavBar = () => {
 
   const currentLocation = useLocation({ select: ({ pathname }) => pathname });
 
+  // aways reset offset and prev offset on media query change
   const isIndicatorVisible = useMediaQuery({
     mediaQuery: `(min-width: ${SCREEN_WIDTH_INDICATOR}px)`,
-    onChange: (isMatching) => {
-      if (!isMatching) {
-        setPrevOffset(null);
-        setOffset(null);
-      }
+    onChange: () => {
+      setPrevOffset(null);
+      setOffset(null);
     },
   });
+  // set offset on every resize and set prevoffset when indicator is visible
   const activeNavBarEntryRefCallback = (activeElement: HTMLAnchorElement) => {
     const resizeObserver = new ResizeObserver(([entry]) => {
       const [elementSize] = entry.borderBoxSize;
