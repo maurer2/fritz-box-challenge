@@ -15,6 +15,7 @@ import {
 type NavLinkPath = NonNullable<(ComponentProps<typeof NavBarEntry>)['to']>;
 type TransitionName = 'move-left' | 'move-right';
 
+// todo: remove once style queries are supported in FF
 const SCREEN_WIDTH_INDICATOR = 750;
 
 const navLinks: [path: NavLinkPath, children: ReactNode][] = [

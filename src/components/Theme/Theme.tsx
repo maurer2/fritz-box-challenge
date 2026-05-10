@@ -10,11 +10,19 @@ const defaultTheme = createTheme({
 });
 export { defaultTheme as theme };
 
+export const SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE = 750;
+
 export const GlobalStyles = createGlobalStyle`
   @layer base {
     :root {
       font-size: 16px;
       -webkit-font-smoothing: antialiased;
+
+      /*
+      --indicator-is-visible: false;
+      @media (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px) {
+        --indicator-is-visible: true;
+      } */
     }
 
     body {
@@ -50,6 +58,14 @@ export const GlobalStyles = createGlobalStyle`
       }
     }
   }
+
+  /*
+  @property --indicator-is-visible {
+    syntax: "<custom-ident>";
+    inherits: true;
+    initial-value: false;
+  }
+  */
 
   @keyframes slide-from-left {
     from {
