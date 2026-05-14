@@ -1,0 +1,19 @@
+allowBuilds:
+  msw: true
+
+minimumReleaseAge: 10080 # 7 days
+blockExoticSubdeps: true # no git branch as package url
+minimumReleaseAgeExclude:
+  - '@vitejs/plugin-react@6.0.2'
+overrides:
+  '@csstools/css-calc': '3.2.0' # @csstools/css-calc@3.2.1 is too new
+resolutionMode: highest
+
+supportedArchitectures:
+  cpu:
+    - arm64
+    - x64
+  os:
+    - darwin
+    - linux
+    - win32
