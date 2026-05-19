@@ -1,8 +1,10 @@
-import { type PropsWithChildren } from 'react';
+import type { ReactNode } from 'react';
 
 import { SlideMasterWrapper } from './SlideMaster.styles';
 
-type SlideMasterProps = PropsWithChildren;
+type SlideMasterProps = {
+  children: ReactNode;
+};
 
 const SlideMaster = ({ children }: SlideMasterProps) => (
   <SlideMasterWrapper>{children}</SlideMasterWrapper>

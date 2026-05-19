@@ -2,6 +2,7 @@ import { useState, type CSSProperties, type ComponentProps, type ReactNode } fro
 import { useLocation, type NavigateOptions } from '@tanstack/react-router';
 
 import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
+import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../Theme';
 
 import {
   NavBarWrapper,
@@ -14,9 +15,6 @@ import {
 // prettier-ignore
 type NavLinkPath = NonNullable<(ComponentProps<typeof NavBarEntry>)['to']>;
 type TransitionName = 'move-left' | 'move-right';
-
-// todo: remove once style queries are supported in FF
-const SCREEN_WIDTH_INDICATOR = 750;
 
 const navLinks: [path: NavLinkPath, children: ReactNode][] = [
   ['/branding', 'Branding'],
@@ -54,7 +52,7 @@ const NavBar = () => {
 
   // aways reset offset and prev offset on media query change
   const isIndicatorVisible = useMediaQuery({
-    mediaQuery: `(min-width: ${SCREEN_WIDTH_INDICATOR}px)`,
+    mediaQuery: `(width >= ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}}px)`,
     onChange: () => {
       setPrevOffset(null);
       setOffset(null);
@@ -92,7 +90,7 @@ const NavBar = () => {
       <NavBarIndicatorWrapper style={navBarIndicatorCssVars as CSSProperties} aria-hidden>
         {isIndicatorVisible ? <NavBarIndicator /> : null}
       </NavBarIndicatorWrapper>
-      <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}>
+      <NavBarList>
         {navLinks.map(([to, children]) => (
           <li key={to}>
             <NavBarEntry
