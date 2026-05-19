@@ -52,7 +52,7 @@ const NavBar = () => {
 
   // aways reset offset and prev offset on media query change
   const isIndicatorVisible = useMediaQuery({
-    mediaQuery: `(min-width: ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px)`,
+    mediaQuery: `(width >= ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}}px)`,
     onChange: () => {
       setPrevOffset(null);
       setOffset(null);
