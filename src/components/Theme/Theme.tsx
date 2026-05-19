@@ -24,7 +24,6 @@ export const GlobalStyles = createGlobalStyle`
       font-size: 16px;
       -webkit-font-smoothing: antialiased;
 
-      --indicator-is-visible: false;
       @media (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px) {
         --indicator-is-visible: true;
       }
