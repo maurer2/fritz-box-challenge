@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { Link } from '@tanstack/react-router';
 
-type NavBarListProps = {
-  $minScreenSizeIndicator: number;
-};
-
 export const NavBarWrapper = styled.nav`
   position: sticky;
   inset-block-end: 0;
@@ -40,25 +36,21 @@ export const NavBarIndicator = styled.div`
   }
 `;
 
-export const NavBarList = styled.ul<NavBarListProps>`
+export const NavBarList = styled.ul`
   display: grid;
-  /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
-  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
   padding: 0;
   margin: 0;
   list-style: none;
   background: ${({ theme }) => theme.colors.secondaryColor};
 
-  /* https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_size_and_style_queries#registered_properties */
-  /* CSS vars via defineProperty are always true if they have a different value than the default */
-  /* @container style(--indicator-is-visible) {
-    grid-template-columns: none;
-    grid-auto-columns: minmax(max-content, 1fr);
-    grid-auto-flow: column;
-  }*/
-
-  @container navbar (width > ${({ $minScreenSizeIndicator }) => $minScreenSizeIndicator}px) {
+  /* FF doesnt override base styles with style query so it needs to be extracted in a style query as well */
+  /* Safari doesnt reevaluate style queries when css vars are modified via media queries */
+  @container style(--indicator-is-visible: false) {
     /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  }
+
+  @container style(--indicator-is-visible: true) {
     grid-template-columns: none;
     grid-auto-columns: minmax(max-content, 1fr);
     grid-auto-flow: column;
