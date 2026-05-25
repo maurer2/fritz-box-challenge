@@ -27,6 +27,8 @@ export const GlobalStyles = createGlobalStyle`
       @media (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px) {
         --indicator-is-visible: true;
       }
+
+      /* @custom-media --large-screen (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px); */
     }
 
     body {

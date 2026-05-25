@@ -56,6 +56,14 @@ export const NavBarList = styled.ul`
     grid-auto-flow: column;
   }
 
+  /*
+  @media (--large-screen) {
+    grid-template-columns: none;
+    grid-auto-columns: minmax(max-content, 1fr);
+    grid-auto-flow: column;
+  }
+  */
+
   > li {
     display: contents;
   }
