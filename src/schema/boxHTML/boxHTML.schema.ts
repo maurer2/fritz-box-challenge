@@ -6,7 +6,7 @@ export const boxHTMLSchema = z
       issue.input === undefined ? 'Field must be filled in/out' : 'Field must be a string',
   })
   .trim()
-  .regex(/<body[^>]*>(.*?)<\/body>/is, 'body tag is missing')
+  .regex(/<body[^>]*>(.*?)<\/body>/is, 'Body tag is missing')
   .includes('FRITZ!Box', { message: '"FRITZ!Box" is missing in string' })
   .refine(
     (value) => {
@@ -18,7 +18,7 @@ export const boxHTMLSchema = z
       return true;
     },
     {
-      message: 'Structure of body is invalid. There are not enough or too few dashes.',
+      message: 'Structure of body is invalid. There are not enough dashes.',
     },
   );
 

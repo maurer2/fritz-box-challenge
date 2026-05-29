@@ -1,7 +1,5 @@
-declare module '*';
-
 declare module 'virtual:box-data' {
-  const boxData: sting;
+  const boxData: string;
 
   export default boxData;
 }

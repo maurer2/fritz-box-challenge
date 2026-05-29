@@ -14,6 +14,7 @@ const fields = [
   'firmware',
   'subfirmware',
   'branding',
+  // 'language', // probably
 ] as const satisfies readonly string[];
 
 const dateLength = 9;
@@ -49,7 +50,7 @@ const getStatusFieldsFromBox = async () => {
 
   const bodyContentFixed = addMissingDashBetweenPowerOnHoursAndRestarts(bodyContent, dashPositions);
   const statusFieldsList = bodyContentFixed.split('-');
-  if (fields.length !== statusFieldsList.length) {
+  if (statusFieldsList.length < fields.length) {
     throw new Error('Mismatch between expected number of fields and actual fields in html string');
   }
 
