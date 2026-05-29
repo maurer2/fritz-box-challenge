@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Martin",
   "main": "index.js",
-  "packageManager": "pnpm@11.1.1",
+  "packageManager": "pnpm@11.4.0",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -80,19 +80,6 @@
     "typescript": "^6.0.2",
     "vite": "^8.0.8",
     "vitest": "^4.1.4"
-  },
-  "pnpm": {
-    "supportedArchitectures": {
-      "cpu": [
-        "x64",
-        "arm64"
-      ],
-      "os": [
-        "darwin",
-        "linux",
-        "win32"
-      ]
-    }
   },
   "msw": {
     "workerDirectory": [
