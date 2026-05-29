@@ -1,6 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import fetcher from '../../helpers/fetcher/fetcher';
+import { boxValueStringSchema } from '../../schema/boxFields/box.schema';
 import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
 
 const fields = [
@@ -49,10 +50,8 @@ const getStatusFieldsFromBox = async () => {
   }, [] as number[]);
 
   const bodyContentFixed = addMissingDashBetweenPowerOnHoursAndRestarts(bodyContent, dashPositions);
-  const statusFieldsList = bodyContentFixed.split('-');
-  if (statusFieldsList.length < fields.length) {
-    throw new Error('Mismatch between expected number of fields and actual fields in html string');
-  }
+  const bodyContentValidated = boxValueStringSchema.parse(bodyContentFixed);
+  const statusFieldsList = bodyContentValidated.split('-');
 
   const fieldMap = Object.fromEntries(
     fields.map(

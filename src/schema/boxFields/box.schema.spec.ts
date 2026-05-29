@@ -1,37 +1,44 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, expect, it } from 'vitest';
 
-import { boxValueString, sectionsOfBoxValues, boxValuesMap } from './box.schema';
+import { boxValueStringSchema, minSectionsOfBoxValues, boxValuesMap } from './box.schema';
 
-describe('boxValueString', () => {
+describe('boxValueStringSchema', () => {
   it('should allow string with correct number of hyphens', () => {
     expect(
-      boxValueString.safeParse('meow-meow-meow-meow-meow-meow-meow-meow-meow-meow').success,
+      boxValueStringSchema.safeParse('meow-meow-meow-meow-meow-meow-meow-meow-meow-meow').success,
     ).toBeTruthy();
   });
 
-  it("should not allow string, that doesn't have correct number of hyphens", () => {
-    Array.from(Array(sectionsOfBoxValues - 1).keys()).forEach((index) => {
+  it("should not allow string, that doesn't have the minimum number of hyphens", () => {
+    Array.from(Array(minSectionsOfBoxValues - 1).keys()).forEach((index) => {
       const value = `meow${'-meow'.repeat(index)}`;
-      expect(boxValueString.safeParse(value).success).toBeFalsy();
+      expect(boxValueStringSchema.safeParse(value).success).toBeFalsy();
     });
+  });
+
+  it('should allow string with more than the minimum number of hyphens', () => {
+    expect(
+      boxValueStringSchema.safeParse('meow-meow-meow-meow-meow-meow-meow-meow-meow-meow-meow')
+        .success,
+    ).toBeTruthy();
   });
 
   it('should not allow string, that has one or more empty value(s) between hyphens', () => {
     expect(
-      boxValueString.safeParse('meow-meow-meow-m-meow-meow-meow-meow-meow').success,
+      boxValueStringSchema.safeParse('meow-meow-meow-m-meow-meow-meow-meow-meow').success,
     ).toBeFalsy();
     expect(
-      boxValueString.safeParse('meow---meow-meow-meow-meow-meow-meow-meow-meow').success,
+      boxValueStringSchema.safeParse('meow---meow-meow-meow-meow-meow-meow-meow-meow').success,
     ).toBeFalsy();
     expect(
-      boxValueString.safeParse('meow-- -meow-meow-meow-meow-meow-meow-meow-meow').success,
+      boxValueStringSchema.safeParse('meow-- -meow-meow-meow-meow-meow-meow-meow-meow').success,
     ).toBeFalsy();
   });
 
   it('should not allow falsy values', () => {
     [false, null, 0, NaN, undefined, ''].forEach((value) => {
-      expect(boxValueString.safeParse(value).success).toBeFalsy();
+      expect(boxValueStringSchema.safeParse(value).success).toBeFalsy();
     });
   });
 });
