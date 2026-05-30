@@ -1,8 +1,8 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import fetcher from '../../helpers/fetcher/fetcher';
-import { boxValueStringSchema } from '../../schema/boxFields/box.schema';
 import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
+import { boxValueStringSchema } from '../../schema/boxFields/box.schema';
 
 const fields = [
   'model',
@@ -18,39 +18,11 @@ const fields = [
   // 'language', // probably
 ] as const satisfies readonly string[];
 
-const dateLength = 9;
-// add dash after second dash
-// power on hours and restarts are not separated by a dash
-function addMissingDashBetweenPowerOnHoursAndRestarts(
-  stringValue: string,
-  dashPositions: number[],
-): string {
-  const dateStartPosition = dashPositions[1] + 1;
-  const splitPoint = dateStartPosition + dateLength; // position between date and power on hours
-
-  const stringBeforeSplitPoint = stringValue.substring(0, splitPoint);
-  const stringAfterSplitPoint = stringValue.substring(splitPoint);
-
-  const tempStringArray = stringBeforeSplitPoint.split('');
-  tempStringArray.splice(-3, 1);
-  const stringBeforeSplitPointWithoutLastDash = tempStringArray.join('');
-
-  return `${stringBeforeSplitPointWithoutLastDash}-${stringAfterSplitPoint}`;
-}
-
 const getStatusFieldsFromBox = async () => {
-  const boxDataHTML = await fetcher('/box-data', boxHTMLSchema);
-  const bodyContent = boxDataHTML.match(/<body[^>]*>(.*?)<\/body>/is)?.[1] ?? '';
+  const boxDataHTMLContent = await fetcher('/box-data', boxHTMLSchema);
+  const bodyContent = boxDataHTMLContent.match(/<body[^>]*>(.*?)<\/body>/is)?.[1] ?? '';
 
-  const dashPositions = bodyContent.split('').reduce((total, current, index) => {
-    if (current === '-') {
-      total.push(index);
-    }
-    return total;
-  }, [] as number[]);
-
-  const bodyContentFixed = addMissingDashBetweenPowerOnHoursAndRestarts(bodyContent, dashPositions);
-  const bodyContentValidated = boxValueStringSchema.parse(bodyContentFixed);
+  const bodyContentValidated = boxValueStringSchema.parse(bodyContent);
   const statusFieldsList = bodyContentValidated.split('-');
 
   const fieldMap = Object.fromEntries(

@@ -1,38 +1,36 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, expect, it } from 'vitest';
 
-import { boxValueStringSchema, minSectionsOfBoxValues, boxValuesMap } from './box.schema';
+import { boxValueStringSchema, boxValuesMap } from './box.schema';
+
+const oldBodyFormat =
+  'FRITZ!Box 7590 (UI)-Annex unbekannt-050502-080086-XXXXXX-XXXXXX-787903-1540825-130856-1und1';
+const newBodyFormat =
+  'FRITZ!Box 7590 (UI)-Annex unbekannt-050502-080086-XXXXXX-XXXXXX-787903-1540825-130856-1und1-de';
 
 describe('boxValueStringSchema', () => {
-  it('should allow string with correct number of hyphens', () => {
-    expect(
-      boxValueStringSchema.safeParse('meow-meow-meow-meow-meow-meow-meow-meow-meow-meow').success,
-    ).toBeTruthy();
+  it('should allow body string with minimum number of segments', () => {
+    expect(boxValueStringSchema.safeParse(oldBodyFormat).success).toBeTruthy();
   });
 
-  it("should not allow string, that doesn't have the minimum number of hyphens", () => {
-    Array.from(Array(minSectionsOfBoxValues - 1).keys()).forEach((index) => {
-      const value = `meow${'-meow'.repeat(index)}`;
-      expect(boxValueStringSchema.safeParse(value).success).toBeFalsy();
-    });
+  it('should allow body string with more than the minimum number of segments', () => {
+    expect(boxValueStringSchema.safeParse(newBodyFormat).success).toBeTruthy();
   });
 
-  it('should allow string with more than the minimum number of hyphens', () => {
+  it('should not allow body string with fewer than the minimum number of segments', () => {
     expect(
-      boxValueStringSchema.safeParse('meow-meow-meow-meow-meow-meow-meow-meow-meow-meow-meow')
-        .success,
-    ).toBeTruthy();
-  });
-
-  it('should not allow string, that has one or more empty value(s) between hyphens', () => {
-    expect(
-      boxValueStringSchema.safeParse('meow-meow-meow-m-meow-meow-meow-meow-meow').success,
+      boxValueStringSchema.safeParse(
+        // restarts and part of date missing
+        'FRITZ!Box 7590 (UI)-Annex unbekannt-050502-XXXXXX-XXXXXX-787903-1540825-130856-1und1',
+      ).success,
     ).toBeFalsy();
+  });
+
+  it('should not allow body string with empty sections', () => {
     expect(
-      boxValueStringSchema.safeParse('meow---meow-meow-meow-meow-meow-meow-meow-meow').success,
-    ).toBeFalsy();
-    expect(
-      boxValueStringSchema.safeParse('meow-- -meow-meow-meow-meow-meow-meow-meow-meow').success,
+      boxValueStringSchema.safeParse(
+        'FRITZ!Box 7590 (UI)-Annex unbekannt-050502-080086-XXXXXX-XXXXXX--1540825-130856-1und1',
+      ).success,
     ).toBeFalsy();
   });
 
