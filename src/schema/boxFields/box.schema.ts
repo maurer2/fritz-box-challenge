@@ -9,7 +9,7 @@ export const boxValueStringSchema = z
   })
   // inject a dash between power on hours and restarts as they are not separated by a dash in the raw string
   .transform((bodyContent) => {
-    // dash postions are dynamic as indiovidual fields like "technology" can have different lengths
+    // dash positions are dynamic as individual fields like "technology" can have different lengths
     const dashPositions = bodyContent.split('').reduce((total, current, index) => {
       if (current === '-') {
         total.push(index);
@@ -20,11 +20,15 @@ export const boxValueStringSchema = z
     const dateStartPosition = dashPositions[1] + 1;
     const splitPoint = dateStartPosition + dateLength; // before power on hours segment starts
 
-    // remove last dash in date part that seperates years from rest of date
-    const chars = bodyContent.substring(0, splitPoint).split('').toSpliced(-3, 1);
+    const newBodyContent = bodyContent
+      .split('')
+      // remove last dash in date segment that separates years from rest of date
+      .toSpliced(splitPoint - 3, 1)
+      // reinsert dash after date segment; -1 because of the removed dash
+      .toSpliced(splitPoint - 1, 0, '-')
+      .join('');
 
-    // reinsert dash after date segment
-    return `${chars.join('')}-${bodyContent.substring(splitPoint)}`;
+    return newBodyContent;
   })
   // check number of hyphens
   .refine((value) => (value.match(/-/g)?.length ?? 0) >= minSectionsOfBoxValues - 1, {

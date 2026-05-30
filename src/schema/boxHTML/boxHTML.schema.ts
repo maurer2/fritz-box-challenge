@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+const minNumberOfDashes = 9; // without new "language" field
+
 export const boxHTMLSchema = z
   .string({
     error: (issue) =>
@@ -7,12 +9,16 @@ export const boxHTMLSchema = z
   })
   .trim()
   .regex(/<body[^>]*>(.*?)<\/body>/is, 'Body tag is missing')
-  .includes('FRITZ!Box', { message: '"FRITZ!Box" is missing in string' })
+  // at this point the string is guaranteed to contain a body tag
+  .transform((html) => html.match(/<body[^>]*>(.*?)<\/body>/is)![1])
+  .refine((value) => value.includes('FRITZ!Box'), {
+    message: '"FRITZ!Box" string is missing',
+  })
   .refine(
     (value) => {
       const listOfDashes = value?.match(/-/g) ?? [];
 
-      if (!listOfDashes.length || listOfDashes.length < 9) {
+      if (!listOfDashes.length || listOfDashes.length < minNumberOfDashes) {
         return false;
       }
       return true;

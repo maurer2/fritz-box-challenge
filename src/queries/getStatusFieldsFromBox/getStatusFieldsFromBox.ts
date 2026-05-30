@@ -19,8 +19,7 @@ const fields = [
 ] as const satisfies readonly string[];
 
 const getStatusFieldsFromBox = async () => {
-  const boxDataHTMLContent = await fetcher('/box-data', boxHTMLSchema);
-  const bodyContent = boxDataHTMLContent.match(/<body[^>]*>(.*?)<\/body>/is)?.[1] ?? '';
+  const bodyContent = await fetcher('/box-data', boxHTMLSchema);
 
   const bodyContentValidated = boxValueStringSchema.parse(bodyContent);
   const statusFieldsList = bodyContentValidated.split('-');
