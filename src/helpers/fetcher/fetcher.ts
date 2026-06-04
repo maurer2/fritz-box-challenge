@@ -1,31 +1,33 @@
 import { ZodError, type ZodType, type z } from 'zod';
 
-// https://github.com/colinhacks/zod#writing-generic-functions
-const fetcher = async <T extends ZodType>(url: string, schema: T): Promise<z.infer<T>> => {
+// https://zod.dev/library-authors
+// https://github.com/colinhacks/zod/issues/4532#issuecomment-2913734406
+const fetcher = async <T extends ZodType>(url: string, schema: T): Promise<z.output<T>> => {
+  let response: Response;
+
   try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(
-        `${response.status.toString()} ${response.statusText} ` || `HTTP error ${url}}`,
-      );
-    }
-
-    const textContent = await response.text();
-
-    return schema.parse(textContent);
+    response = await fetch(url);
   } catch (error) {
-    if (!Error.isError(error)) {
-      console.warn(`Unknown error when trying to fetch "${url}"`);
-      throw new Error('Unknown error');
-    }
+    throw new Error('Network error', {
+      cause: error,
+    });
+  }
 
+  const data = await response.text().catch(() => null);
+
+  if (!response.ok) {
+    throw new Error(`${response.status} - ${response.statusText}`, {
+      cause: { status: response.status, data },
+    });
+  }
+
+  try {
+    return schema.parse(data);
+  } catch (error) {
     if (error instanceof ZodError) {
-      console.warn('Schema parsing error', error);
-      throw new Error('Schema parsing error', { cause: error });
+      throw new Error('Invalid payload', { cause: error });
     }
 
-    console.warn(`Error fetching "${url}"`);
     throw error;
   }
 };
