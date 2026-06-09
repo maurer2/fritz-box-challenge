@@ -1,7 +1,7 @@
 import { useRouteContext } from '@tanstack/react-router';
 import { useIsFetching } from '@tanstack/react-query';
 
-import { InfoBarWrapper, InfoBarWrapperInactive } from './InfoBar.styles';
+import { InfoBarWrapper } from './InfoBar.styles';
 
 function InfoBar() {
   const { getStatusFieldsFromBoxQueryOptions } = useRouteContext({ from: '__root__' });
@@ -10,16 +10,16 @@ function InfoBar() {
   });
 
   const isFetching = numberOFetches > 0;
-  const Component = isFetching ? InfoBarWrapper : InfoBarWrapperInactive;
 
   return (
-    <Component
+    <InfoBarWrapper
+      $isActive={isFetching}
       role={isFetching ? 'status' : undefined}
       aria-live={isFetching ? 'polite' : undefined}
       aria-atomic="true"
     >
       {isFetching ? 'New box data is being fetched' : ''}
-    </Component>
+    </InfoBarWrapper>
   );
 }
 
