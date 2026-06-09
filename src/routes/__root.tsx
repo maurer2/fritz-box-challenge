@@ -15,9 +15,7 @@ export const Route = createRootRouteWithContext<Context>()({
   // suspense boundary
   pendingComponent: () => <UpdateBar>Box data is being fetched</UpdateBar>,
   // error boundary
-  errorComponent: ({ error }) => (
-    <UpdateBar>Box data can't be loaded. Error {error.message}</UpdateBar>
-  ),
+  errorComponent: ({ error }) => <UpdateBar>Box data can't be loaded. {error.message}</UpdateBar>,
   wrapInSuspense: true, // required when a pending component is used in a root route: https://github.com/TanStack/router/issues/2182
   ssr: false,
   beforeLoad({ context }) {

@@ -18,8 +18,8 @@ const fields = [
   // 'language', // probably
 ] as const satisfies readonly string[];
 
-const getStatusFieldsFromBox = async () => {
-  const bodyContent = await fetcher('/box-data', boxHTMLSchema);
+const getStatusFieldsFromBox = async (signal?: AbortSignal) => {
+  const bodyContent = await fetcher('/box-data', boxHTMLSchema, signal);
 
   const bodyContentValidated = boxValueStringSchema.parse(bodyContent);
   const statusFieldsList = bodyContentValidated.split('-');
@@ -35,7 +35,7 @@ const getStatusFieldsFromBox = async () => {
 
 export const getStatusFieldsFromBoxQueryOptions = queryOptions({
   queryKey: ['box-data'],
-  queryFn: () => getStatusFieldsFromBox(),
+  queryFn: ({ signal }) => getStatusFieldsFromBox(signal),
   refetchOnWindowFocus: true,
   refetchOnMount: true,
   refetchOnReconnect: false,
