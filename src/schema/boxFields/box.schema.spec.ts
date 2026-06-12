@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, expect, it } from 'vitest';
 
-import { boxValueStringSchema, boxValuesMap } from './box.schema';
+import { boxValueStringSchema } from './box.schema';
 
 describe('boxValueStringSchema', () => {
   const oldBodyFormat =
