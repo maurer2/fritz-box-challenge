@@ -42,7 +42,7 @@ const boxDataProxyOptions = {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const isDevMode = process.env.VITE_APP_MODE === 'dev';
+  const isDevMode = mode === 'development';
 
   return {
     base: '',
@@ -95,6 +95,7 @@ export default defineConfig(({ mode }) => {
     server: {
       open: false,
       port: 3000,
+      // proxy is not needed in dev mode as there are no corrs errors from MSW
       proxy: !isDevMode
         ? {
             '/box-data': {

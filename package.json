@@ -13,8 +13,8 @@
     "lint:style": "stylelint 'src/**/*.{css,styles.ts}'",
     "lint:ts": "eslint 'src/**/*.{ts,tsx}'",
     "format": "prettier --write './**/*.{ts,tsx,js,jsx,json}'",
-    "start": "VITE_APP_MODE=prod vite",
-    "dev": "VITE_APP_MODE=dev vite",
+    "start": "vite --mode production",
+    "dev": "vite",
     "test:schema": "vitest 'src/schema'",
     "test:types": "tsgo --noEmit"
   },

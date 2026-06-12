@@ -24,7 +24,7 @@ if (!rootElement) {
 }
 const root = ReactDOM.createRoot(rootElement);
 
-const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
+const isDevMode = import.meta.env.MODE === 'development';
 
 const queryClient = new QueryClient({
   defaultOptions: {
