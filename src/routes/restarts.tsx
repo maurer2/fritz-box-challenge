@@ -14,6 +14,10 @@ function Restarts() {
     data: { restarts },
   } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
+  if (!restarts) {
+    return null;
+  }
+
   const majorValue = parseInt(restarts.substring(0, 2), 10);
   const minorValue = parseInt(restarts.substring(2), 10);
 

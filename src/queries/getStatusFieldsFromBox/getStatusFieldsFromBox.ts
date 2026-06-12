@@ -15,8 +15,9 @@ const fields = [
   'firmware',
   'subfirmware',
   'branding',
-  // 'language', // probably
+  'language',
 ] as const satisfies readonly string[];
+type Fields = (typeof fields)[number];
 
 const getStatusFieldsFromBox = async (signal?: AbortSignal) => {
   const bodyContent = await fetcher('/box-data', boxHTMLSchema, signal);
@@ -24,11 +25,14 @@ const getStatusFieldsFromBox = async (signal?: AbortSignal) => {
   const bodyContentValidated = boxValueStringSchema.parse(bodyContent);
   const statusFieldsList = bodyContentValidated.split('-');
 
-  const fieldMap = Object.fromEntries(
-    fields.map(
-      (key, index) => [key, statusFieldsList[index]] satisfies [(typeof fields)[number], string],
-    ),
-  ) as Record<(typeof fields)[number], (typeof statusFieldsList)[number]>;
+  const fieldEntries = fields.map((field, index) => [
+    field,
+    statusFieldsList.at(index) ?? null,
+  ]) satisfies [Fields, string | null][];
+  const fieldMap = Object.fromEntries(fieldEntries) as Record<
+    (typeof fieldEntries)[number][0],
+    (typeof fieldEntries)[number][1]
+  >;
 
   return fieldMap;
 };

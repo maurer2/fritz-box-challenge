@@ -9,8 +9,17 @@ export const Route = createFileRoute('/technology')({
   component: Technology,
 });
 
-const getMappedTechnology = (technology: string): string =>
-  match(technology)
+function Technology() {
+  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
+  const {
+    data: { technology },
+  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
+
+  if (!technology) {
+    return null;
+  }
+
+  const mappedTechnology = match(technology)
     .returnType<string>()
     .with('A', 'B', 'J', 'Q', (value) => `Annex ${value}`)
     .with('Annex unbekannt', () => 'Unknown Annex')
@@ -19,14 +28,6 @@ const getMappedTechnology = (technology: string): string =>
     // .with('???', () => 'XGS GPON')
     // .with('???', () => 'AON')
     .otherwise(() => 'Unknown');
-
-function Technology() {
-  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
-  const {
-    data: { technology },
-  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
-
-  const mappedTechnology = getMappedTechnology(technology);
 
   return <Slide title="Technology" text={mappedTechnology} />;
 }

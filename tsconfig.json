@@ -19,9 +19,10 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "erasableSyntaxOnly": true,
-    "types": ["vite/client"]
+    "types": ["vite/client", "node"],
+    "noUncheckedIndexedAccess": false // todo
   },
   "include": ["./src/**/*"],
   "exclude": ["./src/libs/*.js", "src/libs/*.js"],
-  "files": ["./src/types.d.ts", "./vite.config.mts"]
+  "files": ["./vite.config.mts"]
 }

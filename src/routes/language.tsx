@@ -5,25 +5,29 @@ import { match } from 'ts-pattern';
 
 import { Slide } from '../components/Slide';
 
-export const Route = createFileRoute('/branding')({
+export const Route = createFileRoute('/language')({
   component: Branding,
 });
 
 function Branding() {
   const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
   const {
-    data: { branding },
+    data: { language },
   } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
-  if (!branding) {
+  if (!language) {
     return null;
   }
 
-  const mappedBranding = match(branding)
-    .returnType<string>()
-    .with('avm', () => 'AVM')
-    .with('1und1', () => '1&1')
+  const languageName = match(language)
+    .with('de', () => 'German')
+    .with('en', () => 'English')
+    .with('fr', () => 'French')
+    .with('it', () => 'Italian')
+    .with('nl', () => 'Dutch')
+    .with('pl', () => 'Polish')
+    .with('es', () => 'Spanish')
     .otherwise(() => 'Unknown');
 
-  return <Slide title="Branding" text={mappedBranding} />;
+  return <Slide title="Language" text={languageName} />;
 }

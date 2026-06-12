@@ -14,6 +14,10 @@ function Firmware() {
     data: { firmware },
   } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
+  if (!firmware) {
+    return null;
+  }
+
   const majorVersion = firmware.slice(-3, -2);
   const minorVersion = firmware.slice(-2);
 

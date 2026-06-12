@@ -14,6 +14,10 @@ function Model() {
     data: { model },
   } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
+  if (!model) {
+    return null;
+  }
+
   const modelWithoutBranding = model.replace('(UI)', ''); // 1und1 branding
 
   return <Slide title="Model" text={modelWithoutBranding} />;

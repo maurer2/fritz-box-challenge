@@ -22,6 +22,10 @@ function PowerOnHours() {
     data: { powerOnHours },
   } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
 
+  if (!powerOnHours) {
+    return null;
+  }
+
   const hours = parseInt(powerOnHours.substring(0, 2), 10);
   const days = parseInt(powerOnHours.substring(2, 4), 10);
   const months = parseInt(powerOnHours.substring(4, 6), 10);
