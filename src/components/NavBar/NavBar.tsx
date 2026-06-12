@@ -1,5 +1,5 @@
-import { useState, type CSSProperties, type ComponentProps, type ReactNode } from 'react';
-import { useLocation, type NavigateOptions } from '@tanstack/react-router';
+import { useState, type CSSProperties, type ReactNode } from 'react';
+import { useLocation, type FileRoutesByPath, type NavigateOptions } from '@tanstack/react-router';
 
 import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
 
@@ -11,21 +11,20 @@ import {
   NavBarEntry,
 } from './NavBar.styles';
 
-// prettier-ignore
-type NavLinkPath = NonNullable<(ComponentProps<typeof NavBarEntry>)['to']>;
 type TransitionName = 'move-left' | 'move-right';
 
 // todo: remove once style queries are supported in FF
 const SCREEN_WIDTH_INDICATOR = 750;
 
-const navLinks: [path: NavLinkPath, children: ReactNode][] = [
+// https://github.com/TanStack/router/discussions/5766
+const navLinks = [
   ['/branding', 'Branding'],
   ['/firmware', 'Firmware'],
   ['/model', 'Model'],
   ['/power-on-hours', 'Power on hours'],
   ['/restarts', 'Restarts'],
   ['/technology', 'Technology'],
-];
+] satisfies [keyof FileRoutesByPath, ReactNode][];
 
 const viewTransition: NavigateOptions['viewTransition'] = {
   types: ({ fromLocation, toLocation }) => {
@@ -98,7 +97,7 @@ const NavBar = () => {
             <NavBarEntry
               to={to}
               viewTransition={viewTransition}
-              ref={to === currentLocation ? activeNavBarEntryRefCallback : null}
+              ref={to === currentLocation ? activeNavBarEntryRefCallback : undefined}
             >
               {children}
             </NavBarEntry>
