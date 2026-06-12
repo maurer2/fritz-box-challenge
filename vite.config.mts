@@ -54,7 +54,9 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       devtools(),
-      tanstackRouter(),
+      tanstackRouter({
+        autoCodeSplitting: true,
+      }),
       react(),
       babel({
         presets: [
