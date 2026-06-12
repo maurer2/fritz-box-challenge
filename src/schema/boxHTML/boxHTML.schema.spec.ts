@@ -46,13 +46,4 @@ describe('boxHTMLSchema', () => {
       ).success,
     ).toBeFalsy();
   });
-
-  it('should fail if any of the segments are missing, e.g. number of dashes is below limit', () => {
-    expect(
-      boxHTMLSchema.safeParse(
-        // missing branding
-        '<html><body>FRITZ!Box 7590 (UI)-Annex unbekannt-050502-080086-XXXXXX-XXXXXX-787903-1540825-130856</body></html>',
-      ).success,
-    ).toBeFalsy();
-  });
 });

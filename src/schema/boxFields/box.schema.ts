@@ -1,54 +1,40 @@
 import { z } from 'zod';
 
-const minSectionsOfBoxValues = 10; // without new "language" field
+const minSectionsOfBoxValues = 9; // without new "language" field
 const dateLength = 9;
 
 export const boxValueStringSchema = z
   .string({
-    error: (issue) => (issue.input === undefined ? 'Value must be set' : 'Value must be a string'),
+    error: (issue) => (issue.input === undefined ? 'Value is required' : 'Value must be a string'),
   })
-  // inject a dash between power on hours and restarts as they are not separated by a dash in the raw string
+  // inject a hyphen between power on hours and restarts as they are not separated by a hyphen in the raw string
   .transform((bodyContent) => {
-    // dash positions are dynamic as individual fields like "technology" can have different lengths
-    const dashPositions = bodyContent.split('').reduce((total, current, index) => {
+    // hyphen positions are dynamic as individual fields like "technology" can have different lengths
+    const hyphenPositions = bodyContent.split('').reduce((total, current, index) => {
       if (current === '-') {
         total.push(index);
       }
       return total;
     }, [] as number[]);
 
-    const dateStartPosition = dashPositions[1] + 1;
+    const dateStartPosition = hyphenPositions[1] + 1;
     const splitPoint = dateStartPosition + dateLength; // before power on hours segment starts
 
     const newBodyContent = bodyContent
       .split('')
-      // remove last dash in date segment that separates years from rest of date
+      // remove last hyphen in date segment that separates years from rest of date
       .toSpliced(splitPoint - 3, 1)
-      // reinsert dash after date segment; -1 because of the removed dash
+      // reinsert hyphen after date segment; -1 because of the removed hyphen
       .toSpliced(splitPoint - 1, 0, '-')
       .join('');
 
     return newBodyContent;
   })
   // check number of hyphens
-  .refine((value) => (value.match(/-/g)?.length ?? 0) >= minSectionsOfBoxValues - 1, {
-    error: `String must contain at least ${minSectionsOfBoxValues - 1} hyphens`,
+  .refine((value) => (value.match(/-/g)?.length ?? 0) >= minSectionsOfBoxValues, {
+    error: `String must contain at least ${minSectionsOfBoxValues} hyphens`,
   })
   // check that there are no empty values between hyphens, e.g. no missing sections
   .refine((value) => value.split('-').every((entry) => Boolean(entry.length)), {
     error: 'No section in string must have missing values',
   });
-
-export type BoxValueString = z.infer<typeof boxValueStringSchema>;
-
-export const boxValuesMap = z
-  .object({
-    model: z.string().min(1),
-    technology: z.string().min(1), // todo add enum
-    powerOnHours: z.date(),
-    restarts: z.string().min(1),
-    firmware: z.string().min(1),
-    branding: z.string().min(1),
-  })
-  .strict();
-export type BoxValuesMap = z.infer<typeof boxValuesMap>;

@@ -17,7 +17,7 @@ describe('boxValueStringSchema', () => {
     expect(boxValueStringSchema.safeParse(oldBodyFormat).success).toBeTruthy();
   });
 
-  it('should move the dash correctly within the string to correctly separate powerOnHours from restarts', () => {
+  it('should move the hyphen correctly within the string to correctly separate powerOnHours from restarts', () => {
     const result = boxValueStringSchema.safeParse(oldBodyFormat);
 
     expect(result.success).toBeTruthy();
@@ -44,42 +44,6 @@ describe('boxValueStringSchema', () => {
       boxValueStringSchema.safeParse(
         'FRITZ!Box 7590 (UI)-Annex unbekannt-050502-080086-XXXXXX-XXXXXX--1540825-130856-1und1',
       ).success,
-    ).toBeFalsy();
-  });
-});
-
-describe('boxValuesMap', () => {
-  it('should contain all object keys', () => {
-    expect(
-      boxValuesMap.safeParse({
-        model: 'Model',
-        technology: 'Technology',
-        restarts: 'Restarts',
-        firmware: 'Firmware',
-        branding: 'Branding',
-        powerOnHours: new Date(),
-      }).success,
-    ).toBeTruthy();
-  });
-
-  it('should fail if one or more keys is missing', () => {
-    expect(
-      boxValuesMap.safeParse({
-        model: 'Model',
-      }).success,
-    ).toBeFalsy();
-  });
-
-  it('should fail if one or more values have a mismatching type', () => {
-    expect(
-      boxValuesMap.safeParse({
-        model: 0,
-        technology: 'Technology',
-        restarts: 'Restarts',
-        firmware: 'Firmware',
-        branding: 'Branding',
-        powerOnHours: new Date(),
-      }).success,
     ).toBeFalsy();
   });
 });
