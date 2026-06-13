@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-const minSectionsOfBoxValues = 9; // without new "language" field
+const minSectionsOfBoxValues = 10; // 11 with language field
 const dateLength = 9;
 
-export const boxValueStringSchema = z
+export const boxFieldsSchema = z
   .string({
     error: (issue) => (issue.input === undefined ? 'Value is required' : 'Value must be a string'),
   })
@@ -30,11 +30,13 @@ export const boxValueStringSchema = z
 
     return newBodyContent;
   })
-  // check number of hyphens
-  .refine((value) => (value.match(/-/g)?.length ?? 0) >= minSectionsOfBoxValues, {
-    error: `String must contain at least ${minSectionsOfBoxValues} hyphens`,
+  // split up into segments
+  .transform((value) => value.split('-'))
+  // check number of segments
+  .refine((value) => value.length >= minSectionsOfBoxValues, {
+    error: `Array must contain at least ${minSectionsOfBoxValues} segments`,
   })
-  // check that there are no empty values between hyphens, e.g. no missing sections
-  .refine((value) => value.split('-').every((entry) => Boolean(entry.length)), {
-    error: 'No section in string must have missing values',
+  // check that there are no empty segments
+  .refine((value) => value.every((entry) => entry.length > 0), {
+    error: 'No segment in array must be empty',
   });

@@ -2,7 +2,7 @@ import { queryOptions } from '@tanstack/react-query';
 
 import fetcher from '../../helpers/fetcher/fetcher';
 import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
-import { boxValueStringSchema } from '../../schema/boxFields/box.schema';
+import { boxFieldsSchema } from '../../schema/boxFields/boxFields.schema';
 
 const fields = [
   'model',
@@ -22,8 +22,7 @@ type Fields = (typeof fields)[number];
 const getStatusFieldsFromBox = async (signal?: AbortSignal) => {
   const bodyContent = await fetcher('/box-data', boxHTMLSchema, signal);
 
-  const bodyContentValidated = boxValueStringSchema.parse(bodyContent);
-  const statusFieldsList = bodyContentValidated.split('-');
+  const statusFieldsList = boxFieldsSchema.parse(bodyContent);
 
   const fieldEntries = fields.map((field, index) => [
     field,
