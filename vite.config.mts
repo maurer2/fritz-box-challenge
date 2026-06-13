@@ -5,6 +5,7 @@ import babel from '@rolldown/plugin-babel';
 import { devtools } from '@tanstack/devtools-vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import type { Logger } from 'babel-plugin-react-compiler';
+import zodCompiler from 'zod-compiler/vite';
 
 // import { boxHTMLSchema } from './src/schema/boxHTML/boxHTML.schema';
 // import fetcher from './src/helpers/fetcher/fetcher';
@@ -104,6 +105,9 @@ export default defineConfig(({ mode }) => {
             template: 'treemap',
           })
         : null,
+      zodCompiler({
+        schemas: 'explicit',
+      }),
     ],
     server: {
       open: false,

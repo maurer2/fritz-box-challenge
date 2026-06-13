@@ -1,9 +1,9 @@
 import { z } from 'zod';
+import { compile } from 'zod-compiler';
 
-export const boxHTMLSchema = z
+const boxHTMLSchemaUncompiled = z
   .string({
-    error: (issue) =>
-      issue.input === undefined ? 'Field is required' : 'Field must be a string',
+    error: (issue) => (issue.input === undefined ? 'Value is required' : 'Value must be a string'),
   })
   .trim()
   .regex(/<body[^>]*>(.*?)<\/body>/is, 'Body tag is missing')
@@ -14,3 +14,6 @@ export const boxHTMLSchema = z
   });
 
 export type BoxHTML = z.infer<typeof boxHTMLSchema>;
+
+export const boxHTMLSchema = compile(boxHTMLSchemaUncompiled);
+// export type BoxHTML = z.infer<typeof boxHTMLSchema>; // returns unknown instead of string

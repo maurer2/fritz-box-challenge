@@ -1,9 +1,10 @@
 import { z } from 'zod';
+import { compile } from 'zod-compiler';
 
 const minSectionsOfBoxValues = 10; // 11 with language field
 const dateLength = 9;
 
-export const boxFieldsSchema = z
+const boxFieldsSchemaUncompiled = z
   .string({
     error: (issue) => (issue.input === undefined ? 'Value is required' : 'Value must be a string'),
   })
@@ -34,9 +35,11 @@ export const boxFieldsSchema = z
   .transform((value) => value.split('-'))
   // check number of segments
   .refine((value) => value.length >= minSectionsOfBoxValues, {
-    error: `Array must contain at least ${minSectionsOfBoxValues} segments`,
+    error: `Array must have at least ${minSectionsOfBoxValues} segments`,
   })
   // check that there are no empty segments
   .refine((value) => value.every((entry) => entry.length > 0), {
     error: 'No segment in array must be empty',
   });
+
+export const boxFieldsSchema = compile(boxFieldsSchemaUncompiled);
