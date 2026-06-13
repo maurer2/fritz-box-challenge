@@ -3,6 +3,7 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import babel from '@rolldown/plugin-babel';
 import { devtools } from '@tanstack/devtools-vite';
+import { visualizer } from 'rollup-plugin-visualizer';
 import type { Logger } from 'babel-plugin-react-compiler';
 
 // import { boxHTMLSchema } from './src/schema/boxHTML/boxHTML.schema';
@@ -43,6 +44,7 @@ const boxDataProxyOptions = {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   const isDevMode = mode === 'development';
+  const isAnalyzeMode = mode === 'analyze';
 
   return {
     base: '',
@@ -93,11 +95,20 @@ export default defineConfig(({ mode }) => {
           ],
         ],
       }),
+      isAnalyzeMode
+        ? visualizer({
+            filename: 'dist/stats.html',
+            open: true,
+            gzipSize: true,
+            brotliSize: true,
+            template: 'treemap',
+          })
+        : null,
     ],
     server: {
       open: false,
       port: 3000,
-      // proxy is not needed in dev mode as there are no corrs errors from MSW
+      // proxy is not needed in dev mode as there are no cors errors from MSW
       proxy: !isDevMode
         ? {
             '/box-data': {

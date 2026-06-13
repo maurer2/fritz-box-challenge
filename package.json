@@ -15,6 +15,7 @@
     "format": "prettier --write './**/*.{ts,tsx,js,jsx,json}'",
     "start": "vite --mode production",
     "dev": "vite",
+    "analyze": "vite build --mode analyze",
     "test:schema": "vitest 'src/schema'",
     "test:types": "tsgo --noEmit"
   },
@@ -66,6 +67,7 @@
     "postcss-preset-env": "^11.2.0",
     "postcss-styled-syntax": "^0.7.1",
     "prettier": "^3.8.2",
+    "rollup-plugin-visualizer": "^7.0.1",
     "stylelint": "^17.6.0",
     "stylelint-config-recess-order": "^7.7.0",
     "stylelint-config-standard": "^40.0.0",
