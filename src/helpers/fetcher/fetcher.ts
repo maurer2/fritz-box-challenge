@@ -1,4 +1,4 @@
-import { ZodError, type ZodType, type z } from 'zod';
+import { type ZodType, type z } from 'zod';
 
 // https://zod.dev/library-authors
 // https://github.com/colinhacks/zod/issues/4532#issuecomment-2913734406
@@ -37,15 +37,11 @@ const fetcher = async <T extends ZodType>(
     });
   }
 
-  try {
-    return schema.parse(data);
-  } catch (error) {
-    if (error instanceof ZodError) {
-      throw new Error('Invalid payload', { cause: error });
-    }
-
-    throw error;
+  const result = schema.safeParse(data);
+  if (!result.success) {
+    throw new Error('Invalid payload', { cause: result.error });
   }
+  return result.data;
 };
 
 export default fetcher;

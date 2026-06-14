@@ -22,11 +22,14 @@ type Fields = (typeof fields)[number];
 const getStatusFieldsFromBox = async (signal?: AbortSignal) => {
   const bodyContent = await fetcher('/box-data', boxHTMLSchema, signal);
 
-  const statusFieldsList = boxFieldsSchema.parse(bodyContent);
+  const fieldsResult = boxFieldsSchema.safeParse(bodyContent);
+  if (!fieldsResult.success) {
+    throw new Error('Invalid payload', { cause: fieldsResult.error });
+  }
 
   const fieldEntries = fields.map((field, index) => [
     field,
-    statusFieldsList.at(index) ?? null,
+    fieldsResult.data.at(index) ?? null,
   ]) satisfies [Fields, string | null][];
   const fieldMap = Object.fromEntries(fieldEntries) as Record<
     (typeof fieldEntries)[number][0],
