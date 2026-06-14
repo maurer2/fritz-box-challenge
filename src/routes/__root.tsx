@@ -1,10 +1,10 @@
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 
-import { NavBar } from '../components/NavBar';
-import { SlideMaster } from '../components/SlideMaster';
+import { NavBar } from '../components/NavBar/NavBar';
+import { SlideMaster } from '../components/SlideMaster/SlideMaster';
 import { getStatusFieldsFromBoxQueryOptions } from '../queries/getStatusFieldsFromBox/getStatusFieldsFromBox';
-import { UpdateBar } from '../components/UpdateBar';
+import { UpdateBar } from '../components/UpdateBar/UpdateBar';
 import { InfoBar } from '../components/InfoBar';
 
 type Context = {

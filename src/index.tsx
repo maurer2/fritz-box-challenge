@@ -9,7 +9,7 @@ import { setupWorker } from 'msw/browser';
 import { StyleSheetManager, ThemeProvider } from 'styled-components';
 
 import { routeTree } from './routeTree.gen';
-import { theme, GlobalStyles } from './components/Theme';
+import { theme, GlobalStyles } from './components/Theme/Theme';
 import './index.css';
 
 declare module '@tanstack/react-router' {

@@ -2,7 +2,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { Slide } from '../components/Slide';
+import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/firmware')({
   component: Firmware,
