@@ -1,10 +1,10 @@
 import { http, HttpResponse, delay } from 'msw';
 
+import { env } from '../env2';
+
 import mockData from './box-7590-8_25.txt?raw';
 
-type Behaviour = 'OK' | 'SLOW' | '404' | 'NETWORK' | 'TIMEOUT' | 'INVALID_HTML' | 'INVALID_FIELDS';
-const behaviour: Behaviour = import.meta.env.VITE_MSW_BEHAVIOUR ?? 'OK';
-
+const behaviour = env.VITE_MSW_BEHAVIOUR;
 const handlers = [
   http.all('/box-data', async () => {
     switch (behaviour) {

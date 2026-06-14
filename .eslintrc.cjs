@@ -56,7 +56,7 @@ module.exports = {
     '@typescript-eslint/consistent-type-imports': 'error',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
-    // Allow vite's import suffixes (?raw, ?url, ?inline)
+    // Ignore vite's import suffixes (?raw, ?url, ?inline)
     'import/no-unresolved': ['error', { ignore: ['\\?(raw|url|inline)$'] }],
   },
   settings: {
@@ -64,6 +64,13 @@ module.exports = {
       version: 'detect',
     },
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx', '.mts', 'cjs', 'mjs'],
+    'import/resolver': {
+      typescript: {
+        project: './tsconfig.json',
+        alwaysTryTypes: true,
+      },
+      node: true,
+    },
   },
   parserOptions: {
     ecmaVersion: 2022,
@@ -76,7 +83,7 @@ module.exports = {
     {
       files: ['./scripts/**/*.ts'],
       rules: {
-        // force .ts file ending for relative imports
+        // force .ts file ending for relative imports for scripts
         'import/extensions': [
           'error',
           'ignorePackages', // only relative imports
