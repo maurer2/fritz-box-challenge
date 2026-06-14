@@ -17,12 +17,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "allowImportingTsExtensions": true,
     "noFallthroughCasesInSwitch": true,
     "erasableSyntaxOnly": true,
     "types": ["vite/client", "node"],
     "noUncheckedIndexedAccess": false // todo
   },
-  "include": ["./src/**/*"],
-  "exclude": ["./src/libs/*.js", "src/libs/*.js"],
+  "include": ["./src/**/*", "./scripts/**/*"],
   "files": ["./vite.config.mts"]
 }

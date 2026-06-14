@@ -56,6 +56,8 @@ module.exports = {
     '@typescript-eslint/consistent-type-imports': 'error',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
+    // Allow vite's import suffixes (?raw, ?url, ?inline)
+    'import/no-unresolved': ['error', { ignore: ['\\?(raw|url|inline)$'] }],
   },
   settings: {
     react: {
@@ -70,14 +72,16 @@ module.exports = {
       jsx: true,
     },
   },
-  // plain js files
   overrides: [
     {
-      files: ['./libs/*.js', './src/libs/*.js'],
-      extends: ['airbnb', 'eslint:recommended', 'plugin:import/errors', 'plugin:import/warnings'],
-      parser: 'babel-eslint',
+      files: ['./scripts/**/*.ts'],
       rules: {
-        // '@typescript-eslint/explicit-function-return-type': 'off',
+        // force .ts file ending for relative imports
+        'import/extensions': [
+          'error',
+          'ignorePackages', // only relative imports
+          { js: 'never', jsx: 'never', ts: 'always', tsx: 'never' },
+        ],
       },
     },
   ],

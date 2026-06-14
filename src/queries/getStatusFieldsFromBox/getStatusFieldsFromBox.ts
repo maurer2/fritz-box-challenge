@@ -24,7 +24,7 @@ const getStatusFieldsFromBox = async (signal?: AbortSignal) => {
 
   const fieldsResult = boxFieldsSchema.safeParse(bodyContent);
   if (!fieldsResult.success) {
-    throw new Error('Invalid payload', { cause: fieldsResult.error });
+    throw new Error('Invalid fields', { cause: fieldsResult.error });
   }
 
   const fieldEntries = fields.map((field, index) => [
