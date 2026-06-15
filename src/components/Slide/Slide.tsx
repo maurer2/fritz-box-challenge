@@ -1,7 +1,8 @@
-import { useState, type SVGAttributes, type Ref } from 'react';
+import { useState, type SVGAttributes } from 'react';
 import type { Simplify } from 'type-fest';
 
-import { SlideWrapper, SlideTitle, SlideText, TextFit } from './Slide.styles';
+import { SlideWrapper, SlideTitle, SlideText } from './Slide.styles';
+import { SlideField } from './components/SlideField/SlideField';
 
 type SlideProps = {
   title: string;
@@ -10,21 +11,6 @@ type SlideProps = {
 type ViewBoxName = Simplify<keyof SlideProps>;
 type ViewBoxes = Record<ViewBoxName, string | undefined>;
 type ViewBoxString = SVGAttributes<SVGSVGElement>['viewBox'];
-type TextReplacementElementProps = {
-  svgElementRef?: Ref<SVGSVGElement>;
-  viewBox: ViewBoxString;
-  text: string;
-};
-
-// SVG workaround: https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg
-// svgElementRef instead of ref fixes compiler issue
-const TextReplacementElement = ({ svgElementRef, viewBox, text }: TextReplacementElementProps) => (
-  <svg ref={svgElementRef} viewBox={viewBox} fill="currentColor" aria-hidden>
-    <text x="0" y="15">
-      {text}
-    </text>
-  </svg>
-);
 
 const Slide = ({ title, text }: SlideProps) => {
   const [viewBoxes, setViewBoxes] = useState<ViewBoxes>({
@@ -62,32 +48,13 @@ const Slide = ({ title, text }: SlideProps) => {
     text: svgElementRefsCallback('text'),
   } satisfies Partial<Record<ViewBoxName, ReturnType<typeof svgElementRefsCallback>>>;
 
-  // "experimental-web-platform-features"-flag needs to be set
-  const isSupportingTextGrow = CSS.supports('text-grow', 'per-line scale');
-
   return (
     <SlideWrapper key={`${title}-${text}`}>
       <SlideTitle aria-label={title}>
-        {isSupportingTextGrow ? (
-          <TextFit>{title}</TextFit>
-        ) : (
-          <TextReplacementElement
-            svgElementRef={svgElementRefs.title}
-            text={title}
-            viewBox={viewBoxes.title}
-          />
-        )}
+        <SlideField text={title} svgRef={svgElementRefs.title} viewBox={viewBoxes.title} />
       </SlideTitle>
       <SlideText aria-label={text}>
-        {isSupportingTextGrow ? (
-          <TextFit>{text}</TextFit>
-        ) : (
-          <TextReplacementElement
-            svgElementRef={svgElementRefs.text}
-            text={text}
-            viewBox={viewBoxes.text}
-          />
-        )}
+        <SlideField text={text} svgRef={svgElementRefs.text} viewBox={viewBoxes.text} />
       </SlideText>
     </SlideWrapper>
   );

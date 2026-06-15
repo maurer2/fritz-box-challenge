@@ -36,7 +36,7 @@
         "js/ts.inlayHints.propertyDeclarationTypes.enabled": true,
         "js/ts.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
         // eslint
-        "eslint.useFlatConfig": false,
+        "eslint.useFlatConfig": true,
         // markdown
         "markdown.preview.scrollEditorWithPreview": true,
         "markdown.preview.scrollPreviewWithEditor": true,
@@ -51,12 +51,12 @@
       },
       "extensions": [
         "aaron-bond.better-comments",
-        "ban.spellright",
         "bradlc.vscode-tailwindcss",
         "christian-kohler.path-intellisense",
         "clinyong.vscode-css-modules",
         "DavidAnson.vscode-markdownlint",
         "dbaeumer.vscode-eslint",
+        "oxc.oxc-vscode",
         "eamodio.gitlens",
         "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",

@@ -1,16 +1,11 @@
-import { createTheme, createGlobalStyle } from 'styled-components';
+import type { ReactNode } from 'react';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-// https://github.com/styled-components/styled-components/blob/9e07d950eca4fd08c0be5240e1ecece60f86e94e/.changeset/feat-create-theme.md
-const defaultTheme = createTheme({
-  colors: {
-    primaryColor: 'oklch(0.961 0 0)',
-    secondaryColor: 'oklch(0.798 0 0)',
-    tertiaryColor: 'oklch(0.1448 0 0)',
-  },
-});
-export { defaultTheme as theme };
+import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE, theme } from './tokens';
 
-export const SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE = 750;
+type ThemeProps = {
+  children: ReactNode;
+};
 
 export const GlobalStyles = createGlobalStyle`
   @layer base {
@@ -31,7 +26,7 @@ export const GlobalStyles = createGlobalStyle`
       inline-size: 100dvi;
       block-size: 100dvb;
       overflow: clip;
-      background: ${({ theme }) => theme.colors.tertiaryColor}
+      background: ${({ theme: currentTheme }) => currentTheme.colors.tertiaryColor}
     }
 
     .root {
@@ -94,4 +89,12 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export type Theme = typeof defaultTheme;
+export const Theme = ({ children }: ThemeProps) => (
+  <ThemeProvider theme={theme}>
+    {/* CSS Vars */}
+    <theme.GlobalStyle />
+    {/* Base styles */}
+    <GlobalStyles />
+    {children}
+  </ThemeProvider>
+);

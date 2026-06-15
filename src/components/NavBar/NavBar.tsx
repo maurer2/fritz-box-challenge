@@ -2,6 +2,7 @@ import { useState, type CSSProperties, type ReactNode } from 'react';
 import { useLocation, type FileRoutesByPath, type NavigateOptions } from '@tanstack/react-router';
 
 import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
+import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../Theme/tokens';
 
 import {
   NavBarWrapper,
@@ -12,9 +13,6 @@ import {
 } from './NavBar.styles';
 
 type TransitionName = 'move-left' | 'move-right';
-
-// todo: remove once style queries are supported in FF
-const SCREEN_WIDTH_INDICATOR = 750;
 
 // https://github.com/TanStack/router/discussions/5766
 const navLinks = [
@@ -53,7 +51,7 @@ const NavBar = () => {
 
   // aways reset offset and prev offset on media query change
   const isIndicatorVisible = useMediaQuery({
-    mediaQuery: `(min-width: ${SCREEN_WIDTH_INDICATOR}px)`,
+    mediaQuery: `(min-width: ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px)`,
     onChange: () => {
       setPrevOffset(null);
       setOffset(null);
@@ -80,18 +78,18 @@ const NavBar = () => {
     };
   };
 
-  const navBarIndicatorCssVars = {
+  const navBarIndicatorCssVars: CSSProperties = {
     '--inline-size': inlineSize,
     '--offset-x': offset,
-    '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
-  } as const;
+    '--has-prev-offset': prevOffset === null ? 'false' : 'true',
+  };
 
   return (
     <NavBarWrapper>
-      <NavBarIndicatorWrapper style={navBarIndicatorCssVars as CSSProperties} aria-hidden>
+      <NavBarIndicatorWrapper style={navBarIndicatorCssVars} aria-hidden>
         {isIndicatorVisible ? <NavBarIndicator /> : null}
       </NavBarIndicatorWrapper>
-      <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}>
+      <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}>
         {navLinks.map(([to, children]) => (
           <li key={to}>
             <NavBarEntry

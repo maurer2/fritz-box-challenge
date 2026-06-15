@@ -1,14 +1,14 @@
-import { resolve } from 'node:path';
+import path from 'node:path';
 import { writeFile } from 'node:fs/promises';
 
-import { env } from '../src/env2.ts';
+import { env } from '../src/env.ts';
 import fetcher from '../src/helpers/fetcher/fetcher.ts';
 import { boxHTMLSchema } from '../src/schema/boxHTML/boxHTML.schema.ts';
 
 try {
   const bodyContent = await fetcher(env.URL_BOX_STATUS, boxHTMLSchema);
   const html = `\n<html><body>${bodyContent}</body></html>\n\n`;
-  const filePath = resolve(import.meta.dirname, '../src/mocks/box-latest.txt');
+  const filePath = path.resolve(import.meta.dirname, '../src/mocks/box-latest.txt');
 
   await writeFile(filePath, html, 'utf8');
   console.log('Successfully dumped box data');

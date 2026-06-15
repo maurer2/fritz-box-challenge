@@ -1,22 +1,20 @@
-import { z } from 'zod';
+import * as z from 'zod';
 import { compile } from 'zod-compiler';
 
 const minSectionsOfBoxValues = 10; // 11 with language field
 const dateLength = 9;
 
-const boxFieldsSchemaUncompiled = z
+const boxFieldsSchemaUncompiledSchema = z
   .string({
     error: (issue) => (issue.input === undefined ? 'Value is required' : 'Value must be a string'),
   })
+  .trim()
   // inject a hyphen between power on hours and restarts as they are not separated by a hyphen in the raw string
   .transform((bodyContent) => {
     // hyphen positions are dynamic as individual fields like "technology" can have different lengths
-    const hyphenPositions = bodyContent.split('').reduce((total, current, index) => {
-      if (current === '-') {
-        total.push(index);
-      }
-      return total;
-    }, [] as number[]);
+    const hyphenPositions = Array.from(bodyContent).flatMap((character, index) =>
+      character === '-' ? index : [],
+    );
 
     const dateStartPosition = hyphenPositions[1] + 1;
     const splitPoint = dateStartPosition + dateLength; // before power on hours segment starts
@@ -42,4 +40,4 @@ const boxFieldsSchemaUncompiled = z
     error: 'No segment in array must be empty',
   });
 
-export const boxFieldsSchema = compile(boxFieldsSchemaUncompiled);
+export const boxFieldsSchema = compile(boxFieldsSchemaUncompiledSchema);

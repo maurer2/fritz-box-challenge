@@ -1,6 +1,6 @@
 import { http, HttpResponse, delay } from 'msw';
 
-import { env } from '../env2';
+import { env } from '../env';
 
 import mockData from './box-7590-8_25.txt?raw';
 
@@ -12,7 +12,6 @@ const handlers = [
         return new HttpResponse(null, { status: 404, statusText: 'Not Found' });
       }
       case 'NETWORK': {
-        // simulates a fetch-level network failure
         return HttpResponse.error();
       }
       case 'TIMEOUT': {
@@ -29,9 +28,12 @@ const handlers = [
           status: 200,
         });
       }
-      case 'SLOW':
+      case 'SLOW': {
+        await delay(5000);
+        return HttpResponse.text(mockData, { status: 200, statusText: 'OK - Mocked' });
+      }
+      case 'OK':
       default: {
-        await delay(behaviour === 'SLOW' ? 2500 : undefined);
         return HttpResponse.text(mockData, { status: 200, statusText: 'OK - Mocked' });
       }
     }

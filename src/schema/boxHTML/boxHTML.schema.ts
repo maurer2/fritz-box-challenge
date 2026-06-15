@@ -1,19 +1,25 @@
-import { z } from 'zod';
+import * as z from 'zod';
 import { compile } from 'zod-compiler';
 
-const boxHTMLSchemaUncompiled = z
+const boxHTMLSchemaUncompiledSchema = z
   .string({
     error: (issue) => (issue.input === undefined ? 'Value is required' : 'Value must be a string'),
   })
   .trim()
-  .regex(/<body[^>]*>(.*?)<\/body>/is, 'Body tag is missing')
-  // at this point the string is guaranteed to contain a body tag
-  .transform((html) => html.match(/<body[^>]*>(.*?)<\/body>/is)![1])
+  .transform((html, ctx) => {
+    const match = html.match(/<body[^>]*>(.*?)<\/body>/isu);
+    if (!match) {
+      ctx.issues.push({ code: 'custom', message: 'Body tag is missing', input: html });
+      // https://zod.dev/api?id=transforms#transforms
+      return z.NEVER;
+    }
+    return match[1];
+  })
   .refine((value) => value.includes('FRITZ!Box'), {
-    message: '"FRITZ!Box" string is missing',
+    error: '"FRITZ!Box" string is missing',
   });
 
-export type BoxHTML = z.infer<typeof boxHTMLSchema>;
+export type BoxHTML = z.output<typeof boxHTMLSchema>;
 
-export const boxHTMLSchema = compile(boxHTMLSchemaUncompiled);
-// export type BoxHTML = z.infer<typeof boxHTMLSchema>; // returns unknown instead of string
+export const boxHTMLSchema = compile(boxHTMLSchemaUncompiledSchema);
+// export type BoxHTML = z.output<typeof boxHTMLSchema>; // returns unknown instead of string

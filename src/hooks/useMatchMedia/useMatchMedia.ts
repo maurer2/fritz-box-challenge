@@ -9,6 +9,7 @@ export function useMediaQuery({ mediaQuery, onChange }: UseMediaQueryProps): boo
   const mediaQueryList = window.matchMedia(mediaQuery);
 
   const subscribeToMediaQuery = (onStoreChange: () => void) => {
+    // oxlint-disable-next-line typescript/explicit-function-return-type
     const listener = (event: MediaQueryListEvent) => {
       onStoreChange();
       onChange?.(event.matches);
@@ -17,12 +18,12 @@ export function useMediaQuery({ mediaQuery, onChange }: UseMediaQueryProps): boo
     mediaQueryList.addEventListener('change', listener);
     onChange?.(mediaQueryList.matches);
 
+    // oxlint-disable-next-line typescript/explicit-function-return-type
     return () => {
       mediaQueryList.removeEventListener('change', listener);
     };
   };
-
-  const isMatchingMediaQuery = () => mediaQueryList.matches;
+  const isMatchingMediaQuery = (): boolean => mediaQueryList.matches;
 
   return useSyncExternalStore(subscribeToMediaQuery, isMatchingMediaQuery);
 }

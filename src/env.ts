@@ -1,7 +1,6 @@
 import { createEnv } from '@t3-oss/env-core';
-import { z } from 'zod';
+import * as z from 'zod';
 
-// todo: change to env.ts once vscode stops crashing when using env.ts as a filename
 export const env = createEnv({
   server: {
     URL_BOX_STATUS: z.url(),

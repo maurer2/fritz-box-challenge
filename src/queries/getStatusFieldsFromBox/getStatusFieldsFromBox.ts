@@ -18,25 +18,20 @@ const fields = [
   'language',
 ] as const satisfies readonly string[];
 type Fields = (typeof fields)[number];
+type FieldsMap = Map<Fields, string>;
 
-const getStatusFieldsFromBox = async (signal?: AbortSignal) => {
+const getStatusFieldsFromBox = async (signal?: AbortSignal): Promise<FieldsMap> => {
   const bodyContent = await fetcher('/box-data', boxHTMLSchema, signal);
 
   const fieldsResult = boxFieldsSchema.safeParse(bodyContent);
   if (!fieldsResult.success) {
     throw new Error('Invalid fields', { cause: fieldsResult.error });
   }
+  const fieldEntries = fields
+    .map((field, index) => [field, fieldsResult.data.at(index)] as const)
+    .filter((entry): entry is readonly [Fields, string] => entry[1] !== undefined);
 
-  const fieldEntries = fields.map((field, index) => [
-    field,
-    fieldsResult.data.at(index) ?? null,
-  ]) satisfies [Fields, string | null][];
-  const fieldMap = Object.fromEntries(fieldEntries) as Record<
-    (typeof fieldEntries)[number][0],
-    (typeof fieldEntries)[number][1]
-  >;
-
-  return fieldMap;
+  return new Map<Fields, string>(fieldEntries);
 };
 
 export const getStatusFieldsFromBoxQueryOptions = queryOptions({

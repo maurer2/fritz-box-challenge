@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { match } from 'ts-pattern';
@@ -11,9 +10,8 @@ export const Route = createFileRoute('/technology')({
 
 function Technology() {
   const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
-  const {
-    data: { technology },
-  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
+  const { data } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
+  const technology = data.get('technology');
 
   if (!technology) {
     return null;

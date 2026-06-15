@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
@@ -10,9 +9,8 @@ export const Route = createFileRoute('/model')({
 
 function Model() {
   const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
-  const {
-    data: { model },
-  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
+  const { data } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
+  const model = data.get('model');
 
   if (!model) {
     return null;

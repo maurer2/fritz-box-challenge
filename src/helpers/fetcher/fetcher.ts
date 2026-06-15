@@ -1,9 +1,9 @@
-import { type ZodType, type z } from 'zod';
+import type * as z from 'zod';
 
 // https://zod.dev/library-authors
 // https://github.com/colinhacks/zod/issues/4532#issuecomment-2913734406
 // https://github.com/colinhacks/zod/issues/6060
-const fetcher = async <T extends ZodType>(
+const fetcher = async <T extends z.ZodType>(
   url: string,
   schema: T,
   signal?: AbortSignal,

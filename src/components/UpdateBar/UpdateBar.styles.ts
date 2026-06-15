@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const UpdateBarWrapper = styled.div`
+export const UpdateBarWrapper = styled.output`
   position: fixed;
   inset-block-start: 0;
   inset-inline: 0;
