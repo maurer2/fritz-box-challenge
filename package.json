@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Martin",
   "main": "index.js",
-  "packageManager": "pnpm@11.4.0",
+  "packageManager": "pnpm@11.7.0",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -64,7 +64,7 @@
     "jest-styled-components": "^7.4.0",
     "jiti": "^2.7.0",
     "jsdom": "^27.4.0",
-    "oxlint": "1.68.0",
+    "oxlint": "1.70.0",
     "oxlint-tsgolint": "^0.23.0",
     "postcss": "^8.5.9",
     "postcss-flexbugs-fixes": "^5.0.2",

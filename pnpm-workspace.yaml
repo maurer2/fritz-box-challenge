@@ -8,6 +8,8 @@ minimumReleaseAgeExclude:
   - 'rolldown'
   - '@oxc-project/types'
   - 'zod-compiler@1.9.1'
+  - 'oxlint@1.70.0'
+  - '@oxlint/binding-*'
 resolutionMode: highest
 
 supportedArchitectures:

@@ -1,5 +1,5 @@
 // oxlint-disable no-unused-vars
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const useAccessRefsDuringRender = (value: unknown) => {
   const ref = useRef<unknown>(null);
@@ -9,4 +9,12 @@ const useAccessRefsDuringRender = (value: unknown) => {
   });
 
   return ref.current;
+};
+
+const useIncorrectDependencyArray = () => {
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    console.log(name);
+  }, []);
 };

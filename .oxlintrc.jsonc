@@ -42,10 +42,14 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": "off",
     "react/forbid-component-props": "off",
+    "react/jsx-no-literals": "off",
+    // added in oxlint: 1.70 https://github.com/oxc-project/oxc/pull/23202
+    "react/react-compiler": "error",
     // ts
     "typescript/consistent-type-imports": "error",
     "typescript/prefer-readonly-parameter-types": "off", // too complicated when deadling with types from dependencies
     "typescript/promise-function-async": "off",
+    "typescript/strict-boolean-expressions": "off",
     // oxc
     "oxc/no-optional-chaining": "off",
     "oxc/no-async-await": "off",
@@ -54,7 +58,6 @@
     "unicorn/no-array-reduce": "warn",
     "unicorn/no-array-for-each": "warn",
     "unicorn/no-useless-switch-case": "off", // conflicts with exhaustive union type in switch cases
-    "typescript/strict-boolean-expressions": "off",
     "unicorn/prefer-query-selector": "off",
     // node
     "node/no-process-env": "off",
