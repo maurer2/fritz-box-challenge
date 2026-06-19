@@ -9,11 +9,11 @@ type SlideFieldProps = {
   viewBox: SVGAttributes<SVGSVGElement>['viewBox'];
 };
 
-// "experimental-web-platform-features"-flag needs to be set
-const isSupportingTextGrow = CSS.supports('text-grow', 'per-line scale');
+// https://caniuse.com/mdn-css_properties_text-fit_grow
+const isSupportingTextFit = CSS.supports('text-fit', 'grow');
 
 const SlideField = ({ text, svgRef, viewBox }: SlideFieldProps) =>
-  isSupportingTextGrow ? (
+  isSupportingTextFit ? (
     <TextFitCSS>{text}</TextFitCSS>
   ) : (
     <TextFitSVG svgElementRef={svgRef} text={text} viewBox={viewBox} />
