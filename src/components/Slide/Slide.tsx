@@ -18,7 +18,7 @@ const Slide = ({ title, text }: SlideProps) => {
     text: undefined,
   });
 
-  const svgElementRefsCallback =
+  const svgElementRefCallback =
     (viewBoxName: ViewBoxName) => (svgElement: SVGSVGElement | null) => {
       const svgElementBoundingBox = svgElement?.getBBox() ?? null;
       if (!svgElementBoundingBox) {
@@ -43,18 +43,13 @@ const Slide = ({ title, text }: SlideProps) => {
       });
     };
 
-  const svgElementRefs = {
-    title: svgElementRefsCallback('title'),
-    text: svgElementRefsCallback('text'),
-  } satisfies Partial<Record<ViewBoxName, ReturnType<typeof svgElementRefsCallback>>>;
-
   return (
     <SlideWrapper key={`${title}-${text}`}>
       <SlideTitle aria-label={title}>
-        <SlideField text={title} svgRef={svgElementRefs.title} viewBox={viewBoxes.title} />
+        <SlideField text={title} ref={svgElementRefCallback('title')} viewBox={viewBoxes.title} />
       </SlideTitle>
       <SlideText aria-label={text}>
-        <SlideField text={text} svgRef={svgElementRefs.text} viewBox={viewBoxes.text} />
+        <SlideField text={text} ref={svgElementRefCallback('text')} viewBox={viewBoxes.text} />
       </SlideText>
     </SlideWrapper>
   );
