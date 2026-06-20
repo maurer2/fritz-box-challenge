@@ -2,6 +2,7 @@ import { queryOptions } from '@tanstack/react-query';
 
 import fetcher from '../../helpers/fetcher/fetcher';
 import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
+import { boxFieldsSchema } from '../../schema/boxFields/boxFields.schema';
 
 const fields = [
   'model',
@@ -14,57 +15,28 @@ const fields = [
   'firmware',
   'subfirmware',
   'branding',
+  'language',
 ] as const satisfies readonly string[];
+type Fields = (typeof fields)[number];
+type FieldsMap = Map<Fields, string>;
 
-const dateLength = 9;
-// add dash after second dash
-// power on hours and restarts are not separated by a dash
-function addMissingDashBetweenPowerOnHoursAndRestarts(
-  stringValue: string,
-  dashPositions: number[],
-): string {
-  const dateStartPosition = dashPositions[1] + 1;
-  const splitPoint = dateStartPosition + dateLength; // position between date and power on hours
+const getStatusFieldsFromBox = async (signal?: AbortSignal): Promise<FieldsMap> => {
+  const bodyContent = await fetcher('/box-data', boxHTMLSchema, signal);
 
-  const stringBeforeSplitPoint = stringValue.substring(0, splitPoint);
-  const stringAfterSplitPoint = stringValue.substring(splitPoint);
-
-  const tempStringArray = stringBeforeSplitPoint.split('');
-  tempStringArray.splice(-3, 1);
-  const stringBeforeSplitPointWithoutLastDash = tempStringArray.join('');
-
-  return `${stringBeforeSplitPointWithoutLastDash}-${stringAfterSplitPoint}`;
-}
-
-const getStatusFieldsFromBox = async () => {
-  const boxDataHTML = await fetcher('/box-data', boxHTMLSchema);
-  const bodyContent = boxDataHTML.match(/<body[^>]*>(.*?)<\/body>/is)?.[1] ?? '';
-
-  const dashPositions = bodyContent.split('').reduce((total, current, index) => {
-    if (current === '-') {
-      total.push(index);
-    }
-    return total;
-  }, [] as number[]);
-
-  const bodyContentFixed = addMissingDashBetweenPowerOnHoursAndRestarts(bodyContent, dashPositions);
-  const statusFieldsList = bodyContentFixed.split('-');
-  if (fields.length !== statusFieldsList.length) {
-    throw new Error('Mismatch between expected number of fields and actual fields in html string');
+  const fieldsResult = boxFieldsSchema.safeParse(bodyContent);
+  if (!fieldsResult.success) {
+    throw new Error('Invalid fields', { cause: fieldsResult.error });
   }
+  const fieldEntries = fields
+    .map((field, index) => [field, fieldsResult.data.at(index)] as const)
+    .filter((entry): entry is readonly [Fields, string] => entry[1] !== undefined);
 
-  const fieldMap = Object.fromEntries(
-    fields.map(
-      (key, index) => [key, statusFieldsList[index]] satisfies [(typeof fields)[number], string],
-    ),
-  ) as Record<(typeof fields)[number], (typeof statusFieldsList)[number]>;
-
-  return fieldMap;
+  return new Map<Fields, string>(fieldEntries);
 };
 
 export const getStatusFieldsFromBoxQueryOptions = queryOptions({
   queryKey: ['box-data'],
-  queryFn: () => getStatusFieldsFromBox(),
+  queryFn: ({ signal }) => getStatusFieldsFromBox(signal),
   refetchOnWindowFocus: true,
   refetchOnMount: true,
   refetchOnReconnect: false,

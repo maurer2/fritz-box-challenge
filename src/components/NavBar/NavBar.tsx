@@ -1,24 +1,21 @@
-import { useRef, type ComponentProps, type ReactNode, type CSSProperties } from 'react';
-import { useLocation, type NavigateOptions } from '@tanstack/react-router';
+import { useRef, type ReactNode, type CSSProperties } from 'react';
+import { useLocation, type FileRoutesByPath, type NavigateOptions } from '@tanstack/react-router';
 
-import { NavBarIndicator } from '../NavBarIndicator';
-
+import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../Theme/tokens';
+import { NavBarIndicator } from '../NavBarIndicator/NavBarIndicator';
 import { NavBarWrapper, NavBarList, NavBarEntry } from './NavBar.styles';
 
-// prettier-ignore
-type NavLinkPath = NonNullable<(ComponentProps<typeof NavBarEntry>)['to']>;
 type TransitionName = 'move-left' | 'move-right';
 
-const SCREEN_WIDTH_INDICATOR = 750;
-
-const navLinks: [path: NavLinkPath, children: ReactNode][] = [
+// https://github.com/TanStack/router/discussions/5766
+const navLinks = [
   ['/branding', 'Branding'],
   ['/firmware', 'Firmware'],
   ['/model', 'Model'],
   ['/power-on-hours', 'Power on hours'],
   ['/restarts', 'Restarts'],
   ['/technology', 'Technology'],
-];
+] satisfies [keyof FileRoutesByPath, ReactNode][];
 
 const viewTransition: NavigateOptions['viewTransition'] = {
   types: ({ fromLocation, toLocation }) => {
@@ -30,8 +27,9 @@ const viewTransition: NavigateOptions['viewTransition'] = {
     if (newRoutIndex === currentRoutIndex) {
       return false;
     }
-    const newDirection: TransitionName =
-      newRoutIndex > currentRoutIndex ? 'move-right' : 'move-left';
+    const newDirection = (
+      newRoutIndex > currentRoutIndex ? 'move-right' : 'move-left'
+    ) satisfies TransitionName;
 
     return [newDirection];
   },
@@ -51,9 +49,9 @@ const NavBar = () => {
       <NavBarIndicator
         activeNavBarEntry={activeNavBarEntry}
         activeNavBarEntryIndex={activeNavBarEntryIndex}
-        minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}
+        minScreenSizeIndicator={SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}
       />
-      <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_INDICATOR}>
+      <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}>
         {navLinks.map(([to, children], index) => (
           <li key={to}>
             <NavBarEntry

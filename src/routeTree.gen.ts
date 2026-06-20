@@ -13,6 +13,7 @@ import { Route as TechnologyRouteImport } from './routes/technology'
 import { Route as RestartsRouteImport } from './routes/restarts'
 import { Route as PowerOnHoursRouteImport } from './routes/power-on-hours'
 import { Route as ModelRouteImport } from './routes/model'
+import { Route as LanguageRouteImport } from './routes/language'
 import { Route as FirmwareRouteImport } from './routes/firmware'
 import { Route as BrandingRouteImport } from './routes/branding'
 import { Route as IndexRouteImport } from './routes/index'
@@ -37,6 +38,11 @@ const ModelRoute = ModelRouteImport.update({
   path: '/model',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LanguageRoute = LanguageRouteImport.update({
+  id: '/language',
+  path: '/language',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FirmwareRoute = FirmwareRouteImport.update({
   id: '/firmware',
   path: '/firmware',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/branding': typeof BrandingRoute
   '/firmware': typeof FirmwareRoute
+  '/language': typeof LanguageRoute
   '/model': typeof ModelRoute
   '/power-on-hours': typeof PowerOnHoursRoute
   '/restarts': typeof RestartsRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/branding': typeof BrandingRoute
   '/firmware': typeof FirmwareRoute
+  '/language': typeof LanguageRoute
   '/model': typeof ModelRoute
   '/power-on-hours': typeof PowerOnHoursRoute
   '/restarts': typeof RestartsRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/branding': typeof BrandingRoute
   '/firmware': typeof FirmwareRoute
+  '/language': typeof LanguageRoute
   '/model': typeof ModelRoute
   '/power-on-hours': typeof PowerOnHoursRoute
   '/restarts': typeof RestartsRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/branding'
     | '/firmware'
+    | '/language'
     | '/model'
     | '/power-on-hours'
     | '/restarts'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/branding'
     | '/firmware'
+    | '/language'
     | '/model'
     | '/power-on-hours'
     | '/restarts'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/branding'
     | '/firmware'
+    | '/language'
     | '/model'
     | '/power-on-hours'
     | '/restarts'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrandingRoute: typeof BrandingRoute
   FirmwareRoute: typeof FirmwareRoute
+  LanguageRoute: typeof LanguageRoute
   ModelRoute: typeof ModelRoute
   PowerOnHoursRoute: typeof PowerOnHoursRoute
   RestartsRoute: typeof RestartsRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModelRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/language': {
+      id: '/language'
+      path: '/language'
+      fullPath: '/language'
+      preLoaderRoute: typeof LanguageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/firmware': {
       id: '/firmware'
       path: '/firmware'
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrandingRoute: BrandingRoute,
   FirmwareRoute: FirmwareRoute,
+  LanguageRoute: LanguageRoute,
   ModelRoute: ModelRoute,
   PowerOnHoursRoute: PowerOnHoursRoute,
   RestartsRoute: RestartsRoute,

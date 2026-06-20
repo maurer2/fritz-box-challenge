@@ -5,9 +5,7 @@ import { UpdateBarWrapper } from './UpdateBar.styles';
 type UpdateBarProps = PropsWithChildren;
 
 const UpdateBar = ({ children }: UpdateBarProps) => (
-  <UpdateBarWrapper role="status" aria-atomic>
-    {children}
-  </UpdateBarWrapper>
+  <UpdateBarWrapper aria-atomic>{children}</UpdateBarWrapper>
 );
 
 export { UpdateBar };

@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { Slide } from '../components/Slide';
+import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/model')({
   component: Model,
@@ -10,9 +9,12 @@ export const Route = createFileRoute('/model')({
 
 function Model() {
   const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
-  const {
-    data: { model },
-  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
+  const { data } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
+  const model = data.get('model');
+
+  if (!model) {
+    return null;
+  }
 
   const modelWithoutBranding = model.replace('(UI)', ''); // 1und1 branding
 

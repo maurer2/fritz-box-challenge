@@ -6,10 +6,10 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
-import { StyleSheetManager, ThemeProvider } from 'styled-components';
+import { StyleSheetManager } from 'styled-components';
 
 import { routeTree } from './routeTree.gen';
-import { theme, GlobalStyles } from './components/Theme';
+import { Theme } from './components/Theme/Theme';
 import './index.css';
 
 declare module '@tanstack/react-router' {
@@ -24,7 +24,7 @@ if (!rootElement) {
 }
 const root = ReactDOM.createRoot(rootElement);
 
-const isDevMode = import.meta.env.VITE_APP_MODE === 'dev';
+const isDevMode = import.meta.env.MODE === 'development';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,16 +39,16 @@ const queryClient = new QueryClient({
 });
 
 async function mockEndpoints() {
-  if (isDevMode) {
-    const handlers = (await import('./mocks/handlers')).default;
-    const worker = setupWorker(...handlers);
-
-    return worker.start({
-      onUnhandledRequest: 'bypass',
-    });
+  if (!isDevMode) {
+    return;
   }
 
-  return Promise.resolve();
+  const handlers = (await import('./mocks/handlers')).default;
+  const worker = setupWorker(...handlers);
+
+  await worker.start({
+    onUnhandledRequest: 'bypass',
+  });
 }
 await mockEndpoints();
 
@@ -69,11 +69,7 @@ root.render(
   <StrictMode>
     {/* needed for "height: stretch" */}
     <StyleSheetManager enableVendorPrefixes>
-      <ThemeProvider theme={theme}>
-        {/* CSS Vars */}
-        <theme.GlobalStyle />
-        {/* Actual global styles */}
-        <GlobalStyles />
+      <Theme>
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
         </QueryClientProvider>
@@ -94,7 +90,7 @@ root.render(
             },
           ]}
         />
-      </ThemeProvider>
+      </Theme>
     </StyleSheetManager>
   </StrictMode>,
 );

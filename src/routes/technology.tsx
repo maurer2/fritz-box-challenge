@@ -1,16 +1,23 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { match } from 'ts-pattern';
 
-import { Slide } from '../components/Slide';
+import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/technology')({
   component: Technology,
 });
 
-const getMappedTechnology = (technology: string): string =>
-  match(technology)
+function Technology() {
+  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
+  const { data } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
+  const technology = data.get('technology');
+
+  if (!technology) {
+    return null;
+  }
+
+  const mappedTechnology = match(technology)
     .returnType<string>()
     .with('A', 'B', 'J', 'Q', (value) => `Annex ${value}`)
     .with('Annex unbekannt', () => 'Unknown Annex')
@@ -19,14 +26,6 @@ const getMappedTechnology = (technology: string): string =>
     // .with('???', () => 'XGS GPON')
     // .with('???', () => 'AON')
     .otherwise(() => 'Unknown');
-
-function Technology() {
-  const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
-  const {
-    data: { technology },
-  } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
-
-  const mappedTechnology = getMappedTechnology(technology);
 
   return <Slide title="Technology" text={mappedTechnology} />;
 }

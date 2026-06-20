@@ -1,19 +1,23 @@
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 
-import { NavBar } from '../components/NavBar';
-import { SlideMaster } from '../components/SlideMaster';
+import { NavBar } from '../components/NavBar/NavBar';
+import { SlideMaster } from '../components/SlideMaster/SlideMaster';
 import { getStatusFieldsFromBoxQueryOptions } from '../queries/getStatusFieldsFromBox/getStatusFieldsFromBox';
-import { UpdateBar } from '../components/UpdateBar';
-import { InfoBar } from '../components/InfoBar';
+import { UpdateBar } from '../components/UpdateBar/UpdateBar';
+import { InfoBar } from '../components/InfoBar/InfoBar';
 
 type Context = {
   queryClient: QueryClient;
 };
 
 export const Route = createRootRouteWithContext<Context>()({
-  pendingComponent: () => <UpdateBar>Box data is being fetched</UpdateBar>, // suspense boundary
-  errorComponent: () => <UpdateBar>Box data can&apos;t be loaded</UpdateBar>, // error boundary
+  // suspense boundary
+  pendingComponent: () => <UpdateBar>Box data is being fetched</UpdateBar>,
+  // error boundary
+  errorComponent: ({ error }) => (
+    <UpdateBar>Box data can&apos;t be loaded. {error.message}</UpdateBar>
+  ),
   wrapInSuspense: true, // required when a pending component is used in a root route: https://github.com/TanStack/router/issues/2182
   ssr: false,
   beforeLoad({ context }) {

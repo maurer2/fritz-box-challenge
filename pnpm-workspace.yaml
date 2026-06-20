@@ -1,0 +1,22 @@
+allowBuilds:
+  msw: true
+  unrs-resolver: true
+
+minimumReleaseAge: 10080 # 7 days
+blockExoticSubdeps: true # no git branch as package url
+minimumReleaseAgeExclude:
+  - 'rolldown'
+  - '@oxc-project/types'
+  - 'zod-compiler@1.9.1'
+  - 'oxlint@1.70.0'
+  - '@oxlint/binding-*'
+resolutionMode: highest
+
+supportedArchitectures:
+  cpu:
+    - arm64
+    - x64
+  os:
+    - darwin
+    - linux
+    - win32

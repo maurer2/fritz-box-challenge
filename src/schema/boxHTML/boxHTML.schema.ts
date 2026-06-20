@@ -1,25 +1,25 @@
-import { z } from 'zod';
+import * as z from 'zod';
+import { compile } from 'zod-compiler';
 
-export const boxHTMLSchema = z
+const boxHTMLSchemaUncompiledSchema = z
   .string({
-    error: (issue) =>
-      issue.input === undefined ? 'Field must be filled in/out' : 'Field must be a string',
+    error: (issue) => (issue.input === undefined ? 'Value is required' : 'Value must be a string'),
   })
   .trim()
-  .regex(/<body[^>]*>(.*?)<\/body>/is, 'body tag is missing')
-  .includes('FRITZ!Box', { message: '"FRITZ!Box" is missing in string' })
-  .refine(
-    (value) => {
-      const listOfDashes = value?.match(/-/g) ?? [];
+  .transform((html, ctx) => {
+    const match = html.match(/<body[^>]*>(.*?)<\/body>/isu);
+    if (!match) {
+      ctx.issues.push({ code: 'custom', message: 'Body tag is missing', input: html });
+      // https://zod.dev/api?id=transforms#transforms
+      return z.NEVER;
+    }
+    return match[1];
+  })
+  .refine((value) => value.includes('FRITZ!Box'), {
+    error: '"FRITZ!Box" string is missing',
+  });
 
-      if (!listOfDashes.length || listOfDashes.length < 9) {
-        return false;
-      }
-      return true;
-    },
-    {
-      message: 'Structure of body is invalid. There are not enough or too few dashes.',
-    },
-  );
+export type BoxHTML = z.output<typeof boxHTMLSchema>;
 
-export type BoxHTML = z.infer<typeof boxHTMLSchema>;
+export const boxHTMLSchema = compile(boxHTMLSchemaUncompiledSchema);
+// export type BoxHTML = z.output<typeof boxHTMLSchema>; // returns unknown instead of string

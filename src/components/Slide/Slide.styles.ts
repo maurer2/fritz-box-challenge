@@ -16,9 +16,3 @@ export const SlideText = styled.dd`
   margin-block: 0;
   margin-inline: max(1rem, 15%);
 `;
-
-// needs to be a block element
-export const TextFit = styled.div`
-  /* stylelint-disable-next-line property-no-unknown */
-  text-grow: per-line scale;
-`;

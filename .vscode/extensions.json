@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "dbaeumer.vscode-eslint",
+    "oxc.oxc-vscode",
+    "stylelint.vscode-stylelint"
+  ],
+  "unwantedRecommendations": ["ban.spellright"]
+}

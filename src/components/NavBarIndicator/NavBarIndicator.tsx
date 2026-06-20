@@ -6,7 +6,7 @@ import { NavBarIndicatorWrapper, NavBarIndicatorBar } from './NavBarIndicator.st
 
 const NavBarIndicatorFallback = lazy(() => {
   if (!CSS.supports('anchor-name: --anchor')) {
-    return import('../NavBarIndicatorFallback').then((module) => ({
+    return import('../NavBarIndicatorFallback/NavBarIndicatorFallback').then((module) => ({
       default: module.NavBarIndicatorFallback,
     }));
   }

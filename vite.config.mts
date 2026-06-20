@@ -3,7 +3,9 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import babel from '@rolldown/plugin-babel';
 import { devtools } from '@tanstack/devtools-vite';
+import { visualizer } from 'rollup-plugin-visualizer';
 import type { Logger } from 'babel-plugin-react-compiler';
+import zodCompiler from 'zod-compiler/vite';
 
 // import { boxHTMLSchema } from './src/schema/boxHTML/boxHTML.schema';
 // import fetcher from './src/helpers/fetcher/fetcher';
@@ -42,7 +44,8 @@ const boxDataProxyOptions = {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const isDevMode = process.env.VITE_APP_MODE === 'dev';
+  const isDevMode = mode === 'development';
+  const isAnalyzeMode = mode === 'analyze';
 
   return {
     base: '',
@@ -54,34 +57,35 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       devtools(),
-      tanstackRouter(),
+      tanstackRouter({
+        autoCodeSplitting: true,
+      }),
       react(),
       babel({
-        presets: [reactCompilerPreset()],
-        plugins: [
-          [
-            'babel-plugin-react-compiler',
-            {
-              logger: {
-                logEvent(filename, event) {
-                  switch (event.kind) {
-                    case 'CompileSuccess': {
-                      console.log(`✅ Compiled: ${filename}`);
-                      break;
-                    }
-                    case 'CompileError': {
-                      console.log(`❌ Compiler Error: ${filename}`);
-                      console.error(`Reason: ${event.detail.reason}`);
-                      break;
-                    }
-                    default: {
-                      break; // eslint fix
-                    }
+        presets: [
+          reactCompilerPreset({
+            // https://github.com/vitejs/vite-plugin-react/discussions/1208#discussioncomment-16922703
+            logger: {
+              logEvent(filename, event) {
+                switch (event.kind) {
+                  case 'CompileSuccess': {
+                    console.log(`✅ Compiled: ${filename}`);
+                    break;
                   }
-                },
-              } satisfies Logger,
-            },
-          ],
+                  case 'CompileError': {
+                    console.log(`❌ Compiler Error: ${filename}`);
+                    console.error(`Reason: ${event.detail.reason}`);
+                    break;
+                  }
+                  default: {
+                    break; // eslint fix
+                  }
+                }
+              },
+            } satisfies Logger,
+          }),
+        ],
+        plugins: [
           [
             'babel-plugin-styled-components',
             {
@@ -92,10 +96,23 @@ export default defineConfig(({ mode }) => {
           ],
         ],
       }),
+      isAnalyzeMode
+        ? visualizer({
+            filename: 'dist/stats.html',
+            open: true,
+            gzipSize: true,
+            brotliSize: true,
+            template: 'treemap',
+          })
+        : null,
+      zodCompiler({
+        schemas: 'explicit',
+      }),
     ],
     server: {
       open: false,
       port: 3000,
+      // proxy is not needed in dev mode as there are no cors errors from MSW
       proxy: !isDevMode
         ? {
             '/box-data': {

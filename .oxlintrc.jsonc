@@ -1,0 +1,159 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "react",
+    "typescript",
+    "jsx-a11y",
+    "unicorn",
+    "oxc",
+    "import",
+    "promise",
+    "eslint",
+    "node",
+    "vitest",
+  ],
+  "jsPlugins": ["eslint-plugin-zod"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error",
+    "restriction": "error",
+    "perf": "error",
+    "pedantic": "warn",
+    "nursery": "off",
+    "style": "off",
+  },
+  "rules": {
+    // eslint
+    "eslint/no-console": "off",
+    "eslint/no-plusplus": "off",
+    "eslint/no-new": "off",
+    "eslint/no-inline-comments": "off",
+    "eslint/no-undefined": "off",
+    "eslint/no-warning-comments": "off",
+    "eslint/max-lines-per-function": [
+      "warn",
+      {
+        "skipComments": true,
+        "skipBlankLines": true,
+        "max": 100, // includes React components
+      },
+    ],
+    // react
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "react/forbid-component-props": "off",
+    "react/jsx-no-literals": "off",
+    // added in oxlint: 1.70 https://github.com/oxc-project/oxc/pull/23202
+    "react/react-compiler": "error",
+    // ts
+    "typescript/consistent-type-imports": "error",
+    "typescript/prefer-readonly-parameter-types": "off", // too complicated when deadling with types from dependencies
+    "typescript/promise-function-async": "off",
+    "typescript/strict-boolean-expressions": "off",
+    // oxc
+    "oxc/no-optional-chaining": "off",
+    "oxc/no-async-await": "off",
+    "oxc/no-rest-spread-properties": "off",
+    // unicorn
+    "unicorn/no-array-reduce": "warn",
+    "unicorn/no-array-for-each": "warn",
+    "unicorn/no-useless-switch-case": "off", // conflicts with exhaustive union type in switch cases
+    "unicorn/prefer-query-selector": "off",
+    // node
+    "node/no-process-env": "off",
+    // import
+    "import/no-default-export": "off",
+    "import/no-relative-parent-imports": "off",
+    "import/no-unassigned-import": "off", // needed for side effect imports like CSS imports
+    "import/unambiguous": "off",
+    "import/max-dependencies": "off",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "import/consistent-type-specifier-style": "off", // doesn't support "prefer-top-level-if-only-type-imports" yet
+    "eslint/sort-imports": "off",
+    // zod
+    "zod/array-style": "error",
+    "zod/consistent-import": "error", // https://github.com/colinhacks/zod/issues/4433#issuecomment-2921500831
+    "zod/consistent-schema-var-name": "error",
+    "zod/no-any-schema": "error",
+    "zod/no-coerce-boolean": "error",
+    "zod/no-duplicate-schema-methods": "error",
+    "zod/no-empty-custom-schema": "error",
+    "zod/no-native-enum": "error",
+    "zod/no-number-schema-with-finite": "error",
+    "zod/no-number-schema-with-int": "error",
+    "zod/no-number-schema-with-is-finite": "error",
+    "zod/no-number-schema-with-is-int": "error",
+    "zod/no-number-schema-with-safe": "error",
+    "zod/no-number-schema-with-step": "error",
+    // "zod/no-string-schema-with-uuid": "error",
+    "zod/no-optional-and-default-together": "error",
+    "zod/no-promise-schema": "error",
+    "zod/no-schema-with-is-nullable": "error",
+    "zod/no-schema-with-is-optional": "error",
+    "zod/no-throw-in-refine": "error",
+    "zod/prefer-enum-over-literal-union": "error",
+    "zod/prefer-loose-object": "error",
+    "zod/prefer-meta": "error",
+    "zod/prefer-meta-last": "error",
+    "zod/prefer-strict-object": "error",
+    "zod/prefer-top-level-string-formats": "error",
+    "zod/prefer-string-schema-with-trim": "error",
+    "zod/prefer-trim-before-string-length-checks": "error",
+    "zod/require-brand-type-parameter": "error",
+    "zod/require-error-message": "error",
+    // vitest,
+    "vitest/require-test-timeout": "off",
+  },
+  "env": {
+    "builtin": true,
+    "browser": true,
+  },
+  "settings": {
+    "react": {
+      "version": "19",
+    },
+  },
+  "options": {
+    "typeAware": true,
+    "typeCheck": false, // use tsgo --noEmit for now
+  },
+  "ignorePatterns": ["src/routeTree.gen.ts", "public/mockServiceWorker.js"],
+  "overrides": [
+    // disable mandatory return types for React components -> also disables it for functions inside React component files
+    {
+      "files": ["src/**/*.{tsx}", "src/**/*.styles.{ts}"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+      },
+    },
+    // tanStack routes overrides
+    {
+      "files": ["src/routes/**/*.tsx"],
+      "rules": {
+        "react/only-export-components": "off",
+        "eslint/no-use-before-define": "off",
+      },
+    },
+    {
+      // scripts run via node TS loader, which requires explicit .ts extensions on relative imports
+      "files": ["./scripts/**/*.ts"],
+      "rules": {
+        "import/extensions": [
+          "error",
+          "ignorePackages",
+          { "js": "never", "jsx": "never", "ts": "always", "tsx": "never" },
+        ],
+      },
+    },
+    // vitest, jest
+    {
+      "files": ["**/*.spec.ts", "**/*.spec.tsx"],
+      "rules": {
+        "eslint/max-lines-per-function": "off",
+      },
+    },
+  ],
+}

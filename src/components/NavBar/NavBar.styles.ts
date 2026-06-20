@@ -23,12 +23,28 @@ export const NavBarList = styled.ul<NavBarListProps>`
   list-style: none;
   background: ${({ theme }) => theme.colors.secondaryColor};
 
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_size_and_style_queries#registered_properties */
+  /* CSS vars via defineProperty are always true if they have a different value than the default */
+  /* @container style(--indicator-is-visible) {
+    grid-template-columns: none;
+    grid-auto-columns: minmax(max-content, 1fr);
+    grid-auto-flow: column;
+  }*/
+
   @container navbar (width > ${({ $minScreenSizeIndicator }) => $minScreenSizeIndicator}px) {
     /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
     grid-template-columns: none;
     grid-auto-columns: minmax(max-content, 1fr);
     grid-auto-flow: column;
   }
+
+  /*
+  @media (--large-screen) {
+    grid-template-columns: none;
+    grid-auto-columns: minmax(max-content, 1fr);
+    grid-auto-flow: column;
+  }
+  */
 
   > li {
     display: contents;

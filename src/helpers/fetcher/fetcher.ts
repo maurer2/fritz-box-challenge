@@ -1,33 +1,47 @@
-import { ZodError, type ZodType, type z } from 'zod';
+import type * as z from 'zod';
 
-// https://github.com/colinhacks/zod#writing-generic-functions
-const fetcher = async <T extends ZodType>(url: string, schema: T): Promise<z.infer<T>> => {
+// https://zod.dev/library-authors
+// https://github.com/colinhacks/zod/issues/4532#issuecomment-2913734406
+// https://github.com/colinhacks/zod/issues/6060
+const fetcher = async <T extends z.ZodType>(
+  url: string,
+  schema: T,
+  signal?: AbortSignal,
+  timeout = 10_000,
+): Promise<z.output<T>> => {
+  const abortSignal = signal
+    ? AbortSignal.any([signal, AbortSignal.timeout(timeout)])
+    : AbortSignal.timeout(timeout);
+
+  let response: Response;
+
   try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(
-        `${response.status.toString()} ${response.statusText} ` || `HTTP error ${url}}`,
-      );
-    }
-
-    const textContent = await response.text();
-
-    return schema.parse(textContent);
+    response = await fetch(url, { signal: abortSignal });
   } catch (error) {
-    if (!Error.isError(error)) {
-      console.warn(`Unknown error when trying to fetch "${url}"`);
-      throw new Error('Unknown error');
-    }
+    if (error instanceof DOMException) {
+      if (error.name === 'TimeoutError') {
+        throw new Error('Request timed out', { cause: error });
+      }
 
-    if (error instanceof ZodError) {
-      console.warn('Schema parsing error', error);
-      throw new Error('Schema parsing error', { cause: error });
+      // AbortError
+      throw error;
     }
-
-    console.warn(`Error fetching "${url}"`);
-    throw error;
+    throw new Error('Network error', { cause: error });
   }
+
+  const data = await response.text().catch(() => null);
+
+  if (!response.ok) {
+    throw new Error(`${response.status} - ${response.statusText}`, {
+      cause: { status: response.status, data },
+    });
+  }
+
+  const result = schema.safeParse(data);
+  if (!result.success) {
+    throw new Error('Invalid payload', { cause: result.error });
+  }
+  return result.data;
 };
 
 export default fetcher;
