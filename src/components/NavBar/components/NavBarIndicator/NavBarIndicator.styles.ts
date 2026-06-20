@@ -14,7 +14,7 @@ export const NavBarIndicatorBar = styled.div<NavBarIndicatorBarProps>`
   position: absolute;
   inset-block-start: anchor(top);
   inset-inline-start: anchor(start);
-  inset-inline-end: anchor(end);
+  inline-size: anchor-size(width);
   block-size: 5px;
   position-anchor: var(--current-anchor);
   background: ${({ theme }) => theme.colors.highlightColor};
@@ -22,10 +22,10 @@ export const NavBarIndicatorBar = styled.div<NavBarIndicatorBarProps>`
   @media (width > ${({ $minSizeSingleRowNav }) => $minSizeSingleRowNav}px) {
     inset-block-start: 0;
     transition-duration: 0s;
-    transition-property: left, right;
+    transition-property: inset-inline-start, inline-size;
 
     @media (prefers-reduced-motion: no-preference) {
-      @container style(--has-prev-anchor: true) {
+      @container style(--should-transition: true) {
         transition-duration: 500ms;
       }
     }

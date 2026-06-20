@@ -2,7 +2,7 @@ import { useRef, type ReactNode, type CSSProperties } from 'react';
 import { useLocation, type FileRoutesByPath, type NavigateOptions } from '@tanstack/react-router';
 
 import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../Theme/tokens';
-import { NavBarIndicator } from '../NavBarIndicator/NavBarIndicator';
+import { NavBarIndicator } from './components/NavBarIndicator/NavBarIndicator';
 import { NavBarWrapper, NavBarList, NavBarEntry } from './NavBar.styles';
 
 type TransitionName = 'move-left' | 'move-right';

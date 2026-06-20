@@ -1,6 +1,6 @@
 import { useState, useMemo, useLayoutEffect, type CSSProperties } from 'react';
 
-import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
+import { useMediaQuery } from '../../../../hooks/useMatchMedia/useMatchMedia';
 
 import { NavBarIndicatorWrapper, NavBarIndicator } from './NavBarIndicatorFallback.styles';
 
@@ -9,6 +9,7 @@ type NavBarIndicatorFallback = {
   minScreenSizeIndicator: number;
 };
 
+// uses offset calculations
 function NavBarIndicatorFallback({
   activeNavBarEntry,
   minScreenSizeIndicator,
@@ -43,35 +44,12 @@ function NavBarIndicatorFallback({
     setInlineSize(`${Math.floor(width)}px`);
   }, [activeNavBarEntry, isIndicatorVisible]);
 
-  // const activeNavBarEntryRefCallback = useCallback(
-  //   (activeElement: HTMLAnchorElement) => {
-  //     const resizeObserver = new ResizeObserver(([entry]) => {
-  //       const [elementSize] = entry.borderBoxSize;
-  //       const { offsetLeft } = activeElement;
-
-  //       setOffset((currentOffset) => {
-  //         setPrevOffset(isIndicatorVisible ? currentOffset : null);
-
-  //         return `${Math.floor(offsetLeft)}px`;
-  //       });
-  //       setInlineSize(`${Math.floor(elementSize.inlineSize)}px`);
-  //     });
-
-  //     resizeObserver.observe(activeElement);
-
-  //     return () => {
-  //       resizeObserver.disconnect();
-  //     };
-  //   },
-  //   [isIndicatorVisible],
-  // );
-
   const navBarIndicatorCssVars = useMemo(
     () =>
       ({
         '--inline-size': inlineSize,
         '--offset-x': offset,
-        '--has-prev-offset': prevOffset !== null ? 'true' : 'false',
+        '--has-prev-offset': prevOffset === null ? 'false' : 'true',
       }) as const,
     [inlineSize, prevOffset, offset],
   );
