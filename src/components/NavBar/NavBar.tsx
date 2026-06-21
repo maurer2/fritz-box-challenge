@@ -1,6 +1,7 @@
 import { useRef, type ReactNode, type CSSProperties } from 'react';
 import { useLocation, type FileRoutesByPath, type NavigateOptions } from '@tanstack/react-router';
 
+import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
 import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../Theme/tokens';
 import { NavBarIndicator } from './components/NavBarIndicator/NavBarIndicator';
 import { NavBarWrapper, NavBarList, NavBarEntry } from './NavBar.styles';
@@ -44,13 +45,18 @@ const NavBar = () => {
   const activeNavBarEntryIndex = navLinks.findIndex(([to]) => to === currentLocation);
   const activeNavBarEntry = navBarEntryElements.current[activeNavBarEntryIndex];
 
+  const isIndicatorVisible = useMediaQuery({
+    mediaQuery: `(min-width: ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px)`,
+  });
+
   return (
     <NavBarWrapper>
-      <NavBarIndicator
-        activeNavBarEntry={activeNavBarEntry}
-        activeNavBarEntryIndex={activeNavBarEntryIndex}
-        minScreenSizeIndicator={SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}
-      />
+      {isIndicatorVisible ? (
+        <NavBarIndicator
+          activeNavBarEntry={activeNavBarEntry}
+          activeNavBarEntryIndex={activeNavBarEntryIndex}
+        />
+      ) : null}
       <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}>
         {navLinks.map(([to, children], index) => (
           <li key={to}>

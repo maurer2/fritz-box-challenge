@@ -17,16 +17,9 @@ import { NavBarIndicatorWrapper, NavBarIndicatorBar } from './NavBarIndicator.st
 type IndicatorProps = {
   activeNavBarEntry?: HTMLAnchorElement | null;
   activeNavBarEntryIndex: number;
-  minScreenSizeIndicator: number;
 };
 
-function NavBarIndicator({
-  activeNavBarEntry,
-  activeNavBarEntryIndex,
-  minScreenSizeIndicator,
-}: IndicatorProps) {
-  // console.log(activeNavBarEntry, activeNavBarEntryIndex); // needed for fallback
-
+function NavBarIndicator({ activeNavBarEntry, activeNavBarEntryIndex }: IndicatorProps) {
   const [shouldTransition, setShouldTransition] = useState(false);
   const [previousNavBarEntryIndex, setPreviousNavBarEntryIndex] = useState(activeNavBarEntryIndex);
   const isPreferingMotion = useMediaQuery({
@@ -56,10 +49,7 @@ function NavBarIndicator({
         } as CSSProperties
       }
     >
-      <NavBarIndicatorBar
-        $minSizeSingleRowNav={minScreenSizeIndicator}
-        onTransitionEnd={handleTransitionEnd}
-      />
+      <NavBarIndicatorBar onTransitionEnd={handleTransitionEnd} />
     </NavBarIndicatorWrapper>
   );
 }
