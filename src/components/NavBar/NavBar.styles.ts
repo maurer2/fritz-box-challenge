@@ -18,6 +18,7 @@ export const NavBarList = styled.ul<NavBarListProps>`
   display: grid;
   /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
   grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  grid-row-start: navbar;
   padding: 0;
   margin: 0;
   list-style: none;
