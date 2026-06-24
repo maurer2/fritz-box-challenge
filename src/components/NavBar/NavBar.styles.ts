@@ -1,20 +1,15 @@
 import styled from 'styled-components';
 import { Link } from '@tanstack/react-router';
 
-type NavBarListProps = {
-  $minScreenSizeIndicator: number;
-};
-
 export const NavBarWrapper = styled.nav`
   position: sticky;
   inset-block-end: 0;
   display: grid;
   grid-template-rows: [indicator] 5px [navbar] auto;
-  container-name: navbar;
   container-type: inline-size;
 `;
 
-export const NavBarList = styled.ul<NavBarListProps>`
+export const NavBarList = styled.ul`
   display: grid;
   /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
   grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
@@ -26,19 +21,14 @@ export const NavBarList = styled.ul<NavBarListProps>`
 
   /* https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_size_and_style_queries#registered_properties */
   /* CSS vars via defineProperty are always true if they have a different value than the default */
-  /* @container style(--indicator-is-visible) {
-    grid-template-columns: none;
-    grid-auto-columns: minmax(max-content, 1fr);
-    grid-auto-flow: column;
-  }*/
-
-  @container navbar (width > ${({ $minScreenSizeIndicator }) => $minScreenSizeIndicator}px) {
+  @container style(--is-single-row-nav: true) {
     /* stylelint-disable-next-line defensive-css/require-named-grid-lines */
     grid-template-columns: none;
     grid-auto-columns: minmax(max-content, 1fr);
     grid-auto-flow: column;
   }
 
+  /* custom media queries not supported anywhere */
   /*
   @media (--large-screen) {
     grid-template-columns: none;

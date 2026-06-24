@@ -13,12 +13,16 @@ export const GlobalStyles = createGlobalStyle`
       font-size: 16px;
       -webkit-font-smoothing: antialiased;
 
-      /*
-      --indicator-is-visible: false;
-      @media (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px) {
-        --indicator-is-visible: true;
-      } */
+      /* not striclty neccessary as @property's inital-value sets the default value */
+      --is-single-row-nav: false;
 
+      /* stylelint-disable-next-line media-query-no-invalid */
+      @media (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px) {
+        --is-single-row-nav: true;
+      }
+
+      /* custom media queries not supported anywhere */
+      /* stylelint-disable-next-line media-query-no-invalid */
       /* @custom-media --large-screen (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px); */
     }
 
@@ -56,13 +60,12 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  /*
-  @property --indicator-is-visible {
+  /* neccessary for the true/false check */
+  @property --is-single-row-nav {
     syntax: "<custom-ident>";
     inherits: true;
     initial-value: false;
   }
-  */
 
   @keyframes slide-from-left {
     from {
