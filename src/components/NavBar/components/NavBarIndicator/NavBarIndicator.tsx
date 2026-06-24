@@ -1,4 +1,4 @@
-import { lazy, useState, type CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
 
 import { useMediaQuery } from '../../../../hooks/useMatchMedia/useMatchMedia';
 import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../../../Theme/tokens';
@@ -16,11 +16,10 @@ import { NavBarIndicatorWrapper, NavBarIndicatorBar } from './NavBarIndicator.st
 // });
 
 type IndicatorProps = {
-  activeNavBarEntry?: HTMLAnchorElement | null;
   activeNavBarEntryIndex: number;
 };
 
-function NavBarIndicator({ activeNavBarEntry, activeNavBarEntryIndex }: IndicatorProps) {
+function NavBarIndicator({ activeNavBarEntryIndex }: IndicatorProps) {
   const [shouldTransition, setShouldTransition] = useState(false);
   const [previousNavBarEntryIndex, setPreviousNavBarEntryIndex] = useState(activeNavBarEntryIndex);
   const isPreferingMotion = useMediaQuery({

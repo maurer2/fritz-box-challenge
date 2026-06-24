@@ -41,14 +41,10 @@ const NavBar = () => {
   const navBarEntryElements = useRef<(HTMLAnchorElement | null | undefined)[]>([]);
 
   const activeNavBarEntryIndex = navLinks.findIndex(([to]) => to === currentLocation);
-  const activeNavBarEntry = navBarEntryElements.current[activeNavBarEntryIndex];
 
   return (
     <NavBarWrapper>
-      <NavBarIndicator
-        activeNavBarEntry={activeNavBarEntry}
-        activeNavBarEntryIndex={activeNavBarEntryIndex}
-      />
+      <NavBarIndicator activeNavBarEntryIndex={activeNavBarEntryIndex} />
       <NavBarList>
         {navLinks.map(([to, children], index) => (
           <li key={to}>
