@@ -1,10 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { Temporal } from '@js-temporal/polyfill';
 
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/power-on-hours')({
+  loader: async () => {
+    // only load temporal polyfill where still needed
+    const Temporal = globalThis.Temporal ?? (await import('temporal-polyfill')).Temporal;
+
+    return { Temporal };
+  },
   component: PowerOnHours,
 });
 
@@ -17,6 +22,7 @@ const listFormatter = new Intl.ListFormat('en-GB', {
 // https://forum.vodafone.de/t5/Plauderecke/Wie-gesamte-Laufzeit-der-Fritz-Box-ermitteln/td-p/3245922
 function PowerOnHours() {
   const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
+  const { Temporal } = Route.useLoaderData();
   const { data } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
   const powerOnHours = data.get('powerOnHours');
 
@@ -44,15 +50,15 @@ function PowerOnHours() {
     return 'Unknown';
   }
 
-  const duration2 = calculatedProductionDate.until(now, {
+  const duration = calculatedProductionDate.until(now, {
     smallestUnit: 'hour',
     largestUnit: 'year',
     roundingMode: 'ceil',
   });
 
   // split by commas and add "and" before final part unless there's only one part
-  const powerOnHoursAsArray = durationFormatter.format(duration2).split(/\s*,\s*/u);
-  const powerOnHoursFormatted = listFormatter.format(powerOnHoursAsArray);
+  const powerOnHoursAsParts = durationFormatter.format(duration).split(/\s*,\s*/u);
+  const powerOnHoursFormatted = listFormatter.format(powerOnHoursAsParts);
 
   return <Slide title="Power on hours" text={powerOnHoursFormatted} />;
 }
