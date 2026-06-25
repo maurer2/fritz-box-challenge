@@ -35,6 +35,7 @@
     "noUncheckedIndexedAccess",
     "preinstall",
     "subfirmware",
-    "viewbox"
+    "viewbox",
+    "polyfill"
   ]
 }

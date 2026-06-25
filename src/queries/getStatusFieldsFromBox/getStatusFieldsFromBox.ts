@@ -37,7 +37,4 @@ const getStatusFieldsFromBox = async (signal?: AbortSignal): Promise<FieldsMap> 
 export const getStatusFieldsFromBoxQueryOptions = queryOptions({
   queryKey: ['box-data'],
   queryFn: ({ signal }) => getStatusFieldsFromBox(signal),
-  refetchOnWindowFocus: true,
-  refetchOnMount: true,
-  refetchOnReconnect: false,
 });

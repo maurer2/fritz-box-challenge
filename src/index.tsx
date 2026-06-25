@@ -30,10 +30,10 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      refetchOnMount: false,
+      refetchOnMount: true,
       refetchOnReconnect: false,
-      staleTime: 60 * 1000,
-      gcTime: 60 * 60 * 1000,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 60 * 60 * 1000, // 1 hour
     },
   },
 });
@@ -61,8 +61,8 @@ export const router = createRouter({
   defaultStaleTime: Infinity,
   defaultPreload: 'intent',
   defaultGcTime: Infinity,
-  defaultPendingMs: 0,
-  defaultPreloadStaleTime: 0,
+  defaultPendingMs: 1000, // default
+  defaultPreloadStaleTime: 0, // https://tkdodo.eu/blog/tan-stack-router-and-query#turn-off-router-caching
 });
 
 root.render(

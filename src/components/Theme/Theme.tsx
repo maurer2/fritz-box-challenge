@@ -90,6 +90,13 @@ export const GlobalStyles = createGlobalStyle`
       translate: 0;
     }
   }
+
+  /* tailwind */
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
 `;
 
 export const Theme = ({ children }: ThemeProps) => (
