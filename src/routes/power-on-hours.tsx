@@ -5,12 +5,18 @@ import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/power-on-hours')({
   loader: async () => {
-    // only load temporal polyfill where still needed
+    // await new Promise((resolve) => {
+    //   setTimeout(resolve, 2500);
+    // });
+
     const Temporal = globalThis.Temporal ?? (await import('temporal-polyfill')).Temporal;
 
     return { Temporal };
   },
+  // page rendering is delayed until the polyfill has loaded, otherwise the previous slide would be shown until the loader has finished
+  pendingComponent: () => <Slide title="Power on hours" />,
   component: PowerOnHours,
+  pendingMs: 0, // show skeleton right away
 });
 
 const durationFormatter = new Intl.DurationFormat('en-GB', { style: 'long' });
