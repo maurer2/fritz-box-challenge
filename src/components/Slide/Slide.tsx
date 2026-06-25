@@ -1,6 +1,6 @@
 import { SlideWrapper, SlideTitle, SlideText } from './Slide.styles';
 import { TextFit } from './components/TextFit/TextFit';
-import { SlideTextSkelton } from './components/SlideTextSkelton/SlideTextSkelton';
+import { SlideTextSkeleton } from './components/SlideTextSkeleton/SlideTextSkeleton';
 
 type SlideProps = {
   title: string;
@@ -16,7 +16,7 @@ const Slide = ({ title, text }: SlideProps) => {
         <TextFit text={title} />
       </SlideTitle>
       <SlideText aria-label={isLoading ? undefined : text}>
-        {isLoading ? <SlideTextSkelton label={title} /> : <TextFit text={text} />}
+        {isLoading ? <SlideTextSkeleton label={title} /> : <TextFit text={text} />}
       </SlideText>
     </SlideWrapper>
   );

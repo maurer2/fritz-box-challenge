@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SlideTextSkeltonBar = styled.span`
+export const SlideTextSkeletonBar = styled.span`
   display: block;
   margin-inline: auto;
   inline-size: 75%;
