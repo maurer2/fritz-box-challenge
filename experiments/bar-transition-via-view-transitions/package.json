@@ -1,0 +1,14 @@
+{
+  "name": "experiments",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "7.0.1-rc",
+    "vite": "^8.1.0"
+  }
+}

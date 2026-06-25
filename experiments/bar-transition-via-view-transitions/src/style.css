@@ -1,0 +1,82 @@
+/* stylelint-disable order/properties-order */
+@layer base, layout, components;
+
+@layer base {
+  :root {
+    --link-bg: oklch(55% 0.18 260);
+    --link-bg-hover: oklch(48% 0.18 260);
+    --link-bg-active: oklch(80% 0.15 85);
+    --link-focus-outline: oklch(70% 0.18 260);
+  }
+
+  :where(body) {
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(bar),
+    ::view-transition-new(bar) {
+      animation-duration: 0.5s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none;
+    }
+  }
+}
+
+@layer layout {
+}
+
+@layer components {
+  .links {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
+  }
+
+  .link {
+    align-items: center;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border: 1px solid currentcolor;
+    background: var(--link-bg);
+    color: contrast-color(var(--link-bg));
+    text-decoration: none;
+    text-align: center;
+
+    &:is(:hover, :focus-visible) {
+      background: var(--link-bg-hover);
+      color: contrast-color(var(--link-bg-hover));
+      text-decoration: underline;
+    }
+
+    &:is(:focus-visible) {
+      outline: 2px solid var(--link-focus-outline);
+      outline-offset: 2px;
+    }
+
+    /* &:target  */
+    &[aria-current='page'] {
+      position: relative;
+      text-decoration: underline;
+      background: var(--link-bg-active);
+      color: contrast-color(var(--link-bg-active));
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0 0 -1rem;
+        align-self: end; /* https://github.com/maurer2/trickle-down-features */
+        block-size: 0.5rem;
+        background: var(--link-bg-active);
+        view-transition-name: bar;
+      }
+    }
+  }
+}
