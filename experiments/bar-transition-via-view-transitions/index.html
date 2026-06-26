@@ -3,20 +3,34 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bar transition via view-transitions</title>
+    <title>Bar and content transition via view-transitions</title>
   </head>
   <body>
     <div id="app">
+      <header>
+        <h1>Bar and content transition via view-transitions</h1>
+        <nav aria-label="Main">
+          <ul role="list" class="links">
+            <li><a class="link" href="#slide1" aria-current="page">Slide 1</a></li>
+            <li><a class="link" href="#slide2">Slide 2</a></li>
+            <li><a class="link" href="#slide3">Slide 3</a></li>
+          </ul>
+        </nav>
+      </header>
       <main>
-        <h1>Bar transition via view-transitions</h1>
+        <section class="section" id="slide1">
+          <h2>Side 1</h2>
+          <p>Lorem ipsum dolor sit amet</p>
+        </section>
+        <section class="section" id="slide2" hidden>
+          <h2>Side 2</h2>
+          <p>Lorem ipsum dolor sit amet</p>
+        </section>
+        <section class="section" id="slide3" hidden>
+          <h2>Side 3</h2>
+          <p>Lorem ipsum dolor sit amet</p>
+        </section>
       </main>
-      <nav aria-label="Main">
-        <ul role="list" class="links">
-          <li><a class="link" id="test1" href="#test1" aria-current="page">Test1</a></li>
-          <li><a class="link" id="test2" href="#test2">Test2</a></li>
-          <li><a class="link" id="test3" href="#test3">Test3</a></li>
-        </ul>
-      </nav>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
