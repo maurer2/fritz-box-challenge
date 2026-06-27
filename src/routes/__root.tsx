@@ -5,7 +5,7 @@ import { NavBar } from '../components/NavBar/NavBar';
 import { SlideMaster } from '../components/SlideMaster/SlideMaster';
 import { getStatusFieldsFromBoxQueryOptions } from '../queries/getStatusFieldsFromBox/getStatusFieldsFromBox';
 import { UpdateBar } from '../components/UpdateBar/UpdateBar';
-import { InfoBar } from '../components/InfoBar';
+import { InfoBar } from '../components/InfoBar/InfoBar';
 
 type Context = {
   queryClient: QueryClient;

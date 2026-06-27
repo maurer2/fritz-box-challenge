@@ -1,16 +1,8 @@
-import { useState, type CSSProperties, type ReactNode } from 'react';
+import { useRef, type ReactNode, type CSSProperties } from 'react';
 import { useLocation, type FileRoutesByPath, type NavigateOptions } from '@tanstack/react-router';
 
-import { useMediaQuery } from '../../hooks/useMatchMedia/useMatchMedia';
-import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../Theme/tokens';
-
-import {
-  NavBarWrapper,
-  NavBarList,
-  NavBarIndicatorWrapper,
-  NavBarIndicator,
-  NavBarEntry,
-} from './NavBar.styles';
+import { NavBarIndicator } from './components/NavBarIndicator/NavBarIndicator';
+import { NavBarWrapper, NavBarList, NavBarEntry } from './NavBar.styles';
 
 type TransitionName = 'move-left' | 'move-right';
 
@@ -43,59 +35,27 @@ const viewTransition: NavigateOptions['viewTransition'] = {
 };
 
 const NavBar = () => {
-  const [offset, setOffset] = useState<string | null>(null);
-  const [prevOffset, setPrevOffset] = useState<string | null>(null);
-  const [inlineSize, setInlineSize] = useState('auto');
-
   const currentLocation = useLocation({ select: ({ pathname }) => pathname });
+  // elements are undefined during the first render when ref callbacks are not called yet
+  // refs callbacks are called with null first
+  const navBarEntryElements = useRef<(HTMLAnchorElement | null | undefined)[]>([]);
 
-  // aways reset offset and prev offset on media query change
-  const isIndicatorVisible = useMediaQuery({
-    mediaQuery: `(min-width: ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px)`,
-    onChange: () => {
-      setPrevOffset(null);
-      setOffset(null);
-    },
-  });
-  // set offset on every resize and set prevoffset when indicator is visible
-  const activeNavBarEntryRefCallback = (activeElement: HTMLAnchorElement) => {
-    const resizeObserver = new ResizeObserver(([entry]) => {
-      const [elementSize] = entry.borderBoxSize;
-      const { offsetLeft } = activeElement;
-
-      setOffset((currentOffset) => {
-        setPrevOffset(isIndicatorVisible ? currentOffset : null);
-
-        return `${Math.floor(offsetLeft)}px`;
-      });
-      setInlineSize(`${Math.floor(elementSize.inlineSize)}px`);
-    });
-
-    resizeObserver.observe(activeElement);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  };
-
-  const navBarIndicatorCssVars: CSSProperties = {
-    '--inline-size': inlineSize,
-    '--offset-x': offset,
-    '--has-prev-offset': prevOffset === null ? 'false' : 'true',
-  };
+  const activeNavBarEntryIndex = navLinks.findIndex(([to]) => to === currentLocation);
 
   return (
     <NavBarWrapper>
-      <NavBarIndicatorWrapper style={navBarIndicatorCssVars} aria-hidden>
-        {isIndicatorVisible ? <NavBarIndicator /> : null}
-      </NavBarIndicatorWrapper>
-      <NavBarList $minScreenSizeIndicator={SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}>
-        {navLinks.map(([to, children]) => (
+      <NavBarIndicator activeNavBarEntryIndex={activeNavBarEntryIndex} />
+      <NavBarList>
+        {navLinks.map(([to, children], index) => (
           <li key={to}>
             <NavBarEntry
               to={to}
               viewTransition={viewTransition}
-              ref={to === currentLocation ? activeNavBarEntryRefCallback : undefined}
+              ref={(element) => {
+                navBarEntryElements.current[index] = element;
+              }}
+              style={{ anchorName: `--anchor-${index}` } as CSSProperties}
+              aria-current={activeNavBarEntryIndex === index ? 'page' : undefined}
             >
               {children}
             </NavBarEntry>
