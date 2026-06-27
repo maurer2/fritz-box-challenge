@@ -19,9 +19,8 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    ::view-transition-old(bar),
-    ::view-transition-new(bar) {
-      animation-duration: 0.5s;
+    ::view-transition-group(bar) {
+      animation-duration: 1s;
     }
 
     ::view-transition-old(section) {
