@@ -17,9 +17,13 @@ export const NavBarIndicatorBar = styled.div`
 
   @container style(--is-single-row-nav: true) {
     inset-block-start: 0;
+    transition-duration: 0s;
+    transition-property: inset-inline-start, inline-size;
 
-    /* prefers-reduced-motion is handled globally via "--animation-duration: 0s" in Theme file */
-    /* stylelint-disable-next-line defensive-css/require-prefers-reduced-motion */
-    view-transition-name: nav-indicator;
+    @media (prefers-reduced-motion: no-preference) {
+      @container style(--should-transition: true) {
+        transition-duration: 500ms;
+      }
+    }
   }
 `;

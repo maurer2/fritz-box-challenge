@@ -15,10 +15,14 @@ export const GlobalStyles = createGlobalStyle`
 
       /* not striclty neccessary as @property's inital-value sets the default value */
       --is-single-row-nav: false;
-
       /* stylelint-disable-next-line media-query-no-invalid */
       @media (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px) {
         --is-single-row-nav: true;
+      }
+
+      --animation-duration: 0.5s;
+      @media (prefers-reduced-motion: reduce) {
+        --animation-duration: 0s;
       }
 
       /* custom media queries not supported anywhere */
@@ -26,37 +30,42 @@ export const GlobalStyles = createGlobalStyle`
       /* @custom-media --large-screen (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px); */
     }
 
-    body {
+    :where(body) {
       inline-size: 100dvi;
       block-size: 100dvb;
       overflow: clip;
       background: ${({ theme: currentTheme }) => currentTheme.colors.tertiaryColor}
     }
 
-    .root {
+    :where(.root) {
       display: grid;
       grid-template-rows: [update-bar] 1fr [content] auto;
       block-size: 100%;
     }
 
-    html:active-view-transition-type(move-left) {
+    :active-view-transition-type(move-left) {
       &::view-transition-old(slide-master) {
-        animation: 0.5s linear both slide-from-right reverse;
+        animation: var(--animation-duration) linear both slide-from-right reverse;
       }
 
       &::view-transition-new(slide-master) {
-        animation: 0.5s linear both slide-from-left;
+        animation: var(--animation-duration) linear both slide-from-left;
       }
     }
 
-    html:active-view-transition-type(move-right) {
+    :active-view-transition-type(move-right) {
       &::view-transition-old(slide-master) {
-        animation: 0.5s linear both slide-from-left reverse;
+        animation: var(--animation-duration) linear both slide-from-left reverse;
       }
 
       &::view-transition-new(slide-master) {
-        animation: 0.5s linear both slide-from-right;
+        animation: var(--animation-duration) linear both slide-from-right;
       }
+    }
+
+    /* transitions between anchor-positions */
+    ::view-transition-group(nav-indicator) {
+      animation-duration: var(--animation-duration);
     }
   }
 

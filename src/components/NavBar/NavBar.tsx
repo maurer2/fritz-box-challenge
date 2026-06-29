@@ -1,5 +1,9 @@
-import { useRef, type ReactNode, type CSSProperties } from 'react';
-import { useLocation, type FileRoutesByPath, type NavigateOptions } from '@tanstack/react-router';
+import type { ReactNode } from 'react';
+import {
+  useRouterState,
+  type FileRoutesByPath,
+  type NavigateOptions,
+} from '@tanstack/react-router';
 
 import { NavBarIndicator } from './components/NavBarIndicator/NavBarIndicator';
 import { NavBarWrapper, NavBarList, NavBarEntry } from './NavBar.styles';
@@ -35,15 +39,19 @@ const viewTransition: NavigateOptions['viewTransition'] = {
 };
 
 const NavBar = () => {
-  const currentLocation = useLocation({ select: ({ pathname }) => pathname });
-  // elements are undefined during the first render when ref callbacks are not called yet
-  // refs callbacks are called with null first
-  const navBarEntryElements = useRef<(HTMLAnchorElement | null | undefined)[]>([]);
-
-  const activeNavBarEntryIndex = navLinks.findIndex(([to]) => to === currentLocation);
+  // useLocation doesn't work with view-transitions as it updates the location before the view-transition source/target can be calculated: https://github.com/TanStack/router/issues/3110
+  // useRouterState/matches allows target creation once the route or its pendingComponent renders
+  // useRouterState/resolvedLocation waits for the loader to finish (ignores pendingComponent), so the target is calculated too late -> no transition
+  const currentPath = useRouterState({
+    select: ({ matches }) => {
+      // contains root-path as first entry
+      return matches.at(-1)?.fullPath},
+  });
+  const activeNavBarEntryIndex = navLinks.findIndex(([to]) => to === currentPath);
 
   return (
     <NavBarWrapper>
+      {/* Only sets the current anchor location and its styling. Transition between two anchors is done via view-transitions */}
       <NavBarIndicator activeNavBarEntryIndex={activeNavBarEntryIndex} />
       <NavBarList>
         {navLinks.map(([to, children], index) => (
@@ -51,11 +59,10 @@ const NavBar = () => {
             <NavBarEntry
               to={to}
               viewTransition={viewTransition}
-              ref={(element) => {
-                navBarEntryElements.current[index] = element;
+              activeProps={{
+                'aria-current': 'page',
               }}
-              style={{ anchorName: `--anchor-${index}` } as CSSProperties}
-              aria-current={activeNavBarEntryIndex === index ? 'page' : undefined}
+              style={{ anchorName: `--anchor-${index}` }}
             >
               {children}
             </NavBarEntry>

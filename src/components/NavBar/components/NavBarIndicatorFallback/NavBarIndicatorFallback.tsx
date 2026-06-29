@@ -1,10 +1,10 @@
-import { useState, useMemo, useLayoutEffect, type CSSProperties } from 'react';
+import { useState, useMemo, useLayoutEffect } from 'react';
 
 import { useMediaQuery } from '../../../../hooks/useMatchMedia/useMatchMedia';
 
 import { NavBarIndicatorWrapper, NavBarIndicator } from './NavBarIndicatorFallback.styles';
 
-type NavBarIndicatorFallback = {
+type NavBarIndicatorFallbackProps = {
   activeNavBarEntry?: HTMLAnchorElement | null;
   minScreenSizeIndicator: number;
 };
@@ -13,7 +13,7 @@ type NavBarIndicatorFallback = {
 function NavBarIndicatorFallback({
   activeNavBarEntry,
   minScreenSizeIndicator,
-}: NavBarIndicatorFallback) {
+}: NavBarIndicatorFallbackProps) {
   const [offset, setOffset] = useState<string | null>(null);
   const [prevOffset, setPrevOffset] = useState<string | null>(null);
   const [inlineSize, setInlineSize] = useState('auto');
@@ -36,6 +36,7 @@ function NavBarIndicatorFallback({
     const { width } = activeNavBarEntry.getBoundingClientRect();
     const { offsetLeft } = activeNavBarEntry;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect react/react-compiler
     setOffset((currentOffset) => {
       setPrevOffset(isIndicatorVisible ? currentOffset : null);
 
@@ -55,7 +56,7 @@ function NavBarIndicatorFallback({
   );
 
   return (
-    <NavBarIndicatorWrapper style={navBarIndicatorCssVars as CSSProperties} aria-hidden>
+    <NavBarIndicatorWrapper style={navBarIndicatorCssVars} aria-hidden>
       {isIndicatorVisible ? <NavBarIndicator /> : null}
     </NavBarIndicatorWrapper>
   );
