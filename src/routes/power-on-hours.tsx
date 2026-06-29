@@ -3,6 +3,8 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { Slide } from '../components/Slide/Slide';
 
+const SLIDE_TITLE = 'Power-on hours';
+
 export const Route = createFileRoute('/power-on-hours')({
   loader: async () => {
     // await new Promise((resolve) => {
@@ -14,7 +16,7 @@ export const Route = createFileRoute('/power-on-hours')({
     return { Temporal };
   },
   // page rendering is delayed until the polyfill has loaded, otherwise the previous slide would be shown until the loader has finished
-  pendingComponent: () => <Slide title="Power on hours" />,
+  pendingComponent: () => <Slide title={SLIDE_TITLE} />,
   component: PowerOnHours,
   pendingMs: 0, // show skeleton right away
 });
@@ -66,5 +68,5 @@ function PowerOnHours() {
   const powerOnHoursAsParts = durationFormatter.format(duration).split(/\s*,\s*/u);
   const powerOnHoursFormatted = listFormatter.format(powerOnHoursAsParts);
 
-  return <Slide title="Power on hours" text={powerOnHoursFormatted} />;
+  return <Slide title={SLIDE_TITLE} text={powerOnHoursFormatted} />;
 }

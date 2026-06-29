@@ -11,7 +11,7 @@ const navLinks = [
   ['/branding', 'Branding'],
   ['/firmware', 'Firmware'],
   ['/model', 'Model'],
-  ['/power-on-hours', 'Power on hours'],
+  ['/power-on-hours', 'Power-on hours'],
   ['/restarts', 'Restarts'],
   ['/technology', 'Technology'],
 ] satisfies [keyof FileRoutesByPath, ReactNode][];
