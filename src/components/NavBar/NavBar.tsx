@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react';
 import {
+  useNavigate,
   useRouterState,
   type FileRoutesByPath,
   type NavigateOptions,
 } from '@tanstack/react-router';
+import { useHotkey } from '@tanstack/react-hotkeys';
 
 import { NavBarIndicator } from './components/NavBarIndicator/NavBarIndicator';
 import { NavBarWrapper, NavBarList, NavBarEntry } from './NavBar.styles';
@@ -38,15 +40,44 @@ const viewTransition: NavigateOptions['viewTransition'] = {
   },
 };
 
+const navigateToPreviousOrNextEntry = (
+  navigate: ReturnType<typeof useNavigate>,
+  currentPath: string | undefined,
+  offset: number,
+) => {
+  const activeNavBarEntryIndex = navLinks.findIndex(([to]) => to === currentPath);
+  const newNavBarEntryIndex = activeNavBarEntryIndex + offset;
+  const newNavBarEntry = navLinks.at(newNavBarEntryIndex);
+
+  // upper and lower bounds to avoid wrap around behaviour
+  if (newNavBarEntry === undefined || newNavBarEntryIndex < 0) {
+    return;
+  }
+
+  navigate({ to: newNavBarEntry[0], viewTransition }).catch((error: unknown) => {
+    console.error('Navigation failed', error);
+  });
+};
+
 const NavBar = () => {
+  const navigate = useNavigate();
+
   // useLocation doesn't work with view-transitions as it updates the location before the view-transition source/target can be calculated: https://github.com/TanStack/router/issues/3110
   // useRouterState/matches allows target creation once the route or its pendingComponent renders
   // useRouterState/resolvedLocation waits for the loader to finish (ignores pendingComponent), so the target is calculated too late -> no transition
   const currentPath = useRouterState({
     select: ({ matches }) => {
       // contains root-path as first entry
-      return matches.at(-1)?.fullPath},
+      return matches.at(-1)?.fullPath;
+    },
   });
+  useHotkey('ArrowLeft', () => {
+    navigateToPreviousOrNextEntry(navigate, currentPath, -1);
+  });
+  useHotkey('ArrowRight', () => {
+    navigateToPreviousOrNextEntry(navigate, currentPath, 1);
+  });
+
   const activeNavBarEntryIndex = navLinks.findIndex(([to]) => to === currentPath);
 
   return (
