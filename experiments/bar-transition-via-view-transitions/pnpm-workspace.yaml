@@ -1,4 +1,0 @@
-# Isolates this experiment as its own pnpm root, separate from the parent repo.
-allowBuilds:
-  esbuild: true
-# minimumReleaseAge: 10080 # 7 days

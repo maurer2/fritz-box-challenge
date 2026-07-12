@@ -1,16 +1,17 @@
+packages:
+  - 'experiments/*'
+
 allowBuilds:
   msw: true
   unrs-resolver: true
+  esbuild: true
 
 minimumReleaseAge: 10080 # 7 days
 blockExoticSubdeps: true # no git branch as package url
+
 minimumReleaseAgeExclude:
   - 'rolldown'
   - '@oxc-project/types'
-  - 'zod-compiler@1.9.1'
-  - 'temporal-polyfill@1.0.1'
-  - 'temporal-spec@1.0.0'
-  - 'temporal-utils@1.0.1'
 resolutionMode: highest
 
 supportedArchitectures:
