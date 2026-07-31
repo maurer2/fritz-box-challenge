@@ -52,6 +52,8 @@ export const NavBarEntry = styled(Link)`
   background: none;
   border: 0;
 
+  /* font-size: medium; // medium should be mapped to 16px * preferred-text-scale => 24px when 150% scale and meta tag is enabled */
+
   /* todo: https://defensivecss.dev/tip/hover-media/ */
   &:where(:hover, :focus-visible) {
     text-decoration: underline;

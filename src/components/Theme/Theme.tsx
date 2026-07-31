@@ -10,10 +10,7 @@ type ThemeProps = {
 export const GlobalStyles = createGlobalStyle`
   @layer base {
     :root {
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-
-      /* not striclty neccessary as @property's inital-value sets the default value */
+      /* not strictly necessary as @property's initial-value sets the default value */
       --is-single-row-nav: false;
       /* stylelint-disable-next-line media-query-no-invalid */
       @media (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px) {
@@ -25,9 +22,18 @@ export const GlobalStyles = createGlobalStyle`
         --animation-duration: 0s;
       }
 
+      // obviated by the meta tag approach
+      --text-scale: env(preferred-text-scale, 1); // Chrome testing: Rendering/Emulate OS text scale
+
       /* custom media queries not supported anywhere */
       /* stylelint-disable-next-line media-query-no-invalid */
       /* @custom-media --large-screen (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px); */
+    }
+
+    // non-vars stuff
+    :where(html) {
+      -webkit-font-smoothing: antialiased;
+      text-size-adjust: none;
     }
 
     :where(body) {
@@ -69,7 +75,7 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  /* neccessary for the true/false check */
+  /* necessary for the true/false check */
   @property --is-single-row-nav {
     syntax: "<custom-ident>";
     inherits: true;
