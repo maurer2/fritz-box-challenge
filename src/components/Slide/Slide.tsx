@@ -1,6 +1,6 @@
-import { SlideWrapper, SlideTitle, SlideText } from './Slide.styles';
-import { TextFit } from './components/TextFit/TextFit';
 import { SlideTextSkeleton } from './components/SlideTextSkeleton/SlideTextSkeleton';
+import { TextFit } from './components/TextFit/TextFit';
+import { SlideWrapper, SlideTitle, SlideText } from './Slide.styles';
 
 type SlideProps = {
   title: string;

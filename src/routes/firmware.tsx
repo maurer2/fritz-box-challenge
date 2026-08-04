@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
 
 import { Slide } from '../components/Slide/Slide';
 
@@ -19,5 +19,10 @@ function Firmware() {
   const majorVersion = firmware.slice(-3, -2);
   const minorVersion = firmware.slice(-2);
 
-  return <Slide title="Firmware" text={`${majorVersion}.${minorVersion}`} />;
+  return (
+    <Slide
+      title="Firmware"
+      text={`${majorVersion}.${minorVersion}`}
+    />
+  );
 }

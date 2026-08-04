@@ -1,10 +1,10 @@
-import { defineConfig, loadEnv, type ProxyOptions /* type PluginOption, */ } from 'vite';
-import react, { reactCompilerPreset } from '@vitejs/plugin-react';
-import { tanstackRouter } from '@tanstack/router-plugin/vite';
-import babel from '@rolldown/plugin-babel';
 import { devtools } from '@tanstack/devtools-vite';
-import { visualizer } from 'rollup-plugin-visualizer';
+import babel from '@rolldown/plugin-babel';
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import type { Logger } from 'babel-plugin-react-compiler';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { defineConfig, loadEnv, type ProxyOptions /* type PluginOption, */ } from 'vite';
 import zodCompiler from 'zod-compiler/vite';
 
 // import { boxHTMLSchema } from './src/schema/boxHTML/boxHTML.schema';

@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
 import { match } from 'ts-pattern';
 
 import { Slide } from '../components/Slide/Slide';
@@ -27,5 +27,10 @@ function Technology() {
     // .with('???', () => 'AON')
     .otherwise(() => 'Unknown');
 
-  return <Slide title="Technology" text={mappedTechnology} />;
+  return (
+    <Slide
+      title="Technology"
+      text={mappedTechnology}
+    />
+  );
 }

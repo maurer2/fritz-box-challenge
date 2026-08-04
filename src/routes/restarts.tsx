@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
 
 import { Slide } from '../components/Slide/Slide';
 
@@ -23,5 +23,10 @@ function Restarts() {
   // https://www.ip-phone-forum.de/threads/servicecode-der-fritzbox.310849/post-2438609
   const calculatedRestarts = majorValue * 32 + minorValue;
 
-  return <Slide title="Restarts" text={calculatedRestarts.toString().padStart(3, '0')} />;
+  return (
+    <Slide
+      title="Restarts"
+      text={calculatedRestarts.toString().padStart(3, '0')}
+    />
+  );
 }

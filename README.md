@@ -2,7 +2,7 @@
 
 Make system status of fritzbox (https://en.wikipedia.org/wiki/Fritz!Box) human readable with react.
 
-![Screenshot](screenshot.png?raw=true "Screenshot")
+![Screenshot](screenshot.png?raw=true 'Screenshot')
 
 ## Start with dummy data
 

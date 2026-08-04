@@ -1,8 +1,8 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import fetcher from '../../helpers/fetcher/fetcher';
-import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
 import { boxFieldsSchema } from '../../schema/boxFields/boxFields.schema';
+import { boxHTMLSchema } from '../../schema/boxHTML/boxHTML.schema';
 
 const fields = [
   'model',

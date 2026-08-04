@@ -9,7 +9,11 @@ type SlideTextSkeletonProps = {
 const SlideTextSkeleton = ({ label }: SlideTextSkeletonProps) => (
   <>
     <SlideTextSkeletonBar aria-hidden="true" />
-    <VisuallyHidden as="output" aria-live="polite" aria-atomic="true">
+    <VisuallyHidden
+      as="output"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       Loading {label}
     </VisuallyHidden>
   </>

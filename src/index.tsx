@@ -1,15 +1,15 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { TanStackDevtools } from '@tanstack/react-devtools';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
+import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
 import { StyleSheetManager } from 'styled-components';
 
-import { routeTree } from './routeTree.gen';
 import { Theme } from './components/Theme/Theme';
+import { routeTree } from './routeTree.gen';
 import './index.css';
 
 declare module '@tanstack/react-router' {

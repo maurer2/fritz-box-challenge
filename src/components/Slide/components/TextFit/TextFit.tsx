@@ -1,4 +1,5 @@
 import { TextFitFallback } from '../TextFitFallback/TextFitFallback';
+
 import { TextFitCSS } from './TextFit.styles';
 
 type TextFitProps = {

@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
+import { useHotkey } from '@tanstack/react-hotkeys';
 import {
   useNavigate,
   useRouterState,
   type FileRoutesByPath,
   type NavigateOptions,
 } from '@tanstack/react-router';
-import { useHotkey } from '@tanstack/react-hotkeys';
 
 import { NavBarIndicator } from './components/NavBarIndicator/NavBarIndicator';
 import { NavBarWrapper, NavBarList, NavBarEntry } from './NavBar.styles';

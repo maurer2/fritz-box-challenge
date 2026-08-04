@@ -1,5 +1,5 @@
-import { useRouteContext } from '@tanstack/react-router';
 import { useIsFetching } from '@tanstack/react-query';
+import { useRouteContext } from '@tanstack/react-router';
 
 import { InfoBarWrapper } from './InfoBar.styles';
 

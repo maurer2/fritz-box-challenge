@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
 
 import { Slide } from '../components/Slide/Slide';
 
@@ -68,5 +68,10 @@ function PowerOnHours() {
   const powerOnHoursAsParts = durationFormatter.format(duration).split(/\s*,\s*/u);
   const powerOnHoursFormatted = listFormatter.format(powerOnHoursAsParts);
 
-  return <Slide title={SLIDE_TITLE} text={powerOnHoursFormatted} />;
+  return (
+    <Slide
+      title={SLIDE_TITLE}
+      text={powerOnHoursFormatted}
+    />
+  );
 }

@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
 
 import { Slide } from '../components/Slide/Slide';
 
@@ -18,5 +18,10 @@ function Model() {
 
   const modelWithoutBranding = model.replace('(UI)', ''); // 1und1 branding
 
-  return <Slide title="Model" text={modelWithoutBranding} />;
+  return (
+    <Slide
+      title="Model"
+      text={modelWithoutBranding}
+    />
+  );
 }

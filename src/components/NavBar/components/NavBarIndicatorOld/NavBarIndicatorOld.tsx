@@ -2,6 +2,7 @@ import { useState, type CSSProperties } from 'react';
 
 import { useMediaQuery } from '../../../../hooks/useMatchMedia/useMatchMedia';
 import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../../../Theme/tokens';
+
 import { NavBarIndicatorWrapper, NavBarIndicatorBar } from './NavBarIndicatorOld.styles';
 
 // const NavBarIndicatorFallback = lazy(() => {

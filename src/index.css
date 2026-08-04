@@ -1,4 +1,4 @@
 @layer reset, base, components;
 
 /* won't work inside createGlobalStyle */
-@import url("../node_modules/modern-normalize/modern-normalize.css") layer(reset);
+@import url('../node_modules/modern-normalize/modern-normalize.css') layer(reset);

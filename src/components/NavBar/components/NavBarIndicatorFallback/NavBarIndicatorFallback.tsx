@@ -56,7 +56,10 @@ function NavBarIndicatorFallback({
   );
 
   return (
-    <NavBarIndicatorWrapper style={navBarIndicatorCssVars} aria-hidden>
+    <NavBarIndicatorWrapper
+      style={navBarIndicatorCssVars}
+      aria-hidden
+    >
       {isIndicatorVisible ? <NavBarIndicator /> : null}
     </NavBarIndicatorWrapper>
   );

@@ -28,8 +28,16 @@ const TextFitFallback = ({ text }: TextFitFallbackProps) => {
   };
 
   return (
-    <svg ref={ref} viewBox={viewBox} fill="currentColor" aria-hidden>
-      <text x="0" y="15">
+    <svg
+      ref={ref}
+      viewBox={viewBox}
+      fill="currentColor"
+      aria-hidden
+    >
+      <text
+        x="0"
+        y="15"
+      >
         {text}
       </text>
     </svg>

@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
 import { match } from 'ts-pattern';
 
 import { Slide } from '../components/Slide/Slide';
@@ -23,5 +23,10 @@ function Branding() {
     .with('1und1', () => '1&1')
     .otherwise(() => 'Unknown');
 
-  return <Slide title="Branding" text={mappedBranding} />;
+  return (
+    <Slide
+      title="Branding"
+      text={mappedBranding}
+    />
+  );
 }

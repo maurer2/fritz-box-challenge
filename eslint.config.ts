@@ -1,6 +1,6 @@
+import tsParser from '@typescript-eslint/parser';
 // only used for react-hooks and compiler
 import type { Linter } from 'eslint';
-import tsParser from '@typescript-eslint/parser';
 import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [

@@ -1,5 +1,5 @@
-import path from 'node:path';
 import { writeFile } from 'node:fs/promises';
+import path from 'node:path';
 
 import { env } from '../src/env.ts';
 import fetcher from '../src/helpers/fetcher/fetcher.ts';

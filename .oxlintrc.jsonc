@@ -1,26 +1,33 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": [
+    "import",
+    "jsx-a11y",
+    "node",
+    "oxc",
     "react",
     "typescript",
-    "jsx-a11y",
     "unicorn",
-    "oxc",
-    "import",
-    "promise",
     "eslint",
-    "node",
+    "promise",
     "vitest",
   ],
   "jsPlugins": ["eslint-plugin-zod"],
+  "options": {
+    "typeAware": true,
+    "reportUnusedDisableDirectives": "error",
+  },
+  "env": {
+    "browser": true,
+  },
   "categories": {
     "correctness": "error",
     "suspicious": "error",
-    "restriction": "error",
-    "perf": "error",
-    "pedantic": "warn",
-    "nursery": "off",
+    "pedantic": "error",
+    "perf": "warn",
+    "restriction": "warn",
     "style": "off",
+    "nursery": "off",
   },
   "rules": {
     // eslint
@@ -35,7 +42,7 @@
       {
         "skipComments": true,
         "skipBlankLines": true,
-        "max": 100, // includes React components
+        "max": 150, // includes React components
       },
     ],
     // react
@@ -43,38 +50,33 @@
     "react/jsx-filename-extension": "off",
     "react/forbid-component-props": "off",
     "react/jsx-no-literals": "off",
-    // added in oxlint: 1.70 https://github.com/oxc-project/oxc/pull/23202
     "react/react-compiler": "error",
     // ts
     "typescript/consistent-type-imports": "error",
     "typescript/prefer-readonly-parameter-types": "off", // too complicated when deadling with types from dependencies
     "typescript/promise-function-async": "off",
     "typescript/strict-boolean-expressions": "off",
+    "typescript/no-deprecated": "warn",
+    "typescript/no-unnecessary-type-conversion": "warn",
+    "typescript/switch-exhaustiveness-check": [
+      "warn",
+      {
+        "considerDefaultExhaustiveForUnions": true,
+      },
+    ],
     // oxc
     "oxc/no-optional-chaining": "off",
     "oxc/no-async-await": "off",
     "oxc/no-rest-spread-properties": "off",
-    // unicorn
-    "unicorn/no-array-reduce": "warn",
-    "unicorn/no-array-for-each": "warn",
-    "unicorn/no-useless-switch-case": "off", // conflicts with exhaustive union type in switch cases
-    "unicorn/prefer-query-selector": "off",
-    // node
-    "node/no-process-env": "off",
     // import
     "import/no-default-export": "off",
     "import/no-relative-parent-imports": "off",
-    "import/no-unassigned-import": "off", // needed for side effect imports like CSS imports
+    "import/no-unassigned-import": "off", // needed for side effect imports like global CSS imports
     "import/unambiguous": "off",
     "import/max-dependencies": "off",
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
-    "import/consistent-type-specifier-style": [
-      "error",
-      "prefer-top-level-if-only-type-imports"
-    ],
-    "eslint/sort-imports": "off",
     // zod
     "zod/array-style": "error",
     "zod/consistent-import": "error", // https://github.com/colinhacks/zod/issues/4433#issuecomment-2921500831
@@ -106,23 +108,10 @@
     "zod/prefer-trim-before-string-length-checks": "error",
     "zod/require-brand-type-parameter": "error",
     "zod/require-error-message": "error",
-    // vitest,
-    "vitest/require-test-timeout": "off",
+    "import/consistent-type-specifier-style": ["error", "prefer-top-level-if-only-type-imports"],
   },
-  "env": {
-    "builtin": true,
-    "browser": true,
-  },
-  "settings": {
-    "react": {
-      "version": "19",
-    },
-  },
-  "options": {
-    "typeAware": true,
-    "typeCheck": false, // use tsgo --noEmit for now
-  },
-  "ignorePatterns": ["src/routeTree.gen.ts", "public/mockServiceWorker.js"],
+  // kept in sync with .oxfmtrc.jsonc; "**/*.gen.ts" covers src/routeTree.gen.ts
+  "ignorePatterns": ["__mocks__/**", "dist/**", "public/**", "**/*.gen.ts"],
   "overrides": [
     // disable mandatory return types for React components -> also disables it for functions inside React component files
     {
@@ -132,7 +121,7 @@
         "@typescript-eslint/explicit-module-boundary-types": "off",
       },
     },
-    // tanStack routes overrides
+    // TanStack routes overrides
     {
       "files": ["src/routes/**/*.tsx"],
       "rules": {
@@ -156,6 +145,9 @@
       "files": ["**/*.spec.ts", "**/*.spec.tsx"],
       "rules": {
         "eslint/max-lines-per-function": "off",
+        "typescript/no-unsafe-type-assertion": "off",
+        "unicorn/consistent-function-scoping": "off", // allow "setup" functions that don't use any params inside describe blocks
+        "vitest/require-test-timeout": "off",
       },
     },
   ],
