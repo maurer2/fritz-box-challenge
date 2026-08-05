@@ -48,3 +48,14 @@ const AccessCallbackRefDuringRender = () => {
     </>
   );
 };
+
+// Error: Calling setState synchronously within an effect can trigger cascading renders
+const useSetStateInEffect = (activeId: string) => {
+  const [offset, setOffset] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (activeId === 'test') {
+      setOffset(100);
+    }
+  }, [activeId]);
+};
