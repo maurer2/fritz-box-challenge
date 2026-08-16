@@ -21,7 +21,6 @@
     "lint:eslint": "eslint '{src,scripts}/**/*.{ts,tsx}'",
     "lint:oxlint": "oxlint src scripts",
     "lint:style": "stylelint 'src/**/*.{css,styles.ts}'",
-    "preinstall": "npx only-allow pnpm",
     "start": "vite --mode production",
     "test:schema": "vitest 'src/schema'",
     "typecheck": "tsc --noEmit"
