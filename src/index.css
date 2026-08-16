@@ -1,4 +1,4 @@
 /* layers defined in index.html */
 
 /* won't work inside createGlobalStyle */
-@import url('../node_modules/modern-normalize/modern-normalize.css') layer(reset);
+@import url('modern-normalize') layer(reset);
