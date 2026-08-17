@@ -61,7 +61,7 @@
     "typescript/switch-exhaustiveness-check": [
       "warn",
       {
-        "considerDefaultExhaustiveForUnions": true,
+        "considerDefaultExhaustiveForUnions": false,
       },
     ],
     // oxc
@@ -77,6 +77,11 @@
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
+    "import/consistent-type-specifier-style": ["error", "prefer-top-level-if-only-type-imports"],
+    // unicorn
+    "unicorn/prefer-query-selector": "off",
+    // node
+    "node/no-top-level-await": "off",
     // zod
     "zod/array-style": "error",
     "zod/consistent-import": "error", // https://github.com/colinhacks/zod/issues/4433#issuecomment-2921500831
@@ -108,7 +113,6 @@
     "zod/prefer-trim-before-string-length-checks": "error",
     "zod/require-brand-type-parameter": "error",
     "zod/require-error-message": "error",
-    "import/consistent-type-specifier-style": ["error", "prefer-top-level-if-only-type-imports"],
   },
   // kept in sync with .oxfmtrc.jsonc; "**/*.gen.ts" covers src/routeTree.gen.ts
   "ignorePatterns": ["__mocks__/**", "dist/**", "public/**", "**/*.gen.ts"],

@@ -38,11 +38,11 @@ function PowerOnHours() {
     return null;
   }
 
-  const hours = Number.parseInt(powerOnHours.slice(0, 2), 10);
-  const days = Number.parseInt(powerOnHours.slice(2, 4), 10);
-  const months = Number.parseInt(powerOnHours.slice(4, 6), 10);
-  const years = Number.parseInt(powerOnHours.slice(6), 10);
+  const [hours, days, months, years] = [0, 2, 4, 6].map((start, index, currentArray) => {
+    const substring = powerOnHours.slice(start, currentArray[index + 1]);
 
+    return Math.trunc(Number(substring));
+  });
   const now = Temporal.Now.zonedDateTimeISO();
 
   const calculatedProductionDate = now.subtract({

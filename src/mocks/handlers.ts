@@ -5,6 +5,10 @@ import { env } from '../env';
 import mockData from './box-7590-8_25.txt?raw';
 
 const behaviour = env.VITE_MSW_BEHAVIOUR;
+
+const mockedOKResponse = (): HttpResponse<string> =>
+  HttpResponse.text(mockData, { status: 200, statusText: 'OK - Mocked' });
+
 const handlers = [
   http.all('/box-data', async () => {
     switch (behaviour) {
@@ -32,9 +36,11 @@ const handlers = [
         await delay(5000);
         return HttpResponse.text(mockData, { status: 200, statusText: 'OK - Mocked' });
       }
-      case 'OK':
+      case 'OK': {
+        return mockedOKResponse();
+      }
       default: {
-        return HttpResponse.text(mockData, { status: 200, statusText: 'OK - Mocked' });
+        return mockedOKResponse();
       }
     }
   }),

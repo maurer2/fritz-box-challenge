@@ -16,8 +16,8 @@ function Restarts() {
     return null;
   }
 
-  const majorValue = Number.parseInt(restarts.slice(0, 2), 10);
-  const minorValue = Number.parseInt(restarts.slice(2), 10);
+  const majorValue = Math.trunc(Number(restarts.slice(0, 2)));
+  const minorValue = Math.trunc(Number(restarts.slice(2)));
 
   // https://www.ip-phone-forum.de/threads/was-wird-beim-system-status-angezeigt.138546/post-2303890
   // https://www.ip-phone-forum.de/threads/servicecode-der-fritzbox.310849/post-2438609

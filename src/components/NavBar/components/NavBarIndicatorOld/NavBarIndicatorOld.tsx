@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react';
+import { useState } from 'react';
 
 import { useMediaQuery } from '../../../../hooks/useMatchMedia/useMatchMedia';
 import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../../../Theme/tokens';
@@ -51,12 +51,10 @@ function NavBarIndicator({ activeNavBarEntryIndex }: IndicatorProps) {
 
   return (
     <NavBarIndicatorWrapper
-      style={
-        {
-          '--current-anchor': `--anchor-${activeNavBarEntryIndex}`,
-          '--should-transition': shouldTransition ? 'true' : 'false',
-        } as CSSProperties
-      }
+      style={{
+        '--current-anchor': `--anchor-${activeNavBarEntryIndex}`,
+        '--should-transition': shouldTransition ? 'true' : 'false',
+      }}
     >
       <NavBarIndicatorBar onTransitionEnd={handleTransitionEnd} />
     </NavBarIndicatorWrapper>
