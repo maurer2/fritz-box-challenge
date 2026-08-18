@@ -20,12 +20,12 @@ export const Route = createRootRouteWithContext<Context>()({
   ),
   wrapInSuspense: true, // required when a pending component is used in a root route: https://github.com/TanStack/router/issues/2182
   ssr: false,
-  beforeLoad({ context }) {
-    return {
-      queryClient: context.queryClient,
-      getStatusFieldsFromBoxQueryOptions,
-    };
-  },
+  // https://tkdodo.eu/blog/reliable-query-prefetching-with-tanstack-router
+  // context({ context }) {
+  context: () => ({
+    // queryClient: context.queryClient, // already injected into context in createRouter()
+    getStatusFieldsFromBoxQueryOptions,
+  }),
   loader: async ({ context }) => {
     await context.queryClient.ensureQueryData(context.getStatusFieldsFromBoxQueryOptions); // show root pending component until until query has finished
   },
