@@ -48,17 +48,23 @@ export const NavBarEntry = styled(Link)`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.tertiaryColor};
   text-align: center;
-  text-decoration: none;
+
+  /* https://github.com/w3c/csswg-drafts/issues/9586 */
+  /* https://github.com/w3c/csswg-drafts/issues/11274 */
+  /* workaround for flickering of hover styles during view transition */
+  text-decoration: underline 3px transparent;
+  text-underline-offset: 6px;
   background: none;
   border: 0;
+  /* delay underline change by 0.1s so that flickering is hidden */
+  transition: text-decoration-color 0s 0.1s;
 
   /* font-size: medium; // medium should be mapped to 16px * preferred-text-scale => 24px when 150% scale and meta tag is enabled */
 
   /* todo: https://defensivecss.dev/tip/hover-media/ */
   &:where(:hover, :focus-visible) {
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-    text-underline-offset: 6px;
+    text-decoration-color: currentcolor;
+    transition-delay: 0s;
   }
 
   &:focus-visible {

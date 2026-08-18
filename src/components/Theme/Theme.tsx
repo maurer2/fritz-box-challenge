@@ -22,18 +22,20 @@ export const GlobalStyles = createGlobalStyle`
         --animation-duration: 0s;
       }
 
-      // obviated by the meta tag approach
-      --text-scale: env(preferred-text-scale, 1); // Chrome testing: Rendering/Emulate OS text scale
+      /* obviated by the meta tag approach */
+      --text-scale: env(preferred-text-scale, 1); /* Chrome testing: Rendering/Emulate OS text scale */
 
       /* custom media queries not supported anywhere */
       /* stylelint-disable-next-line media-query-no-invalid */
       /* @custom-media --large-screen (width > ${SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE}px); */
     }
 
-    // non-vars stuff
+    /* non-vars stuff */
     :where(html) {
       -webkit-font-smoothing: antialiased;
       text-size-adjust: none;
+      /* Disable default view transition and prevent fixed overlay blocking hover during transition: https://master.dev/blog/view-transitions-careful-not-to-make-stuff-unclickable/ */
+      view-transition-name: none;
     }
 
     :where(body) {
@@ -47,6 +49,10 @@ export const GlobalStyles = createGlobalStyle`
       display: grid;
       grid-template-rows: [update-bar] 1fr [content] auto;
       block-size: 100%;
+    }
+
+    ::view-transition {
+      pointer-events: none;
     }
 
     :active-view-transition-type(move-left) {
