@@ -84,20 +84,24 @@ const NavBar = () => {
       {/* Only sets the current anchor location and its styling. Transition between two anchors is done via view-transitions */}
       <NavBarIndicator activeNavBarEntryIndex={activeNavBarEntryIndex} />
       <NavBarList>
-        {navLinks.map((path, index) => (
-          <li key={path}>
-            <NavBarEntry
-              to={path}
-              viewTransition={viewTransition}
-              activeProps={{
-                'aria-current': 'page',
-              }}
-              style={{ anchorName: `--anchor-${index}` }}
-            >
-              {router.routesByPath[path].options.staticData?.title ?? ''}
-            </NavBarEntry>
-          </li>
-        ))}
+        {navLinks.map((path, index) => {
+          const currentRoute = router.routesByPath[path];
+
+          return (
+            <li key={path}>
+              <NavBarEntry
+                to={path}
+                viewTransition={viewTransition}
+                activeProps={{
+                  'aria-current': 'page',
+                }}
+                style={{ anchorName: `--anchor-${index}` }}
+              >
+                {currentRoute.options.staticData.title}
+              </NavBarEntry>
+            </li>
+          );
+        })}
       </NavBarList>
     </NavBarWrapper>
   );

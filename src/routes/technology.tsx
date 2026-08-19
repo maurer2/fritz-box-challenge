@@ -30,7 +30,7 @@ function Technology() {
 
   return (
     <Slide
-      title={Route.options.staticData?.title ?? ''}
+      title={Route.options.staticData.title}
       text={mappedTechnology}
     />
   );

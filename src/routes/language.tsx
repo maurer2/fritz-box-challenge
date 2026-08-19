@@ -30,7 +30,7 @@ function Branding() {
 
   return (
     <Slide
-      title={Route.options.staticData?.title ?? ''}
+      title={Route.options.staticData.title}
       text={languageName}
     />
   );

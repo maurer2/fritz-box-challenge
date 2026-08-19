@@ -29,6 +29,7 @@ export const Route = createRootRouteWithContext<Context>()({
   loader: async ({ context }) => {
     await context.queryClient.ensureQueryData(context.getStatusFieldsFromBoxQueryOptions); // show root pending component until until query has finished
   },
+  staticData: { title: '' },
   pendingMinMs: 1000,
   pendingMs: 0, // show pendingComponent right away on load avoiding 1s of black screen
   component: () => (

@@ -26,7 +26,7 @@ function Restarts() {
 
   return (
     <Slide
-      title={Route.options.staticData?.title ?? ''}
+      title={Route.options.staticData.title}
       text={calculatedRestarts.toString().padStart(3, '0')}
     />
   );
