@@ -6,6 +6,7 @@ import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/language')({
   component: Branding,
+  staticData: { title: 'Language' },
 });
 
 function Branding() {
@@ -29,7 +30,7 @@ function Branding() {
 
   return (
     <Slide
-      title="Language"
+      title={Route.options.staticData?.title ?? ''}
       text={languageName}
     />
   );

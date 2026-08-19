@@ -6,6 +6,7 @@ import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/technology')({
   component: Technology,
+  staticData: { title: 'Technology' },
 });
 
 function Technology() {
@@ -29,7 +30,7 @@ function Technology() {
 
   return (
     <Slide
-      title="Technology"
+      title={Route.options.staticData?.title ?? ''}
       text={mappedTechnology}
     />
   );

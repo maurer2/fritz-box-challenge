@@ -6,6 +6,7 @@ import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/branding')({
   component: Branding,
+  staticData: { title: 'Branding' },
 });
 
 function Branding() {
@@ -25,7 +26,7 @@ function Branding() {
 
   return (
     <Slide
-      title="Branding"
+      title={Route.options.staticData?.title ?? ''}
       text={mappedBranding}
     />
   );

@@ -5,6 +5,7 @@ import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/model')({
   component: Model,
+  staticData: { title: 'Model' },
 });
 
 function Model() {
@@ -20,7 +21,7 @@ function Model() {
 
   return (
     <Slide
-      title="Model"
+      title={Route.options.staticData?.title ?? ''}
       text={modelWithoutBranding}
     />
   );

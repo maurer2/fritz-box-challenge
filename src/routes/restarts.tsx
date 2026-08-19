@@ -5,6 +5,7 @@ import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/restarts')({
   component: Restarts,
+  staticData: { title: 'Restarts' },
 });
 
 function Restarts() {
@@ -25,7 +26,7 @@ function Restarts() {
 
   return (
     <Slide
-      title="Restarts"
+      title={Route.options.staticData?.title ?? ''}
       text={calculatedRestarts.toString().padStart(3, '0')}
     />
   );

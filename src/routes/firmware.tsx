@@ -5,6 +5,7 @@ import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/firmware')({
   component: Firmware,
+  staticData: { title: 'Firmware' },
 });
 
 function Firmware() {
@@ -21,7 +22,7 @@ function Firmware() {
 
   return (
     <Slide
-      title="Firmware"
+      title={Route.options.staticData?.title ?? ''}
       text={`${majorVersion}.${minorVersion}`}
     />
   );
