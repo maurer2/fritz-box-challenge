@@ -19,7 +19,7 @@
     "dump-box-data": "node --env-file=.env './scripts/dump-box-data.ts'",
     "format": "oxfmt",
     "lint:eslint": "eslint '{src,scripts}/**/*.{ts,tsx}'",
-    "lint:oxlint": "oxlint src scripts",
+    "lint:oxlint": "oxlint",
     "lint:style": "stylelint 'src/**/*.{css,styles.ts}'",
     "start": "vite --mode production",
     "test:schema": "vitest 'src/schema'",

@@ -135,7 +135,7 @@
     "zod/require-error-message": "error",
   },
   // kept in sync with .oxfmtrc.jsonc; "**/*.gen.ts" covers src/routeTree.gen.ts
-  "ignorePatterns": ["__mocks__/**", "dist/**", "public/**", "**/*.gen.ts"],
+  "ignorePatterns": ["__mocks__/**", "dist/**", "experiments/**", "public/**", "**/*.gen.ts"],
   "overrides": [
     // disable mandatory return types for React components -> also disables it for functions inside React component files
     {

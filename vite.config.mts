@@ -40,7 +40,7 @@ import zodCompiler from 'zod-compiler/vite';
 const boxDataProxyOptions = {
   changeOrigin: true,
   secure: false,
-  rewrite: (p: string) => p.replace(/^\/box-data/, ''),
+  rewrite: (p: string): string => p.replace(/^\/box-data/v, ''),
 } satisfies ProxyOptions;
 
 export default defineConfig(({ mode }) => {
@@ -115,16 +115,24 @@ export default defineConfig(({ mode }) => {
       open: false,
       port: 3000,
       // proxy is not needed in dev mode as there are no cors errors from MSW
+      proxy: isDevMode
+        ? undefined
+        : {
             '/box-data': {
               target: env.URL_BOX_STATUS,
               ...boxDataProxyOptions,
             },
+          },
     },
     preview: {
+      proxy: isDevMode
+        ? undefined
+        : {
             '/box-data': {
               target: env.URL_BOX_STATUS,
               ...boxDataProxyOptions,
             },
+          },
     },
   };
 });
