@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 export const NavBarWrapper = styled.nav`
   position: sticky;

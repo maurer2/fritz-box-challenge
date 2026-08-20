@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 export const InfoBarWrapper = styled.div<{ $isActive: boolean }>`
   position: fixed;

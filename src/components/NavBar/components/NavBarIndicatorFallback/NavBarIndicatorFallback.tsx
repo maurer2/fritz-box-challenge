@@ -36,7 +36,7 @@ function NavBarIndicatorFallback({
     const { width } = activeNavBarEntry.getBoundingClientRect();
     const { offsetLeft } = activeNavBarEntry;
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect react/react-compiler
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOffset((currentOffset) => {
       setPrevOffset(isIndicatorVisible ? currentOffset : null);
 

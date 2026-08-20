@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 // only used to inject CSS vars
 export const NavBarIndicatorWrapper = styled.div`

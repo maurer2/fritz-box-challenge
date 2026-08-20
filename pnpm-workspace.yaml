@@ -12,6 +12,11 @@ blockExoticSubdeps: true # no git branch as package url
 minimumReleaseAgeExclude:
   - 'rolldown'
   - '@oxc-project/types'
+  - 'oxlint'
+  - '@oxlint/*'
+  - 'oxc-transform-react' # rust port of the React Compiler
+  - '@oxc-transform-react/*'
+  - '@vitejs/plugin-react'
 resolutionMode: highest
 
 supportedArchitectures:

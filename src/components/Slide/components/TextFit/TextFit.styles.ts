@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 // needs to be a block element
 export const TextFitCSS = styled.div`

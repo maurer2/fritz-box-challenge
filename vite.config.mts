@@ -1,8 +1,9 @@
 import { devtools } from '@tanstack/devtools-vite';
 import babel from '@rolldown/plugin-babel';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
-import react, { reactCompilerPreset } from '@vitejs/plugin-react';
-import type { Logger } from 'babel-plugin-react-compiler';
+// import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+// import type { Logger } from 'babel-plugin-react-compiler';
+import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, loadEnv, type ProxyOptions /* type PluginOption, */ } from 'vite';
 import zodCompiler from 'zod-compiler/vite';
@@ -60,30 +61,31 @@ export default defineConfig(({ mode }) => {
       tanstackRouter({
         autoCodeSplitting: true,
       }),
-      react(),
+      // experimental rust port without logging function atm: https://oxc.rs/blog/2026-08-18-react-compiler-support.html#vite
+      react({ compiler: true }),
       babel({
         presets: [
-          reactCompilerPreset({
-            // https://github.com/vitejs/vite-plugin-react/discussions/1208#discussioncomment-16922703
-            logger: {
-              logEvent(filename, event) {
-                switch (event.kind) {
-                  case 'CompileSuccess': {
-                    console.log(`✅ Compiled: ${filename}`);
-                    break;
-                  }
-                  case 'CompileError': {
-                    console.log(`❌ Compiler Error: ${filename}`);
-                    console.error(`Reason: ${event.detail.reason}`);
-                    break;
-                  }
-                  default: {
-                    break; // eslint fix
-                  }
-                }
-              },
-            } satisfies Logger,
-          }),
+          // reactCompilerPreset({
+          //   // https://github.com/vitejs/vite-plugin-react/discussions/1208#discussioncomment-16922703
+          //   logger: {
+          //     logEvent(filename, event) {
+          //       switch (event.kind) {
+          //         case 'CompileSuccess': {
+          //           console.log(`✅ Compiled: ${filename}`);
+          //           break;
+          //         }
+          //         case 'CompileError': {
+          //           console.log(`❌ Compiler Error: ${filename}`);
+          //           console.error(`Reason: ${event.detail.reason}`);
+          //           break;
+          //         }
+          //         default: {
+          //           break; // eslint fix
+          //         }
+          //       }
+          //     },
+          //   } satisfies Logger,
+          // }),
         ],
         plugins: [
           [
@@ -113,24 +115,16 @@ export default defineConfig(({ mode }) => {
       open: false,
       port: 3000,
       // proxy is not needed in dev mode as there are no cors errors from MSW
-      proxy: !isDevMode
-        ? {
             '/box-data': {
               target: env.URL_BOX_STATUS,
               ...boxDataProxyOptions,
             },
-          }
-        : undefined,
     },
     preview: {
-      proxy: !isDevMode
-        ? {
             '/box-data': {
               target: env.URL_BOX_STATUS,
               ...boxDataProxyOptions,
             },
-          }
-        : undefined,
     },
   };
 });

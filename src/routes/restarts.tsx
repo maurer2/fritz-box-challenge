@@ -18,6 +18,8 @@ function Restarts() {
   }
 
   const majorValue = Math.trunc(Number(restarts.slice(0, 2)));
+  // compiler bug
+  // oxlint-disable-next-line react/invariant
   const minorValue = Math.trunc(Number(restarts.slice(2)));
 
   // https://www.ip-phone-forum.de/threads/was-wird-beim-system-status-angezeigt.138546/post-2303890

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 export const SlideMasterWrapper = styled.main`
   place-content: center; /* works without grid */
