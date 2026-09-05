@@ -1,12 +1,8 @@
 import { NavBarIndicatorWrapper, NavBarIndicatorBar } from './NavBarIndicator.styles';
 
-type NavBarIndicatorProps = {
-  activeNavBarEntryIndex: number;
-};
-
-function NavBarIndicator({ activeNavBarEntryIndex }: NavBarIndicatorProps) {
+function NavBarIndicator() {
   return (
-    <NavBarIndicatorWrapper style={{ '--current-anchor': `--anchor-${activeNavBarEntryIndex}` }}>
+    <NavBarIndicatorWrapper>
       <NavBarIndicatorBar />
     </NavBarIndicatorWrapper>
   );

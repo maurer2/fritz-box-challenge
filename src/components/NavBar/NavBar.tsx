@@ -81,11 +81,12 @@ const NavBar = () => {
 
   return (
     <NavBarWrapper>
-      {/* Only sets the current anchor location and its styling. Transition between two anchors is done via view-transitions */}
-      <NavBarIndicator activeNavBarEntryIndex={activeNavBarEntryIndex} />
+      {/* Transition between two anchors is done via view-transitions */}
+      <NavBarIndicator />
       <NavBarList>
         {navLinks.map((path, index) => {
           const currentRoute = router.routesByPath[path];
+          const isActive = index === activeNavBarEntryIndex;
 
           return (
             <li key={path}>
@@ -95,7 +96,8 @@ const NavBar = () => {
                 activeProps={{
                   'aria-current': 'page',
                 }}
-                style={{ anchorName: `--anchor-${index}` }}
+                // can't use activeProps as styling hooks as that sets the anchor before the view transition is calculated (similar to useLocation)
+                data-is-indicator-anchor={isActive ? 'true' : 'false'}
               >
                 {currentRoute.options.staticData.title}
               </NavBarEntry>

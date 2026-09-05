@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 
-// only used to inject CSS vars
 export const NavBarIndicatorWrapper = styled.div`
   container-type: inline-size;
   /* contain: paint; // breaks anchor positioning */
@@ -12,7 +11,7 @@ export const NavBarIndicatorBar = styled.div`
   inset-inline-start: anchor(start);
   inline-size: anchor-size(width);
   block-size: 5px;
-  position-anchor: var(--current-anchor);
+  position-anchor: --indicator-anchor;
   background: ${({ theme }) => theme.colors.highlightColor};
 
   @container style(--is-single-row-nav: true) {

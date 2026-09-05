@@ -67,6 +67,11 @@ export const NavBarEntry = styled(Link)`
     transition-delay: 0s;
   }
 
+  /* can't use [aria-current] as it is updated before the view transition snapshot is taken so no transition snapshot would be calculated */
+  &:where([data-is-indicator-anchor='true']) {
+    anchor-name: --indicator-anchor;
+  }
+
   &:focus-visible {
     /* https://www.w3.org/WAI/WCAG21/Techniques/css/C40 */
 
