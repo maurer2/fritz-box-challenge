@@ -93,9 +93,6 @@ const NavBar = () => {
               <NavBarEntry
                 to={path}
                 viewTransition={viewTransition}
-                activeProps={{
-                  'aria-current': 'page',
-                }}
                 // can't use activeProps as styling hooks as that sets the anchor before the view transition is calculated (similar to useLocation)
                 data-is-indicator-anchor={isActive ? 'true' : 'false'}
               >
