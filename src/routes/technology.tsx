@@ -5,6 +5,12 @@ import { match } from 'ts-pattern';
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/technology')({
+  errorComponent: () => (
+    <Slide
+      type="error"
+      title={Route.options.staticData.title}
+    />
+  ),
   component: Technology,
   staticData: { title: 'Technology' },
 });
@@ -15,7 +21,12 @@ function Technology() {
   const technology = data.get('technology');
 
   if (!technology) {
-    return null;
+    return (
+      <Slide
+        type="unavailable"
+        title={Route.options.staticData.title}
+      />
+    );
   }
 
   const mappedTechnology = match(technology)
@@ -30,6 +41,7 @@ function Technology() {
 
   return (
     <Slide
+      type="success"
       title={Route.options.staticData.title}
       text={mappedTechnology}
     />

@@ -6,15 +6,25 @@ import { Slide } from '../components/Slide/Slide';
 export const Route = createFileRoute('/power-on-hours')({
   loader: async () => {
     // await new Promise((resolve) => {
-    //   setTimeout(resolve, 2500);
+    //   setTimeout(resolve, 5000);
     // });
-
     const Temporal = globalThis.Temporal ?? (await import('temporal-polyfill')).Temporal;
 
     return { Temporal };
   },
   // page rendering is delayed until the polyfill has loaded, otherwise the previous slide would be shown until the loader has finished
-  pendingComponent: () => <Slide title={Route.options.staticData.title} />,
+  pendingComponent: () => (
+    <Slide
+      type="loading"
+      title={Route.options.staticData.title}
+    />
+  ),
+  errorComponent: () => (
+    <Slide
+      type="error"
+      title={Route.options.staticData.title}
+    />
+  ),
   component: PowerOnHours,
   staticData: { title: 'Power-on hours' },
   pendingMs: 0, // show skeleton right away
@@ -34,8 +44,14 @@ function PowerOnHours() {
   const powerOnHours = data.get('powerOnHours');
 
   if (!powerOnHours) {
-    return null;
+    return (
+      <Slide
+        type="unavailable"
+        title={Route.options.staticData.title}
+      />
+    );
   }
+  // throw new Error('meow');
 
   const [hours, days, months, years] = [0, 2, 4, 6].map((start, index, currentArray) => {
     const substring = powerOnHours.slice(start, currentArray[index + 1]);
@@ -52,9 +68,7 @@ function PowerOnHours() {
   });
 
   if (!(calculatedProductionDate instanceof Temporal.ZonedDateTime)) {
-    console.warn('Invalid calculated production date');
-
-    return 'Unknown';
+    throw new Error('Invalid calculated production date'); // gets caught by errorComponent
   }
 
   const duration = calculatedProductionDate.until(now, {
@@ -69,6 +83,7 @@ function PowerOnHours() {
 
   return (
     <Slide
+      type="success"
       title={Route.options.staticData.title}
       text={powerOnHoursFormatted}
     />

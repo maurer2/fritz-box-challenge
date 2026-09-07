@@ -5,6 +5,12 @@ import { match } from 'ts-pattern';
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/language')({
+  errorComponent: () => (
+    <Slide
+      type="error"
+      title={Route.options.staticData.title}
+    />
+  ),
   component: Branding,
   staticData: { title: 'Language' },
 });
@@ -15,7 +21,12 @@ function Branding() {
   const language = data.get('language');
 
   if (!language) {
-    return null;
+    return (
+      <Slide
+        type="unavailable"
+        title={Route.options.staticData.title}
+      />
+    );
   }
 
   const languageName = match(language)
@@ -30,6 +41,7 @@ function Branding() {
 
   return (
     <Slide
+      type="success"
       title={Route.options.staticData.title}
       text={languageName}
     />

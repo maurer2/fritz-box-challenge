@@ -4,6 +4,12 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/restarts')({
+  errorComponent: () => (
+    <Slide
+      type="error"
+      title={Route.options.staticData.title}
+    />
+  ),
   component: Restarts,
   staticData: { title: 'Restarts' },
 });
@@ -14,7 +20,12 @@ function Restarts() {
   const restarts = data.get('restarts');
 
   if (!restarts) {
-    return null;
+    return (
+      <Slide
+        type="unavailable"
+        title={Route.options.staticData.title}
+      />
+    );
   }
 
   // workaround as Math.trunc(Number(restarts.slice())); breaks the compiler -> component doesn't get optimized
@@ -29,6 +40,7 @@ function Restarts() {
 
   return (
     <Slide
+      type="success"
       title={Route.options.staticData.title}
       text={calculatedRestarts.toString().padStart(3, '0')}
     />

@@ -4,6 +4,12 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/model')({
+  errorComponent: () => (
+    <Slide
+      type="error"
+      title={Route.options.staticData.title}
+    />
+  ),
   component: Model,
   staticData: { title: 'Model' },
 });
@@ -14,13 +20,19 @@ function Model() {
   const model = data.get('model');
 
   if (!model) {
-    return null;
+    return (
+      <Slide
+        type="unavailable"
+        title={Route.options.staticData.title}
+      />
+    );
   }
 
   const modelWithoutBranding = model.replace('(UI)', ''); // 1und1 branding
 
   return (
     <Slide
+      type="success"
       title={Route.options.staticData.title}
       text={modelWithoutBranding}
     />

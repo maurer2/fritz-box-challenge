@@ -4,6 +4,12 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/firmware')({
+  errorComponent: () => (
+    <Slide
+      type="error"
+      title={Route.options.staticData.title}
+    />
+  ),
   component: Firmware,
   staticData: { title: 'Firmware' },
 });
@@ -14,7 +20,12 @@ function Firmware() {
   const firmware = data.get('firmware');
 
   if (!firmware) {
-    return null;
+    return (
+      <Slide
+        type="unavailable"
+        title={Route.options.staticData.title}
+      />
+    );
   }
 
   const majorVersion = firmware.slice(-3, -2);
@@ -22,6 +33,7 @@ function Firmware() {
 
   return (
     <Slide
+      type="success"
       title={Route.options.staticData.title}
       text={`${majorVersion}.${minorVersion}`}
     />

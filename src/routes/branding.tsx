@@ -5,6 +5,12 @@ import { match } from 'ts-pattern';
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/branding')({
+  errorComponent: () => (
+    <Slide
+      type="error"
+      title={Route.options.staticData.title}
+    />
+  ),
   component: Branding,
   staticData: { title: 'Branding' },
 });
@@ -15,7 +21,12 @@ function Branding() {
   const branding = data.get('branding');
 
   if (!branding) {
-    return null;
+    return (
+      <Slide
+        type="unavailable"
+        title={Route.options.staticData.title}
+      />
+    );
   }
 
   const mappedBranding = match(branding)
@@ -26,6 +37,7 @@ function Branding() {
 
   return (
     <Slide
+      type="success"
       title={Route.options.staticData.title}
       text={mappedBranding}
     />
