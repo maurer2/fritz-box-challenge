@@ -1,6 +1,6 @@
 import { createTheme } from 'styled-components';
 
-export const SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE = 750;
+export const SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE = 850;
 
 export const theme = createTheme({
   colors: {

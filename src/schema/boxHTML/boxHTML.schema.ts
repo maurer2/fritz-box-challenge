@@ -22,4 +22,3 @@ const boxHTMLSchemaUncompiledSchema = z
 export type BoxHTML = z.output<typeof boxHTMLSchema>;
 
 export const boxHTMLSchema = compile(boxHTMLSchemaUncompiledSchema);
-// export type BoxHTML = z.output<typeof boxHTMLSchema>; // returns unknown instead of string

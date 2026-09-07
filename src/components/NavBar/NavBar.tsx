@@ -20,6 +20,7 @@ const navLinks = [
   '/power-on-hours',
   '/restarts',
   '/technology',
+  '/language',
 ] satisfies (keyof FileRoutesByPath)[];
 
 const viewTransition: NavigateOptions['viewTransition'] = {

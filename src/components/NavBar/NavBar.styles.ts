@@ -72,7 +72,7 @@ export const NavBarEntry = styled(Link)`
     anchor-name: --indicator-anchor;
   }
 
-  &:focus-visible {
+  &:where(:focus-visible) {
     /* https://www.w3.org/WAI/WCAG21/Techniques/css/C40 */
 
     /* inner indicator */
