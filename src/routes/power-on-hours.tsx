@@ -4,6 +4,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/power-on-hours')({
+  // page rendering is delayed and the (global) pending component is shown until the polyfill has loaded
+  // without pendingComponent the previous slide would be shown until the loader has finished
   loader: async () => {
     // await new Promise((resolve) => {
     //   setTimeout(resolve, 5000);
@@ -12,22 +14,9 @@ export const Route = createFileRoute('/power-on-hours')({
 
     return { Temporal };
   },
-  // page rendering is delayed until the polyfill has loaded, otherwise the previous slide would be shown until the loader has finished
-  pendingComponent: () => (
-    <Slide
-      type="loading"
-      title={Route.options.staticData.title}
-    />
-  ),
-  errorComponent: () => (
-    <Slide
-      type="error"
-      title={Route.options.staticData.title}
-    />
-  ),
   component: PowerOnHours,
   staticData: { title: 'Power-on hours' },
-  pendingMs: 0, // show skeleton right away
+  pendingMs: 0, // show the default pending slide right away
 });
 
 const durationFormatter = new Intl.DurationFormat('en-GB', { style: 'long' });

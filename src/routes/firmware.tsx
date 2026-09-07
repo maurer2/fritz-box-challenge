@@ -4,12 +4,6 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/firmware')({
-  errorComponent: () => (
-    <Slide
-      type="error"
-      title={Route.options.staticData.title}
-    />
-  ),
   component: Firmware,
   staticData: { title: 'Firmware' },
 });

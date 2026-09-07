@@ -5,12 +5,6 @@ import { match } from 'ts-pattern';
 import { Slide } from '../components/Slide/Slide';
 
 export const Route = createFileRoute('/branding')({
-  errorComponent: () => (
-    <Slide
-      type="error"
-      title={Route.options.staticData.title}
-    />
-  ),
   component: Branding,
   staticData: { title: 'Branding' },
 });

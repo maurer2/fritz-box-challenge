@@ -8,6 +8,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { setupWorker } from 'msw/browser';
 import { StyleSheetManager } from 'styled-components';
 
+import { SlideFallback } from './components/SlideFallback/SlideFallback';
 import { Theme } from './components/Theme/Theme';
 import { routeTree } from './routeTree.gen';
 import './index.css';
@@ -62,6 +63,8 @@ export const router = createRouter({
   defaultPreload: 'intent',
   defaultGcTime: Infinity,
   defaultPendingMs: 1000, // default
+  defaultPendingComponent: () => <SlideFallback type="loading" />,
+  defaultErrorComponent: () => <SlideFallback type="error" />,
   defaultPreloadStaleTime: 0, // https://tkdodo.eu/blog/tan-stack-router-and-query#turn-off-router-caching
 });
 
