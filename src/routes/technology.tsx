@@ -2,7 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { match } from 'ts-pattern';
 
-import { Slide } from '../components/Slide/Slide';
+import { Slide } from '#components/Slide/Slide';
 
 export const Route = createFileRoute('/technology')({
   component: Technology,

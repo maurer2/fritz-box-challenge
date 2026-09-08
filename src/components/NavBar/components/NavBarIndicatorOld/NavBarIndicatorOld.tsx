@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { useMediaQuery } from '../../../../hooks/useMatchMedia/useMatchMedia';
-import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '../../../Theme/tokens';
+import { SCREEN_WIDTH_WHERE_INDICATOR_IS_VISIBLE } from '#components/Theme/tokens';
+import { useMediaQuery } from '#hooks/useMatchMedia/useMatchMedia';
 
 import { NavBarIndicatorWrapper, NavBarIndicatorBar } from './NavBarIndicatorOld.styles';
 

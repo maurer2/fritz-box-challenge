@@ -1,9 +1,9 @@
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import { env } from '../src/env.ts';
-import fetcher from '../src/helpers/fetcher/fetcher.ts';
-import { boxHTMLSchema } from '../src/schema/boxHTML/boxHTML.schema.ts';
+import { env } from '#env.ts';
+import fetcher from '#helpers/fetcher/fetcher.ts';
+import { boxHTMLSchema } from '#schema/boxHTML/boxHTML.schema.ts';
 
 try {
   const bodyContent = await fetcher(env.URL_BOX_STATUS, boxHTMLSchema);

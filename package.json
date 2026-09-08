@@ -7,6 +7,13 @@
   "repository": "git@github.com:maurer2/fritz-box-challenge.git",
   "type": "module",
   "main": "index.js",
+  "imports": {
+    "#*": [
+      "./src/*",
+      "./src/*.ts",
+      "./src/*.tsx"
+    ]
+  },
   "scripts": {
     "analyze": "vite build --mode analyze",
     "dev": "vite",

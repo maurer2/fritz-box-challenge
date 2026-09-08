@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react';
 import { useMatch } from '@tanstack/react-router';
 
-import { Slide } from '../Slide/Slide';
+import { Slide } from '#components/Slide/Slide';
 
 type SlideProps = ComponentProps<typeof Slide>['type'];
 type SlideFallbackProps = {

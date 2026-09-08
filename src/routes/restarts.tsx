@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
-import { Slide } from '../components/Slide/Slide';
+import { Slide } from '#components/Slide/Slide';
 
 export const Route = createFileRoute('/restarts')({
   component: Restarts,

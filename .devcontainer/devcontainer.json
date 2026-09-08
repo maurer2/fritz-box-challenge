@@ -100,7 +100,6 @@
         "js/ts.experimental.useTsgo": true,
         "js/ts.tsdk.path": "node_modules/@typescript/native",
         // typescript & javascript
-        "js/ts.preferences.importModuleSpecifier": "relative",
         "js/ts.validate.enable": true,
         "js/ts.inlayHints.variableTypes.enabled": true,
         "js/ts.inlayHints.parameterTypes.enabled": true,
@@ -111,8 +110,7 @@
         "js/ts.inlayHints.variableTypes.suppressWhenTypeMatchesName": false, // show variable type hints even for primitives (e.g. strings, numbers, booleans)
         // html
         "html.highlightMatchingTag": true,
-        // eslint
-        "eslint.useFlatConfig": true,
+        // "eslint.useFlatConfig": true,
         // markdown
         "markdown.preview.scrollEditorWithPreview": true,
         "markdown.preview.scrollPreviewWithEditor": true,
@@ -131,8 +129,8 @@
       },
       "extensions": [
         // linting & formatting
-        "dbaeumer.vscode-eslint", // ESLint integration in the editor
-        "ghmcadams.lintlens", // Displays ESLint rule docs inline
+        // "dbaeumer.vscode-eslint", // ESLint integration in the editor
+        // "ghmcadams.lintlens", // Displays ESLint rule docs inline
         // "esbenp.prettier-vscode", // Prettier
         "oxc.oxc-vscode", // Oxlint + Oxfmt
         "stylelint.vscode-stylelint", // Stylelint CSS/SCSS linting integration

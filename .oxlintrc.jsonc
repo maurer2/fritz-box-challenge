@@ -90,7 +90,7 @@
     "oxc/no-rest-spread-properties": "off",
     // import
     "import/no-default-export": "off",
-    "import/no-relative-parent-imports": "off",
+    "import/no-relative-parent-imports": "error", // use subpath imports but allow relative imports for files in the same folder and subfolders
     "import/no-unassigned-import": "off", // needed for side effect imports like global CSS imports
     "import/unambiguous": "off",
     "import/max-dependencies": "off",

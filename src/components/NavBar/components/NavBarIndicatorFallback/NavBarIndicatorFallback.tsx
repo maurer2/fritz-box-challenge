@@ -1,6 +1,6 @@
 import { useState, useMemo, useLayoutEffect } from 'react';
 
-import { useMediaQuery } from '../../../../hooks/useMatchMedia/useMatchMedia';
+import { useMediaQuery } from '#hooks/useMatchMedia/useMatchMedia';
 
 import { NavBarIndicatorWrapper, NavBarIndicator } from './NavBarIndicatorFallback.styles';
 

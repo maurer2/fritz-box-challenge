@@ -1,4 +1,4 @@
-import { TextFitFallback } from '../TextFitFallback/TextFitFallback';
+import { TextFitFallback } from '#components/Slide/components/TextFitFallback/TextFitFallback';
 
 import { TextFitCSS } from './TextFit.styles';
 

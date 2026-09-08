@@ -1,4 +1,4 @@
-import { VisuallyHidden } from '../../../VisuallyHidden/VisuallyHidden';
+import { VisuallyHidden } from '#components/VisuallyHidden/VisuallyHidden';
 
 import { SlideTextSkeletonBar } from './SlideTextSkeleton.styles';
 
