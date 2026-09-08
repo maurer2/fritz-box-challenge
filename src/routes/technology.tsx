@@ -27,10 +27,8 @@ function Technology() {
     .returnType<string>()
     .with('A', 'B', 'J', 'Q', (value) => `Annex ${value}`)
     .with('Annex unbekannt', () => 'Unknown Annex')
-    .with('Cable', () => 'Cable')
-    // .with('???', () => 'GPON')
-    // .with('???', () => 'XGS GPON')
-    // .with('???', () => 'AON')
+    .with('Cable', 'Kabel', () => 'Cable (DOCSIS)')
+    .with('Ohne', () => 'No modem')
     .otherwise(() => 'Unknown');
 
   return (

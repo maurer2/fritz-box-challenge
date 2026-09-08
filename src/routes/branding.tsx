@@ -25,7 +25,7 @@ function Branding() {
 
   const mappedBranding = match(branding)
     .returnType<string>()
-    .with('avm', () => 'AVM')
+    .with('avm', 'avme', () => 'AVM') // avme is the international version of avm
     .with('1und1', () => '1&1')
     .otherwise(() => 'Unknown');
 

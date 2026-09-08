@@ -23,7 +23,9 @@ function Branding() {
     );
   }
 
+  // list of supported languages: https://hilfe.o2online.de/testberichte-reviews-9/avm-fritz-box-7530-international-version-multi-language-support-516517
   const languageName = match(language)
+    .returnType<string>()
     .with('de', () => 'German')
     .with('en', () => 'English')
     .with('fr', () => 'French')
