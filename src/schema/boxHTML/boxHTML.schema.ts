@@ -1,5 +1,4 @@
 import * as z from 'zod';
-import { compile } from 'zod-compiler';
 
 const boxHTMLSchemaUncompiledSchema = z
   .string({
@@ -19,6 +18,6 @@ const boxHTMLSchemaUncompiledSchema = z
     error: '"FRITZ!Box" string is missing',
   });
 
-export type BoxHTML = z.output<typeof boxHTMLSchema>;
+export const boxHTMLSchema = z.compile(boxHTMLSchemaUncompiledSchema);
 
-export const boxHTMLSchema = compile(boxHTMLSchemaUncompiledSchema);
+export type BoxHTML = z.output<typeof boxHTMLSchema>;

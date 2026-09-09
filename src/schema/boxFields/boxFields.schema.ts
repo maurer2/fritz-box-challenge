@@ -1,5 +1,4 @@
 import * as z from 'zod';
-import { compile } from 'zod-compiler';
 
 const minSectionsOfBoxValues = 10; // 11 with language field
 const dateLength = 9;
@@ -40,4 +39,4 @@ const boxFieldsSchemaUncompiledSchema = z
     error: 'No segment in array must be empty',
   });
 
-export const boxFieldsSchema = compile(boxFieldsSchemaUncompiledSchema);
+export const boxFieldsSchema = z.compile(boxFieldsSchemaUncompiledSchema);

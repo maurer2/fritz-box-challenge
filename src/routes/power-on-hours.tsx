@@ -22,7 +22,7 @@ export const Route = createFileRoute('/power-on-hours')({
 const durationFormatter = new Intl.DurationFormat('en-GB', { style: 'long' });
 const listFormatter = new Intl.ListFormat('en-GB', {
   style: 'long',
-  type: 'conjunction',
+  type: 'conjunction', // "and"
 });
 
 // https://forum.vodafone.de/t5/Plauderecke/Wie-gesamte-Laufzeit-der-Fritz-Box-ermitteln/td-p/3245922

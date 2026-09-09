@@ -6,7 +6,6 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, loadEnv, type ProxyOptions /* type PluginOption, */ } from 'vite';
-import zodCompiler from 'zod-compiler/vite';
 
 // import { boxHTMLSchema } from './src/schema/boxHTML/boxHTML.schema';
 // import fetcher from './src/helpers/fetcher/fetcher';
@@ -107,9 +106,6 @@ export default defineConfig(({ mode }) => {
             template: 'treemap',
           })
         : null,
-      zodCompiler({
-        schemas: 'explicit',
-      }),
     ],
     server: {
       open: false,

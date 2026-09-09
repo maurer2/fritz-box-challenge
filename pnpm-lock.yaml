@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@t3-oss/env-core':
         specifier: ^0.13.11
-        version: 0.13.11(@typescript/typescript6@6.0.2)(zod@4.4.3)
+        version: 0.13.11(@typescript/typescript6@6.0.2)(zod@4.5.4)
       '@tanstack/react-devtools':
         specifier: ^0.10.7
         version: 0.10.7(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(csstype@3.2.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(solid-js@1.9.13)
@@ -51,11 +51,8 @@ importers:
         specifier: ^5.9.0
         version: 5.9.0
       zod:
-        specifier: ^4.4.3
-        version: 4.4.3
-      zod-compiler:
-        specifier: ^1.14.0
-        version: 1.14.0(zod@4.4.3)
+        specifier: ^4.5.4
+        version: 4.5.4
     devDependencies:
       '@rolldown/plugin-babel':
         specifier: ^0.2.3
@@ -95,7 +92,7 @@ importers:
         version: 4.28.4
       eslint-plugin-zod:
         specifier: 4.7.0
-        version: 4.7.0(@typescript/typescript6@6.0.2)(eslint@10.5.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.80.0(oxlint-tsgolint@7.0.2001))(supports-color@10.2.2)(zod@4.4.3)
+        version: 4.7.0(@typescript/typescript6@6.0.2)(eslint@10.5.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.80.0(oxlint-tsgolint@7.0.2001))(supports-color@10.2.2)(zod@4.5.4)
       jest-styled-components:
         specifier: ^7.4.0
         version: 7.4.0(styled-components@6.4.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7))
@@ -2448,9 +2445,6 @@ packages:
     resolution: {integrity: sha512-QRbvDIbx6YklUe6RxeTeleMR0yv3cYH6PsPZHcnVn7xv7zO1BHN8r0XETu8n6Ye3Q+ahtSarc3WgtNWmehIBfA==}
     engines: {node: '>=18'}
 
-  get-tsconfig@4.14.0:
-    resolution: {integrity: sha512-yTb+8DXzDREzgvYmh6s9vHsSVCHeC0G3PI5bEXNBHtmshPnO+S5O7qgLEOn0I5QvMy6kpZN8K1NKGyilLb93wA==}
-
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -3157,9 +3151,6 @@ packages:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
 
-  resolve-pkg-maps@1.0.0:
-    resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
-
   rettime@0.11.11:
     resolution: {integrity: sha512-ILJRqVWBCTlg9r42fFgwVZx1gnFAcQF8mRoMkbgQfIrjEDf9nbBFDFx00oloOa+Q869FUtaYDXZvEfnecQSCoQ==}
 
@@ -3708,14 +3699,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod-compiler@1.14.0:
-    resolution: {integrity: sha512-sBV6MJbMD91mrghMXNPYpRCMI7Wt2LVoVjUl/sulYXuGeopLqUnl0Zp8c6gllZAQmvjqmql6K82ba0ZQ5FOfCg==}
-    hasBin: true
-    peerDependencies:
-      zod: ^4.0.0
-
-  zod@4.4.3:
-    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+  zod@4.5.4:
+    resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
 
 snapshots:
 
@@ -4733,10 +4718,10 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@t3-oss/env-core@0.13.11(@typescript/typescript6@6.0.2)(zod@4.4.3)':
+  '@t3-oss/env-core@0.13.11(@typescript/typescript6@6.0.2)(zod@4.5.4)':
     optionalDependencies:
       typescript: '@typescript/typescript6@6.0.2'
-      zod: 4.4.3
+      zod: 4.5.4
 
   '@tanstack/devtools-client@0.0.7':
     dependencies:
@@ -4891,7 +4876,7 @@ snapshots:
       jiti: 2.7.0
       magic-string: 0.30.21
       prettier: 3.8.4
-      zod: 4.4.3
+      zod: 4.5.4
     transitivePeerDependencies:
       - supports-color
 
@@ -4905,7 +4890,7 @@ snapshots:
       '@tanstack/router-utils': 1.162.2(supports-color@10.2.2)
       chokidar: 5.0.0
       unplugin: 3.0.0
-      zod: 4.4.3
+      zod: 4.5.4
     optionalDependencies:
       '@tanstack/react-router': 1.170.16(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       vite: 8.0.14(@types/node@26.0.0)(jiti@2.7.0)
@@ -5439,14 +5424,14 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-plugin-zod@4.7.0(@typescript/typescript6@6.0.2)(eslint@10.5.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.80.0(oxlint-tsgolint@7.0.2001))(supports-color@10.2.2)(zod@4.4.3):
+  eslint-plugin-zod@4.7.0(@typescript/typescript6@6.0.2)(eslint@10.5.0(jiti@2.7.0)(supports-color@10.2.2))(oxlint@1.80.0(oxlint-tsgolint@7.0.2001))(supports-color@10.2.2)(zod@4.5.4):
     dependencies:
       '@eslint-zod/utils': 2.3.0(@typescript/typescript6@6.0.2)(eslint@10.5.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)
       '@typescript-eslint/utils': 8.62.0(@typescript/typescript6@6.0.2)(eslint@10.5.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)
     optionalDependencies:
       eslint: 10.5.0(jiti@2.7.0)(supports-color@10.2.2)
       oxlint: 1.80.0(oxlint-tsgolint@7.0.2001)
-      zod: 4.4.3
+      zod: 4.5.4
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -5599,10 +5584,6 @@ snapshots:
   get-caller-file@2.0.5: {}
 
   get-east-asian-width@1.6.0: {}
-
-  get-tsconfig@4.14.0:
-    dependencies:
-      resolve-pkg-maps: 1.0.0
 
   glob-parent@5.1.2:
     dependencies:
@@ -6371,8 +6352,6 @@ snapshots:
 
   resolve-from@4.0.0: {}
 
-  resolve-pkg-maps@1.0.0: {}
-
   rettime@0.11.11: {}
 
   reusify@1.1.0: {}
@@ -6893,15 +6872,4 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod-compiler@1.14.0(zod@4.4.3):
-    dependencies:
-      '@jridgewell/remapping': 2.3.5
-      acorn: 8.17.0
-      get-tsconfig: 4.14.0
-      jiti: 2.7.0
-      magic-string: 0.30.21
-      picomatch: 4.0.4
-      unplugin: 3.0.0
-      zod: 4.4.3
-
-  zod@4.4.3: {}
+  zod@4.5.4: {}
