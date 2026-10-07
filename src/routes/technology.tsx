@@ -13,8 +13,9 @@ function Technology() {
   const { getStatusFieldsFromBoxQueryOptions } = Route.useRouteContext();
   const { data } = useSuspenseQuery(getStatusFieldsFromBoxQueryOptions);
   const technology = data.get('technology');
+  const model = data.get('model');
 
-  if (!technology) {
+  if (!technology || !model) {
     return (
       <Slide
         type="unavailable"
@@ -26,6 +27,13 @@ function Technology() {
   const mappedTechnology = match(technology)
     .returnType<string>()
     .with('A', 'B', 'J', 'Q', (value) => `Annex ${value}`)
+    // only when "Annex unbekannt" is preceded by a model name that contains "Cable"
+    .with(
+      'Annex unbekannt',
+      () => model.includes('Cable'),
+      () => 'Cable (DOCSIS)',
+    )
+    // else
     .with('Annex unbekannt', () => 'Unknown Annex')
     .with('Cable', 'Kabel', () => 'Cable (DOCSIS)')
     .with('Ohne', () => 'No modem')
