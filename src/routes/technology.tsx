@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
-import { match } from 'ts-pattern';
+import { match, P } from 'ts-pattern';
 
 import { Slide } from '#components/Slide/Slide';
 
@@ -24,19 +24,18 @@ function Technology() {
     );
   }
 
-  const mappedTechnology = match(technology)
+  const mappedTechnology = match([technology, model])
     .returnType<string>()
-    .with('A', 'B', 'J', 'Q', (value) => `Annex ${value}`)
-    // only when "Annex unbekannt" is preceded by a model name that contains "Cable"
+    .with([P.union('A', 'B', 'J', 'Q'), P.any], ([value]) => `Annex ${value}`)
+    // if "Annex unbekannt" is preceded by a model name that contains "Cable"
     .with(
-      'Annex unbekannt',
-      () => model.includes('Cable'),
+      ['Annex unbekannt', P.when((modelValue) => modelValue.includes('Cable'))],
       () => 'Cable (DOCSIS)',
     )
     // else
-    .with('Annex unbekannt', () => 'Unknown Annex')
-    .with('Cable', 'Kabel', () => 'Cable (DOCSIS)')
-    .with('Ohne', () => 'No modem')
+    .with(['Annex unbekannt', P.any], () => 'Unknown Annex')
+    .with([P.union('Cable', 'Kabel'), P.any], () => 'Cable (DOCSIS)')
+    .with(['Ohne', P.any], () => 'No modem')
     .otherwise(() => 'Unknown');
 
   return (
