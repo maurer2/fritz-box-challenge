@@ -3,7 +3,7 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "esnext",
+    "module": "preserve",
     "target": "esnext",
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -24,5 +24,14 @@
     "noUncheckedIndexedAccess": false // todo
   },
   "include": ["./src/**/*", "./scripts/**/*"],
-  "files": ["./vite.config.mts"]
+  "files": ["./vite.config.mts"],
+  "contentMappers": [
+    {
+      // https://github.com/colinhacks/motherload#readme
+      "package": "motherload",
+      "extensions": [
+        ".txt",
+      ]
+    }
+  ]
 }

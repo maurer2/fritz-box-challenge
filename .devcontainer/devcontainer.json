@@ -98,7 +98,8 @@
         "terminal.integrated.defaultProfile.linux": "zsh",
         // ts7
         "js/ts.experimental.useTsgo": true,
-        "js/ts.tsdk.path": "node_modules/@typescript/native",
+        "js/ts.tsdk.path": "node_modules/typescript",
+        "js/ts.tsdk.promptToUseWorkspaceVersion": true,
         // typescript & javascript
         "js/ts.validate.enable": true,
         "js/ts.inlayHints.variableTypes.enabled": true,
@@ -136,6 +137,7 @@
         "stylelint.vscode-stylelint", // Stylelint CSS/SCSS linting integration
         "DavidAnson.vscode-markdownlint", // Markdown linting & style enforcement
         // typescript & javascript
+        "TypeScriptTeam.vscode-typescript-nightly",
         "TypeScriptTeam.native-preview", // TypeScript 7
         // "ms-vscode.vscode-typescript-next", // TS6 nightlies
         "yoavbls.pretty-ts-errors", // Formats TypeScript errors to be human-readable

@@ -6,6 +6,7 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, loadEnv, type ProxyOptions /* type PluginOption, */ } from 'vite';
+import motherload from "motherload/vite";
 
 // import { boxHTMLSchema } from './src/schema/boxHTML/boxHTML.schema';
 // import fetcher from './src/helpers/fetcher/fetcher';
@@ -56,6 +57,7 @@ export default defineConfig(({ mode }) => {
       tsconfigPaths: true, // replaces vite-tsconfig-paths in vite 8
     },
     plugins: [
+      motherload(),
       devtools(),
       tanstackRouter({
         autoCodeSplitting: true,

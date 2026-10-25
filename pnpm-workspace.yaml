@@ -1,18 +1,12 @@
 packages:
   - 'experiments/*'
-
 allowBuilds:
   msw: true
   unrs-resolver: true
   esbuild: true
-
 minimumReleaseAge: 10080 # 7 days
+minimumReleaseAgeExcludePrune: true # drop entries from minimumReleaseAgeExclude upon install if they are old enough
 blockExoticSubdeps: true # no git branch as package url
-
-minimumReleaseAgeExclude:
-  - 'rolldown'
-  - '@oxc-project/types'
-  - '@vitejs/plugin-react'
 resolutionMode: highest
 
 supportedArchitectures:
@@ -23,3 +17,23 @@ supportedArchitectures:
     - darwin
     - linux
     - win32
+
+minimumReleaseAgeExclude:
+  - '@motherload/core@0.2.0'
+  - '@motherload/csv@0.2.0'
+  - '@motherload/env@0.2.0'
+  - '@motherload/json5@0.2.0'
+  - '@motherload/jsonc@0.2.0'
+  - '@motherload/md@0.2.0'
+  - '@motherload/toml@0.2.0'
+  - '@motherload/txt@0.2.0'
+  - '@motherload/yaml@0.2.0'
+  - motherload@0.2.0
+  - '@typescript/typescript-darwin-arm64@7.1.0-dev.20261025.1'
+  - '@typescript/typescript-darwin-x64@7.1.0-dev.20261025.1'
+  - '@typescript/typescript-linux-arm64@7.1.0-dev.20261025.1'
+  - '@typescript/typescript-linux-arm@7.1.0-dev.20261025.1'
+  - '@typescript/typescript-linux-x64@7.1.0-dev.20261025.1'
+  - '@typescript/typescript-win32-arm64@7.1.0-dev.20261025.1'
+  - '@typescript/typescript-win32-x64@7.1.0-dev.20261025.1'
+  - typescript@7.1.0-dev.20261025.1
