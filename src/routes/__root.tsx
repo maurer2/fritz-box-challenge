@@ -15,9 +15,11 @@ export const Route = createRootRouteWithContext<Context>()({
   // suspense boundary
   pendingComponent: () => <UpdateBar>Box data is being fetched</UpdateBar>,
   // error boundary
-  errorComponent: ({ error }) => (
-    <UpdateBar>Box data can&apos;t be loaded. {error.message}</UpdateBar>
-  ),
+  errorComponent: ({ error }) => {
+    const errorMessage = Error.isError(error) ? error.message : 'Unknown error';
+
+    return <UpdateBar>Box data can&apos;t be loaded. {errorMessage}</UpdateBar>;
+  },
   wrapInSuspense: true, // required when a pending component is used in a root route: https://github.com/TanStack/router/issues/2182
   ssr: false,
   // https://tkdodo.eu/blog/reliable-query-prefetching-with-tanstack-router
@@ -27,7 +29,11 @@ export const Route = createRootRouteWithContext<Context>()({
     getStatusFieldsFromBoxQueryOptions,
   }),
   loader: async ({ context }) => {
-    await context.queryClient.ensureQueryData(context.getStatusFieldsFromBoxQueryOptions); // show root pending component until until query has finished
+    // ensureQueryData is deprecated
+    await context.queryClient.query({
+      ...context.getStatusFieldsFromBoxQueryOptions,
+      staleTime: 'static', // static should only be used for initial fetch, subsequent fetches use the default staleTime
+    }); // show root pending component until query has finished
   },
   staticData: { title: '' },
   pendingMinMs: 1000,

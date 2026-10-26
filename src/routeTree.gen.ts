@@ -9,43 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TechnologyRouteImport } from './routes/technology'
-import { Route as RestartsRouteImport } from './routes/restarts'
-import { Route as PowerOnHoursRouteImport } from './routes/power-on-hours'
-import { Route as ModelRouteImport } from './routes/model'
-import { Route as LanguageRouteImport } from './routes/language'
-import { Route as FirmwareRouteImport } from './routes/firmware'
-import { Route as BrandingRouteImport } from './routes/branding'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BrandingRouteImport } from './routes/branding'
+import { Route as FirmwareRouteImport } from './routes/firmware'
+import { Route as LanguageRouteImport } from './routes/language'
+import { Route as ModelRouteImport } from './routes/model'
+import { Route as PowerOnHoursRouteImport } from './routes/power-on-hours'
+import { Route as RestartsRouteImport } from './routes/restarts'
+import { Route as TechnologyRouteImport } from './routes/technology'
 
-const TechnologyRoute = TechnologyRouteImport.update({
-  id: '/technology',
-  path: '/technology',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RestartsRoute = RestartsRouteImport.update({
-  id: '/restarts',
-  path: '/restarts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PowerOnHoursRoute = PowerOnHoursRouteImport.update({
-  id: '/power-on-hours',
-  path: '/power-on-hours',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ModelRoute = ModelRouteImport.update({
-  id: '/model',
-  path: '/model',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LanguageRoute = LanguageRouteImport.update({
-  id: '/language',
-  path: '/language',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FirmwareRoute = FirmwareRouteImport.update({
-  id: '/firmware',
-  path: '/firmware',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrandingRoute = BrandingRouteImport.update({
@@ -53,9 +28,34 @@ const BrandingRoute = BrandingRouteImport.update({
   path: '/branding',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const FirmwareRoute = FirmwareRouteImport.update({
+  id: '/firmware',
+  path: '/firmware',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LanguageRoute = LanguageRouteImport.update({
+  id: '/language',
+  path: '/language',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModelRoute = ModelRouteImport.update({
+  id: '/model',
+  path: '/model',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PowerOnHoursRoute = PowerOnHoursRouteImport.update({
+  id: '/power-on-hours',
+  path: '/power-on-hours',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RestartsRoute = RestartsRouteImport.update({
+  id: '/restarts',
+  path: '/restarts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TechnologyRoute = TechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -136,46 +136,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/technology': {
-      id: '/technology'
-      path: '/technology'
-      fullPath: '/technology'
-      preLoaderRoute: typeof TechnologyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/restarts': {
-      id: '/restarts'
-      path: '/restarts'
-      fullPath: '/restarts'
-      preLoaderRoute: typeof RestartsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/power-on-hours': {
-      id: '/power-on-hours'
-      path: '/power-on-hours'
-      fullPath: '/power-on-hours'
-      preLoaderRoute: typeof PowerOnHoursRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/model': {
-      id: '/model'
-      path: '/model'
-      fullPath: '/model'
-      preLoaderRoute: typeof ModelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/language': {
-      id: '/language'
-      path: '/language'
-      fullPath: '/language'
-      preLoaderRoute: typeof LanguageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/firmware': {
-      id: '/firmware'
-      path: '/firmware'
-      fullPath: '/firmware'
-      preLoaderRoute: typeof FirmwareRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/branding': {
@@ -185,11 +150,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrandingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/firmware': {
+      id: '/firmware'
+      path: '/firmware'
+      fullPath: '/firmware'
+      preLoaderRoute: typeof FirmwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/language': {
+      id: '/language'
+      path: '/language'
+      fullPath: '/language'
+      preLoaderRoute: typeof LanguageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/model': {
+      id: '/model'
+      path: '/model'
+      fullPath: '/model'
+      preLoaderRoute: typeof ModelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/power-on-hours': {
+      id: '/power-on-hours'
+      path: '/power-on-hours'
+      fullPath: '/power-on-hours'
+      preLoaderRoute: typeof PowerOnHoursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restarts': {
+      id: '/restarts'
+      path: '/restarts'
+      fullPath: '/restarts'
+      preLoaderRoute: typeof RestartsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/technology': {
+      id: '/technology'
+      path: '/technology'
+      fullPath: '/technology'
+      preLoaderRoute: typeof TechnologyRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
