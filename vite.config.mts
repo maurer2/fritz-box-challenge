@@ -53,6 +53,9 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.URL_BOX_STATUS': JSON.stringify(env.URL_BOX_STATUS),
     },
+    build: {
+      sourcemap: true,
+    },
     resolve: {
       tsconfigPaths: true, // replaces vite-tsconfig-paths in vite 8
     },
@@ -70,7 +73,7 @@ export default defineConfig(({ mode }) => {
           fragmentRefs: false,
           viewTransitions: true, // preset full contains every feature except viewTransitions
           portal: false,
-          context: false,
+          // context: true,
           // suspense: true,
           memo: false,
           forwardRef: false,

@@ -16,6 +16,7 @@
   },
   "scripts": {
     "analyze": "vite build --mode analyze",
+    "build": "vite build",
     "dev": "vite",
     "dev:404": "VITE_MSW_BEHAVIOUR=404 vite",
     "dev:invalid-fields": "VITE_MSW_BEHAVIOUR=INVALID_FIELDS vite",
@@ -27,6 +28,7 @@
     "format": "oxfmt",
     "lint:script": "oxlint",
     "lint:style": "stylelint 'src/**/*.{css,styles.ts}'",
+    "preview": "vite preview",
     "start": "vite --mode production",
     "test:schema": "vitest 'src/schema'",
     "typecheck": "tsc --noEmit"
