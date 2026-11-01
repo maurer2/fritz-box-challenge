@@ -29,6 +29,7 @@ minimumReleaseAgeExclude:
   - '@rolldown/binding-openharmony-arm64@1.2.15'
   - '@rolldown/binding-win32-arm64-msvc@1.2.15'
   - '@rolldown/binding-win32-x64-msvc@1.2.15'
+  - '@tanstack/redact@0.2.3'
 
 supportedArchitectures:
   cpu:

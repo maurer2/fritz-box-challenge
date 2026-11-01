@@ -1,5 +1,6 @@
 import { devtools } from '@tanstack/devtools-vite';
 import babel from '@rolldown/plugin-babel';
+import { redact } from '@tanstack/redact/vite';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 // import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 // import type { Logger } from 'babel-plugin-react-compiler';
@@ -62,6 +63,22 @@ export default defineConfig(({ mode }) => {
       }),
       // experimental rust port without logging function atm: https://oxc.rs/blog/2026-08-18-react-compiler-support.html#vite
       react({ compiler: true }),
+      redact({
+        preset: 'full',
+        features: {
+          activity: false,
+          fragmentRefs: false,
+          viewTransitions: true, // preset full contains every feature except viewTransitions
+          portal: false,
+          context: false,
+          // suspense: true,
+          memo: false,
+          forwardRef: false,
+          // lazy: true,
+          classComponents: false,
+          hydration: false,
+        },
+      }),
       babel({
         presets: [
           // reactCompilerPreset({
