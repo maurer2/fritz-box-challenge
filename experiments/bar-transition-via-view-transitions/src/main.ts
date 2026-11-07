@@ -14,7 +14,7 @@ const sections = new Set(app.querySelectorAll<HTMLElement>('.section'));
 const setActiveLink = (activeLink: HTMLAnchorElement): void => {
   const nonActiveLinks = links.difference(new Set([activeLink]));
 
-  nonActiveLinks.forEach((link) => link.removeAttribute('aria-current'));
+  nonActiveLinks.forEach((link) => { link.removeAttribute('aria-current') });
   activeLink.setAttribute('aria-current', 'page');
 };
 
@@ -26,7 +26,7 @@ const setActiveSection = (targetSectionId: string): void => {
 
   const nonActiveSections = sections.difference(new Set([activeSection]));
 
-  nonActiveSections.forEach((section) => (section.hidden = true));
+  nonActiveSections.forEach((section) => { section.hidden = true });
   activeSection.hidden = false;
 };
 

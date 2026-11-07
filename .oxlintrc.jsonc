@@ -1,24 +1,34 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": [
+    "eslint",
     "import",
     "jsx-a11y",
-    "node",
     "oxc",
+    "promise",
     "react",
+    // "react-perf",
     "typescript",
     "unicorn",
-    "eslint",
-    "promise",
     "vitest",
+    // "nextjs",
+    "node",
   ],
   "jsPlugins": ["eslint-plugin-zod"],
   "options": {
     "typeAware": true,
     "reportUnusedDisableDirectives": "error",
+    "typeCheck": true,
+    "denyWarnings": false, // don't fail build on warnings
   },
   "env": {
     "browser": true,
+    "builtin": true,
+  },
+  "settings": {
+    "react": {
+      "version": "19",
+    },
   },
   "categories": {
     "correctness": "error",
@@ -45,12 +55,21 @@
         "max": 150, // includes React components
       },
     ],
+    "eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true,
+      },
+    ],
     // react
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": "off",
     "react/forbid-component-props": "off",
     "react/jsx-no-literals": "off",
-    // react compiler
+    "react/rules-of-hooks": "error",
+    // React Compiler - correctness
     "react/error-boundaries": "error",
     "react/globals": "error",
     "react/immutability": "error",
@@ -63,15 +82,20 @@
     "react/static-components": "error",
     "react/use-memo": "error",
     "react/void-use-memo": "error",
+    // React Compiler - suspicious
     "react/capitalized-calls": "error",
     "react/memo-dependencies": "error",
-    "react/no-deriving-state-in-effects": "error",
-    "react/invariant": "error",
-    "react/rule-suppression": "error",
-    "react/syntax": "error",
-    "react/todo": "error",
-    "react/unsupported-syntax": "error",
-    // ts
+    "react/hooks": "error",
+    "react/exhaustive-effect-dependencies": "error",
+    // React Compiler - performance
+    "react/no-deriving-state-in-effects": "warn",
+    // React Compiler - restrictions
+    "react/invariant": "warn",
+    "react/rule-suppression": "warn",
+    "react/syntax": "warn",
+    "react/todo": "warn",
+    "react/unsupported-syntax": "warn",
+    // typescript
     "typescript/consistent-type-imports": "error",
     "typescript/prefer-readonly-parameter-types": "off", // too complicated when deadling with types from dependencies
     "typescript/promise-function-async": "off",
@@ -98,8 +122,22 @@
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
     "import/consistent-type-specifier-style": ["error", "prefer-top-level-if-only-type-imports"],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          // don't allow default React import
+          {
+            "name": "react",
+            "importNames": ["default"],
+            "message": "Use named imports instead.",
+          },
+        ],
+      },
+    ],
     // unicorn
     "unicorn/prefer-query-selector": "off",
+    "unicorn/no-array-for-each": "off",
     // node
     "node/no-top-level-await": "off",
     // zod
@@ -135,21 +173,29 @@
     "zod/require-error-message": "error",
   },
   // kept in sync with .oxfmtrc.jsonc; "**/*.gen.ts" covers src/routeTree.gen.ts
-  "ignorePatterns": ["__mocks__/**", "dist/**", "experiments/**", "public/**", "**/*.gen.ts"],
+  "ignorePatterns": [
+    "__mocks__/**",
+    "coverage/**",
+    "statistics/**",
+    "dist/**",
+    "**/*.gen.ts",
+    "mockServiceWorker.js",
+  ],
   "overrides": [
     // disable mandatory return types for React components -> also disables it for functions inside React component files
     {
       "files": ["src/**/*.{tsx}", "src/**/*.styles.{ts}"],
       "rules": {
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "typescript/explicit-function-return-type": "off",
+        "typescript/explicit-module-boundary-types": "off",
       },
     },
-    // TanStack routes overrides
+    // TanStack Router routes
     {
       "files": ["src/routes/**/*.tsx"],
       "rules": {
         "react/only-export-components": "off",
+        "react/no-multi-comp": "off",
         "eslint/no-use-before-define": "off",
       },
     },
@@ -170,7 +216,9 @@
       "rules": {
         "eslint/max-lines-per-function": "off",
         "typescript/no-unsafe-type-assertion": "off",
-        "unicorn/consistent-function-scoping": "off", // allow "setup" functions that don't use any params inside describe blocks
+        "unicorn/consistent-function-scoping": "off", // allow setup helpers inside describe blocks
+        "vitest/consistent-test-it": ["error", { "fn": "it" }],
+        "vitest/require-top-level-describe": "error",
         "vitest/require-test-timeout": "off",
       },
     },

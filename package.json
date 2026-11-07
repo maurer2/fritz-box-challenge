@@ -70,9 +70,9 @@
     "jiti": "^2.7.0",
     "jsdom": "^29.1.1",
     "oxc-transform-react": "^0.147.0",
-    "oxfmt": "^0.65.0",
-    "oxlint": "1.80.0",
-    "oxlint-tsgolint": "^7.0.2001",
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.90.0",
+    "oxlint-tsgolint": "^7.0.2005",
     "postcss": "^8.5.15",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^8.2.1",
@@ -95,7 +95,7 @@
     "vite": "^8.0.8",
     "vitest": "^4.1.9"
   },
-  "packageManager": "pnpm@12.15.0",
+  "packageManager": "pnpm@12.18.0",
   "msw": {
     "workerDirectory": [
       "public"

@@ -57,7 +57,7 @@ function PowerOnHours() {
   });
 
   if (!(calculatedProductionDate instanceof Temporal.ZonedDateTime)) {
-    throw new Error('Invalid calculated production date'); // gets caught by errorComponent
+    throw new TypeError('Invalid calculated production date'); // gets caught by errorComponent
   }
 
   const duration = calculatedProductionDate.until(now, {
