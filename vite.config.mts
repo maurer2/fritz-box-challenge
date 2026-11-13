@@ -5,8 +5,10 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite';
 // import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 // import type { Logger } from 'babel-plugin-react-compiler';
 import react from '@vitejs/plugin-react';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import { visualizer } from 'rollup-plugin-visualizer';
-import { defineConfig, loadEnv, type ProxyOptions /* type PluginOption, */ } from 'vite';
+import { defineConfig, loadEnv, type ProxyOptions, type UserConfig } from 'vite';
 
 // import { boxHTMLSchema } from './src/schema/boxHTML/boxHTML.schema';
 // import fetcher from './src/helpers/fetcher/fetcher';
@@ -43,15 +45,26 @@ const boxDataProxyOptions = {
   rewrite: (p: string): string => p.replace(/^\/box-data/v, ''),
 } satisfies ProxyOptions;
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   const isDevMode = mode === 'development';
   const isAnalyzeMode = mode === 'analyze';
 
+  let mockData: string;
+  try {
+    const fileContent = await readFile(
+      path.resolve(import.meta.dirname, 'src/mocks', env.MOCK_FILE_NAME),
+      'utf-8',
+    );
+    mockData = JSON.stringify(fileContent);
+  } catch (error) {
+    throw new Error(`Can't load mock file: ${env.MOCK_FILE_NAME}`, { cause: error });
+  }
+
   return {
     base: '',
     define: {
-      'process.env.URL_BOX_STATUS': JSON.stringify(env.URL_BOX_STATUS),
+      MOCK_DATA: mockData,
     },
     build: {
       sourcemap: true,
@@ -150,5 +163,5 @@ export default defineConfig(({ mode }) => {
             },
           },
     },
-  };
+  } satisfies UserConfig;
 });

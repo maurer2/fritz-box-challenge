@@ -2,9 +2,8 @@ import { http, HttpResponse, delay } from 'msw';
 
 import { env } from '#env';
 
-import mockData from './box-7590-v2-8_51.txt?raw';
-
 const behaviour = env.VITE_MSW_BEHAVIOUR;
+const mockData = MOCK_DATA;
 
 const mockedOKResponse = (): HttpResponse<string> =>
   HttpResponse.text(mockData, { status: 200, statusText: 'OK - Mocked' });
