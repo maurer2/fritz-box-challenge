@@ -2,7 +2,7 @@ import { http, HttpResponse, delay } from 'msw';
 
 import { env } from '#env';
 
-import mockData from './box-7590-8_25.txt?raw';
+import mockData from './box-7590-v2-8_51.txt?raw';
 
 const behaviour = env.VITE_MSW_BEHAVIOUR;
 
